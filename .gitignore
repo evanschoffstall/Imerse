@@ -1,0 +1,38 @@
+# Migration period
+phpapp/
+z DEVELOPMENT README/
+
+# VSCode
+.vscode/
+
+# Env
+.env
+.env.local
+
+# Bun
+bun-debug.log
+bun.lock
+
+# Node.js
+node_modules/
+
+# Next.js
+/.next/
+/out/
+next-env.d.ts
+
+# TypeScript
+*.tsbuildinfo
+
+# Lock files
+*.lock
+package-lock.json
+
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# Prisma
+/lib/generated/prisma
