@@ -142,3 +142,13 @@ export type MapGroup = Prisma.MapGroupModel
  * 
  */
 export type MapMarker = Prisma.MapMarkerModel
+/**
+ * Model Ability
+ * 
+ */
+export type Ability = Prisma.AbilityModel
+/**
+ * Model EntityAbility
+ * 
+ */
+export type EntityAbility = Prisma.EntityAbilityModel

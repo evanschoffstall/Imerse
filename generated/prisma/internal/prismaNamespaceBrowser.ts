@@ -75,7 +75,9 @@ export const ModelName = {
   Version: 'Version',
   MapLayer: 'MapLayer',
   MapGroup: 'MapGroup',
-  MapMarker: 'MapMarker'
+  MapMarker: 'MapMarker',
+  Ability: 'Ability',
+  EntityAbility: 'EntityAbility'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -584,6 +586,40 @@ export const MapMarkerScalarFieldEnum = {
 } as const
 
 export type MapMarkerScalarFieldEnum = (typeof MapMarkerScalarFieldEnum)[keyof typeof MapMarkerScalarFieldEnum]
+
+
+export const AbilityScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  entry: 'entry',
+  charges: 'charges',
+  type: 'type',
+  isPrivate: 'isPrivate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  campaignId: 'campaignId',
+  createdById: 'createdById',
+  parentId: 'parentId'
+} as const
+
+export type AbilityScalarFieldEnum = (typeof AbilityScalarFieldEnum)[keyof typeof AbilityScalarFieldEnum]
+
+
+export const EntityAbilityScalarFieldEnum = {
+  id: 'id',
+  charges: 'charges',
+  position: 'position',
+  note: 'note',
+  isPrivate: 'isPrivate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  entityId: 'entityId',
+  entityType: 'entityType',
+  abilityId: 'abilityId',
+  createdById: 'createdById'
+} as const
+
+export type EntityAbilityScalarFieldEnum = (typeof EntityAbilityScalarFieldEnum)[keyof typeof EntityAbilityScalarFieldEnum]
 
 
 export const SortOrder = {

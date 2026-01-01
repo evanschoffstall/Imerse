@@ -45,6 +45,8 @@ model User {
   mapLayers     MapLayer[]
   mapMarkers    MapMarker[]
   mapGroups     MapGroup[]
+  abilities     Ability[]
+  entityAbilities EntityAbility[]
 
   @@map("users")
 }
@@ -82,6 +84,7 @@ model Campaign {
   attributes    Attribute[]
   relationships Relationship[]
   versions      Version[]
+  abilities     Ability[]
 
   @@map("campaigns")
 }
@@ -717,4 +720,57 @@ model MapMarker {
   @@index([groupId])
   @@index([entityType, entityId])
   @@map("map_markers")
+}
+model Ability {
+  id          String   @id @default(cuid())
+  name        String
+  entry       String?  @db.Text // Rich text description
+  charges     Int? // Number of uses/charges
+  type        String? // Ability category/type
+  isPrivate   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  // Hierarchical structure
+  parentId String?
+  parent   Ability?   @relation("AbilityHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children Ability[]  @relation("AbilityHierarchy")
+
+  // Entity links
+  entityAbilities EntityAbility[]
+
+  @@index([campaignId])
+  @@index([parentId])
+  @@index([campaignId, name])
+  @@map("abilities")
+}
+
+model EntityAbility {
+  id         String   @id @default(cuid())
+  charges    Int? // Override ability charges
+  position   Int      @default(0) // Display order
+  note       String?  @db.Text // Custom notes
+  isPrivate  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  entityId   String // Character, Creature, etc.
+  entityType String // 'character', 'creature', etc.
+
+  abilityId String
+  ability   Ability @relation(fields: [abilityId], references: [id], onDelete: Cascade)
+
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@index([entityType, entityId])
+  @@index([abilityId])
+  @@index([entityType, entityId, position])
+  @@map("entity_abilities")
 }

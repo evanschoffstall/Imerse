@@ -229,6 +229,8 @@ export type UserWhereInput = {
   mapLayers?: Prisma.MapLayerListRelationFilter
   mapMarkers?: Prisma.MapMarkerListRelationFilter
   mapGroups?: Prisma.MapGroupListRelationFilter
+  abilities?: Prisma.AbilityListRelationFilter
+  entityAbilities?: Prisma.EntityAbilityListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -263,6 +265,8 @@ export type UserOrderByWithRelationInput = {
   mapLayers?: Prisma.MapLayerOrderByRelationAggregateInput
   mapMarkers?: Prisma.MapMarkerOrderByRelationAggregateInput
   mapGroups?: Prisma.MapGroupOrderByRelationAggregateInput
+  abilities?: Prisma.AbilityOrderByRelationAggregateInput
+  entityAbilities?: Prisma.EntityAbilityOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -300,6 +304,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   mapLayers?: Prisma.MapLayerListRelationFilter
   mapMarkers?: Prisma.MapMarkerListRelationFilter
   mapGroups?: Prisma.MapGroupListRelationFilter
+  abilities?: Prisma.AbilityListRelationFilter
+  entityAbilities?: Prisma.EntityAbilityListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -362,6 +368,8 @@ export type UserCreateInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -396,6 +404,8 @@ export type UserUncheckedCreateInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUpdateInput = {
@@ -430,6 +440,8 @@ export type UserUpdateInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -464,6 +476,8 @@ export type UserUncheckedUpdateInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -875,6 +889,34 @@ export type UserUpdateOneRequiredWithoutMapMarkersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMapMarkersInput, Prisma.UserUpdateWithoutMapMarkersInput>, Prisma.UserUncheckedUpdateWithoutMapMarkersInput>
 }
 
+export type UserCreateNestedOneWithoutAbilitiesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAbilitiesInput, Prisma.UserUncheckedCreateWithoutAbilitiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAbilitiesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAbilitiesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAbilitiesInput, Prisma.UserUncheckedCreateWithoutAbilitiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAbilitiesInput
+  upsert?: Prisma.UserUpsertWithoutAbilitiesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAbilitiesInput, Prisma.UserUpdateWithoutAbilitiesInput>, Prisma.UserUncheckedUpdateWithoutAbilitiesInput>
+}
+
+export type UserCreateNestedOneWithoutEntityAbilitiesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutEntityAbilitiesInput, Prisma.UserUncheckedCreateWithoutEntityAbilitiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutEntityAbilitiesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutEntityAbilitiesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutEntityAbilitiesInput, Prisma.UserUncheckedCreateWithoutEntityAbilitiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutEntityAbilitiesInput
+  upsert?: Prisma.UserUpsertWithoutEntityAbilitiesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutEntityAbilitiesInput, Prisma.UserUpdateWithoutEntityAbilitiesInput>, Prisma.UserUncheckedUpdateWithoutEntityAbilitiesInput>
+}
+
 export type UserCreateWithoutCampaignsInput = {
   id?: string
   email: string
@@ -906,6 +948,8 @@ export type UserCreateWithoutCampaignsInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCampaignsInput = {
@@ -939,6 +983,8 @@ export type UserUncheckedCreateWithoutCampaignsInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCampaignsInput = {
@@ -988,6 +1034,8 @@ export type UserUpdateWithoutCampaignsInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCampaignsInput = {
@@ -1021,6 +1069,8 @@ export type UserUncheckedUpdateWithoutCampaignsInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCampaignRolesInput = {
@@ -1054,6 +1104,8 @@ export type UserCreateWithoutCampaignRolesInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCampaignRolesInput = {
@@ -1087,6 +1139,8 @@ export type UserUncheckedCreateWithoutCampaignRolesInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCampaignRolesInput = {
@@ -1136,6 +1190,8 @@ export type UserUpdateWithoutCampaignRolesInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCampaignRolesInput = {
@@ -1169,6 +1225,8 @@ export type UserUncheckedUpdateWithoutCampaignRolesInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCharactersInput = {
@@ -1202,6 +1260,8 @@ export type UserCreateWithoutCharactersInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCharactersInput = {
@@ -1235,6 +1295,8 @@ export type UserUncheckedCreateWithoutCharactersInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCharactersInput = {
@@ -1284,6 +1346,8 @@ export type UserUpdateWithoutCharactersInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCharactersInput = {
@@ -1317,6 +1381,8 @@ export type UserUncheckedUpdateWithoutCharactersInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutLocationsInput = {
@@ -1350,6 +1416,8 @@ export type UserCreateWithoutLocationsInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutLocationsInput = {
@@ -1383,6 +1451,8 @@ export type UserUncheckedCreateWithoutLocationsInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutLocationsInput = {
@@ -1432,6 +1502,8 @@ export type UserUpdateWithoutLocationsInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLocationsInput = {
@@ -1465,6 +1537,8 @@ export type UserUncheckedUpdateWithoutLocationsInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutItemsInput = {
@@ -1498,6 +1572,8 @@ export type UserCreateWithoutItemsInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutItemsInput = {
@@ -1531,6 +1607,8 @@ export type UserUncheckedCreateWithoutItemsInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutItemsInput = {
@@ -1580,6 +1658,8 @@ export type UserUpdateWithoutItemsInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutItemsInput = {
@@ -1613,6 +1693,8 @@ export type UserUncheckedUpdateWithoutItemsInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutQuestsInput = {
@@ -1646,6 +1728,8 @@ export type UserCreateWithoutQuestsInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutQuestsInput = {
@@ -1679,6 +1763,8 @@ export type UserUncheckedCreateWithoutQuestsInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutQuestsInput = {
@@ -1728,6 +1814,8 @@ export type UserUpdateWithoutQuestsInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutQuestsInput = {
@@ -1761,6 +1849,8 @@ export type UserUncheckedUpdateWithoutQuestsInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutEventsInput = {
@@ -1794,6 +1884,8 @@ export type UserCreateWithoutEventsInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutEventsInput = {
@@ -1827,6 +1919,8 @@ export type UserUncheckedCreateWithoutEventsInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutEventsInput = {
@@ -1876,6 +1970,8 @@ export type UserUpdateWithoutEventsInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEventsInput = {
@@ -1909,6 +2005,8 @@ export type UserUncheckedUpdateWithoutEventsInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutJournalsInput = {
@@ -1942,6 +2040,8 @@ export type UserCreateWithoutJournalsInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutJournalsInput = {
@@ -1975,6 +2075,8 @@ export type UserUncheckedCreateWithoutJournalsInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutJournalsInput = {
@@ -2024,6 +2126,8 @@ export type UserUpdateWithoutJournalsInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutJournalsInput = {
@@ -2057,6 +2161,8 @@ export type UserUncheckedUpdateWithoutJournalsInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutNotesInput = {
@@ -2090,6 +2196,8 @@ export type UserCreateWithoutNotesInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutNotesInput = {
@@ -2123,6 +2231,8 @@ export type UserUncheckedCreateWithoutNotesInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutNotesInput = {
@@ -2172,6 +2282,8 @@ export type UserUpdateWithoutNotesInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotesInput = {
@@ -2205,6 +2317,8 @@ export type UserUncheckedUpdateWithoutNotesInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutFamiliesInput = {
@@ -2238,6 +2352,8 @@ export type UserCreateWithoutFamiliesInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutFamiliesInput = {
@@ -2271,6 +2387,8 @@ export type UserUncheckedCreateWithoutFamiliesInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutFamiliesInput = {
@@ -2320,6 +2438,8 @@ export type UserUpdateWithoutFamiliesInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFamiliesInput = {
@@ -2353,6 +2473,8 @@ export type UserUncheckedUpdateWithoutFamiliesInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutRacesInput = {
@@ -2386,6 +2508,8 @@ export type UserCreateWithoutRacesInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutRacesInput = {
@@ -2419,6 +2543,8 @@ export type UserUncheckedCreateWithoutRacesInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutRacesInput = {
@@ -2468,6 +2594,8 @@ export type UserUpdateWithoutRacesInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRacesInput = {
@@ -2501,6 +2629,8 @@ export type UserUncheckedUpdateWithoutRacesInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutOrganisationsInput = {
@@ -2534,6 +2664,8 @@ export type UserCreateWithoutOrganisationsInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutOrganisationsInput = {
@@ -2567,6 +2699,8 @@ export type UserUncheckedCreateWithoutOrganisationsInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutOrganisationsInput = {
@@ -2616,6 +2750,8 @@ export type UserUpdateWithoutOrganisationsInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrganisationsInput = {
@@ -2649,6 +2785,8 @@ export type UserUncheckedUpdateWithoutOrganisationsInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutTagsInput = {
@@ -2682,6 +2820,8 @@ export type UserCreateWithoutTagsInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutTagsInput = {
@@ -2715,6 +2855,8 @@ export type UserUncheckedCreateWithoutTagsInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutTagsInput = {
@@ -2764,6 +2906,8 @@ export type UserUpdateWithoutTagsInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTagsInput = {
@@ -2797,6 +2941,8 @@ export type UserUncheckedUpdateWithoutTagsInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutTimelinesInput = {
@@ -2830,6 +2976,8 @@ export type UserCreateWithoutTimelinesInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutTimelinesInput = {
@@ -2863,6 +3011,8 @@ export type UserUncheckedCreateWithoutTimelinesInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutTimelinesInput = {
@@ -2912,6 +3062,8 @@ export type UserUpdateWithoutTimelinesInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTimelinesInput = {
@@ -2945,6 +3097,8 @@ export type UserUncheckedUpdateWithoutTimelinesInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutMapsInput = {
@@ -2978,6 +3132,8 @@ export type UserCreateWithoutMapsInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutMapsInput = {
@@ -3011,6 +3167,8 @@ export type UserUncheckedCreateWithoutMapsInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutMapsInput = {
@@ -3060,6 +3218,8 @@ export type UserUpdateWithoutMapsInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMapsInput = {
@@ -3093,6 +3253,8 @@ export type UserUncheckedUpdateWithoutMapsInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutRelationsInput = {
@@ -3126,6 +3288,8 @@ export type UserCreateWithoutRelationsInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutRelationsInput = {
@@ -3159,6 +3323,8 @@ export type UserUncheckedCreateWithoutRelationsInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutRelationsInput = {
@@ -3208,6 +3374,8 @@ export type UserUpdateWithoutRelationsInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRelationsInput = {
@@ -3241,6 +3409,8 @@ export type UserUncheckedUpdateWithoutRelationsInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCalendarsInput = {
@@ -3274,6 +3444,8 @@ export type UserCreateWithoutCalendarsInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCalendarsInput = {
@@ -3307,6 +3479,8 @@ export type UserUncheckedCreateWithoutCalendarsInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCalendarsInput = {
@@ -3356,6 +3530,8 @@ export type UserUpdateWithoutCalendarsInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCalendarsInput = {
@@ -3389,6 +3565,8 @@ export type UserUncheckedUpdateWithoutCalendarsInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAttributesInput = {
@@ -3422,6 +3600,8 @@ export type UserCreateWithoutAttributesInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAttributesInput = {
@@ -3455,6 +3635,8 @@ export type UserUncheckedCreateWithoutAttributesInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAttributesInput = {
@@ -3504,6 +3686,8 @@ export type UserUpdateWithoutAttributesInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAttributesInput = {
@@ -3537,6 +3721,8 @@ export type UserUncheckedUpdateWithoutAttributesInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutRelationshipsInput = {
@@ -3570,6 +3756,8 @@ export type UserCreateWithoutRelationshipsInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutRelationshipsInput = {
@@ -3603,6 +3791,8 @@ export type UserUncheckedCreateWithoutRelationshipsInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutRelationshipsInput = {
@@ -3652,6 +3842,8 @@ export type UserUpdateWithoutRelationshipsInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRelationshipsInput = {
@@ -3685,6 +3877,8 @@ export type UserUncheckedUpdateWithoutRelationshipsInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutVersionsInput = {
@@ -3718,6 +3912,8 @@ export type UserCreateWithoutVersionsInput = {
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutVersionsInput = {
@@ -3751,6 +3947,8 @@ export type UserUncheckedCreateWithoutVersionsInput = {
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutVersionsInput = {
@@ -3800,6 +3998,8 @@ export type UserUpdateWithoutVersionsInput = {
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVersionsInput = {
@@ -3833,6 +4033,8 @@ export type UserUncheckedUpdateWithoutVersionsInput = {
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutMapLayersInput = {
@@ -3866,6 +4068,8 @@ export type UserCreateWithoutMapLayersInput = {
   versions?: Prisma.VersionCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutMapLayersInput = {
@@ -3899,6 +4103,8 @@ export type UserUncheckedCreateWithoutMapLayersInput = {
   versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutMapLayersInput = {
@@ -3948,6 +4154,8 @@ export type UserUpdateWithoutMapLayersInput = {
   versions?: Prisma.VersionUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMapLayersInput = {
@@ -3981,6 +4189,8 @@ export type UserUncheckedUpdateWithoutMapLayersInput = {
   versions?: Prisma.VersionUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutMapGroupsInput = {
@@ -4014,6 +4224,8 @@ export type UserCreateWithoutMapGroupsInput = {
   versions?: Prisma.VersionCreateNestedManyWithoutCreatedByInput
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutMapGroupsInput = {
@@ -4047,6 +4259,8 @@ export type UserUncheckedCreateWithoutMapGroupsInput = {
   versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCreatedByInput
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutMapGroupsInput = {
@@ -4096,6 +4310,8 @@ export type UserUpdateWithoutMapGroupsInput = {
   versions?: Prisma.VersionUpdateManyWithoutCreatedByNestedInput
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMapGroupsInput = {
@@ -4129,6 +4345,8 @@ export type UserUncheckedUpdateWithoutMapGroupsInput = {
   versions?: Prisma.VersionUncheckedUpdateManyWithoutCreatedByNestedInput
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutMapMarkersInput = {
@@ -4162,6 +4380,8 @@ export type UserCreateWithoutMapMarkersInput = {
   versions?: Prisma.VersionCreateNestedManyWithoutCreatedByInput
   mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutMapMarkersInput = {
@@ -4195,6 +4415,8 @@ export type UserUncheckedCreateWithoutMapMarkersInput = {
   versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCreatedByInput
   mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutMapMarkersInput = {
@@ -4244,6 +4466,8 @@ export type UserUpdateWithoutMapMarkersInput = {
   versions?: Prisma.VersionUpdateManyWithoutCreatedByNestedInput
   mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMapMarkersInput = {
@@ -4277,6 +4501,320 @@ export type UserUncheckedUpdateWithoutMapMarkersInput = {
   versions?: Prisma.VersionUncheckedUpdateManyWithoutCreatedByNestedInput
   mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutAbilitiesInput = {
+  id?: string
+  email: string
+  name: string
+  password: string
+  avatar?: string | null
+  emailVerified?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaigns?: Prisma.CampaignCreateNestedManyWithoutOwnerInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutUserInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCreatedByInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCreatedByInput
+  items?: Prisma.ItemCreateNestedManyWithoutCreatedByInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCreatedByInput
+  events?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCreatedByInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCreatedByInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCreatedByInput
+  races?: Prisma.RaceCreateNestedManyWithoutCreatedByInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCreatedByInput
+  tags?: Prisma.TagCreateNestedManyWithoutCreatedByInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCreatedByInput
+  maps?: Prisma.MapCreateNestedManyWithoutCreatedByInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCreatedByInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCreatedByInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCreatedByInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCreatedByInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCreatedByInput
+  mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
+  mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
+  mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutAbilitiesInput = {
+  id?: string
+  email: string
+  name: string
+  password: string
+  avatar?: string | null
+  emailVerified?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutOwnerInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutUserInput
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCreatedByInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCreatedByInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCreatedByInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCreatedByInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCreatedByInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCreatedByInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCreatedByInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCreatedByInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCreatedByInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCreatedByInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCreatedByInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCreatedByInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCreatedByInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCreatedByInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCreatedByInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCreatedByInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCreatedByInput
+  mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
+  mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
+  mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutAbilitiesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAbilitiesInput, Prisma.UserUncheckedCreateWithoutAbilitiesInput>
+}
+
+export type UserUpsertWithoutAbilitiesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAbilitiesInput, Prisma.UserUncheckedUpdateWithoutAbilitiesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAbilitiesInput, Prisma.UserUncheckedCreateWithoutAbilitiesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAbilitiesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAbilitiesInput, Prisma.UserUncheckedUpdateWithoutAbilitiesInput>
+}
+
+export type UserUpdateWithoutAbilitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaigns?: Prisma.CampaignUpdateManyWithoutOwnerNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutUserNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCreatedByNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCreatedByNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCreatedByNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCreatedByNestedInput
+  events?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCreatedByNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCreatedByNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCreatedByNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCreatedByNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCreatedByNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCreatedByNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCreatedByNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCreatedByNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCreatedByNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCreatedByNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCreatedByNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCreatedByNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCreatedByNestedInput
+  mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
+  mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
+  mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAbilitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutOwnerNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutUserNestedInput
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCreatedByNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCreatedByNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCreatedByNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCreatedByNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCreatedByNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCreatedByNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCreatedByNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCreatedByNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCreatedByNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCreatedByNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCreatedByNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCreatedByNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCreatedByNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCreatedByNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCreatedByNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
+  mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
+  mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutEntityAbilitiesInput = {
+  id?: string
+  email: string
+  name: string
+  password: string
+  avatar?: string | null
+  emailVerified?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaigns?: Prisma.CampaignCreateNestedManyWithoutOwnerInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutUserInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCreatedByInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCreatedByInput
+  items?: Prisma.ItemCreateNestedManyWithoutCreatedByInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCreatedByInput
+  events?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCreatedByInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCreatedByInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCreatedByInput
+  races?: Prisma.RaceCreateNestedManyWithoutCreatedByInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCreatedByInput
+  tags?: Prisma.TagCreateNestedManyWithoutCreatedByInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCreatedByInput
+  maps?: Prisma.MapCreateNestedManyWithoutCreatedByInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCreatedByInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCreatedByInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCreatedByInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCreatedByInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCreatedByInput
+  mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
+  mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
+  mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutEntityAbilitiesInput = {
+  id?: string
+  email: string
+  name: string
+  password: string
+  avatar?: string | null
+  emailVerified?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutOwnerInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutUserInput
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCreatedByInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCreatedByInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCreatedByInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCreatedByInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCreatedByInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCreatedByInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCreatedByInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCreatedByInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCreatedByInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCreatedByInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCreatedByInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCreatedByInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCreatedByInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCreatedByInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCreatedByInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCreatedByInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCreatedByInput
+  mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
+  mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
+  mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutEntityAbilitiesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutEntityAbilitiesInput, Prisma.UserUncheckedCreateWithoutEntityAbilitiesInput>
+}
+
+export type UserUpsertWithoutEntityAbilitiesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutEntityAbilitiesInput, Prisma.UserUncheckedUpdateWithoutEntityAbilitiesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutEntityAbilitiesInput, Prisma.UserUncheckedCreateWithoutEntityAbilitiesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutEntityAbilitiesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutEntityAbilitiesInput, Prisma.UserUncheckedUpdateWithoutEntityAbilitiesInput>
+}
+
+export type UserUpdateWithoutEntityAbilitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaigns?: Prisma.CampaignUpdateManyWithoutOwnerNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutUserNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCreatedByNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCreatedByNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCreatedByNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCreatedByNestedInput
+  events?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCreatedByNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCreatedByNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCreatedByNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCreatedByNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCreatedByNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCreatedByNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCreatedByNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCreatedByNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCreatedByNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCreatedByNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCreatedByNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCreatedByNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCreatedByNestedInput
+  mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
+  mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
+  mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutEntityAbilitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutOwnerNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutUserNestedInput
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCreatedByNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCreatedByNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCreatedByNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCreatedByNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCreatedByNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCreatedByNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCreatedByNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCreatedByNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCreatedByNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCreatedByNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCreatedByNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCreatedByNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCreatedByNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCreatedByNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCreatedByNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
+  mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
+  mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 
@@ -4308,6 +4846,8 @@ export type UserCountOutputType = {
   mapLayers: number
   mapMarkers: number
   mapGroups: number
+  abilities: number
+  entityAbilities: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4334,6 +4874,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   mapLayers?: boolean | UserCountOutputTypeCountMapLayersArgs
   mapMarkers?: boolean | UserCountOutputTypeCountMapMarkersArgs
   mapGroups?: boolean | UserCountOutputTypeCountMapGroupsArgs
+  abilities?: boolean | UserCountOutputTypeCountAbilitiesArgs
+  entityAbilities?: boolean | UserCountOutputTypeCountEntityAbilitiesArgs
 }
 
 /**
@@ -4507,6 +5049,20 @@ export type UserCountOutputTypeCountMapGroupsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.MapGroupWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAbilitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AbilityWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountEntityAbilitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EntityAbilityWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -4540,6 +5096,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   mapLayers?: boolean | Prisma.User$mapLayersArgs<ExtArgs>
   mapMarkers?: boolean | Prisma.User$mapMarkersArgs<ExtArgs>
   mapGroups?: boolean | Prisma.User$mapGroupsArgs<ExtArgs>
+  abilities?: boolean | Prisma.User$abilitiesArgs<ExtArgs>
+  entityAbilities?: boolean | Prisma.User$entityAbilitiesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -4601,6 +5159,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   mapLayers?: boolean | Prisma.User$mapLayersArgs<ExtArgs>
   mapMarkers?: boolean | Prisma.User$mapMarkersArgs<ExtArgs>
   mapGroups?: boolean | Prisma.User$mapGroupsArgs<ExtArgs>
+  abilities?: boolean | Prisma.User$abilitiesArgs<ExtArgs>
+  entityAbilities?: boolean | Prisma.User$entityAbilitiesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -4632,6 +5192,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     mapLayers: Prisma.$MapLayerPayload<ExtArgs>[]
     mapMarkers: Prisma.$MapMarkerPayload<ExtArgs>[]
     mapGroups: Prisma.$MapGroupPayload<ExtArgs>[]
+    abilities: Prisma.$AbilityPayload<ExtArgs>[]
+    entityAbilities: Prisma.$EntityAbilityPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -5059,6 +5621,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   mapLayers<T extends Prisma.User$mapLayersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$mapLayersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MapLayerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   mapMarkers<T extends Prisma.User$mapMarkersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$mapMarkersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MapMarkerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   mapGroups<T extends Prisma.User$mapGroupsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$mapGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MapGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  abilities<T extends Prisma.User$abilitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$abilitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AbilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  entityAbilities<T extends Prisma.User$entityAbilitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$entityAbilitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntityAbilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6033,6 +6597,54 @@ export type User$mapGroupsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.MapGroupScalarFieldEnum | Prisma.MapGroupScalarFieldEnum[]
+}
+
+/**
+ * User.abilities
+ */
+export type User$abilitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Ability
+   */
+  select?: Prisma.AbilitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Ability
+   */
+  omit?: Prisma.AbilityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AbilityInclude<ExtArgs> | null
+  where?: Prisma.AbilityWhereInput
+  orderBy?: Prisma.AbilityOrderByWithRelationInput | Prisma.AbilityOrderByWithRelationInput[]
+  cursor?: Prisma.AbilityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AbilityScalarFieldEnum | Prisma.AbilityScalarFieldEnum[]
+}
+
+/**
+ * User.entityAbilities
+ */
+export type User$entityAbilitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EntityAbility
+   */
+  select?: Prisma.EntityAbilitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EntityAbility
+   */
+  omit?: Prisma.EntityAbilityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EntityAbilityInclude<ExtArgs> | null
+  where?: Prisma.EntityAbilityWhereInput
+  orderBy?: Prisma.EntityAbilityOrderByWithRelationInput | Prisma.EntityAbilityOrderByWithRelationInput[]
+  cursor?: Prisma.EntityAbilityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EntityAbilityScalarFieldEnum | Prisma.EntityAbilityScalarFieldEnum[]
 }
 
 /**

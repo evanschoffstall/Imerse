@@ -408,7 +408,9 @@ export const ModelName = {
   Version: 'Version',
   MapLayer: 'MapLayer',
   MapGroup: 'MapGroup',
-  MapMarker: 'MapMarker'
+  MapMarker: 'MapMarker',
+  Ability: 'Ability',
+  EntityAbility: 'EntityAbility'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -424,7 +426,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "campaign" | "campaignRole" | "character" | "location" | "item" | "quest" | "event" | "journal" | "note" | "family" | "race" | "organisation" | "tag" | "timeline" | "map" | "relation" | "calendar" | "calendarWeather" | "attribute" | "relationship" | "version" | "mapLayer" | "mapGroup" | "mapMarker"
+    modelProps: "user" | "campaign" | "campaignRole" | "character" | "location" | "item" | "quest" | "event" | "journal" | "note" | "family" | "race" | "organisation" | "tag" | "timeline" | "map" | "relation" | "calendar" | "calendarWeather" | "attribute" | "relationship" | "version" | "mapLayer" | "mapGroup" | "mapMarker" | "ability" | "entityAbility"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2278,6 +2280,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Ability: {
+      payload: Prisma.$AbilityPayload<ExtArgs>
+      fields: Prisma.AbilityFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AbilityFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbilityPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AbilityFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbilityPayload>
+        }
+        findFirst: {
+          args: Prisma.AbilityFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbilityPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AbilityFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbilityPayload>
+        }
+        findMany: {
+          args: Prisma.AbilityFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbilityPayload>[]
+        }
+        create: {
+          args: Prisma.AbilityCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbilityPayload>
+        }
+        createMany: {
+          args: Prisma.AbilityCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AbilityCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbilityPayload>[]
+        }
+        delete: {
+          args: Prisma.AbilityDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbilityPayload>
+        }
+        update: {
+          args: Prisma.AbilityUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbilityPayload>
+        }
+        deleteMany: {
+          args: Prisma.AbilityDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AbilityUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AbilityUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbilityPayload>[]
+        }
+        upsert: {
+          args: Prisma.AbilityUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbilityPayload>
+        }
+        aggregate: {
+          args: Prisma.AbilityAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAbility>
+        }
+        groupBy: {
+          args: Prisma.AbilityGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AbilityGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AbilityCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AbilityCountAggregateOutputType> | number
+        }
+      }
+    }
+    EntityAbility: {
+      payload: Prisma.$EntityAbilityPayload<ExtArgs>
+      fields: Prisma.EntityAbilityFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EntityAbilityFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EntityAbilityPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EntityAbilityFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EntityAbilityPayload>
+        }
+        findFirst: {
+          args: Prisma.EntityAbilityFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EntityAbilityPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EntityAbilityFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EntityAbilityPayload>
+        }
+        findMany: {
+          args: Prisma.EntityAbilityFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EntityAbilityPayload>[]
+        }
+        create: {
+          args: Prisma.EntityAbilityCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EntityAbilityPayload>
+        }
+        createMany: {
+          args: Prisma.EntityAbilityCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EntityAbilityCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EntityAbilityPayload>[]
+        }
+        delete: {
+          args: Prisma.EntityAbilityDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EntityAbilityPayload>
+        }
+        update: {
+          args: Prisma.EntityAbilityUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EntityAbilityPayload>
+        }
+        deleteMany: {
+          args: Prisma.EntityAbilityDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EntityAbilityUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EntityAbilityUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EntityAbilityPayload>[]
+        }
+        upsert: {
+          args: Prisma.EntityAbilityUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EntityAbilityPayload>
+        }
+        aggregate: {
+          args: Prisma.EntityAbilityAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEntityAbility>
+        }
+        groupBy: {
+          args: Prisma.EntityAbilityGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EntityAbilityGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EntityAbilityCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EntityAbilityCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2809,6 +2959,40 @@ export const MapMarkerScalarFieldEnum = {
 export type MapMarkerScalarFieldEnum = (typeof MapMarkerScalarFieldEnum)[keyof typeof MapMarkerScalarFieldEnum]
 
 
+export const AbilityScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  entry: 'entry',
+  charges: 'charges',
+  type: 'type',
+  isPrivate: 'isPrivate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  campaignId: 'campaignId',
+  createdById: 'createdById',
+  parentId: 'parentId'
+} as const
+
+export type AbilityScalarFieldEnum = (typeof AbilityScalarFieldEnum)[keyof typeof AbilityScalarFieldEnum]
+
+
+export const EntityAbilityScalarFieldEnum = {
+  id: 'id',
+  charges: 'charges',
+  position: 'position',
+  note: 'note',
+  isPrivate: 'isPrivate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  entityId: 'entityId',
+  entityType: 'entityType',
+  abilityId: 'abilityId',
+  createdById: 'createdById'
+} as const
+
+export type EntityAbilityScalarFieldEnum = (typeof EntityAbilityScalarFieldEnum)[keyof typeof EntityAbilityScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -3059,6 +3243,8 @@ export type GlobalOmitConfig = {
   mapLayer?: Prisma.MapLayerOmit
   mapGroup?: Prisma.MapGroupOmit
   mapMarker?: Prisma.MapMarkerOmit
+  ability?: Prisma.AbilityOmit
+  entityAbility?: Prisma.EntityAbilityOmit
 }
 
 /* Types for Logging */
