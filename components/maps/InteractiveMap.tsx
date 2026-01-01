@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { Stage, Layer, Image as KonvaImage, Circle, Text, Rect, Line } from 'react-konva'
-import useImage from 'use-image'
 import { MapLayer, MapMarker } from '@/types/map'
+import { useRef, useState } from 'react'
+import { Circle, Image as KonvaImage, Layer, Line, Stage, Text } from 'react-konva'
+import useImage from 'use-image'
 
 interface InteractiveMapProps {
   mapImage?: string
@@ -85,7 +85,7 @@ function MarkerComponent({
             // Fall through to default marker
           }
         }
-        // Fall through to default if no valid polygon data
+      // Fall through to default if no valid polygon data
 
       default:
         // Default marker (pin shape)
@@ -235,8 +235,8 @@ export default function InteractiveMap({
             <MarkerComponent
               key={marker.id}
               marker={marker}
-              onClick={onMarkerClick || (() => {})}
-              onDragEnd={onMarkerDragEnd || (() => {})}
+              onClick={onMarkerClick || (() => { })}
+              onDragEnd={onMarkerDragEnd || (() => { })}
               editable={editable}
             />
           ))}

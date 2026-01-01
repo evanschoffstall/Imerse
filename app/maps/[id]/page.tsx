@@ -1,11 +1,10 @@
 'use client'
 
-import Button from '@/components/ui/Button'
 import InteractiveMap from '@/components/maps/InteractiveMap'
 import LayerManager from '@/components/maps/LayerManager'
 import MarkerManager from '@/components/maps/MarkerManager'
-import type { Map, MapLayer, MapMarker, MapGroup } from '@/types/map'
-import NextImage from 'next/image'
+import Button from '@/components/ui/Button'
+import type { Map, MapGroup, MapLayer, MapMarker } from '@/types/map'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -236,31 +235,28 @@ export default function MapDetailPage({ params }: { params: { id: string } }) {
       <div className="flex gap-4 border-b mb-6">
         <button
           onClick={() => setActiveTab('map')}
-          className={`px-4 py-2 font-medium border-b-2 -mb-px ${
-            activeTab === 'map'
+          className={`px-4 py-2 font-medium border-b-2 -mb-px ${activeTab === 'map'
               ? 'border-blue-500 text-blue-600'
               : 'border-transparent text-gray-600 hover:text-gray-800'
-          }`}
+            }`}
         >
           Interactive Map
         </button>
         <button
           onClick={() => setActiveTab('layers')}
-          className={`px-4 py-2 font-medium border-b-2 -mb-px ${
-            activeTab === 'layers'
+          className={`px-4 py-2 font-medium border-b-2 -mb-px ${activeTab === 'layers'
               ? 'border-blue-500 text-blue-600'
               : 'border-transparent text-gray-600 hover:text-gray-800'
-          }`}
+            }`}
         >
           Layers ({layers.length})
         </button>
         <button
           onClick={() => setActiveTab('markers')}
-          className={`px-4 py-2 font-medium border-b-2 -mb-px ${
-            activeTab === 'markers'
+          className={`px-4 py-2 font-medium border-b-2 -mb-px ${activeTab === 'markers'
               ? 'border-blue-500 text-blue-600'
               : 'border-transparent text-gray-600 hover:text-gray-800'
-          }`}
+            }`}
         >
           Markers & Groups ({markers.length})
         </button>
@@ -288,11 +284,11 @@ export default function MapDetailPage({ params }: { params: { id: string } }) {
       )}
 
       {activeTab === 'markers' && (
-        <MarkerManager 
-          mapId={params.id} 
-          markers={markers} 
-          groups={groups} 
-          onUpdate={refreshData} 
+        <MarkerManager
+          mapId={params.id}
+          markers={markers}
+          groups={groups}
+          onUpdate={refreshData}
         />
       )}
     </div>

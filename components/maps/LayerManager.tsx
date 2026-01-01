@@ -1,8 +1,8 @@
 'use client'
 
+import { MapLayer, MapLayerFormData } from '@/types/map'
 import { useState } from 'react'
 import { toast } from 'sonner'
-import { MapLayer, MapLayerFormData } from '@/types/map'
 
 interface LayerManagerProps {
   mapId: string
@@ -28,7 +28,7 @@ export default function LayerManager({ mapId, layers, onUpdate }: LayerManagerPr
       const url = editingId
         ? `/api/maps/${mapId}/layers/${editingId}`
         : `/api/maps/${mapId}/layers`
-      
+
       const method = editingId ? 'PATCH' : 'POST'
 
       const res = await fetch(url, {

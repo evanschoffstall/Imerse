@@ -1,7 +1,7 @@
-import { NextRequest } from 'next/server'
-import { auth } from '@/auth'
-import { prisma } from '@/lib/prisma'
-import { hasPermission } from '@/lib/permissions'
+import { auth } from "@/auth";
+import { hasPermission } from "@/lib/permissions";
+import { prisma } from "@/lib/prisma";
+import { NextRequest } from "next/server";
 
 // GET /api/maps/[id]/markers/[markerId] - Get a single marker
 export async function GET(
@@ -9,47 +9,44 @@ export async function GET(
   { params }: { params: { id: string; markerId: string } }
 ) {
   try {
-    const session = await auth()
+    const session = await auth();
     if (!session?.user) {
-      return Response.json({ error: 'Unauthorized' }, { status: 401 })
+      return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const marker = await prisma.mapMarker.findUnique({
       where: { id: params.markerId },
       include: {
         map: {
-          select: { id: true, campaignId: true }
+          select: { id: true, campaignId: true },
         },
         group: {
-          select: { id: true, name: true }
+          select: { id: true, name: true },
         },
         createdBy: {
-          select: { id: true, name: true }
-        }
-      }
-    })
+          select: { id: true, name: true },
+        },
+      },
+    });
 
     if (!marker) {
-      return Response.json({ error: 'Marker not found' }, { status: 404 })
+      return Response.json({ error: "Marker not found" }, { status: 404 });
     }
 
     // Check campaign permission
     const canView = await hasPermission(
       marker.map.campaignId,
       session.user.id,
-      'VIEW_ENTITIES'
-    )
+      "VIEW_ENTITIES"
+    );
     if (!canView) {
-      return Response.json({ error: 'Forbidden' }, { status: 403 })
+      return Response.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    return Response.json(marker)
+    return Response.json(marker);
   } catch (error) {
-    console.error('Error fetching map marker:', error)
-    return Response.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+    console.error("Error fetching map marker:", error);
+    return Response.json({ error: "Internal server error" }, { status: 500 });
   }
 }
 
@@ -59,35 +56,35 @@ export async function PATCH(
   { params }: { params: { id: string; markerId: string } }
 ) {
   try {
-    const session = await auth()
+    const session = await auth();
     if (!session?.user) {
-      return Response.json({ error: 'Unauthorized' }, { status: 401 })
+      return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const marker = await prisma.mapMarker.findUnique({
       where: { id: params.markerId },
       include: {
         map: {
-          select: { campaignId: true }
-        }
-      }
-    })
+          select: { campaignId: true },
+        },
+      },
+    });
 
     if (!marker) {
-      return Response.json({ error: 'Marker not found' }, { status: 404 })
+      return Response.json({ error: "Marker not found" }, { status: 404 });
     }
 
     // Check campaign permission
     const canEdit = await hasPermission(
       marker.map.campaignId,
       session.user.id,
-      'EDIT_ENTITIES'
-    )
+      "EDIT_ENTITIES"
+    );
     if (!canEdit) {
-      return Response.json({ error: 'Forbidden' }, { status: 403 })
+      return Response.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    const body = await req.json()
+    const body = await req.json();
 
     const updatedMarker = await prisma.mapMarker.update({
       where: { id: params.markerId },
@@ -113,25 +110,22 @@ export async function PATCH(
         entityId: body.entityId,
         entityType: body.entityType,
         isPrivate: body.isPrivate,
-        groupId: body.groupId
+        groupId: body.groupId,
       },
       include: {
         group: {
-          select: { id: true, name: true }
+          select: { id: true, name: true },
         },
         createdBy: {
-          select: { id: true, name: true }
-        }
-      }
-    })
+          select: { id: true, name: true },
+        },
+      },
+    });
 
-    return Response.json(updatedMarker)
+    return Response.json(updatedMarker);
   } catch (error) {
-    console.error('Error updating map marker:', error)
-    return Response.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+    console.error("Error updating map marker:", error);
+    return Response.json({ error: "Internal server error" }, { status: 500 });
   }
 }
 
@@ -141,44 +135,41 @@ export async function DELETE(
   { params }: { params: { id: string; markerId: string } }
 ) {
   try {
-    const session = await auth()
+    const session = await auth();
     if (!session?.user) {
-      return Response.json({ error: 'Unauthorized' }, { status: 401 })
+      return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const marker = await prisma.mapMarker.findUnique({
       where: { id: params.markerId },
       include: {
         map: {
-          select: { campaignId: true }
-        }
-      }
-    })
+          select: { campaignId: true },
+        },
+      },
+    });
 
     if (!marker) {
-      return Response.json({ error: 'Marker not found' }, { status: 404 })
+      return Response.json({ error: "Marker not found" }, { status: 404 });
     }
 
     // Check campaign permission
     const canDelete = await hasPermission(
       marker.map.campaignId,
       session.user.id,
-      'DELETE_ENTITIES'
-    )
+      "DELETE_ENTITIES"
+    );
     if (!canDelete) {
-      return Response.json({ error: 'Forbidden' }, { status: 403 })
+      return Response.json({ error: "Forbidden" }, { status: 403 });
     }
 
     await prisma.mapMarker.delete({
-      where: { id: params.markerId }
-    })
+      where: { id: params.markerId },
+    });
 
-    return Response.json({ success: true })
+    return Response.json({ success: true });
   } catch (error) {
-    console.error('Error deleting map marker:', error)
-    return Response.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+    console.error("Error deleting map marker:", error);
+    return Response.json({ error: "Internal server error" }, { status: 500 });
   }
 }

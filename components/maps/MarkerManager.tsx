@@ -1,8 +1,8 @@
 'use client'
 
+import { DEFAULT_MARKER_COLORS, MapGroup, MapGroupFormData, MapMarker, MapMarkerFormData, MARKER_SHAPES } from '@/types/map'
 import { useState } from 'react'
 import { toast } from 'sonner'
-import { MapMarker, MapGroup, MapMarkerFormData, MapGroupFormData, MARKER_SHAPES, DEFAULT_MARKER_COLORS } from '@/types/map'
 
 interface MarkerManagerProps {
   mapId: string
@@ -47,7 +47,7 @@ export default function MarkerManager({ mapId, markers, groups, onUpdate }: Mark
       const url = editingMarkerId
         ? `/api/maps/${mapId}/markers/${editingMarkerId}`
         : `/api/maps/${mapId}/markers`
-      
+
       const method = editingMarkerId ? 'PATCH' : 'POST'
 
       const res = await fetch(url, {
@@ -140,7 +140,7 @@ export default function MarkerManager({ mapId, markers, groups, onUpdate }: Mark
       const url = editingGroupId
         ? `/api/maps/${mapId}/groups/${editingGroupId}`
         : `/api/maps/${mapId}/groups`
-      
+
       const method = editingGroupId ? 'PATCH' : 'POST'
 
       const res = await fetch(url, {
@@ -207,21 +207,19 @@ export default function MarkerManager({ mapId, markers, groups, onUpdate }: Mark
       <div className="flex gap-4 border-b mb-4">
         <button
           onClick={() => setActiveTab('markers')}
-          className={`px-4 py-2 font-medium border-b-2 -mb-px ${
-            activeTab === 'markers'
+          className={`px-4 py-2 font-medium border-b-2 -mb-px ${activeTab === 'markers'
               ? 'border-blue-500 text-blue-600'
               : 'border-transparent text-gray-600 hover:text-gray-800'
-          }`}
+            }`}
         >
           Markers ({markers.length})
         </button>
         <button
           onClick={() => setActiveTab('groups')}
-          className={`px-4 py-2 font-medium border-b-2 -mb-px ${
-            activeTab === 'groups'
+          className={`px-4 py-2 font-medium border-b-2 -mb-px ${activeTab === 'groups'
               ? 'border-blue-500 text-blue-600'
               : 'border-transparent text-gray-600 hover:text-gray-800'
-          }`}
+            }`}
         >
           Groups ({groups.length})
         </button>

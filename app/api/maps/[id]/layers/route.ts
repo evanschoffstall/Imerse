@@ -1,7 +1,7 @@
-import { NextRequest } from 'next/server'
-import { auth } from '@/auth'
-import { prisma } from '@/lib/prisma'
-import { hasPermission } from '@/lib/permissions'
+import { auth } from "@/auth";
+import { hasPermission } from "@/lib/permissions";
+import { prisma } from "@/lib/prisma";
+import { NextRequest } from "next/server";
 
 // GET /api/maps/[id]/layers - List all layers for a map
 export async function GET(
@@ -9,31 +9,31 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await auth()
+    const session = await auth();
     if (!session?.user) {
-      return Response.json({ error: 'Unauthorized' }, { status: 401 })
+      return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const mapId = params.id
+    const mapId = params.id;
 
     // Get map to check campaign access
     const map = await prisma.map.findUnique({
       where: { id: mapId },
-      select: { campaignId: true }
-    })
+      select: { campaignId: true },
+    });
 
     if (!map) {
-      return Response.json({ error: 'Map not found' }, { status: 404 })
+      return Response.json({ error: "Map not found" }, { status: 404 });
     }
 
     // Check campaign permission
     const canView = await hasPermission(
       map.campaignId,
       session.user.id,
-      'VIEW_ENTITIES'
-    )
+      "VIEW_ENTITIES"
+    );
     if (!canView) {
-      return Response.json({ error: 'Forbidden' }, { status: 403 })
+      return Response.json({ error: "Forbidden" }, { status: 403 });
     }
 
     // Get all layers for this map, ordered by position
@@ -41,19 +41,16 @@ export async function GET(
       where: { mapId },
       include: {
         createdBy: {
-          select: { id: true, name: true }
-        }
+          select: { id: true, name: true },
+        },
       },
-      orderBy: { position: 'desc' }
-    })
+      orderBy: { position: "desc" },
+    });
 
-    return Response.json(layers)
+    return Response.json(layers);
   } catch (error) {
-    console.error('Error fetching map layers:', error)
-    return Response.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+    console.error("Error fetching map layers:", error);
+    return Response.json({ error: "Internal server error" }, { status: 500 });
   }
 }
 
@@ -63,34 +60,34 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await auth()
+    const session = await auth();
     if (!session?.user) {
-      return Response.json({ error: 'Unauthorized' }, { status: 401 })
+      return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const mapId = params.id
+    const mapId = params.id;
 
     // Get map to check campaign access
     const map = await prisma.map.findUnique({
       where: { id: mapId },
-      select: { campaignId: true }
-    })
+      select: { campaignId: true },
+    });
 
     if (!map) {
-      return Response.json({ error: 'Map not found' }, { status: 404 })
+      return Response.json({ error: "Map not found" }, { status: 404 });
     }
 
     // Check campaign permission
     const canEdit = await hasPermission(
       map.campaignId,
       session.user.id,
-      'CREATE_ENTITIES'
-    )
+      "CREATE_ENTITIES"
+    );
     if (!canEdit) {
-      return Response.json({ error: 'Forbidden' }, { status: 403 })
+      return Response.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    const body = await req.json()
+    const body = await req.json();
 
     const layer = await prisma.mapLayer.create({
       data: {
@@ -104,21 +101,18 @@ export async function POST(
         opacity: body.opacity ?? 1.0,
         isVisible: body.isVisible ?? true,
         isPrivate: body.isPrivate ?? false,
-        createdById: session.user.id
+        createdById: session.user.id,
       },
       include: {
         createdBy: {
-          select: { id: true, name: true }
-        }
-      }
-    })
+          select: { id: true, name: true },
+        },
+      },
+    });
 
-    return Response.json(layer, { status: 201 })
+    return Response.json(layer, { status: 201 });
   } catch (error) {
-    console.error('Error creating map layer:', error)
-    return Response.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+    console.error("Error creating map layer:", error);
+    return Response.json({ error: "Internal server error" }, { status: 500 });
   }
 }
