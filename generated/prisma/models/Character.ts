@@ -297,6 +297,7 @@ export type CharacterWhereInput = {
   birthCalendar?: Prisma.XOR<Prisma.CalendarNullableScalarRelationFilter, Prisma.CalendarWhereInput> | null
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  diceRolls?: Prisma.DiceRollListRelationFilter
 }
 
 export type CharacterOrderByWithRelationInput = {
@@ -322,6 +323,7 @@ export type CharacterOrderByWithRelationInput = {
   birthCalendar?: Prisma.CalendarOrderByWithRelationInput
   campaign?: Prisma.CampaignOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
+  diceRolls?: Prisma.DiceRollOrderByRelationAggregateInput
 }
 
 export type CharacterWhereUniqueInput = Prisma.AtLeast<{
@@ -351,6 +353,7 @@ export type CharacterWhereUniqueInput = Prisma.AtLeast<{
   birthCalendar?: Prisma.XOR<Prisma.CalendarNullableScalarRelationFilter, Prisma.CalendarWhereInput> | null
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  diceRolls?: Prisma.DiceRollListRelationFilter
 }, "id" | "campaignId_slug">
 
 export type CharacterOrderByWithAggregationInput = {
@@ -423,6 +426,7 @@ export type CharacterCreateInput = {
   birthCalendar?: Prisma.CalendarCreateNestedOneWithoutCharacterBirthdaysInput
   campaign: Prisma.CampaignCreateNestedOneWithoutCharactersInput
   createdBy: Prisma.UserCreateNestedOneWithoutCharactersInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterUncheckedCreateInput = {
@@ -445,6 +449,7 @@ export type CharacterUncheckedCreateInput = {
   updatedAt?: Date | string
   campaignId: string
   createdById: string
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterUpdateInput = {
@@ -467,6 +472,7 @@ export type CharacterUpdateInput = {
   birthCalendar?: Prisma.CalendarUpdateOneWithoutCharacterBirthdaysNestedInput
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutCharactersNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCharactersNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterUncheckedUpdateInput = {
@@ -489,6 +495,7 @@ export type CharacterUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterCreateManyInput = {
@@ -635,6 +642,11 @@ export type CharacterMinOrderByAggregateInput = {
   createdById?: Prisma.SortOrder
 }
 
+export type CharacterNullableScalarRelationFilter = {
+  is?: Prisma.CharacterWhereInput | null
+  isNot?: Prisma.CharacterWhereInput | null
+}
+
 export type CharacterCreateNestedManyWithoutCreatedByInput = {
   create?: Prisma.XOR<Prisma.CharacterCreateWithoutCreatedByInput, Prisma.CharacterUncheckedCreateWithoutCreatedByInput> | Prisma.CharacterCreateWithoutCreatedByInput[] | Prisma.CharacterUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutCreatedByInput | Prisma.CharacterCreateOrConnectWithoutCreatedByInput[]
@@ -761,6 +773,22 @@ export type CharacterUncheckedUpdateManyWithoutBirthCalendarNestedInput = {
   deleteMany?: Prisma.CharacterScalarWhereInput | Prisma.CharacterScalarWhereInput[]
 }
 
+export type CharacterCreateNestedOneWithoutDiceRollsInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutDiceRollsInput, Prisma.CharacterUncheckedCreateWithoutDiceRollsInput>
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutDiceRollsInput
+  connect?: Prisma.CharacterWhereUniqueInput
+}
+
+export type CharacterUpdateOneWithoutDiceRollsNestedInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutDiceRollsInput, Prisma.CharacterUncheckedCreateWithoutDiceRollsInput>
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutDiceRollsInput
+  upsert?: Prisma.CharacterUpsertWithoutDiceRollsInput
+  disconnect?: Prisma.CharacterWhereInput | boolean
+  delete?: Prisma.CharacterWhereInput | boolean
+  connect?: Prisma.CharacterWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CharacterUpdateToOneWithWhereWithoutDiceRollsInput, Prisma.CharacterUpdateWithoutDiceRollsInput>, Prisma.CharacterUncheckedUpdateWithoutDiceRollsInput>
+}
+
 export type CharacterCreateWithoutCreatedByInput = {
   id?: string
   name: string
@@ -780,6 +808,7 @@ export type CharacterCreateWithoutCreatedByInput = {
   updatedAt?: Date | string
   birthCalendar?: Prisma.CalendarCreateNestedOneWithoutCharacterBirthdaysInput
   campaign: Prisma.CampaignCreateNestedOneWithoutCharactersInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterUncheckedCreateWithoutCreatedByInput = {
@@ -801,6 +830,7 @@ export type CharacterUncheckedCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   campaignId: string
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterCreateOrConnectWithoutCreatedByInput = {
@@ -873,6 +903,7 @@ export type CharacterCreateWithoutCampaignInput = {
   updatedAt?: Date | string
   birthCalendar?: Prisma.CalendarCreateNestedOneWithoutCharacterBirthdaysInput
   createdBy: Prisma.UserCreateNestedOneWithoutCharactersInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterUncheckedCreateWithoutCampaignInput = {
@@ -894,6 +925,7 @@ export type CharacterUncheckedCreateWithoutCampaignInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdById: string
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterCreateOrConnectWithoutCampaignInput = {
@@ -941,6 +973,7 @@ export type CharacterCreateWithoutBirthCalendarInput = {
   updatedAt?: Date | string
   campaign: Prisma.CampaignCreateNestedOneWithoutCharactersInput
   createdBy: Prisma.UserCreateNestedOneWithoutCharactersInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterUncheckedCreateWithoutBirthCalendarInput = {
@@ -962,6 +995,7 @@ export type CharacterUncheckedCreateWithoutBirthCalendarInput = {
   updatedAt?: Date | string
   campaignId: string
   createdById: string
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterCreateOrConnectWithoutBirthCalendarInput = {
@@ -988,6 +1022,110 @@ export type CharacterUpdateWithWhereUniqueWithoutBirthCalendarInput = {
 export type CharacterUpdateManyWithWhereWithoutBirthCalendarInput = {
   where: Prisma.CharacterScalarWhereInput
   data: Prisma.XOR<Prisma.CharacterUpdateManyMutationInput, Prisma.CharacterUncheckedUpdateManyWithoutBirthCalendarInput>
+}
+
+export type CharacterCreateWithoutDiceRollsInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  image?: string | null
+  isPrivate?: boolean
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  birthCalendar?: Prisma.CalendarCreateNestedOneWithoutCharacterBirthdaysInput
+  campaign: Prisma.CampaignCreateNestedOneWithoutCharactersInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCharactersInput
+}
+
+export type CharacterUncheckedCreateWithoutDiceRollsInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  image?: string | null
+  isPrivate?: boolean
+  birthCalendarId?: string | null
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+}
+
+export type CharacterCreateOrConnectWithoutDiceRollsInput = {
+  where: Prisma.CharacterWhereUniqueInput
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutDiceRollsInput, Prisma.CharacterUncheckedCreateWithoutDiceRollsInput>
+}
+
+export type CharacterUpsertWithoutDiceRollsInput = {
+  update: Prisma.XOR<Prisma.CharacterUpdateWithoutDiceRollsInput, Prisma.CharacterUncheckedUpdateWithoutDiceRollsInput>
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutDiceRollsInput, Prisma.CharacterUncheckedCreateWithoutDiceRollsInput>
+  where?: Prisma.CharacterWhereInput
+}
+
+export type CharacterUpdateToOneWithWhereWithoutDiceRollsInput = {
+  where?: Prisma.CharacterWhereInput
+  data: Prisma.XOR<Prisma.CharacterUpdateWithoutDiceRollsInput, Prisma.CharacterUncheckedUpdateWithoutDiceRollsInput>
+}
+
+export type CharacterUpdateWithoutDiceRollsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthCalendar?: Prisma.CalendarUpdateOneWithoutCharacterBirthdaysNestedInput
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutCharactersNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCharactersNestedInput
+}
+
+export type CharacterUncheckedUpdateWithoutDiceRollsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type CharacterCreateManyCreatedByInput = {
@@ -1030,6 +1168,7 @@ export type CharacterUpdateWithoutCreatedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   birthCalendar?: Prisma.CalendarUpdateOneWithoutCharacterBirthdaysNestedInput
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutCharactersNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterUncheckedUpdateWithoutCreatedByInput = {
@@ -1051,6 +1190,7 @@ export type CharacterUncheckedUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1114,6 +1254,7 @@ export type CharacterUpdateWithoutCampaignInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   birthCalendar?: Prisma.CalendarUpdateOneWithoutCharacterBirthdaysNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCharactersNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterUncheckedUpdateWithoutCampaignInput = {
@@ -1135,6 +1276,7 @@ export type CharacterUncheckedUpdateWithoutCampaignInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterUncheckedUpdateManyWithoutCampaignInput = {
@@ -1198,6 +1340,7 @@ export type CharacterUpdateWithoutBirthCalendarInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutCharactersNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCharactersNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterUncheckedUpdateWithoutBirthCalendarInput = {
@@ -1219,6 +1362,7 @@ export type CharacterUncheckedUpdateWithoutBirthCalendarInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterUncheckedUpdateManyWithoutBirthCalendarInput = {
@@ -1242,6 +1386,35 @@ export type CharacterUncheckedUpdateManyWithoutBirthCalendarInput = {
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
+
+/**
+ * Count Type CharacterCountOutputType
+ */
+
+export type CharacterCountOutputType = {
+  diceRolls: number
+}
+
+export type CharacterCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  diceRolls?: boolean | CharacterCountOutputTypeCountDiceRollsArgs
+}
+
+/**
+ * CharacterCountOutputType without action
+ */
+export type CharacterCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CharacterCountOutputType
+   */
+  select?: Prisma.CharacterCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * CharacterCountOutputType without action
+ */
+export type CharacterCountOutputTypeCountDiceRollsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DiceRollWhereInput
+}
 
 
 export type CharacterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1267,6 +1440,8 @@ export type CharacterSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   birthCalendar?: boolean | Prisma.Character$birthCalendarArgs<ExtArgs>
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  diceRolls?: boolean | Prisma.Character$diceRollsArgs<ExtArgs>
+  _count?: boolean | Prisma.CharacterCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["character"]>
 
 export type CharacterSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1346,6 +1521,8 @@ export type CharacterInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   birthCalendar?: boolean | Prisma.Character$birthCalendarArgs<ExtArgs>
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  diceRolls?: boolean | Prisma.Character$diceRollsArgs<ExtArgs>
+  _count?: boolean | Prisma.CharacterCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CharacterIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   birthCalendar?: boolean | Prisma.Character$birthCalendarArgs<ExtArgs>
@@ -1364,6 +1541,7 @@ export type $CharacterPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     birthCalendar: Prisma.$CalendarPayload<ExtArgs> | null
     campaign: Prisma.$CampaignPayload<ExtArgs>
     createdBy: Prisma.$UserPayload<ExtArgs>
+    diceRolls: Prisma.$DiceRollPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1782,6 +1960,7 @@ export interface Prisma__CharacterClient<T, Null = never, ExtArgs extends runtim
   birthCalendar<T extends Prisma.Character$birthCalendarArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Character$birthCalendarArgs<ExtArgs>>): Prisma.Prisma__CalendarClient<runtime.Types.Result.GetResult<Prisma.$CalendarPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   campaign<T extends Prisma.CampaignDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CampaignDefaultArgs<ExtArgs>>): Prisma.Prisma__CampaignClient<runtime.Types.Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  diceRolls<T extends Prisma.Character$diceRollsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Character$diceRollsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DiceRollPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2242,6 +2421,30 @@ export type Character$birthCalendarArgs<ExtArgs extends runtime.Types.Extensions
    */
   include?: Prisma.CalendarInclude<ExtArgs> | null
   where?: Prisma.CalendarWhereInput
+}
+
+/**
+ * Character.diceRolls
+ */
+export type Character$diceRollsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DiceRoll
+   */
+  select?: Prisma.DiceRollSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DiceRoll
+   */
+  omit?: Prisma.DiceRollOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DiceRollInclude<ExtArgs> | null
+  where?: Prisma.DiceRollWhereInput
+  orderBy?: Prisma.DiceRollOrderByWithRelationInput | Prisma.DiceRollOrderByWithRelationInput[]
+  cursor?: Prisma.DiceRollWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DiceRollScalarFieldEnum | Prisma.DiceRollScalarFieldEnum[]
 }
 
 /**

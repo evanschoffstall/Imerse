@@ -231,6 +231,9 @@ export type UserWhereInput = {
   mapGroups?: Prisma.MapGroupListRelationFilter
   abilities?: Prisma.AbilityListRelationFilter
   entityAbilities?: Prisma.EntityAbilityListRelationFilter
+  creatures?: Prisma.CreatureListRelationFilter
+  diceRolls?: Prisma.DiceRollListRelationFilter
+  diceRollResults?: Prisma.DiceRollResultListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -267,6 +270,9 @@ export type UserOrderByWithRelationInput = {
   mapGroups?: Prisma.MapGroupOrderByRelationAggregateInput
   abilities?: Prisma.AbilityOrderByRelationAggregateInput
   entityAbilities?: Prisma.EntityAbilityOrderByRelationAggregateInput
+  creatures?: Prisma.CreatureOrderByRelationAggregateInput
+  diceRolls?: Prisma.DiceRollOrderByRelationAggregateInput
+  diceRollResults?: Prisma.DiceRollResultOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -306,6 +312,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   mapGroups?: Prisma.MapGroupListRelationFilter
   abilities?: Prisma.AbilityListRelationFilter
   entityAbilities?: Prisma.EntityAbilityListRelationFilter
+  creatures?: Prisma.CreatureListRelationFilter
+  diceRolls?: Prisma.DiceRollListRelationFilter
+  diceRollResults?: Prisma.DiceRollResultListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -370,6 +379,9 @@ export type UserCreateInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -406,6 +418,9 @@ export type UserUncheckedCreateInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUpdateInput = {
@@ -442,6 +457,9 @@ export type UserUpdateInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -478,6 +496,9 @@ export type UserUncheckedUpdateInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -917,6 +938,48 @@ export type UserUpdateOneRequiredWithoutEntityAbilitiesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutEntityAbilitiesInput, Prisma.UserUpdateWithoutEntityAbilitiesInput>, Prisma.UserUncheckedUpdateWithoutEntityAbilitiesInput>
 }
 
+export type UserCreateNestedOneWithoutCreaturesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreaturesInput, Prisma.UserUncheckedCreateWithoutCreaturesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreaturesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCreaturesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreaturesInput, Prisma.UserUncheckedCreateWithoutCreaturesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreaturesInput
+  upsert?: Prisma.UserUpsertWithoutCreaturesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreaturesInput, Prisma.UserUpdateWithoutCreaturesInput>, Prisma.UserUncheckedUpdateWithoutCreaturesInput>
+}
+
+export type UserCreateNestedOneWithoutDiceRollsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDiceRollsInput, Prisma.UserUncheckedCreateWithoutDiceRollsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDiceRollsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutDiceRollsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDiceRollsInput, Prisma.UserUncheckedCreateWithoutDiceRollsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDiceRollsInput
+  upsert?: Prisma.UserUpsertWithoutDiceRollsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDiceRollsInput, Prisma.UserUpdateWithoutDiceRollsInput>, Prisma.UserUncheckedUpdateWithoutDiceRollsInput>
+}
+
+export type UserCreateNestedOneWithoutDiceRollResultsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDiceRollResultsInput, Prisma.UserUncheckedCreateWithoutDiceRollResultsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDiceRollResultsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutDiceRollResultsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDiceRollResultsInput, Prisma.UserUncheckedCreateWithoutDiceRollResultsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDiceRollResultsInput
+  upsert?: Prisma.UserUpsertWithoutDiceRollResultsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDiceRollResultsInput, Prisma.UserUpdateWithoutDiceRollResultsInput>, Prisma.UserUncheckedUpdateWithoutDiceRollResultsInput>
+}
+
 export type UserCreateWithoutCampaignsInput = {
   id?: string
   email: string
@@ -950,6 +1013,9 @@ export type UserCreateWithoutCampaignsInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCampaignsInput = {
@@ -985,6 +1051,9 @@ export type UserUncheckedCreateWithoutCampaignsInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCampaignsInput = {
@@ -1036,6 +1105,9 @@ export type UserUpdateWithoutCampaignsInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCampaignsInput = {
@@ -1071,6 +1143,9 @@ export type UserUncheckedUpdateWithoutCampaignsInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCampaignRolesInput = {
@@ -1106,6 +1181,9 @@ export type UserCreateWithoutCampaignRolesInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCampaignRolesInput = {
@@ -1141,6 +1219,9 @@ export type UserUncheckedCreateWithoutCampaignRolesInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCampaignRolesInput = {
@@ -1192,6 +1273,9 @@ export type UserUpdateWithoutCampaignRolesInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCampaignRolesInput = {
@@ -1227,6 +1311,9 @@ export type UserUncheckedUpdateWithoutCampaignRolesInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCharactersInput = {
@@ -1262,6 +1349,9 @@ export type UserCreateWithoutCharactersInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCharactersInput = {
@@ -1297,6 +1387,9 @@ export type UserUncheckedCreateWithoutCharactersInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCharactersInput = {
@@ -1348,6 +1441,9 @@ export type UserUpdateWithoutCharactersInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCharactersInput = {
@@ -1383,6 +1479,9 @@ export type UserUncheckedUpdateWithoutCharactersInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutLocationsInput = {
@@ -1418,6 +1517,9 @@ export type UserCreateWithoutLocationsInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutLocationsInput = {
@@ -1453,6 +1555,9 @@ export type UserUncheckedCreateWithoutLocationsInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutLocationsInput = {
@@ -1504,6 +1609,9 @@ export type UserUpdateWithoutLocationsInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLocationsInput = {
@@ -1539,6 +1647,9 @@ export type UserUncheckedUpdateWithoutLocationsInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutItemsInput = {
@@ -1574,6 +1685,9 @@ export type UserCreateWithoutItemsInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutItemsInput = {
@@ -1609,6 +1723,9 @@ export type UserUncheckedCreateWithoutItemsInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutItemsInput = {
@@ -1660,6 +1777,9 @@ export type UserUpdateWithoutItemsInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutItemsInput = {
@@ -1695,6 +1815,9 @@ export type UserUncheckedUpdateWithoutItemsInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutQuestsInput = {
@@ -1730,6 +1853,9 @@ export type UserCreateWithoutQuestsInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutQuestsInput = {
@@ -1765,6 +1891,9 @@ export type UserUncheckedCreateWithoutQuestsInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutQuestsInput = {
@@ -1816,6 +1945,9 @@ export type UserUpdateWithoutQuestsInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutQuestsInput = {
@@ -1851,6 +1983,9 @@ export type UserUncheckedUpdateWithoutQuestsInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutEventsInput = {
@@ -1886,6 +2021,9 @@ export type UserCreateWithoutEventsInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutEventsInput = {
@@ -1921,6 +2059,9 @@ export type UserUncheckedCreateWithoutEventsInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutEventsInput = {
@@ -1972,6 +2113,9 @@ export type UserUpdateWithoutEventsInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEventsInput = {
@@ -2007,6 +2151,9 @@ export type UserUncheckedUpdateWithoutEventsInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutJournalsInput = {
@@ -2042,6 +2189,9 @@ export type UserCreateWithoutJournalsInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutJournalsInput = {
@@ -2077,6 +2227,9 @@ export type UserUncheckedCreateWithoutJournalsInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutJournalsInput = {
@@ -2128,6 +2281,9 @@ export type UserUpdateWithoutJournalsInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutJournalsInput = {
@@ -2163,6 +2319,9 @@ export type UserUncheckedUpdateWithoutJournalsInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutNotesInput = {
@@ -2198,6 +2357,9 @@ export type UserCreateWithoutNotesInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutNotesInput = {
@@ -2233,6 +2395,9 @@ export type UserUncheckedCreateWithoutNotesInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutNotesInput = {
@@ -2284,6 +2449,9 @@ export type UserUpdateWithoutNotesInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotesInput = {
@@ -2319,6 +2487,9 @@ export type UserUncheckedUpdateWithoutNotesInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutFamiliesInput = {
@@ -2354,6 +2525,9 @@ export type UserCreateWithoutFamiliesInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutFamiliesInput = {
@@ -2389,6 +2563,9 @@ export type UserUncheckedCreateWithoutFamiliesInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutFamiliesInput = {
@@ -2440,6 +2617,9 @@ export type UserUpdateWithoutFamiliesInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFamiliesInput = {
@@ -2475,6 +2655,9 @@ export type UserUncheckedUpdateWithoutFamiliesInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutRacesInput = {
@@ -2510,6 +2693,9 @@ export type UserCreateWithoutRacesInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutRacesInput = {
@@ -2545,6 +2731,9 @@ export type UserUncheckedCreateWithoutRacesInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutRacesInput = {
@@ -2596,6 +2785,9 @@ export type UserUpdateWithoutRacesInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRacesInput = {
@@ -2631,6 +2823,9 @@ export type UserUncheckedUpdateWithoutRacesInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutOrganisationsInput = {
@@ -2666,6 +2861,9 @@ export type UserCreateWithoutOrganisationsInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutOrganisationsInput = {
@@ -2701,6 +2899,9 @@ export type UserUncheckedCreateWithoutOrganisationsInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutOrganisationsInput = {
@@ -2752,6 +2953,9 @@ export type UserUpdateWithoutOrganisationsInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrganisationsInput = {
@@ -2787,6 +2991,9 @@ export type UserUncheckedUpdateWithoutOrganisationsInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutTagsInput = {
@@ -2822,6 +3029,9 @@ export type UserCreateWithoutTagsInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutTagsInput = {
@@ -2857,6 +3067,9 @@ export type UserUncheckedCreateWithoutTagsInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutTagsInput = {
@@ -2908,6 +3121,9 @@ export type UserUpdateWithoutTagsInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTagsInput = {
@@ -2943,6 +3159,9 @@ export type UserUncheckedUpdateWithoutTagsInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutTimelinesInput = {
@@ -2978,6 +3197,9 @@ export type UserCreateWithoutTimelinesInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutTimelinesInput = {
@@ -3013,6 +3235,9 @@ export type UserUncheckedCreateWithoutTimelinesInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutTimelinesInput = {
@@ -3064,6 +3289,9 @@ export type UserUpdateWithoutTimelinesInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTimelinesInput = {
@@ -3099,6 +3327,9 @@ export type UserUncheckedUpdateWithoutTimelinesInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutMapsInput = {
@@ -3134,6 +3365,9 @@ export type UserCreateWithoutMapsInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutMapsInput = {
@@ -3169,6 +3403,9 @@ export type UserUncheckedCreateWithoutMapsInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutMapsInput = {
@@ -3220,6 +3457,9 @@ export type UserUpdateWithoutMapsInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMapsInput = {
@@ -3255,6 +3495,9 @@ export type UserUncheckedUpdateWithoutMapsInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutRelationsInput = {
@@ -3290,6 +3533,9 @@ export type UserCreateWithoutRelationsInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutRelationsInput = {
@@ -3325,6 +3571,9 @@ export type UserUncheckedCreateWithoutRelationsInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutRelationsInput = {
@@ -3376,6 +3625,9 @@ export type UserUpdateWithoutRelationsInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRelationsInput = {
@@ -3411,6 +3663,9 @@ export type UserUncheckedUpdateWithoutRelationsInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCalendarsInput = {
@@ -3446,6 +3701,9 @@ export type UserCreateWithoutCalendarsInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCalendarsInput = {
@@ -3481,6 +3739,9 @@ export type UserUncheckedCreateWithoutCalendarsInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCalendarsInput = {
@@ -3532,6 +3793,9 @@ export type UserUpdateWithoutCalendarsInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCalendarsInput = {
@@ -3567,6 +3831,9 @@ export type UserUncheckedUpdateWithoutCalendarsInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAttributesInput = {
@@ -3602,6 +3869,9 @@ export type UserCreateWithoutAttributesInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAttributesInput = {
@@ -3637,6 +3907,9 @@ export type UserUncheckedCreateWithoutAttributesInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAttributesInput = {
@@ -3688,6 +3961,9 @@ export type UserUpdateWithoutAttributesInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAttributesInput = {
@@ -3723,6 +3999,9 @@ export type UserUncheckedUpdateWithoutAttributesInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutRelationshipsInput = {
@@ -3758,6 +4037,9 @@ export type UserCreateWithoutRelationshipsInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutRelationshipsInput = {
@@ -3793,6 +4075,9 @@ export type UserUncheckedCreateWithoutRelationshipsInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutRelationshipsInput = {
@@ -3844,6 +4129,9 @@ export type UserUpdateWithoutRelationshipsInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRelationshipsInput = {
@@ -3879,6 +4167,9 @@ export type UserUncheckedUpdateWithoutRelationshipsInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutVersionsInput = {
@@ -3914,6 +4205,9 @@ export type UserCreateWithoutVersionsInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutVersionsInput = {
@@ -3949,6 +4243,9 @@ export type UserUncheckedCreateWithoutVersionsInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutVersionsInput = {
@@ -4000,6 +4297,9 @@ export type UserUpdateWithoutVersionsInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVersionsInput = {
@@ -4035,6 +4335,9 @@ export type UserUncheckedUpdateWithoutVersionsInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutMapLayersInput = {
@@ -4070,6 +4373,9 @@ export type UserCreateWithoutMapLayersInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutMapLayersInput = {
@@ -4105,6 +4411,9 @@ export type UserUncheckedCreateWithoutMapLayersInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutMapLayersInput = {
@@ -4156,6 +4465,9 @@ export type UserUpdateWithoutMapLayersInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMapLayersInput = {
@@ -4191,6 +4503,9 @@ export type UserUncheckedUpdateWithoutMapLayersInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutMapGroupsInput = {
@@ -4226,6 +4541,9 @@ export type UserCreateWithoutMapGroupsInput = {
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutMapGroupsInput = {
@@ -4261,6 +4579,9 @@ export type UserUncheckedCreateWithoutMapGroupsInput = {
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutMapGroupsInput = {
@@ -4312,6 +4633,9 @@ export type UserUpdateWithoutMapGroupsInput = {
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMapGroupsInput = {
@@ -4347,6 +4671,9 @@ export type UserUncheckedUpdateWithoutMapGroupsInput = {
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutMapMarkersInput = {
@@ -4382,6 +4709,9 @@ export type UserCreateWithoutMapMarkersInput = {
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutMapMarkersInput = {
@@ -4417,6 +4747,9 @@ export type UserUncheckedCreateWithoutMapMarkersInput = {
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutMapMarkersInput = {
@@ -4468,6 +4801,9 @@ export type UserUpdateWithoutMapMarkersInput = {
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMapMarkersInput = {
@@ -4503,6 +4839,9 @@ export type UserUncheckedUpdateWithoutMapMarkersInput = {
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAbilitiesInput = {
@@ -4538,6 +4877,9 @@ export type UserCreateWithoutAbilitiesInput = {
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAbilitiesInput = {
@@ -4573,6 +4915,9 @@ export type UserUncheckedCreateWithoutAbilitiesInput = {
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAbilitiesInput = {
@@ -4624,6 +4969,9 @@ export type UserUpdateWithoutAbilitiesInput = {
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAbilitiesInput = {
@@ -4659,6 +5007,9 @@ export type UserUncheckedUpdateWithoutAbilitiesInput = {
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutEntityAbilitiesInput = {
@@ -4694,6 +5045,9 @@ export type UserCreateWithoutEntityAbilitiesInput = {
   mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutEntityAbilitiesInput = {
@@ -4729,6 +5083,9 @@ export type UserUncheckedCreateWithoutEntityAbilitiesInput = {
   mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
   mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutEntityAbilitiesInput = {
@@ -4780,6 +5137,9 @@ export type UserUpdateWithoutEntityAbilitiesInput = {
   mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEntityAbilitiesInput = {
@@ -4815,6 +5175,513 @@ export type UserUncheckedUpdateWithoutEntityAbilitiesInput = {
   mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
   mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutCreaturesInput = {
+  id?: string
+  email: string
+  name: string
+  password: string
+  avatar?: string | null
+  emailVerified?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaigns?: Prisma.CampaignCreateNestedManyWithoutOwnerInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutUserInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCreatedByInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCreatedByInput
+  items?: Prisma.ItemCreateNestedManyWithoutCreatedByInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCreatedByInput
+  events?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCreatedByInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCreatedByInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCreatedByInput
+  races?: Prisma.RaceCreateNestedManyWithoutCreatedByInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCreatedByInput
+  tags?: Prisma.TagCreateNestedManyWithoutCreatedByInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCreatedByInput
+  maps?: Prisma.MapCreateNestedManyWithoutCreatedByInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCreatedByInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCreatedByInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCreatedByInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCreatedByInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCreatedByInput
+  mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
+  mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
+  mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutCreaturesInput = {
+  id?: string
+  email: string
+  name: string
+  password: string
+  avatar?: string | null
+  emailVerified?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutOwnerInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutUserInput
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCreatedByInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCreatedByInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCreatedByInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCreatedByInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCreatedByInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCreatedByInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCreatedByInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCreatedByInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCreatedByInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCreatedByInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCreatedByInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCreatedByInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCreatedByInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCreatedByInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCreatedByInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCreatedByInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCreatedByInput
+  mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
+  mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
+  mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutCreaturesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreaturesInput, Prisma.UserUncheckedCreateWithoutCreaturesInput>
+}
+
+export type UserUpsertWithoutCreaturesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreaturesInput, Prisma.UserUncheckedUpdateWithoutCreaturesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreaturesInput, Prisma.UserUncheckedCreateWithoutCreaturesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreaturesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreaturesInput, Prisma.UserUncheckedUpdateWithoutCreaturesInput>
+}
+
+export type UserUpdateWithoutCreaturesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaigns?: Prisma.CampaignUpdateManyWithoutOwnerNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutUserNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCreatedByNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCreatedByNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCreatedByNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCreatedByNestedInput
+  events?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCreatedByNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCreatedByNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCreatedByNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCreatedByNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCreatedByNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCreatedByNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCreatedByNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCreatedByNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCreatedByNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCreatedByNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCreatedByNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCreatedByNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCreatedByNestedInput
+  mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
+  mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
+  mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreaturesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutOwnerNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutUserNestedInput
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCreatedByNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCreatedByNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCreatedByNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCreatedByNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCreatedByNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCreatedByNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCreatedByNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCreatedByNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCreatedByNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCreatedByNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCreatedByNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCreatedByNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCreatedByNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCreatedByNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCreatedByNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
+  mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
+  mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutDiceRollsInput = {
+  id?: string
+  email: string
+  name: string
+  password: string
+  avatar?: string | null
+  emailVerified?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaigns?: Prisma.CampaignCreateNestedManyWithoutOwnerInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutUserInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCreatedByInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCreatedByInput
+  items?: Prisma.ItemCreateNestedManyWithoutCreatedByInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCreatedByInput
+  events?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCreatedByInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCreatedByInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCreatedByInput
+  races?: Prisma.RaceCreateNestedManyWithoutCreatedByInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCreatedByInput
+  tags?: Prisma.TagCreateNestedManyWithoutCreatedByInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCreatedByInput
+  maps?: Prisma.MapCreateNestedManyWithoutCreatedByInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCreatedByInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCreatedByInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCreatedByInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCreatedByInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCreatedByInput
+  mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
+  mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
+  mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutDiceRollsInput = {
+  id?: string
+  email: string
+  name: string
+  password: string
+  avatar?: string | null
+  emailVerified?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutOwnerInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutUserInput
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCreatedByInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCreatedByInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCreatedByInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCreatedByInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCreatedByInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCreatedByInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCreatedByInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCreatedByInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCreatedByInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCreatedByInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCreatedByInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCreatedByInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCreatedByInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCreatedByInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCreatedByInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCreatedByInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCreatedByInput
+  mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
+  mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
+  mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutDiceRollsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDiceRollsInput, Prisma.UserUncheckedCreateWithoutDiceRollsInput>
+}
+
+export type UserUpsertWithoutDiceRollsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDiceRollsInput, Prisma.UserUncheckedUpdateWithoutDiceRollsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDiceRollsInput, Prisma.UserUncheckedCreateWithoutDiceRollsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDiceRollsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDiceRollsInput, Prisma.UserUncheckedUpdateWithoutDiceRollsInput>
+}
+
+export type UserUpdateWithoutDiceRollsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaigns?: Prisma.CampaignUpdateManyWithoutOwnerNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutUserNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCreatedByNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCreatedByNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCreatedByNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCreatedByNestedInput
+  events?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCreatedByNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCreatedByNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCreatedByNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCreatedByNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCreatedByNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCreatedByNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCreatedByNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCreatedByNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCreatedByNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCreatedByNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCreatedByNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCreatedByNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCreatedByNestedInput
+  mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
+  mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
+  mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDiceRollsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutOwnerNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutUserNestedInput
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCreatedByNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCreatedByNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCreatedByNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCreatedByNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCreatedByNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCreatedByNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCreatedByNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCreatedByNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCreatedByNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCreatedByNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCreatedByNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCreatedByNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCreatedByNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCreatedByNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCreatedByNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
+  mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
+  mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRollResults?: Prisma.DiceRollResultUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutDiceRollResultsInput = {
+  id?: string
+  email: string
+  name: string
+  password: string
+  avatar?: string | null
+  emailVerified?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaigns?: Prisma.CampaignCreateNestedManyWithoutOwnerInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutUserInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCreatedByInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCreatedByInput
+  items?: Prisma.ItemCreateNestedManyWithoutCreatedByInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCreatedByInput
+  events?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCreatedByInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCreatedByInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCreatedByInput
+  races?: Prisma.RaceCreateNestedManyWithoutCreatedByInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCreatedByInput
+  tags?: Prisma.TagCreateNestedManyWithoutCreatedByInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCreatedByInput
+  maps?: Prisma.MapCreateNestedManyWithoutCreatedByInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCreatedByInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCreatedByInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCreatedByInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCreatedByInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCreatedByInput
+  mapLayers?: Prisma.MapLayerCreateNestedManyWithoutCreatedByInput
+  mapMarkers?: Prisma.MapMarkerCreateNestedManyWithoutCreatedByInput
+  mapGroups?: Prisma.MapGroupCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutDiceRollResultsInput = {
+  id?: string
+  email: string
+  name: string
+  password: string
+  avatar?: string | null
+  emailVerified?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutOwnerInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutUserInput
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCreatedByInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCreatedByInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCreatedByInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCreatedByInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCreatedByInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCreatedByInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCreatedByInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCreatedByInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCreatedByInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCreatedByInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCreatedByInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCreatedByInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCreatedByInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCreatedByInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCreatedByInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCreatedByInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCreatedByInput
+  mapLayers?: Prisma.MapLayerUncheckedCreateNestedManyWithoutCreatedByInput
+  mapMarkers?: Prisma.MapMarkerUncheckedCreateNestedManyWithoutCreatedByInput
+  mapGroups?: Prisma.MapGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedCreateNestedManyWithoutCreatedByInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCreatedByInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutDiceRollResultsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDiceRollResultsInput, Prisma.UserUncheckedCreateWithoutDiceRollResultsInput>
+}
+
+export type UserUpsertWithoutDiceRollResultsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDiceRollResultsInput, Prisma.UserUncheckedUpdateWithoutDiceRollResultsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDiceRollResultsInput, Prisma.UserUncheckedCreateWithoutDiceRollResultsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDiceRollResultsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDiceRollResultsInput, Prisma.UserUncheckedUpdateWithoutDiceRollResultsInput>
+}
+
+export type UserUpdateWithoutDiceRollResultsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaigns?: Prisma.CampaignUpdateManyWithoutOwnerNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutUserNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCreatedByNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCreatedByNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCreatedByNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCreatedByNestedInput
+  events?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCreatedByNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCreatedByNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCreatedByNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCreatedByNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCreatedByNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCreatedByNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCreatedByNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCreatedByNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCreatedByNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCreatedByNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCreatedByNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCreatedByNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCreatedByNestedInput
+  mapLayers?: Prisma.MapLayerUpdateManyWithoutCreatedByNestedInput
+  mapMarkers?: Prisma.MapMarkerUpdateManyWithoutCreatedByNestedInput
+  mapGroups?: Prisma.MapGroupUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDiceRollResultsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutOwnerNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutUserNestedInput
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCreatedByNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCreatedByNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCreatedByNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCreatedByNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCreatedByNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCreatedByNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCreatedByNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCreatedByNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCreatedByNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCreatedByNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCreatedByNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCreatedByNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCreatedByNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCreatedByNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCreatedByNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  mapLayers?: Prisma.MapLayerUncheckedUpdateManyWithoutCreatedByNestedInput
+  mapMarkers?: Prisma.MapMarkerUncheckedUpdateManyWithoutCreatedByNestedInput
+  mapGroups?: Prisma.MapGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  entityAbilities?: Prisma.EntityAbilityUncheckedUpdateManyWithoutCreatedByNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCreatedByNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 
@@ -4848,6 +5715,9 @@ export type UserCountOutputType = {
   mapGroups: number
   abilities: number
   entityAbilities: number
+  creatures: number
+  diceRolls: number
+  diceRollResults: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4876,6 +5746,9 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   mapGroups?: boolean | UserCountOutputTypeCountMapGroupsArgs
   abilities?: boolean | UserCountOutputTypeCountAbilitiesArgs
   entityAbilities?: boolean | UserCountOutputTypeCountEntityAbilitiesArgs
+  creatures?: boolean | UserCountOutputTypeCountCreaturesArgs
+  diceRolls?: boolean | UserCountOutputTypeCountDiceRollsArgs
+  diceRollResults?: boolean | UserCountOutputTypeCountDiceRollResultsArgs
 }
 
 /**
@@ -5063,6 +5936,27 @@ export type UserCountOutputTypeCountEntityAbilitiesArgs<ExtArgs extends runtime.
   where?: Prisma.EntityAbilityWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreaturesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CreatureWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDiceRollsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DiceRollWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDiceRollResultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DiceRollResultWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -5098,6 +5992,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   mapGroups?: boolean | Prisma.User$mapGroupsArgs<ExtArgs>
   abilities?: boolean | Prisma.User$abilitiesArgs<ExtArgs>
   entityAbilities?: boolean | Prisma.User$entityAbilitiesArgs<ExtArgs>
+  creatures?: boolean | Prisma.User$creaturesArgs<ExtArgs>
+  diceRolls?: boolean | Prisma.User$diceRollsArgs<ExtArgs>
+  diceRollResults?: boolean | Prisma.User$diceRollResultsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -5161,6 +6058,9 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   mapGroups?: boolean | Prisma.User$mapGroupsArgs<ExtArgs>
   abilities?: boolean | Prisma.User$abilitiesArgs<ExtArgs>
   entityAbilities?: boolean | Prisma.User$entityAbilitiesArgs<ExtArgs>
+  creatures?: boolean | Prisma.User$creaturesArgs<ExtArgs>
+  diceRolls?: boolean | Prisma.User$diceRollsArgs<ExtArgs>
+  diceRollResults?: boolean | Prisma.User$diceRollResultsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -5194,6 +6094,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     mapGroups: Prisma.$MapGroupPayload<ExtArgs>[]
     abilities: Prisma.$AbilityPayload<ExtArgs>[]
     entityAbilities: Prisma.$EntityAbilityPayload<ExtArgs>[]
+    creatures: Prisma.$CreaturePayload<ExtArgs>[]
+    diceRolls: Prisma.$DiceRollPayload<ExtArgs>[]
+    diceRollResults: Prisma.$DiceRollResultPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -5623,6 +6526,9 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   mapGroups<T extends Prisma.User$mapGroupsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$mapGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MapGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   abilities<T extends Prisma.User$abilitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$abilitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AbilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   entityAbilities<T extends Prisma.User$entityAbilitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$entityAbilitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntityAbilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  creatures<T extends Prisma.User$creaturesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$creaturesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CreaturePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  diceRolls<T extends Prisma.User$diceRollsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$diceRollsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DiceRollPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  diceRollResults<T extends Prisma.User$diceRollResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$diceRollResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DiceRollResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6645,6 +7551,78 @@ export type User$entityAbilitiesArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.EntityAbilityScalarFieldEnum | Prisma.EntityAbilityScalarFieldEnum[]
+}
+
+/**
+ * User.creatures
+ */
+export type User$creaturesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Creature
+   */
+  select?: Prisma.CreatureSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Creature
+   */
+  omit?: Prisma.CreatureOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CreatureInclude<ExtArgs> | null
+  where?: Prisma.CreatureWhereInput
+  orderBy?: Prisma.CreatureOrderByWithRelationInput | Prisma.CreatureOrderByWithRelationInput[]
+  cursor?: Prisma.CreatureWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CreatureScalarFieldEnum | Prisma.CreatureScalarFieldEnum[]
+}
+
+/**
+ * User.diceRolls
+ */
+export type User$diceRollsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DiceRoll
+   */
+  select?: Prisma.DiceRollSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DiceRoll
+   */
+  omit?: Prisma.DiceRollOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DiceRollInclude<ExtArgs> | null
+  where?: Prisma.DiceRollWhereInput
+  orderBy?: Prisma.DiceRollOrderByWithRelationInput | Prisma.DiceRollOrderByWithRelationInput[]
+  cursor?: Prisma.DiceRollWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DiceRollScalarFieldEnum | Prisma.DiceRollScalarFieldEnum[]
+}
+
+/**
+ * User.diceRollResults
+ */
+export type User$diceRollResultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DiceRollResult
+   */
+  select?: Prisma.DiceRollResultSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DiceRollResult
+   */
+  omit?: Prisma.DiceRollResultOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DiceRollResultInclude<ExtArgs> | null
+  where?: Prisma.DiceRollResultWhereInput
+  orderBy?: Prisma.DiceRollResultOrderByWithRelationInput | Prisma.DiceRollResultOrderByWithRelationInput[]
+  cursor?: Prisma.DiceRollResultWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DiceRollResultScalarFieldEnum | Prisma.DiceRollResultScalarFieldEnum[]
 }
 
 /**

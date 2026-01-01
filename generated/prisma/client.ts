@@ -174,3 +174,23 @@ export type Ability = Prisma.AbilityModel
  * 
  */
 export type EntityAbility = Prisma.EntityAbilityModel
+/**
+ * Model Creature
+ * 
+ */
+export type Creature = Prisma.CreatureModel
+/**
+ * Model CreatureLocation
+ * 
+ */
+export type CreatureLocation = Prisma.CreatureLocationModel
+/**
+ * Model DiceRoll
+ * 
+ */
+export type DiceRoll = Prisma.DiceRollModel
+/**
+ * Model DiceRollResult
+ * 
+ */
+export type DiceRollResult = Prisma.DiceRollResultModel

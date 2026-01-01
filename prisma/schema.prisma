@@ -47,6 +47,13 @@ model User {
   mapGroups     MapGroup[]
   abilities     Ability[]
   entityAbilities EntityAbility[]
+  creatures     Creature[]
+  diceRolls     DiceRoll[]
+  diceRollResults DiceRollResult[]
+  conversationsCreated Conversation[]
+  conversationMessages ConversationMessage[] @relation("MessageCreator")
+  conversationMessageAuthor ConversationMessage[]
+  conversationParticipants ConversationParticipant[]
 
   @@map("users")
 }
@@ -85,6 +92,9 @@ model Campaign {
   relationships Relationship[]
   versions      Version[]
   abilities     Ability[]
+  creatures     Creature[]
+  diceRolls     DiceRoll[]
+  conversations Conversation[]
 
   @@map("campaigns")
 }
@@ -135,6 +145,10 @@ model Character {
   createdById String
   createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
 
+  diceRolls   DiceRoll[]
+  conversationMessages ConversationMessage[]
+  conversationParticipants ConversationParticipant[]
+
   @@unique([campaignId, slug])
   @@map("characters")
 }
@@ -160,6 +174,8 @@ model Location {
 
   parent   Location?  @relation("LocationHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
   children Location[] @relation("LocationHierarchy")
+
+  creatures CreatureLocation[]
 
   @@unique([campaignId, slug])
   @@map("locations")
@@ -773,4 +789,168 @@ model EntityAbility {
   @@index([abilityId])
   @@index([entityType, entityId, position])
   @@map("entity_abilities")
+}
+
+model Creature {
+  id         String   @id @default(cuid())
+  name       String
+  entry      String?  @db.Text // Rich text description
+  type       String? // Creature type/category (Beast, Humanoid, etc.)
+  image      String? // Image path
+  isExtinct  Boolean  @default(false)
+  isDead     Boolean  @default(false)
+  isPrivate  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  // Hierarchical structure
+  parentId String?
+  parent   Creature?   @relation("CreatureHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children Creature[]  @relation("CreatureHierarchy")
+
+  // Location relationships
+  locations CreatureLocation[]
+
+  @@index([campaignId])
+  @@index([parentId])
+  @@index([campaignId, name])
+  @@index([type])
+  @@map("creatures")
+}
+
+model CreatureLocation {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  creatureId String
+  creature   Creature @relation(fields: [creatureId], references: [id], onDelete: Cascade)
+
+  locationId String
+  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+
+  @@unique([creatureId, locationId])
+  @@index([creatureId])
+  @@index([locationId])
+  @@map("creature_locations")
+}
+
+model DiceRoll {
+  id         String   @id @default(cuid())
+  name       String
+  system     String?  // System name (d20, d100, etc.)
+  parameters String   @db.Text // Dice expression (3d6+2, 1d20+{character.strength}, etc.)
+  isPrivate  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  // Optional character link for attribute substitution
+  characterId String?
+  character   Character? @relation(fields: [characterId], references: [id], onDelete: SetNull)
+
+  results DiceRollResult[]
+
+  @@index([campaignId])
+  @@index([characterId])
+  @@index([campaignId, name])
+  @@map("dice_rolls")
+}
+
+model DiceRollResult {
+  id        String   @id @default(cuid())
+  results   String   @db.Text // JSON array of roll results and details
+  isPrivate Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  diceRollId String
+  diceRoll   DiceRoll @relation(fields: [diceRollId], references: [id], onDelete: Cascade)
+
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@index([diceRollId])
+  @@index([createdById])
+  @@index([diceRollId, createdAt])
+  @@map("dice_roll_results")
+}
+
+model Conversation {
+  id        String   @id @default(cuid())
+  name      String
+  target    String   @default("characters") // "users" or "characters"
+  isPrivate Boolean  @default(false)
+  isClosed  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  messages     ConversationMessage[]
+  participants ConversationParticipant[]
+
+  @@index([campaignId])
+  @@index([campaignId, name])
+  @@index([isClosed])
+  @@map("conversations")
+}
+
+model ConversationMessage {
+  id        String   @id @default(cuid())
+  message   String   @db.Text
+  createdAt DateTime @default(now())
+
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  // Author can be either user or character
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  characterId String?
+  character   Character? @relation(fields: [characterId], references: [id], onDelete: SetNull)
+
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade, name: "MessageCreator")
+
+  @@index([conversationId])
+  @@index([userId])
+  @@index([characterId])
+  @@index([conversationId, createdAt])
+  @@map("conversation_messages")
+}
+
+model ConversationParticipant {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  // Participant can be either user or character
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  characterId String?
+  character   Character? @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  @@unique([conversationId, userId, characterId])
+  @@index([conversationId])
+  @@index([userId])
+  @@index([characterId])
+  @@map("conversation_participants")
 }

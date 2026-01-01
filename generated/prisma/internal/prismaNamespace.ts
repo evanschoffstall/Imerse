@@ -410,7 +410,11 @@ export const ModelName = {
   MapGroup: 'MapGroup',
   MapMarker: 'MapMarker',
   Ability: 'Ability',
-  EntityAbility: 'EntityAbility'
+  EntityAbility: 'EntityAbility',
+  Creature: 'Creature',
+  CreatureLocation: 'CreatureLocation',
+  DiceRoll: 'DiceRoll',
+  DiceRollResult: 'DiceRollResult'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -426,7 +430,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "campaign" | "campaignRole" | "character" | "location" | "item" | "quest" | "event" | "journal" | "note" | "family" | "race" | "organisation" | "tag" | "timeline" | "map" | "relation" | "calendar" | "calendarWeather" | "attribute" | "relationship" | "version" | "mapLayer" | "mapGroup" | "mapMarker" | "ability" | "entityAbility"
+    modelProps: "user" | "campaign" | "campaignRole" | "character" | "location" | "item" | "quest" | "event" | "journal" | "note" | "family" | "race" | "organisation" | "tag" | "timeline" | "map" | "relation" | "calendar" | "calendarWeather" | "attribute" | "relationship" | "version" | "mapLayer" | "mapGroup" | "mapMarker" | "ability" | "entityAbility" | "creature" | "creatureLocation" | "diceRoll" | "diceRollResult"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2428,6 +2432,302 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Creature: {
+      payload: Prisma.$CreaturePayload<ExtArgs>
+      fields: Prisma.CreatureFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CreatureFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreaturePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CreatureFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreaturePayload>
+        }
+        findFirst: {
+          args: Prisma.CreatureFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreaturePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CreatureFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreaturePayload>
+        }
+        findMany: {
+          args: Prisma.CreatureFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreaturePayload>[]
+        }
+        create: {
+          args: Prisma.CreatureCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreaturePayload>
+        }
+        createMany: {
+          args: Prisma.CreatureCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CreatureCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreaturePayload>[]
+        }
+        delete: {
+          args: Prisma.CreatureDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreaturePayload>
+        }
+        update: {
+          args: Prisma.CreatureUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreaturePayload>
+        }
+        deleteMany: {
+          args: Prisma.CreatureDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CreatureUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CreatureUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreaturePayload>[]
+        }
+        upsert: {
+          args: Prisma.CreatureUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreaturePayload>
+        }
+        aggregate: {
+          args: Prisma.CreatureAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCreature>
+        }
+        groupBy: {
+          args: Prisma.CreatureGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CreatureGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CreatureCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CreatureCountAggregateOutputType> | number
+        }
+      }
+    }
+    CreatureLocation: {
+      payload: Prisma.$CreatureLocationPayload<ExtArgs>
+      fields: Prisma.CreatureLocationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CreatureLocationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreatureLocationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CreatureLocationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreatureLocationPayload>
+        }
+        findFirst: {
+          args: Prisma.CreatureLocationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreatureLocationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CreatureLocationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreatureLocationPayload>
+        }
+        findMany: {
+          args: Prisma.CreatureLocationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreatureLocationPayload>[]
+        }
+        create: {
+          args: Prisma.CreatureLocationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreatureLocationPayload>
+        }
+        createMany: {
+          args: Prisma.CreatureLocationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CreatureLocationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreatureLocationPayload>[]
+        }
+        delete: {
+          args: Prisma.CreatureLocationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreatureLocationPayload>
+        }
+        update: {
+          args: Prisma.CreatureLocationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreatureLocationPayload>
+        }
+        deleteMany: {
+          args: Prisma.CreatureLocationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CreatureLocationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CreatureLocationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreatureLocationPayload>[]
+        }
+        upsert: {
+          args: Prisma.CreatureLocationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreatureLocationPayload>
+        }
+        aggregate: {
+          args: Prisma.CreatureLocationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCreatureLocation>
+        }
+        groupBy: {
+          args: Prisma.CreatureLocationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CreatureLocationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CreatureLocationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CreatureLocationCountAggregateOutputType> | number
+        }
+      }
+    }
+    DiceRoll: {
+      payload: Prisma.$DiceRollPayload<ExtArgs>
+      fields: Prisma.DiceRollFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DiceRollFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DiceRollFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollPayload>
+        }
+        findFirst: {
+          args: Prisma.DiceRollFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DiceRollFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollPayload>
+        }
+        findMany: {
+          args: Prisma.DiceRollFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollPayload>[]
+        }
+        create: {
+          args: Prisma.DiceRollCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollPayload>
+        }
+        createMany: {
+          args: Prisma.DiceRollCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DiceRollCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollPayload>[]
+        }
+        delete: {
+          args: Prisma.DiceRollDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollPayload>
+        }
+        update: {
+          args: Prisma.DiceRollUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollPayload>
+        }
+        deleteMany: {
+          args: Prisma.DiceRollDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DiceRollUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DiceRollUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollPayload>[]
+        }
+        upsert: {
+          args: Prisma.DiceRollUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollPayload>
+        }
+        aggregate: {
+          args: Prisma.DiceRollAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDiceRoll>
+        }
+        groupBy: {
+          args: Prisma.DiceRollGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DiceRollGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DiceRollCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DiceRollCountAggregateOutputType> | number
+        }
+      }
+    }
+    DiceRollResult: {
+      payload: Prisma.$DiceRollResultPayload<ExtArgs>
+      fields: Prisma.DiceRollResultFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DiceRollResultFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollResultPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DiceRollResultFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollResultPayload>
+        }
+        findFirst: {
+          args: Prisma.DiceRollResultFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollResultPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DiceRollResultFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollResultPayload>
+        }
+        findMany: {
+          args: Prisma.DiceRollResultFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollResultPayload>[]
+        }
+        create: {
+          args: Prisma.DiceRollResultCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollResultPayload>
+        }
+        createMany: {
+          args: Prisma.DiceRollResultCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DiceRollResultCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollResultPayload>[]
+        }
+        delete: {
+          args: Prisma.DiceRollResultDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollResultPayload>
+        }
+        update: {
+          args: Prisma.DiceRollResultUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollResultPayload>
+        }
+        deleteMany: {
+          args: Prisma.DiceRollResultDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DiceRollResultUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DiceRollResultUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollResultPayload>[]
+        }
+        upsert: {
+          args: Prisma.DiceRollResultUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiceRollResultPayload>
+        }
+        aggregate: {
+          args: Prisma.DiceRollResultAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDiceRollResult>
+        }
+        groupBy: {
+          args: Prisma.DiceRollResultGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DiceRollResultGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DiceRollResultCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DiceRollResultCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2993,6 +3293,63 @@ export const EntityAbilityScalarFieldEnum = {
 export type EntityAbilityScalarFieldEnum = (typeof EntityAbilityScalarFieldEnum)[keyof typeof EntityAbilityScalarFieldEnum]
 
 
+export const CreatureScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  entry: 'entry',
+  type: 'type',
+  image: 'image',
+  isExtinct: 'isExtinct',
+  isDead: 'isDead',
+  isPrivate: 'isPrivate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  campaignId: 'campaignId',
+  createdById: 'createdById',
+  parentId: 'parentId'
+} as const
+
+export type CreatureScalarFieldEnum = (typeof CreatureScalarFieldEnum)[keyof typeof CreatureScalarFieldEnum]
+
+
+export const CreatureLocationScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  creatureId: 'creatureId',
+  locationId: 'locationId'
+} as const
+
+export type CreatureLocationScalarFieldEnum = (typeof CreatureLocationScalarFieldEnum)[keyof typeof CreatureLocationScalarFieldEnum]
+
+
+export const DiceRollScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  system: 'system',
+  parameters: 'parameters',
+  isPrivate: 'isPrivate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  campaignId: 'campaignId',
+  createdById: 'createdById',
+  characterId: 'characterId'
+} as const
+
+export type DiceRollScalarFieldEnum = (typeof DiceRollScalarFieldEnum)[keyof typeof DiceRollScalarFieldEnum]
+
+
+export const DiceRollResultScalarFieldEnum = {
+  id: 'id',
+  results: 'results',
+  isPrivate: 'isPrivate',
+  createdAt: 'createdAt',
+  diceRollId: 'diceRollId',
+  createdById: 'createdById'
+} as const
+
+export type DiceRollResultScalarFieldEnum = (typeof DiceRollResultScalarFieldEnum)[keyof typeof DiceRollResultScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -3245,6 +3602,10 @@ export type GlobalOmitConfig = {
   mapMarker?: Prisma.MapMarkerOmit
   ability?: Prisma.AbilityOmit
   entityAbility?: Prisma.EntityAbilityOmit
+  creature?: Prisma.CreatureOmit
+  creatureLocation?: Prisma.CreatureLocationOmit
+  diceRoll?: Prisma.DiceRollOmit
+  diceRollResult?: Prisma.DiceRollResultOmit
 }
 
 /* Types for Logging */

@@ -250,6 +250,7 @@ export type LocationWhereInput = {
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   parent?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.LocationWhereInput> | null
   children?: Prisma.LocationListRelationFilter
+  creatures?: Prisma.CreatureLocationListRelationFilter
 }
 
 export type LocationOrderByWithRelationInput = {
@@ -270,6 +271,7 @@ export type LocationOrderByWithRelationInput = {
   createdBy?: Prisma.UserOrderByWithRelationInput
   parent?: Prisma.LocationOrderByWithRelationInput
   children?: Prisma.LocationOrderByRelationAggregateInput
+  creatures?: Prisma.CreatureLocationOrderByRelationAggregateInput
 }
 
 export type LocationWhereUniqueInput = Prisma.AtLeast<{
@@ -294,6 +296,7 @@ export type LocationWhereUniqueInput = Prisma.AtLeast<{
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   parent?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.LocationWhereInput> | null
   children?: Prisma.LocationListRelationFilter
+  creatures?: Prisma.CreatureLocationListRelationFilter
 }, "id" | "campaignId_slug">
 
 export type LocationOrderByWithAggregationInput = {
@@ -349,6 +352,7 @@ export type LocationCreateInput = {
   createdBy: Prisma.UserCreateNestedOneWithoutLocationsInput
   parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
   children?: Prisma.LocationCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUncheckedCreateInput = {
@@ -366,6 +370,7 @@ export type LocationUncheckedCreateInput = {
   campaignId: string
   createdById: string
   children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationUncheckedCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUpdateInput = {
@@ -383,6 +388,7 @@ export type LocationUpdateInput = {
   createdBy?: Prisma.UserUpdateOneRequiredWithoutLocationsNestedInput
   parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
   children?: Prisma.LocationUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateInput = {
@@ -400,6 +406,7 @@ export type LocationUncheckedUpdateInput = {
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationCreateManyInput = {
@@ -513,6 +520,11 @@ export type LocationMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   campaignId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
+}
+
+export type LocationScalarRelationFilter = {
+  is?: Prisma.LocationWhereInput
+  isNot?: Prisma.LocationWhereInput
 }
 
 export type LocationCreateNestedManyWithoutCreatedByInput = {
@@ -657,6 +669,20 @@ export type LocationUncheckedUpdateManyWithoutParentNestedInput = {
   deleteMany?: Prisma.LocationScalarWhereInput | Prisma.LocationScalarWhereInput[]
 }
 
+export type LocationCreateNestedOneWithoutCreaturesInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutCreaturesInput, Prisma.LocationUncheckedCreateWithoutCreaturesInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutCreaturesInput
+  connect?: Prisma.LocationWhereUniqueInput
+}
+
+export type LocationUpdateOneRequiredWithoutCreaturesNestedInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutCreaturesInput, Prisma.LocationUncheckedCreateWithoutCreaturesInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutCreaturesInput
+  upsert?: Prisma.LocationUpsertWithoutCreaturesInput
+  connect?: Prisma.LocationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutCreaturesInput, Prisma.LocationUpdateWithoutCreaturesInput>, Prisma.LocationUncheckedUpdateWithoutCreaturesInput>
+}
+
 export type LocationCreateWithoutCreatedByInput = {
   id?: string
   name: string
@@ -671,6 +697,7 @@ export type LocationCreateWithoutCreatedByInput = {
   campaign: Prisma.CampaignCreateNestedOneWithoutLocationsInput
   parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
   children?: Prisma.LocationCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUncheckedCreateWithoutCreatedByInput = {
@@ -687,6 +714,7 @@ export type LocationUncheckedCreateWithoutCreatedByInput = {
   updatedAt?: Date | string
   campaignId: string
   children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationUncheckedCreateNestedManyWithoutLocationInput
 }
 
 export type LocationCreateOrConnectWithoutCreatedByInput = {
@@ -748,6 +776,7 @@ export type LocationCreateWithoutCampaignInput = {
   createdBy: Prisma.UserCreateNestedOneWithoutLocationsInput
   parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
   children?: Prisma.LocationCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUncheckedCreateWithoutCampaignInput = {
@@ -764,6 +793,7 @@ export type LocationUncheckedCreateWithoutCampaignInput = {
   updatedAt?: Date | string
   createdById: string
   children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationUncheckedCreateNestedManyWithoutLocationInput
 }
 
 export type LocationCreateOrConnectWithoutCampaignInput = {
@@ -806,6 +836,7 @@ export type LocationCreateWithoutChildrenInput = {
   campaign: Prisma.CampaignCreateNestedOneWithoutLocationsInput
   createdBy: Prisma.UserCreateNestedOneWithoutLocationsInput
   parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
+  creatures?: Prisma.CreatureLocationCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUncheckedCreateWithoutChildrenInput = {
@@ -822,6 +853,7 @@ export type LocationUncheckedCreateWithoutChildrenInput = {
   updatedAt?: Date | string
   campaignId: string
   createdById: string
+  creatures?: Prisma.CreatureLocationUncheckedCreateNestedManyWithoutLocationInput
 }
 
 export type LocationCreateOrConnectWithoutChildrenInput = {
@@ -843,6 +875,7 @@ export type LocationCreateWithoutParentInput = {
   campaign: Prisma.CampaignCreateNestedOneWithoutLocationsInput
   createdBy: Prisma.UserCreateNestedOneWithoutLocationsInput
   children?: Prisma.LocationCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUncheckedCreateWithoutParentInput = {
@@ -859,6 +892,7 @@ export type LocationUncheckedCreateWithoutParentInput = {
   campaignId: string
   createdById: string
   children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationUncheckedCreateNestedManyWithoutLocationInput
 }
 
 export type LocationCreateOrConnectWithoutParentInput = {
@@ -896,6 +930,7 @@ export type LocationUpdateWithoutChildrenInput = {
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutLocationsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutLocationsNestedInput
   parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
+  creatures?: Prisma.CreatureLocationUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateWithoutChildrenInput = {
@@ -912,6 +947,7 @@ export type LocationUncheckedUpdateWithoutChildrenInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  creatures?: Prisma.CreatureLocationUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUpsertWithWhereUniqueWithoutParentInput = {
@@ -928,6 +964,90 @@ export type LocationUpdateWithWhereUniqueWithoutParentInput = {
 export type LocationUpdateManyWithWhereWithoutParentInput = {
   where: Prisma.LocationScalarWhereInput
   data: Prisma.XOR<Prisma.LocationUpdateManyMutationInput, Prisma.LocationUncheckedUpdateManyWithoutParentInput>
+}
+
+export type LocationCreateWithoutCreaturesInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  mapImage?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutLocationsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutLocationsInput
+  parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
+  children?: Prisma.LocationCreateNestedManyWithoutParentInput
+}
+
+export type LocationUncheckedCreateWithoutCreaturesInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  parentId?: string | null
+  description?: string | null
+  image?: string | null
+  mapImage?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
+}
+
+export type LocationCreateOrConnectWithoutCreaturesInput = {
+  where: Prisma.LocationWhereUniqueInput
+  create: Prisma.XOR<Prisma.LocationCreateWithoutCreaturesInput, Prisma.LocationUncheckedCreateWithoutCreaturesInput>
+}
+
+export type LocationUpsertWithoutCreaturesInput = {
+  update: Prisma.XOR<Prisma.LocationUpdateWithoutCreaturesInput, Prisma.LocationUncheckedUpdateWithoutCreaturesInput>
+  create: Prisma.XOR<Prisma.LocationCreateWithoutCreaturesInput, Prisma.LocationUncheckedCreateWithoutCreaturesInput>
+  where?: Prisma.LocationWhereInput
+}
+
+export type LocationUpdateToOneWithWhereWithoutCreaturesInput = {
+  where?: Prisma.LocationWhereInput
+  data: Prisma.XOR<Prisma.LocationUpdateWithoutCreaturesInput, Prisma.LocationUncheckedUpdateWithoutCreaturesInput>
+}
+
+export type LocationUpdateWithoutCreaturesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutLocationsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutLocationsNestedInput
+  parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.LocationUpdateManyWithoutParentNestedInput
+}
+
+export type LocationUncheckedUpdateWithoutCreaturesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
 }
 
 export type LocationCreateManyCreatedByInput = {
@@ -959,6 +1079,7 @@ export type LocationUpdateWithoutCreatedByInput = {
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutLocationsNestedInput
   parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
   children?: Prisma.LocationUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateWithoutCreatedByInput = {
@@ -975,6 +1096,7 @@ export type LocationUncheckedUpdateWithoutCreatedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1021,6 +1143,7 @@ export type LocationUpdateWithoutCampaignInput = {
   createdBy?: Prisma.UserUpdateOneRequiredWithoutLocationsNestedInput
   parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
   children?: Prisma.LocationUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateWithoutCampaignInput = {
@@ -1037,6 +1160,7 @@ export type LocationUncheckedUpdateWithoutCampaignInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateManyWithoutCampaignInput = {
@@ -1083,6 +1207,7 @@ export type LocationUpdateWithoutParentInput = {
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutLocationsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutLocationsNestedInput
   children?: Prisma.LocationUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateWithoutParentInput = {
@@ -1099,6 +1224,7 @@ export type LocationUncheckedUpdateWithoutParentInput = {
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateManyWithoutParentInput = {
@@ -1123,10 +1249,12 @@ export type LocationUncheckedUpdateManyWithoutParentInput = {
 
 export type LocationCountOutputType = {
   children: number
+  creatures: number
 }
 
 export type LocationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   children?: boolean | LocationCountOutputTypeCountChildrenArgs
+  creatures?: boolean | LocationCountOutputTypeCountCreaturesArgs
 }
 
 /**
@@ -1144,6 +1272,13 @@ export type LocationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
  */
 export type LocationCountOutputTypeCountChildrenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.LocationWhereInput
+}
+
+/**
+ * LocationCountOutputType without action
+ */
+export type LocationCountOutputTypeCountCreaturesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CreatureLocationWhereInput
 }
 
 
@@ -1165,6 +1300,7 @@ export type LocationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   parent?: boolean | Prisma.Location$parentArgs<ExtArgs>
   children?: boolean | Prisma.Location$childrenArgs<ExtArgs>
+  creatures?: boolean | Prisma.Location$creaturesArgs<ExtArgs>
   _count?: boolean | Prisma.LocationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["location"]>
 
@@ -1228,6 +1364,7 @@ export type LocationInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   parent?: boolean | Prisma.Location$parentArgs<ExtArgs>
   children?: boolean | Prisma.Location$childrenArgs<ExtArgs>
+  creatures?: boolean | Prisma.Location$creaturesArgs<ExtArgs>
   _count?: boolean | Prisma.LocationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type LocationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1248,6 +1385,7 @@ export type $LocationPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     createdBy: Prisma.$UserPayload<ExtArgs>
     parent: Prisma.$LocationPayload<ExtArgs> | null
     children: Prisma.$LocationPayload<ExtArgs>[]
+    creatures: Prisma.$CreatureLocationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1661,6 +1799,7 @@ export interface Prisma__LocationClient<T, Null = never, ExtArgs extends runtime
   createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   parent<T extends Prisma.Location$parentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Location$parentArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   children<T extends Prisma.Location$childrenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Location$childrenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  creatures<T extends Prisma.Location$creaturesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Location$creaturesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CreatureLocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2139,6 +2278,30 @@ export type Location$childrenArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.LocationScalarFieldEnum | Prisma.LocationScalarFieldEnum[]
+}
+
+/**
+ * Location.creatures
+ */
+export type Location$creaturesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CreatureLocation
+   */
+  select?: Prisma.CreatureLocationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CreatureLocation
+   */
+  omit?: Prisma.CreatureLocationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CreatureLocationInclude<ExtArgs> | null
+  where?: Prisma.CreatureLocationWhereInput
+  orderBy?: Prisma.CreatureLocationOrderByWithRelationInput | Prisma.CreatureLocationOrderByWithRelationInput[]
+  cursor?: Prisma.CreatureLocationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CreatureLocationScalarFieldEnum | Prisma.CreatureLocationScalarFieldEnum[]
 }
 
 /**

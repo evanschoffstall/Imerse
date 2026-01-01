@@ -77,7 +77,11 @@ export const ModelName = {
   MapGroup: 'MapGroup',
   MapMarker: 'MapMarker',
   Ability: 'Ability',
-  EntityAbility: 'EntityAbility'
+  EntityAbility: 'EntityAbility',
+  Creature: 'Creature',
+  CreatureLocation: 'CreatureLocation',
+  DiceRoll: 'DiceRoll',
+  DiceRollResult: 'DiceRollResult'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -620,6 +624,63 @@ export const EntityAbilityScalarFieldEnum = {
 } as const
 
 export type EntityAbilityScalarFieldEnum = (typeof EntityAbilityScalarFieldEnum)[keyof typeof EntityAbilityScalarFieldEnum]
+
+
+export const CreatureScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  entry: 'entry',
+  type: 'type',
+  image: 'image',
+  isExtinct: 'isExtinct',
+  isDead: 'isDead',
+  isPrivate: 'isPrivate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  campaignId: 'campaignId',
+  createdById: 'createdById',
+  parentId: 'parentId'
+} as const
+
+export type CreatureScalarFieldEnum = (typeof CreatureScalarFieldEnum)[keyof typeof CreatureScalarFieldEnum]
+
+
+export const CreatureLocationScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  creatureId: 'creatureId',
+  locationId: 'locationId'
+} as const
+
+export type CreatureLocationScalarFieldEnum = (typeof CreatureLocationScalarFieldEnum)[keyof typeof CreatureLocationScalarFieldEnum]
+
+
+export const DiceRollScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  system: 'system',
+  parameters: 'parameters',
+  isPrivate: 'isPrivate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  campaignId: 'campaignId',
+  createdById: 'createdById',
+  characterId: 'characterId'
+} as const
+
+export type DiceRollScalarFieldEnum = (typeof DiceRollScalarFieldEnum)[keyof typeof DiceRollScalarFieldEnum]
+
+
+export const DiceRollResultScalarFieldEnum = {
+  id: 'id',
+  results: 'results',
+  isPrivate: 'isPrivate',
+  createdAt: 'createdAt',
+  diceRollId: 'diceRollId',
+  createdById: 'createdById'
+} as const
+
+export type DiceRollResultScalarFieldEnum = (typeof DiceRollResultScalarFieldEnum)[keyof typeof DiceRollResultScalarFieldEnum]
 
 
 export const SortOrder = {
