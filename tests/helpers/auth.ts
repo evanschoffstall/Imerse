@@ -86,8 +86,33 @@ export async function performLogin(
   await page.fill('input[name="email"]', creds.email);
   await page.fill('input[name="password"]', creds.password);
 
+  // Listen for console logs from the page
+  page.on("console", (msg) => {
+    if (
+      msg.text().includes("🔐") ||
+      msg.text().includes("✅") ||
+      msg.text().includes("❌")
+    ) {
+      console.log(`   [Browser] ${msg.text()}`);
+    }
+  });
+
   // Submit the form
   await page.click('button[type="submit"]');
+
+  // Wait a bit for the sign-in to process
+  await page.waitForTimeout(2000);
+
+  // Check if we're still on the login page (sign-in failed)
+  const currentUrl = page.url();
+  if (currentUrl.includes("/login")) {
+    // Check for error message
+    const errorElement = await page.$(".text-red-800, .text-red-200");
+    const errorText = errorElement
+      ? await errorElement.textContent()
+      : "Unknown error";
+    throw new Error(`Login failed: ${errorText}`);
+  }
 
   // Wait for navigation to complete (should redirect to dashboard)
   await page.waitForURL(

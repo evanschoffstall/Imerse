@@ -39,5 +39,7 @@ package-lock.json
 
 # Prisma
 generated/prisma
+
+# Storybook
 *storybook.log
 storybook-static

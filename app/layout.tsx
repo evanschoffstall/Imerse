@@ -5,6 +5,7 @@ import ToastProvider from '@/components/ui/ToastProvider'
 import '@fontsource-variable/roboto'
 import type { Metadata } from 'next'
 import './globals.css'
+import '@/styles/globals.scss'
 
 export const metadata: Metadata = {
   title: 'Imerse - RPG Campaign Management & Worldbuilding',

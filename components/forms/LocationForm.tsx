@@ -2,9 +2,25 @@
 
 import RichTextEditor from '@/components/editor/RichTextEditor'
 import { Button } from '@/components/ui/button'
-import FormField from '@/components/ui/FormField'
+import { Checkbox } from '@/components/ui/checkbox'
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import ImageUpload from '@/components/ui/ImageUpload'
 import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { locationSchema, type Location, type LocationFormData } from '@/types/location'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
@@ -19,7 +35,6 @@ interface LocationFormProps {
 }
 
 const LOCATION_TYPES = [
-  { value: '', label: 'Select type...' },
   { value: 'Continent', label: 'Continent' },
   { value: 'Country', label: 'Country' },
   { value: 'Region', label: 'Region' },
@@ -46,13 +61,7 @@ export default function LocationForm({
 }: LocationFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    formState: { errors },
-  } = useForm<LocationFormData>({
+  const form = useForm<LocationFormData>({
     resolver: zodResolver(locationSchema),
     defaultValues: {
       name: location?.name || '',
@@ -64,18 +73,6 @@ export default function LocationForm({
       isPrivate: location?.isPrivate || false,
     },
   })
-
-  const description = watch('description')
-  const image = watch('image')
-  const mapImage = watch('mapImage')
-
-  const handleImageUpload = (url: string) => {
-    setValue('image', url, { shouldValidate: true })
-  }
-
-  const handleMapImageUpload = (url: string) => {
-    setValue('mapImage', url, { shouldValidate: true })
-  }
 
   // Filter out current location and its descendants from parent options
   const parentOptions = [
@@ -98,103 +95,168 @@ export default function LocationForm({
   }
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
-      <FormField label="Name" error={errors.name?.message} required>
-        <Input
-          {...register('name')}
-          placeholder="Enter location name"
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name *</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder="Enter location name" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </FormField>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <FormField label="Type" error={errors.type?.message}>
-          <select
-            {...register('type')}
-            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            {LOCATION_TYPES.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </FormField>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <FormField
+            control={form.control}
+            name="type"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Type</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select type..." />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {LOCATION_TYPES.map(option => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="parentId"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Parent Location</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="None (Top Level)" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {parentOptions.map(option => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormDescription>
+                  Create a hierarchy by setting a parent location
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <FormField
-          label="Parent Location"
-          error={errors.parentId?.message}
-          className="relative"
-        >
-          <select
-            {...register('parentId')}
-            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            {parentOptions.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-          <p className="mt-1 text-xs text-gray-500">
-            Create a hierarchy by setting a parent location
-          </p>
-        </FormField>
-      </div>
-
-      <ImageUpload
-        currentImage={image}
-        onImageUpload={handleImageUpload}
-        folder="locations"
-        label="Location Image"
-      />
-
-      <ImageUpload
-        currentImage={mapImage}
-        onImageUpload={handleMapImageUpload}
-        folder="locations/maps"
-        label="Map Image"
-      />
-
-      <FormField
-        label="Description"
-        error={errors.description?.message}
-      >
-        <RichTextEditor
-          content={description || ''}
-          onChange={(html: string) => setValue('description', html)}
-          placeholder="Describe the location's geography, climate, culture, history..."
+          control={form.control}
+          name="image"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Location Image</FormLabel>
+              <FormControl>
+                <ImageUpload
+                  currentImage={field.value}
+                  onImageUpload={field.onChange}
+                  folder="locations"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </FormField>
 
-      <FormField error={errors.isPrivate?.message}>
-        <label className="flex items-center space-x-2">
-          <input
-            type="checkbox"
-            {...register('isPrivate')}
-            className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-          />
-          <span className="text-sm text-gray-700">
-            Private (only visible to campaign owner and creator)
-          </span>
-        </label>
-      </FormField>
+        <FormField
+          control={form.control}
+          name="mapImage"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Map Image</FormLabel>
+              <FormControl>
+                <ImageUpload
+                  currentImage={field.value}
+                  onImageUpload={field.onChange}
+                  folder="locations/maps"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-      <div className="flex items-center justify-end space-x-4 pt-4 border-t">
-        <Button
-          type="button"
-          variant="secondary"
-          onClick={onCancel}
-          disabled={isSubmitting}
-        >
-          Cancel
-        </Button>
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? 'Saving...' : location ? 'Update Location' : 'Create Location'}
-        </Button>
-      </div>
-    </form>
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Description</FormLabel>
+              <FormControl>
+                <RichTextEditor
+                  content={field.value || ''}
+                  onChange={field.onChange}
+                  placeholder="Describe the location's geography, climate, culture, history..."
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="isPrivate"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <div className="space-y-1 leading-none">
+                <FormLabel>
+                  Private (only visible to campaign owner and creator)
+                </FormLabel>
+              </div>
+            </FormItem>
+          )}
+        />
+
+        <div className="flex items-center justify-end space-x-4 pt-4 border-t">
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={onCancel}
+            disabled={isSubmitting}
+          >
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Saving...' : location ? 'Update Location' : 'Create Location'}
+          </Button>
+        </div>
+      </form>
+    </Form>
   )
 }

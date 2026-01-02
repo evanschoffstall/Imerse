@@ -1,6 +1,14 @@
 "use client"
 
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Kbd } from "@/components/ui/kbd"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Spinner } from "@/components/ui/spinner"
 import { ENTITY_TYPE_ICONS, ENTITY_TYPE_LABELS, SearchResult } from "@/types/search"
+import { Search } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useCallback, useEffect, useRef, useState } from "react"
 
@@ -129,135 +137,119 @@ export default function GlobalSearch() {
 
   if (!isOpen) {
     return (
-      <button
+      <Button
+        variant="outline"
         onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+        className="relative justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64"
       >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-        <span>Search...</span>
-        <kbd className="hidden sm:inline-block px-2 py-0.5 text-xs font-semibold text-gray-800 bg-gray-200 rounded">
-          ⌘K
-        </kbd>
-      </button>
+        <Search className="mr-2 h-4 w-4" />
+        <span className="hidden lg:inline-flex">Search...</span>
+        <span className="inline-flex lg:hidden">Search...</span>
+        <Kbd className="pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+          <span className="text-xs">⌘</span>K
+        </Kbd>
+      </Button>
     )
   }
 
   return (
-    <>
-      {/* Backdrop */}
-      <div
-        className="fixed inset-0 bg-black bg-opacity-50 z-40"
-        onClick={() => {
-          setIsOpen(false)
-          setQuery("")
-          setResults([])
-        }}
-      />
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent className="max-w-2xl p-0">
+        {/* Search Input */}
+        <div className="relative">
+          <Search className="absolute left-3 top-4 h-5 w-5 text-muted-foreground" />
+          <Input
+            ref={inputRef}
+            type="text"
+            value={query}
+            onChange={(e) => handleQueryChange(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Search entities... (use = for exact match)"
+            className="w-full border-0 pl-10 pr-4 py-6 text-lg focus-visible:ring-0 focus-visible:ring-offset-0"
+          />
+        </div>
 
-      {/* Search Modal */}
-      <div className="fixed inset-x-0 top-20 z-50 max-w-2xl mx-auto px-4">
-        <div className="bg-white rounded-lg shadow-2xl overflow-hidden">
-          {/* Search Input */}
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
-            <input
-              ref={inputRef}
-              type="text"
-              value={query}
-              onChange={(e) => handleQueryChange(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Search entities... (use = for exact match)"
-              className="w-full pl-10 pr-4 py-4 text-lg border-0 focus:outline-none focus:ring-0"
-            />
-          </div>
-
-          {/* Results */}
-          {query.trim() && (
-            <div className="border-t border-gray-200 max-h-96 overflow-y-auto">
-              {loading ? (
-                <div className="px-4 py-8 text-center">
-                  <div className="inline-block animate-spin rounded-full h-6 w-6 border-2 border-gray-300 border-t-blue-600"></div>
-                  <p className="mt-2 text-sm text-gray-600">Searching...</p>
-                </div>
-              ) : results.length > 0 ? (
-                <>
-                  {results.map((result, index) => (
-                    <button
-                      key={`${result.type}-${result.id}`}
-                      onClick={() => navigateToResult(result)}
-                      className={`w-full px-4 py-3 flex items-start gap-3 hover:bg-gray-50 transition-colors text-left ${selectedIndex === index ? "bg-blue-50" : ""
-                        }`}
-                    >
-                      {result.image && (
-                        <img
-                          src={result.image}
-                          alt={result.name}
-                          className="w-10 h-10 object-cover rounded flex-shrink-0"
-                        />
-                      )}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-lg">{ENTITY_TYPE_ICONS[result.type]}</span>
-                          <span className="text-xs font-medium text-gray-500 uppercase">
-                            {ENTITY_TYPE_LABELS[result.type]}
-                          </span>
-                        </div>
-                        <h4 className="font-medium text-gray-900 truncate">{result.name}</h4>
-                        {result.description && (
-                          <p className="text-sm text-gray-600 truncate">
-                            {truncateText(result.description)}
-                          </p>
-                        )}
-                      </div>
-                    </button>
-                  ))}
-
-                  {/* See all results */}
+        {/* Results */}
+        {query.trim() && (
+          <ScrollArea className="max-h-100 border-t">
+            {loading ? (
+              <div className="px-4 py-8 text-center">
+                <Spinner className="mx-auto" />
+                <p className="mt-2 text-sm text-muted-foreground">Searching...</p>
+              </div>
+            ) : results.length > 0 ? (
+              <>
+                {results.map((result, index) => (
                   <button
-                    onClick={navigateToSearch}
-                    className={`w-full px-4 py-3 text-center text-sm font-medium text-blue-600 hover:bg-gray-50 border-t border-gray-200 ${selectedIndex === results.length ? "bg-blue-50" : ""
+                    key={`${result.type}-${result.id}`}
+                    onClick={() => navigateToResult(result)}
+                    className={`w-full px-4 py-3 flex items-start gap-3 hover:bg-accent transition-colors text-left ${selectedIndex === index ? "bg-accent" : ""
                       }`}
                   >
-                    See all results for "{query}"
+                    {result.image && (
+                      <img
+                        src={result.image}
+                        alt={result.name}
+                        className="w-10 h-10 object-cover rounded shrink-0"
+                      />
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-lg">{ENTITY_TYPE_ICONS[result.type]}</span>
+                        <Badge variant="secondary" className="text-xs">
+                          {ENTITY_TYPE_LABELS[result.type]}
+                        </Badge>
+                      </div>
+                      <h4 className="font-medium truncate">{result.name}</h4>
+                      {result.description && (
+                        <p className="text-sm text-muted-foreground truncate">
+                          {truncateText(result.description)}
+                        </p>
+                      )}
+                    </div>
                   </button>
-                </>
-              ) : (
-                <div className="px-4 py-8 text-center text-gray-600">
-                  <p>No results found for "{query}"</p>
-                  <p className="text-sm text-gray-500 mt-1">
-                    Try different keywords or use exact match (=)
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
+                ))}
 
-          {/* Footer */}
-          <div className="px-4 py-2 bg-gray-50 border-t border-gray-200 flex items-center justify-between text-xs text-gray-500">
-            <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1">
-                <kbd className="px-1.5 py-0.5 bg-white border border-gray-300 rounded">↑</kbd>
-                <kbd className="px-1.5 py-0.5 bg-white border border-gray-300 rounded">↓</kbd>
-                navigate
-              </span>
-              <span className="flex items-center gap-1">
-                <kbd className="px-1.5 py-0.5 bg-white border border-gray-300 rounded">↵</kbd>
-                select
-              </span>
-              <span className="flex items-center gap-1">
-                <kbd className="px-1.5 py-0.5 bg-white border border-gray-300 rounded">esc</kbd>
-                close
-              </span>
-            </div>
+                {/* See all results */}
+                <Button
+                  onClick={navigateToSearch}
+                  variant="ghost"
+                  className={`w-full rounded-none border-t ${selectedIndex === results.length ? "bg-accent" : ""
+                    }`}
+                >
+                  See all results for "{query}"
+                </Button>
+              </>
+            ) : (
+              <div className="px-4 py-8 text-center text-muted-foreground">
+                <p>No results found for "{query}"</p>
+                <p className="text-sm mt-1">
+                  Try different keywords or use exact match (=)
+                </p>
+              </div>
+            )}
+          </ScrollArea>
+        )}
+
+        {/* Footer */}
+        <div className="px-4 py-2 bg-muted border-t flex items-center justify-between text-xs text-muted-foreground">
+          <div className="flex items-center gap-4">
+            <span className="flex items-center gap-1">
+              <Kbd>↑</Kbd>
+              <Kbd>↓</Kbd>
+              navigate
+            </span>
+            <span className="flex items-center gap-1">
+              <Kbd>↵</Kbd>
+              select
+            </span>
+            <span className="flex items-center gap-1">
+              <Kbd>esc</Kbd>
+              close
+            </span>
           </div>
         </div>
-      </div>
-    </>
+      </DialogContent>
+    </Dialog>
   )
 }

@@ -1,9 +1,30 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Character } from '@/types/character';
 import { DICE_SYSTEMS, DiceRollFormData, parseDiceExpression } from '@/types/dice-roll';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 interface DiceRollFormProps {
   diceRoll?: any;
@@ -12,6 +33,14 @@ interface DiceRollFormProps {
   onSubmit: (data: DiceRollFormData) => Promise<void>;
   onCancel: () => void;
 }
+
+const diceRollSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  system: z.string().optional(),
+  parameters: z.string().min(1, 'Dice expression is required'),
+  characterId: z.string().optional(),
+  isPrivate: z.boolean().default(false),
+});
 
 export default function DiceRollForm({
   diceRoll,
@@ -23,12 +52,8 @@ export default function DiceRollForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [expressionError, setExpressionError] = useState('');
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<DiceRollFormData>({
+  const form = useForm<DiceRollFormData>({
+    resolver: zodResolver(diceRollSchema),
     defaultValues: diceRoll
       ? {
         name: diceRoll.name,
@@ -45,8 +70,6 @@ export default function DiceRollForm({
         isPrivate: false,
       },
   });
-
-  const parameters = watch('parameters');
 
   // Validate expression as user types
   const validateExpression = (value: string) => {
@@ -73,117 +96,141 @@ export default function DiceRollForm({
   };
 
   return (
-    <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-          Name *
-        </label>
-        <input
-          id="name"
-          type="text"
-          {...register('name', { required: 'Name is required' })}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white sm:text-sm"
-          placeholder="Attack Roll, Saving Throw, etc."
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onFormSubmit)} className="space-y-6">
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name *</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder="Attack Roll, Saving Throw, etc." />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.name && (
-          <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
-        )}
-      </div>
 
-      <div>
-        <label htmlFor="system" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-          System
-        </label>
-        <select
-          id="system"
-          {...register('system')}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white sm:text-sm"
-        >
-          <option value="">None</option>
-          {DICE_SYSTEMS.map((system) => (
-            <option key={system} value={system}>
-              {system}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label htmlFor="parameters" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-          Dice Expression *
-        </label>
-        <input
-          id="parameters"
-          type="text"
-          {...register('parameters', {
-            required: 'Dice expression is required',
-            onChange: (e) => validateExpression(e.target.value),
-          })}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white sm:text-sm font-mono"
-          placeholder="1d20+3, 2d6+{character.strength}, etc."
+        <FormField
+          control={form.control}
+          name="system"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>System</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="None" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="">None</SelectItem>
+                  {DICE_SYSTEMS.map((system) => (
+                    <SelectItem key={system} value={system}>
+                      {system}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.parameters && (
-          <p className="mt-1 text-sm text-red-600">{errors.parameters.message}</p>
-        )}
-        {expressionError && (
-          <p className="mt-1 text-sm text-yellow-600">{expressionError}</p>
-        )}
-        <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-          Examples: 1d20+5, 3d6, 2d10+{'{character.strength}'}, 4d6-2
-        </p>
-      </div>
 
-      {characters.length > 0 && (
-        <div>
-          <label htmlFor="characterId" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Character (Optional)
-          </label>
-          <select
-            id="characterId"
-            {...register('characterId')}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white sm:text-sm"
+        <FormField
+          control={form.control}
+          name="parameters"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Dice Expression *</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  className="font-mono"
+                  placeholder="1d20+3, 2d6+{character.strength}, etc."
+                  onChange={(e) => {
+                    field.onChange(e);
+                    validateExpression(e.target.value);
+                  }}
+                />
+              </FormControl>
+              {expressionError && (
+                <p className="text-sm text-yellow-600">{expressionError}</p>
+              )}
+              <FormDescription>
+                Examples: 1d20+5, 3d6, 2d10+{'{character.strength}'}, 4d6-2
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {characters.length > 0 && (
+          <FormField
+            control={form.control}
+            name="characterId"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Character (Optional)</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="No character" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="">No character</SelectItem>
+                    {characters.map((character) => (
+                      <SelectItem key={character.id} value={character.id}>
+                        {character.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormDescription>
+                  Link to a character to use their attributes in expressions
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
+
+        <FormField
+          control={form.control}
+          name="isPrivate"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <div className="space-y-1 leading-none">
+                <FormLabel>Private (hidden from players)</FormLabel>
+              </div>
+            </FormItem>
+          )}
+        />
+
+        <div className="flex justify-end space-x-3">
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={onCancel}
           >
-            <option value="">No character</option>
-            {characters.map((character) => (
-              <option key={character.id} value={character.id}>
-                {character.name}
-              </option>
-            ))}
-          </select>
-          <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-            Link to a character to use their attributes in expressions
-          </p>
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            disabled={isSubmitting || !!expressionError}
+          >
+            {isSubmitting ? 'Saving...' : diceRoll ? 'Update' : 'Create'}
+          </Button>
         </div>
-      )}
-
-      <div className="flex items-center">
-        <input
-          id="isPrivate"
-          type="checkbox"
-          {...register('isPrivate')}
-          className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-        />
-        <label htmlFor="isPrivate" className="ml-2 block text-sm text-gray-900 dark:text-gray-300">
-          Private (hidden from players)
-        </label>
-      </div>
-
-      <div className="flex justify-end space-x-3">
-        <button
-          type="button"
-          onClick={onCancel}
-          className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700"
-        >
-          Cancel
-        </button>
-        <button
-          type="submit"
-          disabled={isSubmitting || !!expressionError}
-          className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {isSubmitting ? 'Saving...' : diceRoll ? 'Update' : 'Create'}
-        </button>
-      </div>
-    </form>
+      </form>
+    </Form>
   );
 }

@@ -2,7 +2,14 @@
 
 import RichTextEditor from '@/components/editor/RichTextEditor';
 import { Button } from '@/components/ui/button';
-import FormField from '@/components/ui/FormField';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from '@/components/ui/form';
 import ImageUpload from '@/components/ui/ImageUpload';
 import { Input } from '@/components/ui/input';
 import { CampaignFormData } from '@/types/campaign';
@@ -29,13 +36,7 @@ export default function CampaignForm({
   isLoading = false,
   submitText = 'Save Campaign',
 }: CampaignFormProps) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-    watch,
-  } = useForm<CampaignFormData>({
+  const form = useForm<CampaignFormData>({
     resolver: zodResolver(campaignSchema),
     defaultValues: {
       name: initialData?.name || '',
@@ -44,66 +45,78 @@ export default function CampaignForm({
     },
   });
 
-  const description = watch('description');
-  const image = watch('image');
-
-  const handleDescriptionChange = (content: string) => {
-    setValue('description', content, { shouldValidate: true });
-  };
-
-  const handleImageUpload = (url: string) => {
-    setValue('image', url, { shouldValidate: true });
-  };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <FormField
-        label="Campaign Name"
-        required
-        error={errors.name?.message}
-        htmlFor="name"
-      >
-        <Input
-          id="name"
-          {...register('name')}
-          placeholder="Enter campaign name"
-          disabled={isLoading}
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Campaign Name *</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  placeholder="Enter campaign name"
+                  disabled={isLoading}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </FormField>
 
-      <FormField
-        label="Description"
-        error={errors.description?.message}
-        htmlFor="description"
-      >
-        <RichTextEditor
-          content={description || ''}
-          onChange={handleDescriptionChange}
-          placeholder="Describe your campaign..."
-          disabled={isLoading}
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Description</FormLabel>
+              <FormControl>
+                <RichTextEditor
+                  content={field.value || ''}
+                  onChange={field.onChange}
+                  placeholder="Describe your campaign..."
+                  disabled={isLoading}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </FormField>
 
-      <ImageUpload
-        currentImage={image}
-        onImageUpload={handleImageUpload}
-        folder="campaigns"
-        label="Campaign Image"
-      />
+        <FormField
+          control={form.control}
+          name="image"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Campaign Image</FormLabel>
+              <FormControl>
+                <ImageUpload
+                  currentImage={field.value}
+                  onImageUpload={field.onChange}
+                  folder="campaigns"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-      <div className="flex justify-end space-x-3">
-        <Button
-          type="button"
-          variant="secondary"
-          onClick={() => window.history.back()}
-          disabled={isLoading}
-        >
-          Cancel
-        </Button>
-        <Button type="submit" disabled={isLoading}>
-          {isLoading ? 'Saving...' : submitText}
-        </Button>
-      </div>
-    </form>
+        <div className="flex justify-end space-x-3">
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={() => window.history.back()}
+            disabled={isLoading}
+          >
+            Cancel
+          </Button>
+          <Button type="submit" disabled={isLoading}>
+            {isLoading ? 'Saving...' : submitText}
+          </Button>
+        </div>
+      </form>
+    </Form>
   );
 }

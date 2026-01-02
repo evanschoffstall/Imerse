@@ -1,18 +1,6 @@
-@tailwind base;
+@import "tailwindcss";
 
-@plugin "tailwindcss-animate";
-
-@custom-variant dark (&:is(.dark *));
-@tailwind components;
-@tailwind utilities;
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto Variable', system-ui, -apple-system, sans-serif;
-}
-
-@layer base {
+@layer theme {
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -87,11 +75,15 @@ body {
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   body {
-    @apply bg-background text-foreground;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Variable', system-ui, -apple-system, sans-serif;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 }
 
@@ -141,6 +133,7 @@ body {
     from {
       height: 0;
     }
+
     to {
       height: var(--radix-accordion-content-height);
     }
@@ -150,6 +143,7 @@ body {
     from {
       height: var(--radix-accordion-content-height);
     }
+
     to {
       height: 0;
     }
@@ -229,6 +223,7 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
