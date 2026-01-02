@@ -35,7 +35,6 @@ package-lock.json
 /tests/.auth/
 
 # Prisma
-/lib/generated/prisma
-generated/
+generated/prisma
 *storybook.log
 storybook-static
