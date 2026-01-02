@@ -161,10 +161,10 @@ export function VersionHistory({
                   className="flex items-start gap-4 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
                   onClick={() => handleViewVersion(version)}
                 >
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-sm font-medium text-blue-600 dark:text-blue-400">
+                  <div className="shrink-0 w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-sm font-medium text-blue-600 dark:text-blue-400">
                     {version.versionNumber}
                   </div>
-                  <div className="flex-grow min-w-0">
+                  <div className="grow min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="font-medium">{getVersionLabel(version)}</span>
                       {index === 0 && (

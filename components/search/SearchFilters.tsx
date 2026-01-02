@@ -1,5 +1,6 @@
 'use client'
 
+import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { ENTITY_TYPE_LABELS, EntityType } from '@/types/search'
 import * as React from 'react'
@@ -95,7 +96,7 @@ export function SearchFilters({ onFiltersChange, campaignId }: SearchFiltersProp
     filters.sortBy !== 'relevance'
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-4 space-y-4">
+    <Card className="p-4 space-y-4">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
           <h3 className="font-semibold">Filters</h3>
@@ -251,6 +252,6 @@ export function SearchFilters({ onFiltersChange, campaignId }: SearchFiltersProp
           </div>
         </div>
       )}
-    </div>
+    </Card>
   )
 }

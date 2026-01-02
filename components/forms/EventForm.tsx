@@ -1,8 +1,25 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import ImageUpload from '@/components/ui/ImageUpload'
 import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import type { Event, EventFormData } from '@/types/event'
 import { EVENT_TYPES } from '@/types/event'
 import type { Timeline } from '@/types/timeline'
@@ -49,13 +66,7 @@ export default function EventForm({ event, campaignId, onSubmit, onCancel }: Eve
     fetchTimelines()
   }, [campaignId])
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    formState: { errors, isSubmitting }
-  } = useForm<EventFormData>({
+  const form = useForm<EventFormData>({
     resolver: zodResolver(eventSchema),
     defaultValues: {
       name: event?.name || '',
@@ -68,11 +79,6 @@ export default function EventForm({ event, campaignId, onSubmit, onCancel }: Eve
       isPrivate: event?.isPrivate || false
     }
   })
-
-  const image = watch('image')
-  const handleImageUpload = (url: string) => {
-    setValue('image', url, { shouldValidate: true })
-  }
 
   const editor = useEditor({
     extensions: [StarterKit],
@@ -90,146 +96,199 @@ export default function EventForm({ event, campaignId, onSubmit, onCancel }: Eve
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmitForm)} className="space-y-6">
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium mb-2">
-          Name *
-        </label>
-        <Input
-          id="name"
-          {...register('name')}
-          placeholder="Enter event name"
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmitForm)} className="space-y-6">
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name *</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder="Enter event name" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name.message}</p>
-        )}
-      </div>
 
-      <div>
-        <label htmlFor="type" className="block text-sm font-medium mb-2">
-          Type
-        </label>
-        <select
-          {...register('type')}
-          className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          <option value="">Select a type</option>
-          {EVENT_TYPES.map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label htmlFor="date" className="block text-sm font-medium mb-2">
-          Date
-        </label>
-        <Input
-          id="date"
-          {...register('date')}
-          placeholder="e.g., Year 1450, Spring 23rd"
+        <FormField
+          control={form.control}
+          name="type"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Type</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a type" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="">Select a type</SelectItem>
+                  {EVENT_TYPES.map((type) => (
+                    <SelectItem key={type} value={type}>
+                      {type}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        <p className="text-sm text-gray-500 mt-1">
-          Can be any format - campaign-specific dates, historical dates, etc.
-        </p>
-      </div>
 
-      <div>
-        <label htmlFor="location" className="block text-sm font-medium mb-2">
-          Location
-        </label>
-        <Input
-          id="location"
-          {...register('location')}
-          placeholder="Where did this event occur?"
+        <FormField
+          control={form.control}
+          name="date"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Date</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder="e.g., Year 1450, Spring 23rd" />
+              </FormControl>
+              <FormDescription>
+                Can be any format - campaign-specific dates, historical dates, etc.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </div>
 
-      <div>
-        <label htmlFor="timelineId" className="block text-sm font-medium mb-2">
-          Timeline (Optional)
-        </label>
-        <select
-          {...register('timelineId')}
-          className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          <option value="">No timeline</option>
-          {timelines.map((timeline) => (
-            <option key={timeline.id} value={timeline.id}>
-              {timeline.name}
-            </option>
-          ))}
-        </select>
-        <p className="text-sm text-gray-500 mt-1">
-          Link this event to a timeline for chronological tracking
-        </p>
-      </div>
+        <FormField
+          control={form.control}
+          name="location"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Location</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder="Where did this event occur?" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-      <ImageUpload
-        currentImage={image}
-        onImageUpload={handleImageUpload}
-        folder="events"
-        label="Event Image"
-      />
+        <FormField
+          control={form.control}
+          name="timelineId"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Timeline (Optional)</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="No timeline" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="">No timeline</SelectItem>
+                  {timelines.map((timeline) => (
+                    <SelectItem key={timeline.id} value={timeline.id}>
+                      {timeline.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormDescription>
+                Link this event to a timeline for chronological tracking
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-      <div>
-        <label className="block text-sm font-medium mb-2">
-          Description
-        </label>
-        <div className="border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden">
-          <div className="bg-gray-100 dark:bg-gray-700 border-b border-gray-300 dark:border-gray-600 px-3 py-2">
-            <div className="flex gap-2">
-              <button
-                type="button"
-                onClick={() => editor?.chain().focus().toggleBold().run()}
-                className={`px-2 py-1 rounded ${editor?.isActive('bold') ? 'bg-gray-300 dark:bg-gray-600' : ''}`}
-              >
-                B
-              </button>
-              <button
-                type="button"
-                onClick={() => editor?.chain().focus().toggleItalic().run()}
-                className={`px-2 py-1 rounded ${editor?.isActive('italic') ? 'bg-gray-300 dark:bg-gray-600' : ''}`}
-              >
-                I
-              </button>
-              <button
-                type="button"
-                onClick={() => editor?.chain().focus().toggleBulletList().run()}
-                className={`px-2 py-1 rounded ${editor?.isActive('bulletList') ? 'bg-gray-300 dark:bg-gray-600' : ''}`}
-              >
-                •
-              </button>
-            </div>
-          </div>
-          <div className="tiptap">
-            <div className="editor-content" />
-          </div>
+        <FormField
+          control={form.control}
+          name="image"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Event Image</FormLabel>
+              <FormControl>
+                <ImageUpload
+                  currentImage={field.value}
+                  onImageUpload={field.onChange}
+                  folder="events"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Description</FormLabel>
+              <FormControl>
+                <div className="border rounded-lg overflow-hidden">
+                  <div className="bg-muted border-b px-3 py-2">
+                    <div className="flex gap-2">
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant={editor?.isActive('bold') ? 'secondary' : 'ghost'}
+                        onClick={() => editor?.chain().focus().toggleBold().run()}
+                      >
+                        B
+                      </Button>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant={editor?.isActive('italic') ? 'secondary' : 'ghost'}
+                        onClick={() => editor?.chain().focus().toggleItalic().run()}
+                      >
+                        I
+                      </Button>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant={editor?.isActive('bulletList') ? 'secondary' : 'ghost'}
+                        onClick={() => editor?.chain().focus().toggleBulletList().run()}
+                      >
+                        •
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="tiptap">
+                    <div className="editor-content" />
+                  </div>
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="isPrivate"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <div className="space-y-1 leading-none">
+                <FormLabel>Private</FormLabel>
+              </div>
+            </FormItem>
+          )}
+        />
+
+        <div className="flex gap-4">
+          <Button type="submit" disabled={form.formState.isSubmitting}>
+            {form.formState.isSubmitting ? 'Saving...' : event ? 'Update Event' : 'Create Event'}
+          </Button>
+          <Button type="button" onClick={onCancel} variant="secondary">
+            Cancel
+          </Button>
         </div>
-      </div>
-
-      <div className="flex items-center">
-        <input
-          type="checkbox"
-          id="isPrivate"
-          {...register('isPrivate')}
-          className="h-4 w-4 text-blue-600 border-gray-300 rounded"
-        />
-        <label htmlFor="isPrivate" className="ml-2 text-sm">
-          Private
-        </label>
-      </div>
-
-      <div className="flex gap-4">
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Saving...' : event ? 'Update Event' : 'Create Event'}
-        </Button>
-        <Button type="button" onClick={onCancel} variant="secondary">
-          Cancel
-        </Button>
-      </div>
-    </form>
+      </form>
+    </Form>
   )
 }

@@ -1,6 +1,14 @@
 'use client'
 
 import ImageUpload from '@/components/ui/ImageUpload'
+import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Textarea } from '@/components/ui/textarea'
 import { Calendar, CalendarFormData, calendarSchema } from '@/types/calendar'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -89,195 +97,171 @@ export default function CalendarForm({ calendar, mode }: CalendarFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-md p-4">
-          <p className="text-red-800">{error}</p>
-        </div>
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
 
-      {/* Basic Information */}
-      <div className="bg-white rounded-lg shadow p-6 space-y-4">
-        <h2 className="text-lg font-semibold text-gray-900">Basic Information</h2>
+      <Card>
+        <CardHeader>
+          <CardTitle>Basic Information</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="name">Calendar Name *</Label>
+            <Input
+              id="name"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              required
+            />
+          </div>
 
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-            Calendar Name *
+          <div className="space-y-2">
+            <Label htmlFor="slug">Slug (URL-friendly identifier)</Label>
+            <Input
+              id="slug"
+              value={formData.slug}
+              onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
+              placeholder="auto-generated if left blank"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="campaign">Campaign *</Label>
+            <Select
+              value={formData.campaignId}
+              onValueChange={(value) => setFormData({ ...formData, campaignId: value })}
+            >
+              <SelectTrigger id="campaign">
+                <SelectValue placeholder="Select a campaign" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="">Select a campaign</SelectItem>
+                {campaigns.map((campaign) => (
+                  <SelectItem key={campaign.id} value={campaign.id}>
+                    {campaign.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="description">Description</Label>
+            <Textarea
+              id="description"
+              value={formData.description}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              rows={4}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label>Calendar Image</Label>
+            <ImageUpload
+              currentImage={formData.image}
+              onImageUpload={(url) => setFormData({ ...formData, image: url || '' })}
+            />
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Current Date</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="date">Current Date (YYYY-MM-DD)</Label>
+            <Input
+              id="date"
+              value={formData.date}
+              onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+              placeholder="e.g., 2024-03-15"
+            />
+            <p className="text-sm text-muted-foreground">
+              The current date in this calendar system
+            </p>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="suffix">Date Suffix</Label>
+            <Input
+              id="suffix"
+              value={formData.suffix}
+              onChange={(e) => setFormData({ ...formData, suffix: e.target.value })}
+              placeholder="e.g., AD, BR, AL"
+            />
+            <p className="text-sm text-muted-foreground">
+              Era suffix (e.g., "AD" for Anno Domini, "BR" for Before Ragnarok)
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Settings</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <label className="flex items-center gap-2 text-sm">
+            <Checkbox
+              id="isPrivate"
+              checked={formData.isPrivate}
+              onCheckedChange={(checked) =>
+                setFormData({ ...formData, isPrivate: Boolean(checked) })
+              }
+            />
+            <span>Private (only visible to campaign members)</span>
           </label>
-          <input
-            type="text"
-            id="name"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
-          />
-        </div>
 
-        <div>
-          <label htmlFor="slug" className="block text-sm font-medium text-gray-700 mb-1">
-            Slug (URL-friendly identifier)
+          <label className="flex items-center gap-2 text-sm">
+            <Checkbox
+              id="showBirthdays"
+              checked={formData.showBirthdays}
+              onCheckedChange={(checked) =>
+                setFormData({ ...formData, showBirthdays: Boolean(checked) })
+              }
+            />
+            <span>Show birthdays on calendar</span>
           </label>
-          <input
-            type="text"
-            id="slug"
-            value={formData.slug}
-            onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-            placeholder="auto-generated if left blank"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
 
-        <div>
-          <label htmlFor="campaign" className="block text-sm font-medium text-gray-700 mb-1">
-            Campaign *
+          <label className="flex items-center gap-2 text-sm">
+            <Checkbox
+              id="skipYearZero"
+              checked={formData.skipYearZero}
+              onCheckedChange={(checked) =>
+                setFormData({ ...formData, skipYearZero: Boolean(checked) })
+              }
+            />
+            <span>Skip year zero (1 BC → 1 AD)</span>
           </label>
-          <select
-            id="campaign"
-            value={formData.campaignId}
-            onChange={(e) => setFormData({ ...formData, campaignId: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
-          >
-            <option value="">Select a campaign</option>
-            {campaigns.map((campaign) => (
-              <option key={campaign.id} value={campaign.id}>
-                {campaign.name}
-              </option>
-            ))}
-          </select>
-        </div>
+        </CardContent>
+      </Card>
 
-        <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
-            Description
-          </label>
-          <textarea
-            id="description"
-            value={formData.description}
-            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-            rows={4}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Calendar Image
-          </label>
-          <ImageUpload
-            currentImage={formData.image}
-            onImageUpload={(url) => setFormData({ ...formData, image: url || '' })}
-          />
-        </div>
-      </div>
-
-      {/* Current Date */}
-      <div className="bg-white rounded-lg shadow p-6 space-y-4">
-        <h2 className="text-lg font-semibold text-gray-900">Current Date</h2>
-
-        <div>
-          <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">
-            Current Date (YYYY-MM-DD)
-          </label>
-          <input
-            type="text"
-            id="date"
-            value={formData.date}
-            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-            placeholder="e.g., 2024-03-15"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <p className="text-sm text-gray-500 mt-1">
-            The current date in this calendar system
-          </p>
-        </div>
-
-        <div>
-          <label htmlFor="suffix" className="block text-sm font-medium text-gray-700 mb-1">
-            Date Suffix
-          </label>
-          <input
-            type="text"
-            id="suffix"
-            value={formData.suffix}
-            onChange={(e) => setFormData({ ...formData, suffix: e.target.value })}
-            placeholder="e.g., AD, BR, AL"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <p className="text-sm text-gray-500 mt-1">
-            Era suffix (e.g., "AD" for Anno Domini, "BR" for Before Ragnarok)
-          </p>
-        </div>
-      </div>
-
-      {/* Settings */}
-      <div className="bg-white rounded-lg shadow p-6 space-y-4">
-        <h2 className="text-lg font-semibold text-gray-900">Settings</h2>
-
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            id="isPrivate"
-            checked={formData.isPrivate}
-            onChange={(e) => setFormData({ ...formData, isPrivate: e.target.checked })}
-            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-          />
-          <label htmlFor="isPrivate" className="ml-2 block text-sm text-gray-700">
-            Private (only visible to campaign members)
-          </label>
-        </div>
-
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            id="showBirthdays"
-            checked={formData.showBirthdays}
-            onChange={(e) => setFormData({ ...formData, showBirthdays: e.target.checked })}
-            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-          />
-          <label htmlFor="showBirthdays" className="ml-2 block text-sm text-gray-700">
-            Show birthdays on calendar
-          </label>
-        </div>
-
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            id="skipYearZero"
-            checked={formData.skipYearZero}
-            onChange={(e) => setFormData({ ...formData, skipYearZero: e.target.checked })}
-            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-          />
-          <label htmlFor="skipYearZero" className="ml-2 block text-sm text-gray-700">
-            Skip year zero (1 BC → 1 AD)
-          </label>
-        </div>
-      </div>
-
-      {/* Form Actions */}
-      <div className="flex justify-end space-x-3">
-        <button
+      <div className="flex justify-end gap-3">
+        <Button
           type="button"
+          variant="outline"
           onClick={() => router.back()}
-          className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
         >
           Cancel
-        </button>
-        <button
-          type="submit"
-          disabled={loading}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
-        >
+        </Button>
+        <Button type="submit" disabled={loading}>
           {loading ? 'Saving...' : mode === 'create' ? 'Create Calendar' : 'Save Changes'}
-        </button>
+        </Button>
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
-        <p className="text-sm text-blue-800">
-          <strong>Note:</strong> This is a simplified calendar form. Advanced features like custom months,
-          weekdays, seasons, moons, and leap year configuration will be available in the calendar detail view
-          after creation.
-        </p>
-      </div>
+      <Card className="border-blue-200 bg-blue-50">
+        <CardContent className="p-4">
+          <p className="text-sm text-blue-800">
+            <strong>Note:</strong> This is a simplified calendar form. Advanced features like custom months,
+            weekdays, seasons, moons, and leap year configuration will be available in the calendar detail view
+            after creation.
+          </p>
+        </CardContent>
+      </Card>
     </form>
   )
 }

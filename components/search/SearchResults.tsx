@@ -1,5 +1,8 @@
 'use client'
 
+import { Badge } from '@/components/ui/badge'
+import { Card } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 import { ENTITY_TYPE_LABELS, EntityType, SearchResult } from '@/types/search'
 import Link from 'next/link'
 import * as React from 'react'
@@ -27,21 +30,21 @@ const ENTITY_ICONS: Record<EntityType, string> = {
   map: '🗺️',
 }
 
-const ENTITY_COLORS: Record<EntityType, string> = {
-  campaign: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
-  character: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-  location: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-  item: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
-  quest: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-  event: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
-  journal: 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200',
-  note: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200',
-  family: 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200',
-  race: 'bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200',
-  organisation: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
-  tag: 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200',
-  timeline: 'bg-violet-100 text-violet-800 dark:bg-violet-900 dark:text-violet-200',
-  map: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200',
+const ENTITY_BADGE_VARIANTS: Record<EntityType, 'default' | 'secondary' | 'destructive' | 'outline'> = {
+  campaign: 'default',
+  character: 'secondary',
+  location: 'outline',
+  item: 'default',
+  quest: 'secondary',
+  event: 'destructive',
+  journal: 'default',
+  note: 'outline',
+  family: 'secondary',
+  race: 'outline',
+  organisation: 'default',
+  tag: 'secondary',
+  timeline: 'default',
+  map: 'outline',
 }
 
 function highlightMatches(text: string, query: string): React.ReactNode {
@@ -90,15 +93,12 @@ export function SearchResults({ results, query, loading }: SearchResultsProps) {
     return (
       <div className="space-y-4">
         {[...Array(3)].map((_, i) => (
-          <div
-            key={i}
-            className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 animate-pulse"
-          >
-            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/4 mb-3"></div>
-            <div className="h-6 bg-gray-300 dark:bg-gray-600 rounded w-3/4 mb-3"></div>
-            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full mb-2"></div>
-            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-5/6"></div>
-          </div>
+          <Card key={i} className="p-6">
+            <Skeleton className="h-4 w-1/4 mb-3" />
+            <Skeleton className="h-6 w-3/4 mb-3" />
+            <Skeleton className="h-4 w-full mb-2" />
+            <Skeleton className="h-4 w-5/6" />
+          </Card>
         ))}
       </div>
     )
@@ -106,64 +106,62 @@ export function SearchResults({ results, query, loading }: SearchResultsProps) {
 
   if (results.length === 0) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-12 text-center">
+      <Card className="p-12 text-center">
         <div className="text-6xl mb-4">🔍</div>
         <h3 className="text-xl font-semibold mb-2">No results found</h3>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-muted-foreground">
           Try adjusting your search query or filters
         </p>
-      </div>
+      </Card>
     )
   }
 
   return (
     <div className="space-y-4">
-      <div className="text-sm text-gray-600 dark:text-gray-400">
+      <div className="text-sm text-muted-foreground">
         Found {results.length} {results.length === 1 ? 'result' : 'results'}
       </div>
       {results.map((result) => (
         <Link
           key={`${result.type}-${result.id}`}
           href={getEntityPath(result)}
-          className="block bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition-shadow p-6"
         >
-          <div className="flex items-start gap-3">
-            <span className="text-2xl flex-shrink-0">{ENTITY_ICONS[result.type]}</span>
-            <div className="flex-grow min-w-0">
-              {/* Entity Type Badge */}
-              <div className="flex items-center gap-2 mb-2">
-                <span
-                  className={`text-xs px-2 py-1 rounded-full font-medium ${ENTITY_COLORS[result.type]
-                    }`}
-                >
-                  {ENTITY_TYPE_LABELS[result.type]}
-                </span>
-              </div>
+          <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
+            <div className="flex items-start gap-3">
+              <span className="text-2xl shrink-0">{ENTITY_ICONS[result.type]}</span>
+              <div className="grow min-w-0">
+                {/* Entity Type Badge */}
+                <div className="flex items-center gap-2 mb-2">
+                  <Badge variant={ENTITY_BADGE_VARIANTS[result.type]}>
+                    {ENTITY_TYPE_LABELS[result.type]}
+                  </Badge>
+                </div>
 
-              {/* Name */}
-              <h3 className="text-lg font-semibold mb-2 truncate">
-                {highlightMatches(result.name, query)}
-              </h3>
+                {/* Name */}
+                <h3 className="text-lg font-semibold mb-2 truncate">
+                  {highlightMatches(result.name, query)}
+                </h3>
 
-              {/* Description */}
-              {result.description && (
-                <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2 mb-3">
-                  {highlightMatches(truncateDescription(result.description), query)}
-                </p>
-              )}
-
-              {/* Metadata */}
-              <div className="flex flex-wrap gap-4 text-xs text-gray-500 dark:text-gray-500">
-                <span>Created: {new Date(result.createdAt).toLocaleDateString()}</span>
-                <span>Updated: {new Date(result.updatedAt).toLocaleDateString()}</span>
-                {result.campaign && (
-                  <span className="flex items-center gap-1">
-                    📚 {result.campaign.name}
-                  </span>
+                {/* Description */}
+                {result.description && (
+                  <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
+                    {highlightMatches(truncateDescription(result.description), query)}
+                  </p>
                 )}
+
+                {/* Metadata */}
+                <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
+                  <span>Created: {new Date(result.createdAt).toLocaleDateString()}</span>
+                  <span>Updated: {new Date(result.updatedAt).toLocaleDateString()}</span>
+                  {result.campaign && (
+                    <span className="flex items-center gap-1">
+                      📚 {result.campaign.name}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          </Card>
         </Link>
       ))}
     </div>

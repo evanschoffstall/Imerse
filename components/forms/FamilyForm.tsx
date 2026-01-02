@@ -1,7 +1,24 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import ImageUpload from '@/components/ui/ImageUpload'
+import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import type { Family, FamilyFormData } from '@/types/family'
 import { FAMILY_TYPES } from '@/types/family'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -29,13 +46,7 @@ interface FamilyFormProps {
 const familyTypes: readonly string[] = FAMILY_TYPES
 
 export default function FamilyForm({ family, campaignId, onSubmit, onCancel }: FamilyFormProps) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    setValue,
-    watch
-  } = useForm<FamilyFormData>({
+  const form = useForm<FamilyFormData>({
     resolver: zodResolver(familyFormSchema),
     defaultValues: family ? {
       name: family.name,
@@ -54,11 +65,6 @@ export default function FamilyForm({ family, campaignId, onSubmit, onCancel }: F
     }
   })
 
-  const image = watch('image')
-  const handleImageUpload = (url: string) => {
-    setValue('image', url, { shouldValidate: true })
-  }
-
   const editor = useEditor({
     extensions: [StarterKit],
     content: family?.description || '',
@@ -68,7 +74,7 @@ export default function FamilyForm({ family, campaignId, onSubmit, onCancel }: F
       }
     },
     onUpdate: ({ editor }) => {
-      setValue('description', editor.getHTML())
+      form.setValue('description', editor.getHTML())
     }
   })
 
@@ -81,89 +87,123 @@ export default function FamilyForm({ family, campaignId, onSubmit, onCancel }: F
   }
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium mb-2">
-          Name *
-        </label>
-        <input
-          type="text"
-          id="name"
-          {...register('name')}
-          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name *</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.name && (
-          <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-        )}
-      </div>
 
-      <div>
-        <label htmlFor="type" className="block text-sm font-medium mb-2">
-          Type
-        </label>
-        <select
-          id="type"
-          {...register('type')}
-          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
-        >
-          <option value="">Select a type</option>
-          {familyTypes.map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label htmlFor="location" className="block text-sm font-medium mb-2">
-          Location
-        </label>
-        <input
-          type="text"
-          id="location"
-          {...register('location')}
-          placeholder="e.g., Kingdom of Westmarch"
-          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
+        <FormField
+          control={form.control}
+          name="type"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Type</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a type" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="">Select a type</SelectItem>
+                  {familyTypes.map((type) => (
+                    <SelectItem key={type} value={type}>
+                      {type}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </div>
 
-      <ImageUpload
-        currentImage={image}
-        onImageUpload={handleImageUpload}
-        folder="families"
-        label="Family Image"
-      />
+        <FormField
+          control={form.control}
+          name="location"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Location</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder="e.g., Kingdom of Westmarch" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-      <div>
-        <label className="block text-sm font-medium mb-2">
-          Description
-        </label>
-        <div className="border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden">
-          <EditorContent editor={editor} />
+        <FormField
+          control={form.control}
+          name="image"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Family Image</FormLabel>
+              <FormControl>
+                <ImageUpload
+                  currentImage={field.value}
+                  onImageUpload={field.onChange}
+                  folder="families"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Description</FormLabel>
+              <FormControl>
+                <div className="border rounded-lg overflow-hidden">
+                  <EditorContent editor={editor} />
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="isPrivate"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <div className="space-y-1 leading-none">
+                <FormLabel>Private (only visible to campaign owner)</FormLabel>
+              </div>
+            </FormItem>
+          )}
+        />
+
+        <div className="flex gap-4">
+          <Button type="submit" disabled={form.formState.isSubmitting}>
+            {form.formState.isSubmitting ? 'Saving...' : family ? 'Update Family' : 'Create Family'}
+          </Button>
+          <Button type="button" onClick={onCancel} variant="secondary">
+            Cancel
+          </Button>
         </div>
-      </div>
-
-      <div className="flex items-center">
-        <input
-          type="checkbox"
-          id="isPrivate"
-          {...register('isPrivate')}
-          className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-        />
-        <label htmlFor="isPrivate" className="ml-2 text-sm">
-          Private (only visible to campaign owner)
-        </label>
-      </div>
-
-      <div className="flex gap-4">
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Saving...' : family ? 'Update Family' : 'Create Family'}
-        </Button>
-        <Button type="button" onClick={onCancel} variant="secondary">
-          Cancel
-        </Button>
-      </div>
-    </form>
+      </form>
+    </Form>
   )
 }

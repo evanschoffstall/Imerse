@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ATTITUDE_LABELS, RELATION_COLOURS, type CreateRelationInput } from '@/types/relation'
@@ -76,11 +77,11 @@ export default function RelationForm({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {ownerName && (
-        <div className="bg-gray-50 p-4 rounded-lg">
-          <p className="text-sm text-gray-600">
+        <Card className="p-4">
+          <p className="text-sm text-muted-foreground">
             Creating relation from: <span className="font-semibold">{ownerName}</span>
           </p>
-        </div>
+        </Card>
       )}
 
       <div>

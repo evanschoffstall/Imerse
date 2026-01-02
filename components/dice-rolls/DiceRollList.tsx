@@ -1,6 +1,20 @@
 'use client';
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { DiceRollWithRelations } from '@/types/dice-roll';
+import { Edit, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { toast } from 'sonner';
@@ -41,9 +55,9 @@ export default function DiceRollList({ diceRolls, campaignId, onDelete, onRoll }
 
   if (diceRolls.length === 0) {
     return (
-      <div className="text-center py-12">
+      <Card className="text-center py-12">
         <svg
-          className="mx-auto h-12 w-12 text-gray-400"
+          className="mx-auto h-12 w-12 text-muted-foreground"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -55,63 +69,55 @@ export default function DiceRollList({ diceRolls, campaignId, onDelete, onRoll }
             d="M12 6v6m0 0v6m0-6h6m-6 0H6"
           />
         </svg>
-        <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-white">No dice rolls</h3>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        <h3 className="mt-2 text-sm font-medium">No dice rolls</h3>
+        <p className="mt-1 text-sm text-muted-foreground">
           Get started by creating a new dice roll.
         </p>
         <div className="mt-6">
-          <Link
-            href={`/dice-rolls/create?campaignId=${campaignId}`}
-            className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-          >
-            Create Dice Roll
-          </Link>
+          <Button asChild>
+            <Link href={`/dice-rolls/create?campaignId=${campaignId}`}>
+              Create Dice Roll
+            </Link>
+          </Button>
         </div>
-      </div>
+      </Card>
     );
   }
 
   return (
     <div className="space-y-4">
       {diceRolls.map((diceRoll) => (
-        <div
-          key={diceRoll.id}
-          className="bg-white dark:bg-gray-900 shadow rounded-lg p-4 hover:shadow-md transition-shadow"
-        >
+        <Card key={diceRoll.id} className="p-4 hover:shadow-md transition-shadow">
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <div className="flex items-center space-x-2">
                 <Link
                   href={`/dice-rolls/${diceRoll.id}`}
-                  className="text-lg font-medium text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400"
+                  className="text-lg font-medium hover:underline"
                 >
                   {diceRoll.name}
                 </Link>
                 {diceRoll.isPrivate && (
-                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
-                    Private
-                  </span>
+                  <Badge variant="outline">Private</Badge>
                 )}
                 {diceRoll.system && (
-                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
-                    {diceRoll.system}
-                  </span>
+                  <Badge variant="secondary">{diceRoll.system}</Badge>
                 )}
               </div>
 
               <div className="mt-2">
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-mono">
+                <p className="text-sm text-muted-foreground font-mono">
                   {diceRoll.parameters}
                 </p>
               </div>
 
-              <div className="mt-2 flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+              <div className="mt-2 flex items-center space-x-4 text-sm text-muted-foreground">
                 {diceRoll.character && (
                   <div className="flex items-center">
                     <span className="mr-1">🎭</span>
                     <Link
                       href={`/characters/${diceRoll.character.id}`}
-                      className="hover:text-indigo-600 dark:hover:text-indigo-400"
+                      className="hover:underline"
                     >
                       {diceRoll.character.name}
                     </Link>
@@ -126,76 +132,57 @@ export default function DiceRollList({ diceRolls, campaignId, onDelete, onRoll }
 
             <div className="flex items-center space-x-2 ml-4">
               {onRoll && (
-                <button
+                <Button
                   onClick={() => handleRoll(diceRoll.id)}
-                  className="inline-flex items-center px-3 py-1 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
-                  title="Roll dice"
+                  variant="default"
+                  size="sm"
                 >
                   🎲 Roll
-                </button>
+                </Button>
               )}
-              <Link
-                href={`/dice-rolls/${diceRoll.id}/edit`}
-                className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
-                title="Edit"
+              <Button
+                variant="ghost"
+                size="sm"
+                asChild
               >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                  />
-                </svg>
-              </Link>
+                <Link href={`/dice-rolls/${diceRoll.id}/edit`}>
+                  <Edit className="h-4 w-4" />
+                </Link>
+              </Button>
               {onDelete && (
-                <button
+                <Button
+                  variant="ghost"
+                  size="sm"
                   onClick={() => setDeleteId(diceRoll.id)}
-                  className="text-red-400 hover:text-red-500 dark:hover:text-red-300"
-                  title="Delete"
                 >
-                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                    />
-                  </svg>
-                </button>
+                  <Trash2 className="h-4 w-4 text-destructive" />
+                </Button>
               )}
             </div>
           </div>
-        </div>
+        </Card>
       ))}
 
       {/* Delete confirmation dialog */}
-      {deleteId && (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4 z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-sm w-full">
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
-              Delete Dice Roll?
-            </h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+      <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Dice Roll?</AlertDialogTitle>
+            <AlertDialogDescription>
               This will delete the dice roll and all its roll history. This action cannot be undone.
-            </p>
-            <div className="flex justify-end space-x-3">
-              <button
-                onClick={() => setDeleteId(null)}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-600"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => handleDelete(deleteId)}
-                className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => deleteId && handleDelete(deleteId)}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

@@ -1,5 +1,8 @@
 'use client';
 
+import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import { CalendarDate, parseCalendarDate } from '@/types/calendar';
 import { Character } from '@/types/character';
 import { Event } from '@/types/event';
@@ -85,8 +88,10 @@ export default function CalendarEventList({
 
   if (loading) {
     return (
-      <div className="p-4 text-center text-gray-500">
-        Loading events...
+      <div className="p-4 space-y-2">
+        <Skeleton className="h-20" />
+        <Skeleton className="h-20" />
+        <Skeleton className="h-20" />
       </div>
     );
   }
@@ -98,9 +103,9 @@ export default function CalendarEventList({
 
     if (dateEvents.length === 0 && dateBirthdays.length === 0) {
       return (
-        <div className="p-4 text-center text-gray-500">
+        <Card className="p-4 text-center text-muted-foreground">
           No events or birthdays on this date.
-        </div>
+        </Card>
       );
     }
 
@@ -109,25 +114,26 @@ export default function CalendarEventList({
         {/* Events */}
         {dateEvents.length > 0 && (
           <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Events</h3>
+            <h3 className="font-semibold mb-2">Events</h3>
             <div className="space-y-2">
               {dateEvents.map((event) => (
                 <Link
                   key={event.id}
                   href={`/events/${event.id}`}
-                  className="block p-3 bg-blue-50 rounded-lg border border-blue-200 hover:bg-blue-100 transition"
                 >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="font-medium text-blue-900">{event.name}</div>
-                      {event.type && (
-                        <div className="text-sm text-blue-600">{event.type}</div>
-                      )}
-                      {event.isRecurring && (
-                        <div className="text-xs text-blue-500 mt-1">🔄 Recurring</div>
-                      )}
+                  <Card className="p-3 border-blue-200 hover:bg-accent/50 transition cursor-pointer">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="font-medium">{event.name}</div>
+                        {event.type && (
+                          <Badge variant="secondary" className="text-xs mt-1">{event.type}</Badge>
+                        )}
+                        {event.isRecurring && (
+                          <div className="text-xs text-muted-foreground mt-1">🔄 Recurring</div>
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  </Card>
                 </Link>
               ))}
             </div>
@@ -137,7 +143,7 @@ export default function CalendarEventList({
         {/* Birthdays */}
         {dateBirthdays.length > 0 && (
           <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Birthdays</h3>
+            <h3 className="font-semibold mb-2">Birthdays</h3>
             <div className="space-y-2">
               {dateBirthdays.map((character) => {
                 const birthDate = parseCalendarDate(character.birthDate!);
@@ -149,20 +155,21 @@ export default function CalendarEventList({
                   <Link
                     key={character.id}
                     href={`/characters/${character.id}`}
-                    className="block p-3 bg-purple-50 rounded-lg border border-purple-200 hover:bg-purple-100 transition"
                   >
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="font-medium text-purple-900">
-                          🎂 {character.name}
-                        </div>
-                        {age !== null && age > 0 && (
-                          <div className="text-sm text-purple-600">
-                            Turning {age} years old
+                    <Card className="p-3 border-purple-200 hover:bg-accent/50 transition cursor-pointer">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="font-medium">
+                            🎂 {character.name}
                           </div>
-                        )}
+                          {age !== null && age > 0 && (
+                            <div className="text-sm text-muted-foreground">
+                              Turning {age} years old
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
+                    </Card>
                   </Link>
                 );
               })}
@@ -179,7 +186,7 @@ export default function CalendarEventList({
       {/* Upcoming Events */}
       {events.length > 0 && (
         <div>
-          <h3 className="font-semibold text-gray-900 mb-2">
+          <h3 className="font-semibold mb-2">
             Events ({events.length})
           </h3>
           <div className="space-y-2 max-h-96 overflow-y-auto">
@@ -187,22 +194,23 @@ export default function CalendarEventList({
               <Link
                 key={event.id}
                 href={`/events/${event.id}`}
-                className="block p-3 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition"
               >
-                <div className="flex items-start justify-between gap-2">
-                  <div className="flex-1 min-w-0">
-                    <div className="font-medium text-gray-900 truncate">
-                      {event.name}
+                <Card className="p-3 hover:bg-accent/50 transition cursor-pointer">
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium truncate">
+                        {event.name}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {event.calendarDate}
+                        {event.type && ` • ${event.type}`}
+                      </div>
+                      {event.isRecurring && (
+                        <Badge variant="secondary" className="text-xs mt-1">🔄 Recurring</Badge>
+                      )}
                     </div>
-                    <div className="text-sm text-gray-600">
-                      {event.calendarDate}
-                      {event.type && ` • ${event.type}`}
-                    </div>
-                    {event.isRecurring && (
-                      <div className="text-xs text-blue-600 mt-1">🔄 Recurring</div>
-                    )}
                   </div>
-                </div>
+                </Card>
               </Link>
             ))}
           </div>
@@ -212,7 +220,7 @@ export default function CalendarEventList({
       {/* Birthdays */}
       {birthdays.length > 0 && (
         <div>
-          <h3 className="font-semibold text-gray-900 mb-2">
+          <h3 className="font-semibold mb-2">
             Birthdays ({birthdays.length})
           </h3>
           <div className="space-y-2 max-h-96 overflow-y-auto">
@@ -220,19 +228,20 @@ export default function CalendarEventList({
               <Link
                 key={character.id}
                 href={`/characters/${character.id}`}
-                className="block p-3 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition"
               >
-                <div className="flex items-start gap-2">
-                  <span className="text-lg">🎂</span>
-                  <div className="flex-1 min-w-0">
-                    <div className="font-medium text-gray-900 truncate">
-                      {character.name}
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      {character.birthDate}
+                <Card className="p-3 hover:bg-accent/50 transition cursor-pointer">
+                  <div className="flex items-start gap-2">
+                    <span className="text-lg">🎂</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium truncate">
+                        {character.name}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {character.birthDate}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Card>
               </Link>
             ))}
           </div>
@@ -240,12 +249,12 @@ export default function CalendarEventList({
       )}
 
       {events.length === 0 && birthdays.length === 0 && (
-        <div className="p-8 text-center text-gray-500">
+        <Card className="p-8 text-center text-muted-foreground">
           <p>No events or birthdays on this calendar yet.</p>
           <p className="text-sm mt-2">
             Add events or character birthdays to see them here!
           </p>
-        </div>
+        </Card>
       )}
     </div>
   );

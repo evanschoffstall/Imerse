@@ -1,8 +1,24 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import ImageUpload from '@/components/ui/ImageUpload'
 import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import type { Journal, JournalFormData } from '@/types/journal'
 import { JOURNAL_TYPES } from '@/types/journal'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -28,13 +44,7 @@ interface JournalFormProps {
 }
 
 export default function JournalForm({ journal, campaignId, onSubmit, onCancel }: JournalFormProps) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    watch,
-    setValue
-  } = useForm<JournalFormData>({
+  const form = useForm<JournalFormData>({
     resolver: zodResolver(journalSchema),
     defaultValues: {
       name: journal?.name || '',
@@ -45,11 +55,6 @@ export default function JournalForm({ journal, campaignId, onSubmit, onCancel }:
       isPrivate: journal?.isPrivate || false
     }
   })
-
-  const image = watch('image')
-  const handleImageUpload = (url: string) => {
-    setValue('image', url, { shouldValidate: true })
-  }
 
   const editor = useEditor({
     extensions: [StarterKit],
@@ -67,112 +72,153 @@ export default function JournalForm({ journal, campaignId, onSubmit, onCancel }:
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmitForm)} className="space-y-6">
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium mb-2">
-          Name *
-        </label>
-        <Input
-          id="name"
-          {...register('name')}
-          placeholder="Enter journal name"
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmitForm)} className="space-y-6">
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name *</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder="Enter journal name" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name.message}</p>
-        )}
-      </div>
 
-      <div>
-        <label htmlFor="type" className="block text-sm font-medium mb-2">
-          Type
-        </label>
-        <select
-          {...register('type')}
-          className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          <option value="">Select a type</option>
-          {JOURNAL_TYPES.map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label htmlFor="date" className="block text-sm font-medium mb-2">
-          Date
-        </label>
-        <Input
-          id="date"
-          {...register('date')}
-          placeholder="Session date or in-game date"
+        <FormField
+          control={form.control}
+          name="type"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Type</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a type" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="">Select a type</SelectItem>
+                  {JOURNAL_TYPES.map((type) => (
+                    <SelectItem key={type} value={type}>
+                      {type}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </div>
 
-      <ImageUpload
-        currentImage={image}
-        onImageUpload={handleImageUpload}
-        folder="journals"
-        label="Journal Image"
-      />
+        <FormField
+          control={form.control}
+          name="date"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Date</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder="Session date or in-game date" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-      <div>
-        <label className="block text-sm font-medium mb-2">
-          Entry Content
-        </label>
-        <div className="border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden">
-          <div className="bg-gray-100 dark:bg-gray-700 border-b border-gray-300 dark:border-gray-600 px-3 py-2">
-            <div className="flex gap-2">
-              <button
-                type="button"
-                onClick={() => editor?.chain().focus().toggleBold().run()}
-                className={`px-2 py-1 rounded ${editor?.isActive('bold') ? 'bg-gray-300 dark:bg-gray-600' : ''}`}
-              >
-                B
-              </button>
-              <button
-                type="button"
-                onClick={() => editor?.chain().focus().toggleItalic().run()}
-                className={`px-2 py-1 rounded ${editor?.isActive('italic') ? 'bg-gray-300 dark:bg-gray-600' : ''}`}
-              >
-                I
-              </button>
-              <button
-                type="button"
-                onClick={() => editor?.chain().focus().toggleBulletList().run()}
-                className={`px-2 py-1 rounded ${editor?.isActive('bulletList') ? 'bg-gray-300 dark:bg-gray-600' : ''}`}
-              >
-                •
-              </button>
-            </div>
-          </div>
-          <div className="tiptap">
-            <div className="editor-content" />
-          </div>
+        <FormField
+          control={form.control}
+          name="image"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Journal Image</FormLabel>
+              <FormControl>
+                <ImageUpload
+                  currentImage={field.value}
+                  onImageUpload={field.onChange}
+                  folder="journals"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Entry Content</FormLabel>
+              <FormControl>
+                <div className="border rounded-lg overflow-hidden">
+                  <div className="bg-muted border-b px-3 py-2">
+                    <div className="flex gap-2">
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant={editor?.isActive('bold') ? 'secondary' : 'ghost'}
+                        onClick={() => editor?.chain().focus().toggleBold().run()}
+                      >
+                        B
+                      </Button>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant={editor?.isActive('italic') ? 'secondary' : 'ghost'}
+                        onClick={() => editor?.chain().focus().toggleItalic().run()}
+                      >
+                        I
+                      </Button>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant={editor?.isActive('bulletList') ? 'secondary' : 'ghost'}
+                        onClick={() => editor?.chain().focus().toggleBulletList().run()}
+                      >
+                        •
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="tiptap">
+                    <div className="editor-content" />
+                  </div>
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="isPrivate"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <div className="space-y-1 leading-none">
+                <FormLabel>Private</FormLabel>
+              </div>
+            </FormItem>
+          )}
+        />
+
+        <div className="flex gap-4">
+          <Button type="submit" disabled={form.formState.isSubmitting}>
+            {form.formState.isSubmitting ? 'Saving...' : journal ? 'Update Journal' : 'Create Journal'}
+          </Button>
+          <Button type="button" onClick={onCancel} variant="secondary">
+            Cancel
+          </Button>
         </div>
-      </div>
-
-      <div className="flex items-center">
-        <input
-          type="checkbox"
-          id="isPrivate"
-          {...register('isPrivate')}
-          className="h-4 w-4 text-blue-600 border-gray-300 rounded"
-        />
-        <label htmlFor="isPrivate" className="ml-2 text-sm">
-          Private
-        </label>
-      </div>
-
-      <div className="flex gap-4">
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Saving...' : journal ? 'Update Journal' : 'Create Journal'}
-        </Button>
-        <Button type="button" onClick={onCancel} variant="secondary">
-          Cancel
-        </Button>
-      </div>
-    </form>
+      </form>
+    </Form>
   )
 }

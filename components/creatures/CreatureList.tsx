@@ -1,5 +1,8 @@
 'use client';
 
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { CreatureWithRelations } from '@/types/creature';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -19,27 +22,26 @@ export default function CreatureList({
 }: CreatureListProps) {
   if (creatures.length === 0) {
     return (
-      <div className="text-center py-12 bg-gray-50 dark:bg-gray-800 rounded-lg">
-        <p className="text-gray-500 dark:text-gray-400">No creatures found.</p>
-        <Link
-          href={`/creatures/create?campaignId=${campaignId}`}
-          className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-        >
-          Create Creature
-        </Link>
-      </div>
+      <Card className="text-center py-12">
+        <p className="text-muted-foreground">No creatures found.</p>
+        <Button asChild className="mt-4">
+          <Link href={`/creatures/create?campaignId=${campaignId}`}>
+            Create Creature
+          </Link>
+        </Button>
+      </Card>
     );
   }
 
   return (
-    <div className="bg-white dark:bg-gray-900 shadow overflow-hidden sm:rounded-md">
-      <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+    <Card>
+      <ul className="divide-y">
         {creatures.map((creature) => (
           <li key={creature.id}>
-            <div className="px-4 py-4 flex items-center sm:px-6 hover:bg-gray-50 dark:hover:bg-gray-800">
+            <div className="px-4 py-4 flex items-center sm:px-6 hover:bg-accent/50">
               {/* Image */}
               {creature.image && (
-                <div className="flex-shrink-0 mr-4">
+                <div className="shrink-0 mr-4">
                   <div className="relative h-16 w-16">
                     <Image
                       src={creature.image}
@@ -56,37 +58,37 @@ export default function CreatureList({
                   <div className="flex items-center gap-3">
                     <Link
                       href={`/creatures/${creature.id}`}
-                      className="text-lg font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 truncate"
+                      className="text-lg font-medium text-primary hover:underline truncate"
                     >
                       {creature.name}
                     </Link>
 
                     {creature.type && (
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                      <Badge variant="secondary">
                         {creature.type}
-                      </span>
+                      </Badge>
                     )}
 
                     {creature.isExtinct && (
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
+                      <Badge variant="destructive">
                         💀 Extinct
-                      </span>
+                      </Badge>
                     )}
 
                     {creature.isDead && (
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200">
+                      <Badge variant="outline">
                         ⚰️ Dead
-                      </span>
+                      </Badge>
                     )}
 
                     {creature.isPrivate && (
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                      <Badge variant="outline">
                         🔒 Private
-                      </span>
+                      </Badge>
                     )}
                   </div>
 
-                  <div className="mt-2 flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                  <div className="mt-2 flex items-center gap-4 text-sm text-muted-foreground">
                     {creature.parent && (
                       <span>
                         📁 Parent: {creature.parent.name}
@@ -106,31 +108,31 @@ export default function CreatureList({
                     )}
                   </div>
 
-                  <div className="mt-1 text-xs text-gray-400 dark:text-gray-500">
+                  <div className="mt-1 text-xs text-muted-foreground">
                     Created by {creature.createdBy.name}
                   </div>
                 </div>
               </div>
 
               {showActions && (
-                <div className="ml-5 flex-shrink-0 flex gap-2">
-                  <Link
-                    href={`/creatures/${creature.id}/edit`}
-                    className="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700"
-                  >
-                    Edit
-                  </Link>
+                <div className="ml-5 shrink-0 flex gap-2">
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href={`/creatures/${creature.id}/edit`}>
+                      Edit
+                    </Link>
+                  </Button>
                   {onDelete && (
-                    <button
+                    <Button
+                      variant="destructive"
+                      size="sm"
                       onClick={() => {
                         if (confirm(`Delete creature "${creature.name}"?`)) {
                           onDelete(creature.id);
                         }
                       }}
-                      className="inline-flex items-center px-3 py-1.5 border border-red-300 shadow-sm text-xs font-medium rounded text-red-700 bg-white hover:bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-600 dark:hover:bg-red-900"
                     >
                       Delete
-                    </button>
+                    </Button>
                   )}
                 </div>
               )}
@@ -138,6 +140,6 @@ export default function CreatureList({
           </li>
         ))}
       </ul>
-    </div>
+    </Card>
   );
 }

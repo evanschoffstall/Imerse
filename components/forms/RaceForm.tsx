@@ -1,7 +1,24 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import ImageUpload from '@/components/ui/ImageUpload'
+import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import type { Race, RaceFormData } from '@/types/race'
 import { RACE_TYPES } from '@/types/race'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -28,13 +45,7 @@ interface RaceFormProps {
 const raceTypes: readonly string[] = RACE_TYPES
 
 export default function RaceForm({ race, campaignId, onSubmit, onCancel }: RaceFormProps) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    setValue,
-    watch
-  } = useForm<RaceFormData>({
+  const form = useForm<RaceFormData>({
     resolver: zodResolver(raceFormSchema),
     defaultValues: race ? {
       name: race.name,
@@ -51,11 +62,6 @@ export default function RaceForm({ race, campaignId, onSubmit, onCancel }: RaceF
     }
   })
 
-  const image = watch('image')
-  const handleImageUpload = (url: string) => {
-    setValue('image', url, { shouldValidate: true })
-  }
-
   const editor = useEditor({
     extensions: [StarterKit],
     content: race?.description || '',
@@ -65,7 +71,7 @@ export default function RaceForm({ race, campaignId, onSubmit, onCancel }: RaceF
       }
     },
     onUpdate: ({ editor }) => {
-      setValue('description', editor.getHTML())
+      form.setValue('description', editor.getHTML())
     }
   })
 
@@ -78,76 +84,109 @@ export default function RaceForm({ race, campaignId, onSubmit, onCancel }: RaceF
   }
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium mb-2">
-          Name *
-        </label>
-        <input
-          type="text"
-          id="name"
-          {...register('name')}
-          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name *</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder="Enter race name" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.name && (
-          <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-        )}
-      </div>
 
-      <div>
-        <label htmlFor="type" className="block text-sm font-medium mb-2">
-          Type
-        </label>
-        <select
-          id="type"
-          {...register('type')}
-          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
-        >
-          <option value="">Select a type</option>
-          {raceTypes.map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
-      </div>
+        <FormField
+          control={form.control}
+          name="type"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Type</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a type" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="">Select a type</SelectItem>
+                  {raceTypes.map((type) => (
+                    <SelectItem key={type} value={type}>
+                      {type}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-      <ImageUpload
-        currentImage={image}
-        onImageUpload={handleImageUpload}
-        folder="races"
-        label="Race Image"
-      />
+        <FormField
+          control={form.control}
+          name="image"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Race Image</FormLabel>
+              <FormControl>
+                <ImageUpload
+                  currentImage={field.value}
+                  onImageUpload={field.onChange}
+                  folder="races"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-      <div>
-        <label className="block text-sm font-medium mb-2">
-          Description
-        </label>
-        <div className="border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden">
-          <EditorContent editor={editor} />
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Description</FormLabel>
+              <FormControl>
+                <div className="border rounded-lg overflow-hidden">
+                  <EditorContent editor={editor} />
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="isPrivate"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <div className="space-y-1 leading-none">
+                <FormLabel>Private (only visible to campaign owner)</FormLabel>
+              </div>
+            </FormItem>
+          )}
+        />
+
+        <div className="flex gap-4">
+          <Button type="submit" disabled={form.formState.isSubmitting}>
+            {form.formState.isSubmitting ? 'Saving...' : race ? 'Update Race' : 'Create Race'}
+          </Button>
+          <Button type="button" onClick={onCancel} variant="secondary">
+            Cancel
+          </Button>
         </div>
-      </div>
-
-      <div className="flex items-center">
-        <input
-          type="checkbox"
-          id="isPrivate"
-          {...register('isPrivate')}
-          className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-        />
-        <label htmlFor="isPrivate" className="ml-2 text-sm">
-          Private (only visible to campaign owner)
-        </label>
-      </div>
-
-      <div className="flex gap-4">
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Saving...' : race ? 'Update Race' : 'Create Race'}
-        </Button>
-        <Button type="button" onClick={onCancel} variant="secondary">
-          Cancel
-        </Button>
-      </div>
-    </form>
+      </form>
+    </Form>
   )
 }

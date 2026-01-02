@@ -1,7 +1,11 @@
 'use client'
 
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 import { ATTITUDE_LABELS, type RelationWithEntities } from '@/types/relation'
+import { Pin, Trash2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
@@ -83,10 +87,10 @@ export default function RelationsList({
 
   if (loading) {
     return (
-      <div className="animate-pulse space-y-3">
-        <div className="h-20 bg-gray-200 rounded-lg"></div>
-        <div className="h-20 bg-gray-200 rounded-lg"></div>
-        <div className="h-20 bg-gray-200 rounded-lg"></div>
+      <div className="space-y-3">
+        <Skeleton className="h-20" />
+        <Skeleton className="h-20" />
+        <Skeleton className="h-20" />
       </div>
     )
   }
@@ -103,20 +107,20 @@ export default function RelationsList({
       </div>
 
       {relations.length === 0 ? (
-        <div className="text-center py-8 bg-gray-50 rounded-lg border-2 border-dashed border-gray-200">
-          <p className="text-gray-500">No relations yet</p>
+        <Card className="text-center py-8 border-2 border-dashed">
+          <p className="text-muted-foreground">No relations yet</p>
           {onAddRelation && (
             <Button onClick={onAddRelation} variant="secondary" size="sm" className="mt-3">
               Create First Relation
             </Button>
           )}
-        </div>
+        </Card>
       ) : (
         <div className="space-y-3">
           {relations.map((relation) => (
-            <div
+            <Card
               key={relation.id}
-              className="flex items-center justify-between p-4 bg-white border rounded-lg hover:shadow-md transition-shadow"
+              className="flex items-center justify-between p-4 hover:shadow-md transition-shadow"
               style={{
                 borderLeftWidth: '4px',
                 borderLeftColor: relation.colour || '#cbd5e1',
@@ -124,9 +128,9 @@ export default function RelationsList({
             >
               <div className="flex-1">
                 <div className="flex items-center gap-3">
-                  <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                  <Badge variant="secondary" className="uppercase">
                     {relation.relation}
-                  </span>
+                  </Badge>
                   {relation.isPinned && (
                     <span className="text-yellow-500" title="Pinned">
                       📌
@@ -136,50 +140,50 @@ export default function RelationsList({
 
                 <p className="text-lg font-semibold mt-1">
                   {relation.targetId}
-                  <span className="text-sm text-gray-500 font-normal ml-2">
+                  <span className="text-sm text-muted-foreground font-normal ml-2">
                     ({relation.targetType})
                   </span>
                 </p>
 
                 {relation.attitude !== 0 && (
                   <div className="flex items-center gap-2 mt-2">
-                    <span className="text-xs font-medium text-gray-500">Attitude:</span>
-                    <span
-                      className={`text-xs px-2 py-1 rounded-full ${relation.attitude > 0
-                        ? 'bg-green-100 text-green-700'
-                        : 'bg-red-100 text-red-700'
-                        }`}
+                    <span className="text-xs font-medium text-muted-foreground">Attitude:</span>
+                    <Badge
+                      variant={relation.attitude > 0 ? 'default' : 'destructive'}
+                      className="text-xs"
                     >
                       {ATTITUDE_LABELS[relation.attitude]} ({relation.attitude > 0 ? '+' : ''}
                       {relation.attitude})
-                    </span>
+                    </Badge>
                   </div>
                 )}
 
                 {relation.mirror && (
-                  <p className="text-xs text-gray-500 mt-2">
+                  <p className="text-xs text-muted-foreground mt-2">
                     ↔️ Reciprocal relation exists
                   </p>
                 )}
               </div>
 
               <div className="flex items-center gap-2">
-                <button
+                <Button
                   onClick={() => handleTogglePin(relation)}
-                  className="p-2 text-gray-400 hover:text-yellow-500 transition-colors"
+                  variant="ghost"
+                  size="sm"
                   title={relation.isPinned ? 'Unpin' : 'Pin'}
                 >
-                  {relation.isPinned ? '📌' : '📍'}
-                </button>
-                <button
+                  <Pin className={`h-4 w-4 ${relation.isPinned ? 'fill-yellow-500 text-yellow-500' : ''}`} />
+                </Button>
+                <Button
                   onClick={() => handleDelete(relation.id)}
-                  className="p-2 text-gray-400 hover:text-red-600 transition-colors"
+                  variant="ghost"
+                  size="sm"
                   title="Delete"
                 >
-                  🗑️
-                </button>
+                  <Trash2 className="h-4 w-4 text-destructive" />
+                </Button>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
       )}

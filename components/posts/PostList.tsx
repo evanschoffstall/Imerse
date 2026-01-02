@@ -1,5 +1,8 @@
 'use client'
 
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
 import type { PostWithRelations } from '@/types/post'
 import { POST_LAYOUT_NAMES } from '@/types/post'
 import Link from 'next/link'
@@ -40,82 +43,74 @@ export default function PostList({ posts, campaignId, showEntityLink = true, onD
     <div className="space-y-4">
       {/* Filter */}
       <div className="flex gap-2">
-        <button
+        <Button
           onClick={() => setFilter('all')}
-          className={`px-4 py-2 rounded-md ${filter === 'all'
-              ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
+          variant={filter === 'all' ? 'default' : 'outline'}
         >
           All Posts
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => setFilter('pinned')}
-          className={`px-4 py-2 rounded-md ${filter === 'pinned'
-              ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
+          variant={filter === 'pinned' ? 'default' : 'outline'}
         >
           Pinned Only
-        </button>
+        </Button>
       </div>
 
       {/* Posts List */}
       {sortedPosts.length === 0 ? (
-        <div className="text-center py-12 bg-gray-50 rounded-lg">
-          <p className="text-gray-500">No posts found</p>
-          <Link
-            href={`/posts/create?campaignId=${campaignId}`}
-            className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-          >
-            Create First Post
-          </Link>
-        </div>
+        <Card className="text-center py-12">
+          <p className="text-muted-foreground">No posts found</p>
+          <Button asChild className="mt-4">
+            <Link href={`/posts/create?campaignId=${campaignId}`}>
+              Create First Post
+            </Link>
+          </Button>
+        </Card>
       ) : (
         <div className="space-y-3">
           {sortedPosts.map((post) => (
-            <div
+            <Card
               key={post.id}
-              className={`bg-white border rounded-lg p-4 hover:shadow-md transition-shadow ${post.isPinned ? 'border-yellow-400 border-2' : 'border-gray-200'
-                }`}
+              className={`p-4 hover:shadow-md transition-shadow ${post.isPinned ? 'border-2 border-yellow-400' : ''}`}
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     {post.isPinned && (
-                      <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">
+                      <Badge variant="outline" className="border-yellow-400">
                         📌 Pinned
-                      </span>
+                      </Badge>
                     )}
                     {post.isPrivate && (
-                      <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">
+                      <Badge variant="secondary">
                         🔒 Private
-                      </span>
+                      </Badge>
                     )}
                     {post.layoutId && post.layoutId !== 'content' && (
-                      <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+                      <Badge variant="default">
                         {POST_LAYOUT_NAMES[post.layoutId as keyof typeof POST_LAYOUT_NAMES] || post.layoutId}
-                      </span>
+                      </Badge>
                     )}
                   </div>
 
                   <Link
                     href={`/posts/${post.id}`}
-                    className="text-xl font-semibold text-blue-600 hover:text-blue-800"
+                    className="text-xl font-semibold text-primary hover:underline"
                   >
                     {post.name}
                   </Link>
 
                   {post.entry && (
                     <div
-                      className="mt-2 text-gray-600 line-clamp-2"
+                      className="mt-2 text-muted-foreground line-clamp-2"
                       dangerouslySetInnerHTML={{
                         __html: post.entry.substring(0, 200) + (post.entry.length > 200 ? '...' : ''),
                       }}
                     />
                   )}
 
-                  <div className="mt-3 flex items-center gap-4 text-sm text-gray-500">
+                  <div className="mt-3 flex items-center gap-4 text-sm text-muted-foreground">
                     <span>by {post.createdBy.name}</span>
                     <span>•</span>
                     <span>{new Date(post.createdAt).toLocaleDateString()}</span>
@@ -124,7 +119,7 @@ export default function PostList({ posts, campaignId, showEntityLink = true, onD
                         <span>•</span>
                         <Link
                           href={getEntityLink(post) || '#'}
-                          className="text-blue-600 hover:underline"
+                          className="text-primary hover:underline"
                         >
                           {getEntityName(post)}
                         </Link>
@@ -136,16 +131,16 @@ export default function PostList({ posts, campaignId, showEntityLink = true, onD
                   {post.tags && post.tags.length > 0 && (
                     <div className="mt-2 flex flex-wrap gap-2">
                       {post.tags.map((postTag) => (
-                        <span
+                        <Badge
                           key={postTag.id}
-                          className="px-2 py-1 text-xs rounded-full"
+                          variant="outline"
                           style={{
-                            backgroundColor: postTag.tag.color || '#e5e7eb',
-                            color: postTag.tag.color ? '#fff' : '#374151',
+                            backgroundColor: postTag.tag.color || undefined,
+                            color: postTag.tag.color ? '#fff' : undefined,
                           }}
                         >
                           {postTag.tag.name}
-                        </span>
+                        </Badge>
                       ))}
                     </div>
                   )}
@@ -153,27 +148,27 @@ export default function PostList({ posts, campaignId, showEntityLink = true, onD
 
                 {/* Actions */}
                 <div className="flex gap-2 ml-4">
-                  <Link
-                    href={`/posts/${post.id}/edit`}
-                    className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded hover:bg-gray-200"
-                  >
-                    Edit
-                  </Link>
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href={`/posts/${post.id}/edit`}>
+                      Edit
+                    </Link>
+                  </Button>
                   {onDelete && (
-                    <button
+                    <Button
+                      variant="destructive"
+                      size="sm"
                       onClick={() => {
                         if (confirm('Are you sure you want to delete this post?')) {
                           onDelete(post.id)
                         }
                       }}
-                      className="px-3 py-1 text-sm bg-red-100 text-red-700 rounded hover:bg-red-200"
                     >
                       Delete
-                    </button>
+                    </Button>
                   )}
                 </div>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
       )}
