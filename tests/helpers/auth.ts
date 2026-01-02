@@ -71,7 +71,7 @@ export async function performLogin(
   console.log(`   Email: ${creds.email}`);
 
   // Get baseURL from context or use default
-  const baseURL = page.context()._options?.baseURL || "http://localhost:3000";
+  const baseURL = "http://localhost:3000";
 
   // Navigate to login page with full URL
   await page.goto(`${baseURL}/login`, {

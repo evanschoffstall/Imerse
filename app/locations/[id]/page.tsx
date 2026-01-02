@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import Dialog from '@/components/ui/Dialog'
+import Dialog from '@/components/ui/dialog-legacy'
 import type { Location } from '@/types/location'
 import NextImage from 'next/image'
 import Link from 'next/link'

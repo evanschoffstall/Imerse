@@ -17,15 +17,21 @@ Phase 32 is replacing ALL UI with shadcn/ui components. We need to verify:
 ```
 tests/visual/
 ├── README.md (this file)
-├── button.spec.ts          # Button component variations
-├── form.spec.ts            # Form components (Input, Select, etc.)
-├── navigation.spec.ts      # Sidebar, Header, Dropdown
-├── layout.spec.ts          # Main layout, responsive behavior
-├── campaigns.spec.ts       # Campaign pages
-├── characters.spec.ts      # Character pages
-├── [entity].spec.ts        # One file per entity type
-└── all-pages.spec.ts       # Screenshot every page
+├── button.spec.ts                    # Button component variations (164 lines)
+├── form-components.spec.ts           # Form components: Input, Form, Select, Checkbox, Radio, Textarea, Label (15 tests)
+├── navigation-components.spec.ts     # Navigation: Tabs, Dropdown Menu, Sheet, Command (13 tests)
+├── feedback-components.spec.ts       # Feedback: Alert, Badge, Tooltip (14 tests)
+├── display-components.spec.ts        # Display: Card, Table, Accordion, Separator, Scroll Area (18 tests)
+└── [future entity pages]             # Campaign, Character, Location pages (Week 3+)
 ```
+
+**Status (Jan 1, 2026)**:
+
+- ✅ 5 test files created (60+ tests total)
+- ✅ All 23 shadcn/ui components have visual coverage
+- ✅ Light/dark mode tests included
+- ✅ Responsive tests (mobile/tablet/desktop)
+- ✅ Accessibility tests (keyboard navigation, ARIA)
 
 ## Running Visual Tests
 

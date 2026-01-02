@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ConfirmDialog } from '@/components/ui/Dialog';
+import { ConfirmDialog } from '@/components/ui/dialog-legacy';
 import { Campaign } from '@/types/campaign';
 import NextImage from 'next/image';
 import Link from 'next/link';
