@@ -12,7 +12,7 @@ export default function GlobalSearch() {
   const [loading, setLoading] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // Handle keyboard shortcut (Cmd+K / Ctrl+K)
   useEffect(() => {

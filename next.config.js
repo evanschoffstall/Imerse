@@ -2,15 +2,19 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["localhost"],
-  },
-  experimental: {
-    serverComponentsExternalPackages: [
-      "@prisma/client",
-      "@prisma/adapter-pg",
-      "pg",
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+      {
+        protocol: "https",
+        hostname: "localhost",
+      },
     ],
   },
+  serverExternalPackages: ["@prisma/client", "@prisma/adapter-pg", "pg"],
+  turbopack: {},
   webpack: (config, { isServer }) => {
     // Exclude server-only modules from client bundle
     if (!isServer) {

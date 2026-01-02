@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button'
 import FormField from '@/components/ui/FormField'
 import ImageUpload from '@/components/ui/ImageUpload'
 import { Input } from '@/components/ui/input'
-import Select from '@/components/ui/select'
 import { characterSchema, type Character, type CharacterFormData } from '@/types/character'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect, useState } from 'react'
@@ -103,7 +102,6 @@ export function CharacterForm({ character, campaignId, onSubmit, onCancel }: Cha
         <Input
           {...register('name')}
           placeholder="Enter character name"
-          error={errors.name?.message}
         />
       </FormField>
 
@@ -111,42 +109,49 @@ export function CharacterForm({ character, campaignId, onSubmit, onCancel }: Cha
         <Input
           {...register('title')}
           placeholder="e.g., The Brave, Knight of the Realm"
-          error={errors.title?.message}
         />
       </FormField>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <FormField label="Type" error={errors.type?.message}>
-          <Select
+          <select
             {...register('type')}
-            options={CHARACTER_TYPES}
-            error={errors.type?.message}
-          />
+            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {CHARACTER_TYPES.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </FormField>
 
         <FormField label="Age" error={errors.age?.message}>
           <Input
             {...register('age')}
             placeholder="e.g., 25, Ancient, Young adult"
-            error={errors.age?.message}
           />
         </FormField>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <FormField label="Sex" error={errors.sex?.message}>
-          <Select
+          <select
             {...register('sex')}
-            options={SEX_OPTIONS}
-            error={errors.sex?.message}
-          />
+            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {SEX_OPTIONS.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </FormField>
 
         <FormField label="Pronouns" error={errors.pronouns?.message}>
           <Input
             {...register('pronouns')}
             placeholder="e.g., he/him, she/her, they/them"
-            error={errors.pronouns?.message}
           />
         </FormField>
       </div>
@@ -156,7 +161,6 @@ export function CharacterForm({ character, campaignId, onSubmit, onCancel }: Cha
           <Input
             {...register('location')}
             placeholder="Current location or hometown"
-            error={errors.location?.message}
           />
         </FormField>
 
@@ -164,7 +168,6 @@ export function CharacterForm({ character, campaignId, onSubmit, onCancel }: Cha
           <Input
             {...register('family')}
             placeholder="Family name or house"
-            error={errors.family?.message}
           />
         </FormField>
       </div>
@@ -181,14 +184,17 @@ export function CharacterForm({ character, campaignId, onSubmit, onCancel }: Cha
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Birthday (Optional)</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField label="Calendar" error={errors.birthCalendarId?.message}>
-            <Select {...register('birthCalendarId')} error={errors.birthCalendarId?.message}>
+            <select
+              {...register('birthCalendarId')}
+              className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+            >
               <option value="">Select a calendar...</option>
               {calendars.map((calendar) => (
                 <option key={calendar.id} value={calendar.id}>
                   {calendar.name}
                 </option>
               ))}
-            </Select>
+            </select>
             <p className="text-xs text-gray-500 mt-1">
               Select which calendar system this birthday uses
             </p>
@@ -198,7 +204,6 @@ export function CharacterForm({ character, campaignId, onSubmit, onCancel }: Cha
             <Input
               {...register('birthDate')}
               placeholder="YYYY-MM-DD (e.g., 1985-03-15)"
-              error={errors.birthDate?.message}
             />
             <p className="text-xs text-gray-500 mt-1">
               Format: YYYY-MM-DD (negative years supported)

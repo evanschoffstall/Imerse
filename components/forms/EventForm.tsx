@@ -3,7 +3,6 @@
 import { Button } from '@/components/ui/button'
 import ImageUpload from '@/components/ui/ImageUpload'
 import { Input } from '@/components/ui/input'
-import Select from '@/components/ui/select'
 import type { Event, EventFormData } from '@/types/event'
 import { EVENT_TYPES } from '@/types/event'
 import type { Timeline } from '@/types/timeline'
@@ -110,14 +109,17 @@ export default function EventForm({ event, campaignId, onSubmit, onCancel }: Eve
         <label htmlFor="type" className="block text-sm font-medium mb-2">
           Type
         </label>
-        <Select id="type" {...register('type')}>
+        <select
+          {...register('type')}
+          className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+        >
           <option value="">Select a type</option>
           {EVENT_TYPES.map((type) => (
             <option key={type} value={type}>
               {type}
             </option>
           ))}
-        </Select>
+        </select>
       </div>
 
       <div>
@@ -149,14 +151,17 @@ export default function EventForm({ event, campaignId, onSubmit, onCancel }: Eve
         <label htmlFor="timelineId" className="block text-sm font-medium mb-2">
           Timeline (Optional)
         </label>
-        <Select id="timelineId" {...register('timelineId')}>
+        <select
+          {...register('timelineId')}
+          className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+        >
           <option value="">No timeline</option>
           {timelines.map((timeline) => (
             <option key={timeline.id} value={timeline.id}>
               {timeline.name}
             </option>
           ))}
-        </Select>
+        </select>
         <p className="text-sm text-gray-500 mt-1">
           Link this event to a timeline for chronological tracking
         </p>

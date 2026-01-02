@@ -15,6 +15,7 @@ export default function RichTextEditor({ content = '', onChange, placeholder = '
     extensions: [StarterKit],
     content,
     editable: !disabled,
+    immediatelyRender: false,
     onUpdate: ({ editor }) => {
       onChange?.(editor.getHTML())
     },
@@ -36,8 +37,8 @@ export default function RichTextEditor({ content = '', onChange, placeholder = '
           type="button"
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={`px-3 py-1 rounded text-sm font-medium ${editor.isActive('bold')
-              ? 'bg-blue-600 text-white'
-              : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
+            ? 'bg-blue-600 text-white'
+            : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
             }`}
         >
           Bold
@@ -46,8 +47,8 @@ export default function RichTextEditor({ content = '', onChange, placeholder = '
           type="button"
           onClick={() => editor.chain().focus().toggleItalic().run()}
           className={`px-3 py-1 rounded text-sm font-medium ${editor.isActive('italic')
-              ? 'bg-blue-600 text-white'
-              : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
+            ? 'bg-blue-600 text-white'
+            : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
             }`}
         >
           Italic
@@ -56,8 +57,8 @@ export default function RichTextEditor({ content = '', onChange, placeholder = '
           type="button"
           onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
           className={`px-3 py-1 rounded text-sm font-medium ${editor.isActive('heading', { level: 2 })
-              ? 'bg-blue-600 text-white'
-              : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
+            ? 'bg-blue-600 text-white'
+            : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
             }`}
         >
           H2
@@ -66,8 +67,8 @@ export default function RichTextEditor({ content = '', onChange, placeholder = '
           type="button"
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           className={`px-3 py-1 rounded text-sm font-medium ${editor.isActive('bulletList')
-              ? 'bg-blue-600 text-white'
-              : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
+            ? 'bg-blue-600 text-white'
+            : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
             }`}
         >
           List
@@ -76,8 +77,8 @@ export default function RichTextEditor({ content = '', onChange, placeholder = '
           type="button"
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
           className={`px-3 py-1 rounded text-sm font-medium ${editor.isActive('blockquote')
-              ? 'bg-blue-600 text-white'
-              : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
+            ? 'bg-blue-600 text-white'
+            : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
             }`}
         >
           Quote

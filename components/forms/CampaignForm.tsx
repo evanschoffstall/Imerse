@@ -66,7 +66,6 @@ export default function CampaignForm({
         <Input
           id="name"
           {...register('name')}
-          error={errors.name?.message}
           placeholder="Enter campaign name"
           disabled={isLoading}
         />

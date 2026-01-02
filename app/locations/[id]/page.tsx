@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import Dialog from '@/components/ui/dialog-legacy'
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import type { Location } from '@/types/location'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -225,36 +225,37 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
         </div>
       </div>
 
-      <Dialog
-        isOpen={deleteDialogOpen}
-        onClose={() => setDeleteDialogOpen(false)}
-        title="Delete Location"
-      >
-        <p className="mb-4 text-gray-700 dark:text-gray-300">
-          Are you sure you want to delete "{location.name}"?
-          {location.children && location.children.length > 0 && (
-            <span className="block mt-2 text-red-600 dark:text-red-400 font-medium">
-              This location has {location.children.length} sub-location(s).
-              You must delete or move them first.
-            </span>
-          )}
-        </p>
-        <div className="flex justify-end space-x-4">
-          <Button
-            variant="secondary"
-            onClick={() => setDeleteDialogOpen(false)}
-            disabled={isDeleting}
-          >
-            Cancel
-          </Button>
-          <Button
-            variant="destructive"
-            onClick={handleDelete}
-            disabled={isDeleting || (location.children && location.children.length > 0)}
-          >
-            {isDeleting ? 'Deleting...' : 'Delete'}
-          </Button>
-        </div>
+      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete Location</DialogTitle>
+          </DialogHeader>
+          <p className="mb-4 text-gray-700 dark:text-gray-300">
+            Are you sure you want to delete "{location.name}"?
+            {location.children && location.children.length > 0 && (
+              <span className="block mt-2 text-red-600 dark:text-red-400 font-medium">
+                This location has {location.children.length} sub-location(s).
+                You must delete or move them first.
+              </span>
+            )}
+          </p>
+          <DialogFooter>
+            <Button
+              variant="secondary"
+              onClick={() => setDeleteDialogOpen(false)}
+              disabled={isDeleting}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={handleDelete}
+              disabled={isDeleting || (location.children && location.children.length > 0)}
+            >
+              {isDeleting ? 'Deleting...' : 'Delete'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
       </Dialog>
     </div>
   )

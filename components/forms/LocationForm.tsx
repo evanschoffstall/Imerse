@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button'
 import FormField from '@/components/ui/FormField'
 import ImageUpload from '@/components/ui/ImageUpload'
 import { Input } from '@/components/ui/input'
-import Select from '@/components/ui/select'
 import { locationSchema, type Location, type LocationFormData } from '@/types/location'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
@@ -104,17 +103,21 @@ export default function LocationForm({
         <Input
           {...register('name')}
           placeholder="Enter location name"
-          error={errors.name?.message}
         />
       </FormField>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <FormField label="Type" error={errors.type?.message}>
-          <Select
+          <select
             {...register('type')}
-            options={LOCATION_TYPES}
-            error={errors.type?.message}
-          />
+            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {LOCATION_TYPES.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </FormField>
 
         <FormField
@@ -122,11 +125,16 @@ export default function LocationForm({
           error={errors.parentId?.message}
           className="relative"
         >
-          <Select
+          <select
             {...register('parentId')}
-            options={parentOptions}
-            error={errors.parentId?.message}
-          />
+            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {parentOptions.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
           <p className="mt-1 text-xs text-gray-500">
             Create a hierarchy by setting a parent location
           </p>

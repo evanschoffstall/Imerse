@@ -1,6 +1,8 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import { Campaign } from '@/types/campaign';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -42,43 +44,54 @@ export default function CampaignsPage() {
       </div>
 
       {isLoading ? (
-        <div className="flex items-center justify-center py-12">
-          <p className="text-gray-600">Loading campaigns...</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3].map((i) => (
+            <Card key={i}>
+              <CardHeader>
+                <Skeleton className="h-6 w-3/4" />
+              </CardHeader>
+              <CardContent>
+                <Skeleton className="h-4 w-full mb-2" />
+                <Skeleton className="h-4 w-2/3" />
+              </CardContent>
+            </Card>
+          ))}
         </div>
       ) : campaigns.length === 0 ? (
-        <div className="bg-white rounded-lg shadow-lg p-12 text-center">
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">No campaigns yet</h3>
-          <p className="text-gray-600 mb-6">
-            Create your first campaign to start your worldbuilding journey.
-          </p>
-          <Link href="/campaigns/new">
-            <Button>Create Your First Campaign</Button>
-          </Link>
-        </div>
+        <Card className="text-center">
+          <CardHeader>
+            <CardTitle>No campaigns yet</CardTitle>
+            <CardDescription>
+              Create your first campaign to start your worldbuilding journey.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Link href="/campaigns/new">
+              <Button>Create Your First Campaign</Button>
+            </Link>
+          </CardContent>
+        </Card>
       ) : (
-        <div className="bg-white rounded-lg shadow-lg p-6" data-testid="campaigns-list">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {campaigns.map((campaign) => (
-              <Link
-                key={campaign.id}
-                href={`/campaigns/${campaign.id}`}
-                className="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition"
-                data-testid="campaign-card"
-              >
-                <h3 className="text-xl font-semibold mb-2">{campaign.name}</h3>
-                {campaign.description && (
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                    {campaign.description.replace(/<[^>]*>/g, '')}
-                  </p>
-                )}
-                <div className="flex items-center text-sm text-gray-500">
-                  <span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="campaigns-list">
+          {campaigns.map((campaign) => (
+            <Link key={campaign.id} href={`/campaigns/${campaign.id}`} data-testid="campaign-card">
+              <Card className="h-full transition-shadow hover:shadow-lg">
+                <CardHeader>
+                  <CardTitle>{campaign.name}</CardTitle>
+                  {campaign.description && (
+                    <CardDescription className="line-clamp-3">
+                      {campaign.description.replace(/<[^>]*>/g, '')}
+                    </CardDescription>
+                  )}
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
                     Updated {new Date(campaign.updatedAt).toLocaleDateString()}
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
         </div>
       )}
     </div>

@@ -1,6 +1,8 @@
 'use client';
 
 import CampaignForm from '@/components/forms/CampaignForm';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import { CampaignFormData } from '@/types/campaign';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -74,9 +76,15 @@ export default function EditCampaignPage() {
   if (isLoadingData) {
     return (
       <div className="container mx-auto px-4 py-8 max-w-4xl">
-        <div className="flex items-center justify-center">
-          <p className="text-gray-600">Loading campaign...</p>
-        </div>
+        <Card>
+          <CardHeader>
+            <Skeleton className="h-8 w-1/2" />
+            <Skeleton className="h-4 w-3/4" />
+          </CardHeader>
+          <CardContent>
+            <Skeleton className="h-40 w-full" />
+          </CardContent>
+        </Card>
       </div>
     );
   }
@@ -87,23 +95,22 @@ export default function EditCampaignPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Edit Campaign
-        </h1>
-        <p className="text-gray-600">
-          Update your campaign details.
-        </p>
-      </div>
-
-      <div className="bg-white shadow rounded-lg p-6">
-        <CampaignForm
-          initialData={initialData}
-          onSubmit={handleSubmit}
-          isLoading={isLoading}
-          submitText="Update Campaign"
-        />
-      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-3xl">Edit Campaign</CardTitle>
+          <CardDescription>
+            Update your campaign details.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <CampaignForm
+            initialData={initialData}
+            onSubmit={handleSubmit}
+            isLoading={isLoading}
+            submitText="Update Campaign"
+          />
+        </CardContent>
+      </Card>
     </div>
   );
 }

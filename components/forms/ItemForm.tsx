@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button'
 import FormField from '@/components/ui/FormField'
 import ImageUpload from '@/components/ui/ImageUpload'
 import { Input } from '@/components/ui/input'
-import Select from '@/components/ui/select'
 import { itemSchema, type Item, type ItemFormData } from '@/types/item'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
@@ -90,25 +89,34 @@ export default function ItemForm({ item, campaignId, onSubmit, onCancel }: ItemF
         <Input
           {...register('name')}
           placeholder="Enter item name"
-          error={errors.name?.message}
         />
       </FormField>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <FormField label="Type" error={errors.type?.message}>
-          <Select
+          <select
             {...register('type')}
-            options={ITEM_TYPES}
-            error={errors.type?.message}
-          />
+            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {ITEM_TYPES.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </FormField>
 
         <FormField label="Size" error={errors.size?.message}>
-          <Select
+          <select
             {...register('size')}
-            options={SIZE_OPTIONS}
-            error={errors.size?.message}
-          />
+            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {SIZE_OPTIONS.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </FormField>
       </div>
 
@@ -116,7 +124,6 @@ export default function ItemForm({ item, campaignId, onSubmit, onCancel }: ItemF
         <Input
           {...register('price')}
           placeholder="e.g., 100 gold, 5 silver"
-          error={errors.price?.message}
         />
       </FormField>
 
@@ -132,7 +139,6 @@ export default function ItemForm({ item, campaignId, onSubmit, onCancel }: ItemF
           <Input
             {...register('location')}
             placeholder="Where is this item located?"
-            error={errors.location?.message}
           />
         </FormField>
 
@@ -140,7 +146,6 @@ export default function ItemForm({ item, campaignId, onSubmit, onCancel }: ItemF
           <Input
             {...register('character')}
             placeholder="Who owns or possesses this item?"
-            error={errors.character?.message}
           />
         </FormField>
       </div>

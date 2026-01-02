@@ -1,7 +1,18 @@
 'use client';
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import { ConfirmDialog } from '@/components/ui/dialog-legacy';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import { Campaign } from '@/types/campaign';
 import NextImage from 'next/image';
 import Link from 'next/link';
@@ -67,10 +78,16 @@ export default function CampaignDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex items-center justify-center">
-          <p className="text-gray-600">Loading campaign...</p>
-        </div>
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
+        <Card>
+          <CardHeader>
+            <Skeleton className="h-8 w-1/2 mb-2" />
+            <Skeleton className="h-4 w-1/4" />
+          </CardHeader>
+          <CardContent>
+            <Skeleton className="h-40 w-full" />
+          </CardContent>
+        </Card>
       </div>
     );
   }
@@ -81,10 +98,10 @@ export default function CampaignDetailPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
-      {/* Header with actions */}
-      <div className="bg-white shadow rounded-lg mb-6">
+      {/* Header Card with Image */}
+      <Card className="mb-6">
         {campaign.image && (
-          <div className="relative w-full h-64 rounded-t-lg overflow-hidden">
+          <div className="relative w-full h-64 overflow-hidden rounded-t-lg">
             <NextImage
               src={campaign.image}
               alt={campaign.name}
@@ -95,15 +112,13 @@ export default function CampaignDetailPage() {
             />
           </div>
         )}
-        <div className="px-6 py-4 border-b border-gray-200">
+        <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{campaign.name}</h1>
-              <p className="text-sm text-gray-500 mt-1">
-                Created by {campaign.owner.name}
-              </p>
+              <CardTitle className="text-3xl">{campaign.name}</CardTitle>
+              <CardDescription>Created by {campaign.owner.name}</CardDescription>
             </div>
-            <div className="flex space-x-3">
+            <div className="flex gap-3">
               <Link href={`/campaigns/${campaign.id}/edit`}>
                 <Button variant="secondary">Edit Campaign</Button>
               </Link>
@@ -115,75 +130,96 @@ export default function CampaignDetailPage() {
               </Button>
             </div>
           </div>
-        </div>
+        </CardHeader>
 
         {/* Description */}
         {campaign.description && (
-          <div className="px-6 py-4">
-            <h2 className="text-lg font-semibold text-gray-900 mb-2">Description</h2>
+          <CardContent>
+            <h2 className="text-lg font-semibold mb-2">Description</h2>
             <div
-              className="prose max-w-none text-gray-700"
+              className="prose prose-sm max-w-none dark:prose-invert"
               dangerouslySetInnerHTML={{ __html: campaign.description }}
             />
-          </div>
+          </CardContent>
         )}
-      </div>
+      </Card>
 
       {/* Content sections */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Characters */}
         <Link href={`/characters?campaignId=${campaign.id}`}>
-          <div className="bg-white shadow rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Characters</h3>
-            <p className="text-gray-600">Manage your campaign characters</p>
-          </div>
+          <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+            <CardHeader>
+              <CardTitle>Characters</CardTitle>
+              <CardDescription>Manage your campaign characters</CardDescription>
+            </CardHeader>
+          </Card>
         </Link>
 
         {/* Locations */}
         <Link href={`/locations?campaignId=${campaign.id}`}>
-          <div className="bg-white shadow rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Locations</h3>
-            <p className="text-gray-600">Explore your world's locations</p>
-          </div>
+          <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+            <CardHeader>
+              <CardTitle>Locations</CardTitle>
+              <CardDescription>Explore your world's locations</CardDescription>
+            </CardHeader>
+          </Card>
         </Link>
 
         {/* Sessions/Events */}
-        <div className="bg-white shadow rounded-lg p-6 opacity-50">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">Sessions</h3>
-          <p className="text-gray-600">Coming soon...</p>
-        </div>
+        <Card className="h-full opacity-50">
+          <CardHeader>
+            <CardTitle>Sessions</CardTitle>
+            <CardDescription>Coming soon...</CardDescription>
+          </CardHeader>
+        </Card>
 
         {/* Items */}
-        <div className="bg-white shadow rounded-lg p-6 opacity-50">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">Items</h3>
-          <p className="text-gray-600">Coming soon...</p>
-        </div>
+        <Card className="h-full opacity-50">
+          <CardHeader>
+            <CardTitle>Items</CardTitle>
+            <CardDescription>Coming soon...</CardDescription>
+          </CardHeader>
+        </Card>
 
         {/* Quests */}
-        <div className="bg-white shadow rounded-lg p-6 opacity-50">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">Quests</h3>
-          <p className="text-gray-600">Coming soon...</p>
-        </div>
+        <Card className="h-full opacity-50">
+          <CardHeader>
+            <CardTitle>Quests</CardTitle>
+            <CardDescription>Coming soon...</CardDescription>
+          </CardHeader>
+        </Card>
 
         {/* Notes */}
-        <div className="bg-white shadow rounded-lg p-6 opacity-50">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">Notes</h3>
-          <p className="text-gray-600">Coming soon...</p>
-        </div>
+        <Card className="h-full opacity-50">
+          <CardHeader>
+            <CardTitle>Notes</CardTitle>
+            <CardDescription>Coming soon...</CardDescription>
+          </CardHeader>
+        </Card>
       </div>
 
       {/* Delete confirmation dialog */}
-      <ConfirmDialog
-        isOpen={showDeleteDialog}
-        onClose={() => setShowDeleteDialog(false)}
-        onConfirm={handleDelete}
-        title="Delete Campaign"
-        message={`Are you sure you want to delete "${campaign.name}"? This action cannot be undone and will delete all associated data.`}
-        confirmText="Delete"
-        cancelText="Cancel"
-        variant="danger"
-        isLoading={isDeleting}
-      />
+      <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Campaign</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete "{campaign.name}"? This action cannot be undone and will delete all associated data.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={isDeleting}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleDelete}
+              disabled={isDeleting}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              {isDeleting ? 'Deleting...' : 'Delete'}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

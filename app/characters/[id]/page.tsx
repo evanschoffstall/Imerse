@@ -4,7 +4,7 @@ import { AttributeManager } from '@/components/attributes/AttributeManager'
 import RelationsList from '@/components/relations/RelationsList'
 import { RelationshipManager } from '@/components/relationships/RelationshipManager'
 import { Button } from '@/components/ui/button'
-import Dialog from '@/components/ui/dialog-legacy'
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { VersionHistory } from '@/components/versions/VersionHistory'
 import type { Character } from '@/types/character'
 import NextImage from 'next/image'
@@ -256,30 +256,31 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
         </div>
       </div>
 
-      <Dialog
-        isOpen={deleteDialogOpen}
-        onClose={() => setDeleteDialogOpen(false)}
-        title="Delete Character"
-      >
-        <p className="mb-4 text-gray-700 dark:text-gray-300">
-          Are you sure you want to delete "{character.name}"? This action cannot be undone.
-        </p>
-        <div className="flex justify-end space-x-4">
-          <Button
-            variant="secondary"
-            onClick={() => setDeleteDialogOpen(false)}
-            disabled={isDeleting}
-          >
-            Cancel
-          </Button>
-          <Button
-            variant="destructive"
-            onClick={handleDelete}
-            disabled={isDeleting}
-          >
-            {isDeleting ? 'Deleting...' : 'Delete'}
-          </Button>
-        </div>
+      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete Character</DialogTitle>
+          </DialogHeader>
+          <p className="mb-4 text-gray-700 dark:text-gray-300">
+            Are you sure you want to delete "{character.name}"? This action cannot be undone.
+          </p>
+          <DialogFooter>
+            <Button
+              variant="secondary"
+              onClick={() => setDeleteDialogOpen(false)}
+              disabled={isDeleting}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={handleDelete}
+              disabled={isDeleting}
+            >
+              {isDeleting ? 'Deleting...' : 'Delete'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
       </Dialog>
     </div>
   )

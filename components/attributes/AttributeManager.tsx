@@ -2,7 +2,6 @@
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import Select from '@/components/ui/select'
 import { Attribute, ATTRIBUTE_TYPES, AttributeFormData, COMMON_ATTRIBUTE_CATEGORIES, formatAttributeValue, groupAttributesByCategory } from '@/types/attribute'
 import * as React from 'react'
 import { toast } from 'sonner'
@@ -199,16 +198,17 @@ export function AttributeManager({ entityType, entityId, campaignId, createdById
           <div className="grid grid-cols-3 gap-4">
             <div>
               <label className="block text-sm font-medium mb-1">Type</label>
-              <Select
+              <select
                 value={formData.type}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFormData({ ...formData, type: e.target.value as any })}
+                onChange={(e) => setFormData({ ...formData, type: e.target.value as any })}
+                className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {ATTRIBUTE_TYPES.map(type => (
                   <option key={type.value} value={type.value}>
                     {type.label}
                   </option>
                 ))}
-              </Select>
+              </select>
             </div>
             <div>
               <label className="block text-sm font-medium mb-1">Category</label>

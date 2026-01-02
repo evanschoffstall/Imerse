@@ -1,6 +1,7 @@
 'use client';
 
 import CampaignForm from '@/components/forms/CampaignForm';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { CampaignFormData } from '@/types/campaign';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -43,22 +44,21 @@ export default function NewCampaignPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Create New Campaign
-        </h1>
-        <p className="text-gray-600">
-          Start your worldbuilding journey by creating a new campaign.
-        </p>
-      </div>
-
-      <div className="bg-white shadow rounded-lg p-6">
-        <CampaignForm
-          onSubmit={handleSubmit}
-          isLoading={isLoading}
-          submitText="Create Campaign"
-        />
-      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-3xl">Create New Campaign</CardTitle>
+          <CardDescription>
+            Start your worldbuilding journey by creating a new campaign.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <CampaignForm
+            onSubmit={handleSubmit}
+            isLoading={isLoading}
+            submitText="Create Campaign"
+          />
+        </CardContent>
+      </Card>
     </div>
   );
 }

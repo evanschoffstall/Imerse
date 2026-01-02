@@ -3,7 +3,6 @@
 import { Button } from '@/components/ui/button'
 import ImageUpload from '@/components/ui/ImageUpload'
 import { Input } from '@/components/ui/input'
-import Select from '@/components/ui/select'
 import type { Quest, QuestFormData } from '@/types/quest'
 import { QUEST_STATUSES, QUEST_TYPES } from '@/types/quest'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -87,27 +86,33 @@ export default function QuestForm({ quest, campaignId, onSubmit, onCancel }: Que
         <label htmlFor="type" className="block text-sm font-medium mb-2">
           Type
         </label>
-        <Select id="type" {...register('type')}>
+        <select
+          {...register('type')}
+          className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+        >
           <option value="">Select a type</option>
           {QUEST_TYPES.map((type) => (
             <option key={type} value={type}>
               {type}
             </option>
           ))}
-        </Select>
+        </select>
       </div>
 
       <div>
         <label htmlFor="status" className="block text-sm font-medium mb-2">
           Status
         </label>
-        <Select id="status" {...register('status')}>
+        <select
+          {...register('status')}
+          className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+        >
           {QUEST_STATUSES.map((status) => (
             <option key={status} value={status}>
               {status.charAt(0).toUpperCase() + status.slice(1).replace('-', ' ')}
             </option>
           ))}
-        </Select>
+        </select>
       </div>
 
       <ImageUpload

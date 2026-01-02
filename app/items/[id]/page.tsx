@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import Dialog from '@/components/ui/dialog-legacy'
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import type { Item } from '@/types/item'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -197,30 +197,31 @@ export default function ItemDetailPage({ params }: { params: { id: string } }) {
         </div>
       </div>
 
-      <Dialog
-        isOpen={deleteDialogOpen}
-        onClose={() => setDeleteDialogOpen(false)}
-        title="Delete Item"
-      >
-        <p className="mb-4 text-gray-700 dark:text-gray-300">
-          Are you sure you want to delete "{item.name}"? This action cannot be undone.
-        </p>
-        <div className="flex justify-end space-x-4">
-          <Button
-            variant="secondary"
-            onClick={() => setDeleteDialogOpen(false)}
-            disabled={isDeleting}
-          >
-            Cancel
-          </Button>
-          <Button
-            variant="destructive"
-            onClick={handleDelete}
-            disabled={isDeleting}
-          >
-            {isDeleting ? 'Deleting...' : 'Delete'}
-          </Button>
-        </div>
+      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete Item</DialogTitle>
+          </DialogHeader>
+          <p className="mb-4 text-gray-700 dark:text-gray-300">
+            Are you sure you want to delete "{item.name}"? This action cannot be undone.
+          </p>
+          <DialogFooter>
+            <Button
+              variant="secondary"
+              onClick={() => setDeleteDialogOpen(false)}
+              disabled={isDeleting}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={handleDelete}
+              disabled={isDeleting}
+            >
+              {isDeleting ? 'Deleting...' : 'Delete'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
       </Dialog>
     </div>
   )

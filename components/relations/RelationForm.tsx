@@ -3,7 +3,6 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import Select from '@/components/ui/select'
 import { ATTITUDE_LABELS, RELATION_COLOURS, type CreateRelationInput } from '@/types/relation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -98,9 +97,10 @@ export default function RelationForm({
 
       <div>
         <Label htmlFor="targetType">Target Entity Type</Label>
-        <Select
+        <select
           id="targetType"
           {...register('targetType', { required: 'Target type is required' })}
+          className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
         >
           <option value="">Select type...</option>
           <option value="character">Character</option>
@@ -115,7 +115,7 @@ export default function RelationForm({
           <option value="organisation">Organisation</option>
           <option value="timeline">Timeline</option>
           <option value="map">Map</option>
-        </Select>
+        </select>
         {errors.targetType && (
           <p className="text-sm text-red-600 mt-1">{errors.targetType.message}</p>
         )}
@@ -123,9 +123,10 @@ export default function RelationForm({
 
       <div>
         <Label htmlFor="relation">Relation Type</Label>
-        <Select
+        <select
           id="relation"
           {...register('relation', { required: 'Relation type is required' })}
+          className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
         >
           <option value="">Select relation type...</option>
           <optgroup label="Family">
@@ -169,7 +170,7 @@ export default function RelationForm({
             <option value="related">Related</option>
             <option value="associated">Associated</option>
           </optgroup>
-        </Select>
+        </select>
         {errors.relation && (
           <p className="text-sm text-red-600 mt-1">{errors.relation.message}</p>
         )}
@@ -177,16 +178,17 @@ export default function RelationForm({
 
       <div>
         <Label htmlFor="attitude">Attitude</Label>
-        <Select
+        <select
           id="attitude"
           {...register('attitude', { valueAsNumber: true })}
+          className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
         >
           {Object.entries(ATTITUDE_LABELS).map(([value, label]) => (
             <option key={value} value={parseInt(value)}>
               {label} ({value})
             </option>
           ))}
-        </Select>
+        </select>
         <p className="text-xs text-gray-500 mt-1">
           -3 (Hostile) to +3 (Devoted)
         </p>
@@ -221,14 +223,15 @@ export default function RelationForm({
 
       <div>
         <Label htmlFor="visibility">Visibility</Label>
-        <Select
+        <select
           id="visibility"
           {...register('visibility')}
+          className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
         >
           <option value="all">All Members</option>
           <option value="admin">Campaign Admins Only</option>
           <option value="self">Only Me</option>
-        </Select>
+        </select>
       </div>
 
       <div className="flex items-center gap-2">

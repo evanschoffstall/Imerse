@@ -3,7 +3,6 @@
 import { Button } from '@/components/ui/button'
 import ImageUpload from '@/components/ui/ImageUpload'
 import { Input } from '@/components/ui/input'
-import Select from '@/components/ui/select'
 import type { Note, NoteFormData } from '@/types/note'
 import { NOTE_TYPES } from '@/types/note'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -85,14 +84,17 @@ export default function NoteForm({ note, campaignId, onSubmit, onCancel }: NoteF
         <label htmlFor="type" className="block text-sm font-medium mb-2">
           Type
         </label>
-        <Select id="type" {...register('type')}>
+        <select
+          {...register('type')}
+          className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+        >
           <option value="">Select a type</option>
           {NOTE_TYPES.map((type) => (
             <option key={type} value={type}>
               {type}
             </option>
           ))}
-        </Select>
+        </select>
       </div>
 
       <ImageUpload
