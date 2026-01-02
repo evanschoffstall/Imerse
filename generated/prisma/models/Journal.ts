@@ -240,6 +240,8 @@ export type JournalWhereInput = {
   createdById?: Prisma.StringFilter<"Journal"> | string
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  posts?: Prisma.PostListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
 }
 
 export type JournalOrderByWithRelationInput = {
@@ -257,6 +259,8 @@ export type JournalOrderByWithRelationInput = {
   createdById?: Prisma.SortOrder
   campaign?: Prisma.CampaignOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
+  posts?: Prisma.PostOrderByRelationAggregateInput
+  bookmarks?: Prisma.BookmarkOrderByRelationAggregateInput
 }
 
 export type JournalWhereUniqueInput = Prisma.AtLeast<{
@@ -278,6 +282,8 @@ export type JournalWhereUniqueInput = Prisma.AtLeast<{
   createdById?: Prisma.StringFilter<"Journal"> | string
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  posts?: Prisma.PostListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
 }, "id" | "campaignId_slug">
 
 export type JournalOrderByWithAggregationInput = {
@@ -329,6 +335,8 @@ export type JournalCreateInput = {
   updatedAt?: Date | string
   campaign: Prisma.CampaignCreateNestedOneWithoutJournalsInput
   createdBy: Prisma.UserCreateNestedOneWithoutJournalsInput
+  posts?: Prisma.PostCreateNestedManyWithoutJournalInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutJournalInput
 }
 
 export type JournalUncheckedCreateInput = {
@@ -344,6 +352,8 @@ export type JournalUncheckedCreateInput = {
   updatedAt?: Date | string
   campaignId: string
   createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutJournalInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutJournalInput
 }
 
 export type JournalUpdateInput = {
@@ -359,6 +369,8 @@ export type JournalUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutJournalsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutJournalsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutJournalNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutJournalNestedInput
 }
 
 export type JournalUncheckedUpdateInput = {
@@ -374,6 +386,8 @@ export type JournalUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutJournalNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutJournalNestedInput
 }
 
 export type JournalCreateManyInput = {
@@ -479,6 +493,11 @@ export type JournalMinOrderByAggregateInput = {
   createdById?: Prisma.SortOrder
 }
 
+export type JournalNullableScalarRelationFilter = {
+  is?: Prisma.JournalWhereInput | null
+  isNot?: Prisma.JournalWhereInput | null
+}
+
 export type JournalCreateNestedManyWithoutCreatedByInput = {
   create?: Prisma.XOR<Prisma.JournalCreateWithoutCreatedByInput, Prisma.JournalUncheckedCreateWithoutCreatedByInput> | Prisma.JournalCreateWithoutCreatedByInput[] | Prisma.JournalUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.JournalCreateOrConnectWithoutCreatedByInput | Prisma.JournalCreateOrConnectWithoutCreatedByInput[]
@@ -563,6 +582,38 @@ export type JournalUncheckedUpdateManyWithoutCampaignNestedInput = {
   deleteMany?: Prisma.JournalScalarWhereInput | Prisma.JournalScalarWhereInput[]
 }
 
+export type JournalCreateNestedOneWithoutPostsInput = {
+  create?: Prisma.XOR<Prisma.JournalCreateWithoutPostsInput, Prisma.JournalUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.JournalCreateOrConnectWithoutPostsInput
+  connect?: Prisma.JournalWhereUniqueInput
+}
+
+export type JournalUpdateOneWithoutPostsNestedInput = {
+  create?: Prisma.XOR<Prisma.JournalCreateWithoutPostsInput, Prisma.JournalUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.JournalCreateOrConnectWithoutPostsInput
+  upsert?: Prisma.JournalUpsertWithoutPostsInput
+  disconnect?: Prisma.JournalWhereInput | boolean
+  delete?: Prisma.JournalWhereInput | boolean
+  connect?: Prisma.JournalWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.JournalUpdateToOneWithWhereWithoutPostsInput, Prisma.JournalUpdateWithoutPostsInput>, Prisma.JournalUncheckedUpdateWithoutPostsInput>
+}
+
+export type JournalCreateNestedOneWithoutBookmarksInput = {
+  create?: Prisma.XOR<Prisma.JournalCreateWithoutBookmarksInput, Prisma.JournalUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.JournalCreateOrConnectWithoutBookmarksInput
+  connect?: Prisma.JournalWhereUniqueInput
+}
+
+export type JournalUpdateOneWithoutBookmarksNestedInput = {
+  create?: Prisma.XOR<Prisma.JournalCreateWithoutBookmarksInput, Prisma.JournalUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.JournalCreateOrConnectWithoutBookmarksInput
+  upsert?: Prisma.JournalUpsertWithoutBookmarksInput
+  disconnect?: Prisma.JournalWhereInput | boolean
+  delete?: Prisma.JournalWhereInput | boolean
+  connect?: Prisma.JournalWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.JournalUpdateToOneWithWhereWithoutBookmarksInput, Prisma.JournalUpdateWithoutBookmarksInput>, Prisma.JournalUncheckedUpdateWithoutBookmarksInput>
+}
+
 export type JournalCreateWithoutCreatedByInput = {
   id?: string
   name: string
@@ -575,6 +626,8 @@ export type JournalCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   campaign: Prisma.CampaignCreateNestedOneWithoutJournalsInput
+  posts?: Prisma.PostCreateNestedManyWithoutJournalInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutJournalInput
 }
 
 export type JournalUncheckedCreateWithoutCreatedByInput = {
@@ -589,6 +642,8 @@ export type JournalUncheckedCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   campaignId: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutJournalInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutJournalInput
 }
 
 export type JournalCreateOrConnectWithoutCreatedByInput = {
@@ -647,6 +702,8 @@ export type JournalCreateWithoutCampaignInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy: Prisma.UserCreateNestedOneWithoutJournalsInput
+  posts?: Prisma.PostCreateNestedManyWithoutJournalInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutJournalInput
 }
 
 export type JournalUncheckedCreateWithoutCampaignInput = {
@@ -661,6 +718,8 @@ export type JournalUncheckedCreateWithoutCampaignInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutJournalInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutJournalInput
 }
 
 export type JournalCreateOrConnectWithoutCampaignInput = {
@@ -689,6 +748,166 @@ export type JournalUpdateManyWithWhereWithoutCampaignInput = {
   data: Prisma.XOR<Prisma.JournalUpdateManyMutationInput, Prisma.JournalUncheckedUpdateManyWithoutCampaignInput>
 }
 
+export type JournalCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  date?: string | null
+  image?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutJournalsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutJournalsInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutJournalInput
+}
+
+export type JournalUncheckedCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  date?: string | null
+  image?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutJournalInput
+}
+
+export type JournalCreateOrConnectWithoutPostsInput = {
+  where: Prisma.JournalWhereUniqueInput
+  create: Prisma.XOR<Prisma.JournalCreateWithoutPostsInput, Prisma.JournalUncheckedCreateWithoutPostsInput>
+}
+
+export type JournalUpsertWithoutPostsInput = {
+  update: Prisma.XOR<Prisma.JournalUpdateWithoutPostsInput, Prisma.JournalUncheckedUpdateWithoutPostsInput>
+  create: Prisma.XOR<Prisma.JournalCreateWithoutPostsInput, Prisma.JournalUncheckedCreateWithoutPostsInput>
+  where?: Prisma.JournalWhereInput
+}
+
+export type JournalUpdateToOneWithWhereWithoutPostsInput = {
+  where?: Prisma.JournalWhereInput
+  data: Prisma.XOR<Prisma.JournalUpdateWithoutPostsInput, Prisma.JournalUncheckedUpdateWithoutPostsInput>
+}
+
+export type JournalUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutJournalsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutJournalsNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutJournalNestedInput
+}
+
+export type JournalUncheckedUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutJournalNestedInput
+}
+
+export type JournalCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  date?: string | null
+  image?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutJournalsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutJournalsInput
+  posts?: Prisma.PostCreateNestedManyWithoutJournalInput
+}
+
+export type JournalUncheckedCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  date?: string | null
+  image?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutJournalInput
+}
+
+export type JournalCreateOrConnectWithoutBookmarksInput = {
+  where: Prisma.JournalWhereUniqueInput
+  create: Prisma.XOR<Prisma.JournalCreateWithoutBookmarksInput, Prisma.JournalUncheckedCreateWithoutBookmarksInput>
+}
+
+export type JournalUpsertWithoutBookmarksInput = {
+  update: Prisma.XOR<Prisma.JournalUpdateWithoutBookmarksInput, Prisma.JournalUncheckedUpdateWithoutBookmarksInput>
+  create: Prisma.XOR<Prisma.JournalCreateWithoutBookmarksInput, Prisma.JournalUncheckedCreateWithoutBookmarksInput>
+  where?: Prisma.JournalWhereInput
+}
+
+export type JournalUpdateToOneWithWhereWithoutBookmarksInput = {
+  where?: Prisma.JournalWhereInput
+  data: Prisma.XOR<Prisma.JournalUpdateWithoutBookmarksInput, Prisma.JournalUncheckedUpdateWithoutBookmarksInput>
+}
+
+export type JournalUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutJournalsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutJournalsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutJournalNestedInput
+}
+
+export type JournalUncheckedUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutJournalNestedInput
+}
+
 export type JournalCreateManyCreatedByInput = {
   id?: string
   name: string
@@ -715,6 +934,8 @@ export type JournalUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutJournalsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutJournalNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutJournalNestedInput
 }
 
 export type JournalUncheckedUpdateWithoutCreatedByInput = {
@@ -729,6 +950,8 @@ export type JournalUncheckedUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutJournalNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutJournalNestedInput
 }
 
 export type JournalUncheckedUpdateManyWithoutCreatedByInput = {
@@ -771,6 +994,8 @@ export type JournalUpdateWithoutCampaignInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.UserUpdateOneRequiredWithoutJournalsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutJournalNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutJournalNestedInput
 }
 
 export type JournalUncheckedUpdateWithoutCampaignInput = {
@@ -785,6 +1010,8 @@ export type JournalUncheckedUpdateWithoutCampaignInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutJournalNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutJournalNestedInput
 }
 
 export type JournalUncheckedUpdateManyWithoutCampaignInput = {
@@ -802,6 +1029,44 @@ export type JournalUncheckedUpdateManyWithoutCampaignInput = {
 }
 
 
+/**
+ * Count Type JournalCountOutputType
+ */
+
+export type JournalCountOutputType = {
+  posts: number
+  bookmarks: number
+}
+
+export type JournalCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  posts?: boolean | JournalCountOutputTypeCountPostsArgs
+  bookmarks?: boolean | JournalCountOutputTypeCountBookmarksArgs
+}
+
+/**
+ * JournalCountOutputType without action
+ */
+export type JournalCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the JournalCountOutputType
+   */
+  select?: Prisma.JournalCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * JournalCountOutputType without action
+ */
+export type JournalCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PostWhereInput
+}
+
+/**
+ * JournalCountOutputType without action
+ */
+export type JournalCountOutputTypeCountBookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookmarkWhereInput
+}
+
 
 export type JournalSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -818,6 +1083,9 @@ export type JournalSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   createdById?: boolean
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  posts?: boolean | Prisma.Journal$postsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Journal$bookmarksArgs<ExtArgs>
+  _count?: boolean | Prisma.JournalCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["journal"]>
 
 export type JournalSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -873,6 +1141,9 @@ export type JournalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type JournalInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  posts?: boolean | Prisma.Journal$postsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Journal$bookmarksArgs<ExtArgs>
+  _count?: boolean | Prisma.JournalCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type JournalIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
@@ -888,6 +1159,8 @@ export type $JournalPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     campaign: Prisma.$CampaignPayload<ExtArgs>
     createdBy: Prisma.$UserPayload<ExtArgs>
+    posts: Prisma.$PostPayload<ExtArgs>[]
+    bookmarks: Prisma.$BookmarkPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1298,6 +1571,8 @@ export interface Prisma__JournalClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   campaign<T extends Prisma.CampaignDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CampaignDefaultArgs<ExtArgs>>): Prisma.Prisma__CampaignClient<runtime.Types.Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  posts<T extends Prisma.Journal$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Journal$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bookmarks<T extends Prisma.Journal$bookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Journal$bookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1732,6 +2007,54 @@ export type JournalDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Journals to delete.
    */
   limit?: number
+}
+
+/**
+ * Journal.posts
+ */
+export type Journal$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Post
+   */
+  select?: Prisma.PostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Post
+   */
+  omit?: Prisma.PostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostInclude<ExtArgs> | null
+  where?: Prisma.PostWhereInput
+  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
+  cursor?: Prisma.PostWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[]
+}
+
+/**
+ * Journal.bookmarks
+ */
+export type Journal$bookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Bookmark
+   */
+  select?: Prisma.BookmarkSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Bookmark
+   */
+  omit?: Prisma.BookmarkOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BookmarkInclude<ExtArgs> | null
+  where?: Prisma.BookmarkWhereInput
+  orderBy?: Prisma.BookmarkOrderByWithRelationInput | Prisma.BookmarkOrderByWithRelationInput[]
+  cursor?: Prisma.BookmarkWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookmarkScalarFieldEnum | Prisma.BookmarkScalarFieldEnum[]
 }
 
 /**

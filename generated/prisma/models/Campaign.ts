@@ -245,6 +245,12 @@ export type CampaignWhereInput = {
   abilities?: Prisma.AbilityListRelationFilter
   creatures?: Prisma.CreatureListRelationFilter
   diceRolls?: Prisma.DiceRollListRelationFilter
+  conversations?: Prisma.ConversationListRelationFilter
+  posts?: Prisma.PostListRelationFilter
+  images?: Prisma.ImageListRelationFilter
+  attributeTemplates?: Prisma.AttributeTemplateListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
+  presets?: Prisma.PresetListRelationFilter
 }
 
 export type CampaignOrderByWithRelationInput = {
@@ -281,6 +287,12 @@ export type CampaignOrderByWithRelationInput = {
   abilities?: Prisma.AbilityOrderByRelationAggregateInput
   creatures?: Prisma.CreatureOrderByRelationAggregateInput
   diceRolls?: Prisma.DiceRollOrderByRelationAggregateInput
+  conversations?: Prisma.ConversationOrderByRelationAggregateInput
+  posts?: Prisma.PostOrderByRelationAggregateInput
+  images?: Prisma.ImageOrderByRelationAggregateInput
+  attributeTemplates?: Prisma.AttributeTemplateOrderByRelationAggregateInput
+  bookmarks?: Prisma.BookmarkOrderByRelationAggregateInput
+  presets?: Prisma.PresetOrderByRelationAggregateInput
 }
 
 export type CampaignWhereUniqueInput = Prisma.AtLeast<{
@@ -320,6 +332,12 @@ export type CampaignWhereUniqueInput = Prisma.AtLeast<{
   abilities?: Prisma.AbilityListRelationFilter
   creatures?: Prisma.CreatureListRelationFilter
   diceRolls?: Prisma.DiceRollListRelationFilter
+  conversations?: Prisma.ConversationListRelationFilter
+  posts?: Prisma.PostListRelationFilter
+  images?: Prisma.ImageListRelationFilter
+  attributeTemplates?: Prisma.AttributeTemplateListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
+  presets?: Prisma.PresetListRelationFilter
 }, "id" | "slug">
 
 export type CampaignOrderByWithAggregationInput = {
@@ -387,6 +405,12 @@ export type CampaignCreateInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateInput = {
@@ -422,6 +446,12 @@ export type CampaignUncheckedCreateInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUpdateInput = {
@@ -457,6 +487,12 @@ export type CampaignUpdateInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateInput = {
@@ -492,6 +528,12 @@ export type CampaignUncheckedUpdateInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateManyInput = {
@@ -584,6 +626,11 @@ export type CampaignMinOrderByAggregateInput = {
 export type CampaignScalarRelationFilter = {
   is?: Prisma.CampaignWhereInput
   isNot?: Prisma.CampaignWhereInput
+}
+
+export type CampaignNullableScalarRelationFilter = {
+  is?: Prisma.CampaignWhereInput | null
+  isNot?: Prisma.CampaignWhereInput | null
 }
 
 export type CampaignCreateNestedManyWithoutOwnerInput = {
@@ -936,6 +983,92 @@ export type CampaignUpdateOneRequiredWithoutDiceRollsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutDiceRollsInput, Prisma.CampaignUpdateWithoutDiceRollsInput>, Prisma.CampaignUncheckedUpdateWithoutDiceRollsInput>
 }
 
+export type CampaignCreateNestedOneWithoutConversationsInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutConversationsInput, Prisma.CampaignUncheckedCreateWithoutConversationsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutConversationsInput
+  connect?: Prisma.CampaignWhereUniqueInput
+}
+
+export type CampaignUpdateOneRequiredWithoutConversationsNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutConversationsInput, Prisma.CampaignUncheckedCreateWithoutConversationsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutConversationsInput
+  upsert?: Prisma.CampaignUpsertWithoutConversationsInput
+  connect?: Prisma.CampaignWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutConversationsInput, Prisma.CampaignUpdateWithoutConversationsInput>, Prisma.CampaignUncheckedUpdateWithoutConversationsInput>
+}
+
+export type CampaignCreateNestedOneWithoutPostsInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutPostsInput, Prisma.CampaignUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutPostsInput
+  connect?: Prisma.CampaignWhereUniqueInput
+}
+
+export type CampaignUpdateOneRequiredWithoutPostsNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutPostsInput, Prisma.CampaignUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutPostsInput
+  upsert?: Prisma.CampaignUpsertWithoutPostsInput
+  connect?: Prisma.CampaignWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutPostsInput, Prisma.CampaignUpdateWithoutPostsInput>, Prisma.CampaignUncheckedUpdateWithoutPostsInput>
+}
+
+export type CampaignCreateNestedOneWithoutImagesInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutImagesInput, Prisma.CampaignUncheckedCreateWithoutImagesInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutImagesInput
+  connect?: Prisma.CampaignWhereUniqueInput
+}
+
+export type CampaignUpdateOneRequiredWithoutImagesNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutImagesInput, Prisma.CampaignUncheckedCreateWithoutImagesInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutImagesInput
+  upsert?: Prisma.CampaignUpsertWithoutImagesInput
+  connect?: Prisma.CampaignWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutImagesInput, Prisma.CampaignUpdateWithoutImagesInput>, Prisma.CampaignUncheckedUpdateWithoutImagesInput>
+}
+
+export type CampaignCreateNestedOneWithoutAttributeTemplatesInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutAttributeTemplatesInput, Prisma.CampaignUncheckedCreateWithoutAttributeTemplatesInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutAttributeTemplatesInput
+  connect?: Prisma.CampaignWhereUniqueInput
+}
+
+export type CampaignUpdateOneRequiredWithoutAttributeTemplatesNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutAttributeTemplatesInput, Prisma.CampaignUncheckedCreateWithoutAttributeTemplatesInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutAttributeTemplatesInput
+  upsert?: Prisma.CampaignUpsertWithoutAttributeTemplatesInput
+  connect?: Prisma.CampaignWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutAttributeTemplatesInput, Prisma.CampaignUpdateWithoutAttributeTemplatesInput>, Prisma.CampaignUncheckedUpdateWithoutAttributeTemplatesInput>
+}
+
+export type CampaignCreateNestedOneWithoutBookmarksInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutBookmarksInput, Prisma.CampaignUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutBookmarksInput
+  connect?: Prisma.CampaignWhereUniqueInput
+}
+
+export type CampaignUpdateOneRequiredWithoutBookmarksNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutBookmarksInput, Prisma.CampaignUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutBookmarksInput
+  upsert?: Prisma.CampaignUpsertWithoutBookmarksInput
+  connect?: Prisma.CampaignWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutBookmarksInput, Prisma.CampaignUpdateWithoutBookmarksInput>, Prisma.CampaignUncheckedUpdateWithoutBookmarksInput>
+}
+
+export type CampaignCreateNestedOneWithoutPresetsInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutPresetsInput, Prisma.CampaignUncheckedCreateWithoutPresetsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutPresetsInput
+  connect?: Prisma.CampaignWhereUniqueInput
+}
+
+export type CampaignUpdateOneWithoutPresetsNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutPresetsInput, Prisma.CampaignUncheckedCreateWithoutPresetsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutPresetsInput
+  upsert?: Prisma.CampaignUpsertWithoutPresetsInput
+  disconnect?: Prisma.CampaignWhereInput | boolean
+  delete?: Prisma.CampaignWhereInput | boolean
+  connect?: Prisma.CampaignWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutPresetsInput, Prisma.CampaignUpdateWithoutPresetsInput>, Prisma.CampaignUncheckedUpdateWithoutPresetsInput>
+}
+
 export type CampaignCreateWithoutOwnerInput = {
   id?: string
   name: string
@@ -968,6 +1101,12 @@ export type CampaignCreateWithoutOwnerInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutOwnerInput = {
@@ -1002,6 +1141,12 @@ export type CampaignUncheckedCreateWithoutOwnerInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutOwnerInput = {
@@ -1078,6 +1223,12 @@ export type CampaignCreateWithoutCampaignRolesInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutCampaignRolesInput = {
@@ -1112,6 +1263,12 @@ export type CampaignUncheckedCreateWithoutCampaignRolesInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutCampaignRolesInput = {
@@ -1162,6 +1319,12 @@ export type CampaignUpdateWithoutCampaignRolesInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutCampaignRolesInput = {
@@ -1196,6 +1359,12 @@ export type CampaignUncheckedUpdateWithoutCampaignRolesInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutCharactersInput = {
@@ -1230,6 +1399,12 @@ export type CampaignCreateWithoutCharactersInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutCharactersInput = {
@@ -1264,6 +1439,12 @@ export type CampaignUncheckedCreateWithoutCharactersInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutCharactersInput = {
@@ -1314,6 +1495,12 @@ export type CampaignUpdateWithoutCharactersInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutCharactersInput = {
@@ -1348,6 +1535,12 @@ export type CampaignUncheckedUpdateWithoutCharactersInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutLocationsInput = {
@@ -1382,6 +1575,12 @@ export type CampaignCreateWithoutLocationsInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutLocationsInput = {
@@ -1416,6 +1615,12 @@ export type CampaignUncheckedCreateWithoutLocationsInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutLocationsInput = {
@@ -1466,6 +1671,12 @@ export type CampaignUpdateWithoutLocationsInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutLocationsInput = {
@@ -1500,6 +1711,12 @@ export type CampaignUncheckedUpdateWithoutLocationsInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutItemsInput = {
@@ -1534,6 +1751,12 @@ export type CampaignCreateWithoutItemsInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutItemsInput = {
@@ -1568,6 +1791,12 @@ export type CampaignUncheckedCreateWithoutItemsInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutItemsInput = {
@@ -1618,6 +1847,12 @@ export type CampaignUpdateWithoutItemsInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutItemsInput = {
@@ -1652,6 +1887,12 @@ export type CampaignUncheckedUpdateWithoutItemsInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutQuestsInput = {
@@ -1686,6 +1927,12 @@ export type CampaignCreateWithoutQuestsInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutQuestsInput = {
@@ -1720,6 +1967,12 @@ export type CampaignUncheckedCreateWithoutQuestsInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutQuestsInput = {
@@ -1770,6 +2023,12 @@ export type CampaignUpdateWithoutQuestsInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutQuestsInput = {
@@ -1804,6 +2063,12 @@ export type CampaignUncheckedUpdateWithoutQuestsInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutEventsInput = {
@@ -1838,6 +2103,12 @@ export type CampaignCreateWithoutEventsInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutEventsInput = {
@@ -1872,6 +2143,12 @@ export type CampaignUncheckedCreateWithoutEventsInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutEventsInput = {
@@ -1922,6 +2199,12 @@ export type CampaignUpdateWithoutEventsInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutEventsInput = {
@@ -1956,6 +2239,12 @@ export type CampaignUncheckedUpdateWithoutEventsInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutJournalsInput = {
@@ -1990,6 +2279,12 @@ export type CampaignCreateWithoutJournalsInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutJournalsInput = {
@@ -2024,6 +2319,12 @@ export type CampaignUncheckedCreateWithoutJournalsInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutJournalsInput = {
@@ -2074,6 +2375,12 @@ export type CampaignUpdateWithoutJournalsInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutJournalsInput = {
@@ -2108,6 +2415,12 @@ export type CampaignUncheckedUpdateWithoutJournalsInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutNotesInput = {
@@ -2142,6 +2455,12 @@ export type CampaignCreateWithoutNotesInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutNotesInput = {
@@ -2176,6 +2495,12 @@ export type CampaignUncheckedCreateWithoutNotesInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutNotesInput = {
@@ -2226,6 +2551,12 @@ export type CampaignUpdateWithoutNotesInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutNotesInput = {
@@ -2260,6 +2591,12 @@ export type CampaignUncheckedUpdateWithoutNotesInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutFamiliesInput = {
@@ -2294,6 +2631,12 @@ export type CampaignCreateWithoutFamiliesInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutFamiliesInput = {
@@ -2328,6 +2671,12 @@ export type CampaignUncheckedCreateWithoutFamiliesInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutFamiliesInput = {
@@ -2378,6 +2727,12 @@ export type CampaignUpdateWithoutFamiliesInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutFamiliesInput = {
@@ -2412,6 +2767,12 @@ export type CampaignUncheckedUpdateWithoutFamiliesInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutRacesInput = {
@@ -2446,6 +2807,12 @@ export type CampaignCreateWithoutRacesInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutRacesInput = {
@@ -2480,6 +2847,12 @@ export type CampaignUncheckedCreateWithoutRacesInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutRacesInput = {
@@ -2530,6 +2903,12 @@ export type CampaignUpdateWithoutRacesInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutRacesInput = {
@@ -2564,6 +2943,12 @@ export type CampaignUncheckedUpdateWithoutRacesInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutOrganisationsInput = {
@@ -2598,6 +2983,12 @@ export type CampaignCreateWithoutOrganisationsInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutOrganisationsInput = {
@@ -2632,6 +3023,12 @@ export type CampaignUncheckedCreateWithoutOrganisationsInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutOrganisationsInput = {
@@ -2682,6 +3079,12 @@ export type CampaignUpdateWithoutOrganisationsInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutOrganisationsInput = {
@@ -2716,6 +3119,12 @@ export type CampaignUncheckedUpdateWithoutOrganisationsInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutTagsInput = {
@@ -2750,6 +3159,12 @@ export type CampaignCreateWithoutTagsInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutTagsInput = {
@@ -2784,6 +3199,12 @@ export type CampaignUncheckedCreateWithoutTagsInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutTagsInput = {
@@ -2834,6 +3255,12 @@ export type CampaignUpdateWithoutTagsInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutTagsInput = {
@@ -2868,6 +3295,12 @@ export type CampaignUncheckedUpdateWithoutTagsInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutTimelinesInput = {
@@ -2902,6 +3335,12 @@ export type CampaignCreateWithoutTimelinesInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutTimelinesInput = {
@@ -2936,6 +3375,12 @@ export type CampaignUncheckedCreateWithoutTimelinesInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutTimelinesInput = {
@@ -2986,6 +3431,12 @@ export type CampaignUpdateWithoutTimelinesInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutTimelinesInput = {
@@ -3020,6 +3471,12 @@ export type CampaignUncheckedUpdateWithoutTimelinesInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutMapsInput = {
@@ -3054,6 +3511,12 @@ export type CampaignCreateWithoutMapsInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutMapsInput = {
@@ -3088,6 +3551,12 @@ export type CampaignUncheckedCreateWithoutMapsInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutMapsInput = {
@@ -3138,6 +3607,12 @@ export type CampaignUpdateWithoutMapsInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutMapsInput = {
@@ -3172,6 +3647,12 @@ export type CampaignUncheckedUpdateWithoutMapsInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutRelationsInput = {
@@ -3206,6 +3687,12 @@ export type CampaignCreateWithoutRelationsInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutRelationsInput = {
@@ -3240,6 +3727,12 @@ export type CampaignUncheckedCreateWithoutRelationsInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutRelationsInput = {
@@ -3290,6 +3783,12 @@ export type CampaignUpdateWithoutRelationsInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutRelationsInput = {
@@ -3324,6 +3823,12 @@ export type CampaignUncheckedUpdateWithoutRelationsInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutCalendarsInput = {
@@ -3358,6 +3863,12 @@ export type CampaignCreateWithoutCalendarsInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutCalendarsInput = {
@@ -3392,6 +3903,12 @@ export type CampaignUncheckedCreateWithoutCalendarsInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutCalendarsInput = {
@@ -3442,6 +3959,12 @@ export type CampaignUpdateWithoutCalendarsInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutCalendarsInput = {
@@ -3476,6 +3999,12 @@ export type CampaignUncheckedUpdateWithoutCalendarsInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutAttributesInput = {
@@ -3510,6 +4039,12 @@ export type CampaignCreateWithoutAttributesInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutAttributesInput = {
@@ -3544,6 +4079,12 @@ export type CampaignUncheckedCreateWithoutAttributesInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutAttributesInput = {
@@ -3594,6 +4135,12 @@ export type CampaignUpdateWithoutAttributesInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutAttributesInput = {
@@ -3628,6 +4175,12 @@ export type CampaignUncheckedUpdateWithoutAttributesInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutRelationshipsInput = {
@@ -3662,6 +4215,12 @@ export type CampaignCreateWithoutRelationshipsInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutRelationshipsInput = {
@@ -3696,6 +4255,12 @@ export type CampaignUncheckedCreateWithoutRelationshipsInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutRelationshipsInput = {
@@ -3746,6 +4311,12 @@ export type CampaignUpdateWithoutRelationshipsInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutRelationshipsInput = {
@@ -3780,6 +4351,12 @@ export type CampaignUncheckedUpdateWithoutRelationshipsInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutVersionsInput = {
@@ -3814,6 +4391,12 @@ export type CampaignCreateWithoutVersionsInput = {
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutVersionsInput = {
@@ -3848,6 +4431,12 @@ export type CampaignUncheckedCreateWithoutVersionsInput = {
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutVersionsInput = {
@@ -3898,6 +4487,12 @@ export type CampaignUpdateWithoutVersionsInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutVersionsInput = {
@@ -3932,6 +4527,12 @@ export type CampaignUncheckedUpdateWithoutVersionsInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutAbilitiesInput = {
@@ -3966,6 +4567,12 @@ export type CampaignCreateWithoutAbilitiesInput = {
   versions?: Prisma.VersionCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutAbilitiesInput = {
@@ -4000,6 +4607,12 @@ export type CampaignUncheckedCreateWithoutAbilitiesInput = {
   versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutAbilitiesInput = {
@@ -4050,6 +4663,12 @@ export type CampaignUpdateWithoutAbilitiesInput = {
   versions?: Prisma.VersionUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutAbilitiesInput = {
@@ -4084,6 +4703,12 @@ export type CampaignUncheckedUpdateWithoutAbilitiesInput = {
   versions?: Prisma.VersionUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutCreaturesInput = {
@@ -4118,6 +4743,12 @@ export type CampaignCreateWithoutCreaturesInput = {
   versions?: Prisma.VersionCreateNestedManyWithoutCampaignInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutCreaturesInput = {
@@ -4152,6 +4783,12 @@ export type CampaignUncheckedCreateWithoutCreaturesInput = {
   versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCampaignInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutCreaturesInput = {
@@ -4202,6 +4839,12 @@ export type CampaignUpdateWithoutCreaturesInput = {
   versions?: Prisma.VersionUpdateManyWithoutCampaignNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutCreaturesInput = {
@@ -4236,6 +4879,12 @@ export type CampaignUncheckedUpdateWithoutCreaturesInput = {
   versions?: Prisma.VersionUncheckedUpdateManyWithoutCampaignNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutDiceRollsInput = {
@@ -4270,6 +4919,12 @@ export type CampaignCreateWithoutDiceRollsInput = {
   versions?: Prisma.VersionCreateNestedManyWithoutCampaignInput
   abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutDiceRollsInput = {
@@ -4304,6 +4959,12 @@ export type CampaignUncheckedCreateWithoutDiceRollsInput = {
   versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCampaignInput
   abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
   creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutDiceRollsInput = {
@@ -4354,6 +5015,12 @@ export type CampaignUpdateWithoutDiceRollsInput = {
   versions?: Prisma.VersionUpdateManyWithoutCampaignNestedInput
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutDiceRollsInput = {
@@ -4388,6 +5055,1068 @@ export type CampaignUncheckedUpdateWithoutDiceRollsInput = {
   versions?: Prisma.VersionUncheckedUpdateManyWithoutCampaignNestedInput
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignCreateWithoutConversationsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutCampaignsInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignUncheckedCreateWithoutConversationsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId: string
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignCreateOrConnectWithoutConversationsInput = {
+  where: Prisma.CampaignWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutConversationsInput, Prisma.CampaignUncheckedCreateWithoutConversationsInput>
+}
+
+export type CampaignUpsertWithoutConversationsInput = {
+  update: Prisma.XOR<Prisma.CampaignUpdateWithoutConversationsInput, Prisma.CampaignUncheckedUpdateWithoutConversationsInput>
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutConversationsInput, Prisma.CampaignUncheckedCreateWithoutConversationsInput>
+  where?: Prisma.CampaignWhereInput
+}
+
+export type CampaignUpdateToOneWithWhereWithoutConversationsInput = {
+  where?: Prisma.CampaignWhereInput
+  data: Prisma.XOR<Prisma.CampaignUpdateWithoutConversationsInput, Prisma.CampaignUncheckedUpdateWithoutConversationsInput>
+}
+
+export type CampaignUpdateWithoutConversationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignUncheckedUpdateWithoutConversationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutCampaignsInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignUncheckedCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId: string
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignCreateOrConnectWithoutPostsInput = {
+  where: Prisma.CampaignWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutPostsInput, Prisma.CampaignUncheckedCreateWithoutPostsInput>
+}
+
+export type CampaignUpsertWithoutPostsInput = {
+  update: Prisma.XOR<Prisma.CampaignUpdateWithoutPostsInput, Prisma.CampaignUncheckedUpdateWithoutPostsInput>
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutPostsInput, Prisma.CampaignUncheckedCreateWithoutPostsInput>
+  where?: Prisma.CampaignWhereInput
+}
+
+export type CampaignUpdateToOneWithWhereWithoutPostsInput = {
+  where?: Prisma.CampaignWhereInput
+  data: Prisma.XOR<Prisma.CampaignUpdateWithoutPostsInput, Prisma.CampaignUncheckedUpdateWithoutPostsInput>
+}
+
+export type CampaignUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignUncheckedUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignCreateWithoutImagesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutCampaignsInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignUncheckedCreateWithoutImagesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId: string
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignCreateOrConnectWithoutImagesInput = {
+  where: Prisma.CampaignWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutImagesInput, Prisma.CampaignUncheckedCreateWithoutImagesInput>
+}
+
+export type CampaignUpsertWithoutImagesInput = {
+  update: Prisma.XOR<Prisma.CampaignUpdateWithoutImagesInput, Prisma.CampaignUncheckedUpdateWithoutImagesInput>
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutImagesInput, Prisma.CampaignUncheckedCreateWithoutImagesInput>
+  where?: Prisma.CampaignWhereInput
+}
+
+export type CampaignUpdateToOneWithWhereWithoutImagesInput = {
+  where?: Prisma.CampaignWhereInput
+  data: Prisma.XOR<Prisma.CampaignUpdateWithoutImagesInput, Prisma.CampaignUncheckedUpdateWithoutImagesInput>
+}
+
+export type CampaignUpdateWithoutImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignUncheckedUpdateWithoutImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignCreateWithoutAttributeTemplatesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutCampaignsInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignUncheckedCreateWithoutAttributeTemplatesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId: string
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignCreateOrConnectWithoutAttributeTemplatesInput = {
+  where: Prisma.CampaignWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutAttributeTemplatesInput, Prisma.CampaignUncheckedCreateWithoutAttributeTemplatesInput>
+}
+
+export type CampaignUpsertWithoutAttributeTemplatesInput = {
+  update: Prisma.XOR<Prisma.CampaignUpdateWithoutAttributeTemplatesInput, Prisma.CampaignUncheckedUpdateWithoutAttributeTemplatesInput>
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutAttributeTemplatesInput, Prisma.CampaignUncheckedCreateWithoutAttributeTemplatesInput>
+  where?: Prisma.CampaignWhereInput
+}
+
+export type CampaignUpdateToOneWithWhereWithoutAttributeTemplatesInput = {
+  where?: Prisma.CampaignWhereInput
+  data: Prisma.XOR<Prisma.CampaignUpdateWithoutAttributeTemplatesInput, Prisma.CampaignUncheckedUpdateWithoutAttributeTemplatesInput>
+}
+
+export type CampaignUpdateWithoutAttributeTemplatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignUncheckedUpdateWithoutAttributeTemplatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutCampaignsInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignUncheckedCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId: string
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignCreateOrConnectWithoutBookmarksInput = {
+  where: Prisma.CampaignWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutBookmarksInput, Prisma.CampaignUncheckedCreateWithoutBookmarksInput>
+}
+
+export type CampaignUpsertWithoutBookmarksInput = {
+  update: Prisma.XOR<Prisma.CampaignUpdateWithoutBookmarksInput, Prisma.CampaignUncheckedUpdateWithoutBookmarksInput>
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutBookmarksInput, Prisma.CampaignUncheckedCreateWithoutBookmarksInput>
+  where?: Prisma.CampaignWhereInput
+}
+
+export type CampaignUpdateToOneWithWhereWithoutBookmarksInput = {
+  where?: Prisma.CampaignWhereInput
+  data: Prisma.XOR<Prisma.CampaignUpdateWithoutBookmarksInput, Prisma.CampaignUncheckedUpdateWithoutBookmarksInput>
+}
+
+export type CampaignUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignUncheckedUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignCreateWithoutPresetsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutCampaignsInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignUncheckedCreateWithoutPresetsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId: string
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignCreateOrConnectWithoutPresetsInput = {
+  where: Prisma.CampaignWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutPresetsInput, Prisma.CampaignUncheckedCreateWithoutPresetsInput>
+}
+
+export type CampaignUpsertWithoutPresetsInput = {
+  update: Prisma.XOR<Prisma.CampaignUpdateWithoutPresetsInput, Prisma.CampaignUncheckedUpdateWithoutPresetsInput>
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutPresetsInput, Prisma.CampaignUncheckedCreateWithoutPresetsInput>
+  where?: Prisma.CampaignWhereInput
+}
+
+export type CampaignUpdateToOneWithWhereWithoutPresetsInput = {
+  where?: Prisma.CampaignWhereInput
+  data: Prisma.XOR<Prisma.CampaignUpdateWithoutPresetsInput, Prisma.CampaignUncheckedUpdateWithoutPresetsInput>
+}
+
+export type CampaignUpdateWithoutPresetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignUncheckedUpdateWithoutPresetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateManyOwnerInput = {
@@ -4434,6 +6163,12 @@ export type CampaignUpdateWithoutOwnerInput = {
   abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutOwnerInput = {
@@ -4468,6 +6203,12 @@ export type CampaignUncheckedUpdateWithoutOwnerInput = {
   abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
   creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateManyWithoutOwnerInput = {
@@ -4510,6 +6251,12 @@ export type CampaignCountOutputType = {
   abilities: number
   creatures: number
   diceRolls: number
+  conversations: number
+  posts: number
+  images: number
+  attributeTemplates: number
+  bookmarks: number
+  presets: number
 }
 
 export type CampaignCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4535,6 +6282,12 @@ export type CampaignCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   abilities?: boolean | CampaignCountOutputTypeCountAbilitiesArgs
   creatures?: boolean | CampaignCountOutputTypeCountCreaturesArgs
   diceRolls?: boolean | CampaignCountOutputTypeCountDiceRollsArgs
+  conversations?: boolean | CampaignCountOutputTypeCountConversationsArgs
+  posts?: boolean | CampaignCountOutputTypeCountPostsArgs
+  images?: boolean | CampaignCountOutputTypeCountImagesArgs
+  attributeTemplates?: boolean | CampaignCountOutputTypeCountAttributeTemplatesArgs
+  bookmarks?: boolean | CampaignCountOutputTypeCountBookmarksArgs
+  presets?: boolean | CampaignCountOutputTypeCountPresetsArgs
 }
 
 /**
@@ -4701,6 +6454,48 @@ export type CampaignCountOutputTypeCountDiceRollsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.DiceRollWhereInput
 }
 
+/**
+ * CampaignCountOutputType without action
+ */
+export type CampaignCountOutputTypeCountConversationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ConversationWhereInput
+}
+
+/**
+ * CampaignCountOutputType without action
+ */
+export type CampaignCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PostWhereInput
+}
+
+/**
+ * CampaignCountOutputType without action
+ */
+export type CampaignCountOutputTypeCountImagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ImageWhereInput
+}
+
+/**
+ * CampaignCountOutputType without action
+ */
+export type CampaignCountOutputTypeCountAttributeTemplatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttributeTemplateWhereInput
+}
+
+/**
+ * CampaignCountOutputType without action
+ */
+export type CampaignCountOutputTypeCountBookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookmarkWhereInput
+}
+
+/**
+ * CampaignCountOutputType without action
+ */
+export type CampaignCountOutputTypeCountPresetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PresetWhereInput
+}
+
 
 export type CampaignSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -4736,6 +6531,12 @@ export type CampaignSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   abilities?: boolean | Prisma.Campaign$abilitiesArgs<ExtArgs>
   creatures?: boolean | Prisma.Campaign$creaturesArgs<ExtArgs>
   diceRolls?: boolean | Prisma.Campaign$diceRollsArgs<ExtArgs>
+  conversations?: boolean | Prisma.Campaign$conversationsArgs<ExtArgs>
+  posts?: boolean | Prisma.Campaign$postsArgs<ExtArgs>
+  images?: boolean | Prisma.Campaign$imagesArgs<ExtArgs>
+  attributeTemplates?: boolean | Prisma.Campaign$attributeTemplatesArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Campaign$bookmarksArgs<ExtArgs>
+  presets?: boolean | Prisma.Campaign$presetsArgs<ExtArgs>
   _count?: boolean | Prisma.CampaignCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["campaign"]>
 
@@ -4805,6 +6606,12 @@ export type CampaignInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   abilities?: boolean | Prisma.Campaign$abilitiesArgs<ExtArgs>
   creatures?: boolean | Prisma.Campaign$creaturesArgs<ExtArgs>
   diceRolls?: boolean | Prisma.Campaign$diceRollsArgs<ExtArgs>
+  conversations?: boolean | Prisma.Campaign$conversationsArgs<ExtArgs>
+  posts?: boolean | Prisma.Campaign$postsArgs<ExtArgs>
+  images?: boolean | Prisma.Campaign$imagesArgs<ExtArgs>
+  attributeTemplates?: boolean | Prisma.Campaign$attributeTemplatesArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Campaign$bookmarksArgs<ExtArgs>
+  presets?: boolean | Prisma.Campaign$presetsArgs<ExtArgs>
   _count?: boolean | Prisma.CampaignCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CampaignIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4840,6 +6647,12 @@ export type $CampaignPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     abilities: Prisma.$AbilityPayload<ExtArgs>[]
     creatures: Prisma.$CreaturePayload<ExtArgs>[]
     diceRolls: Prisma.$DiceRollPayload<ExtArgs>[]
+    conversations: Prisma.$ConversationPayload<ExtArgs>[]
+    posts: Prisma.$PostPayload<ExtArgs>[]
+    images: Prisma.$ImagePayload<ExtArgs>[]
+    attributeTemplates: Prisma.$AttributeTemplatePayload<ExtArgs>[]
+    bookmarks: Prisma.$BookmarkPayload<ExtArgs>[]
+    presets: Prisma.$PresetPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -5269,6 +7082,12 @@ export interface Prisma__CampaignClient<T, Null = never, ExtArgs extends runtime
   abilities<T extends Prisma.Campaign$abilitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$abilitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AbilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   creatures<T extends Prisma.Campaign$creaturesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$creaturesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CreaturePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   diceRolls<T extends Prisma.Campaign$diceRollsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$diceRollsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DiceRollPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  conversations<T extends Prisma.Campaign$conversationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$conversationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  posts<T extends Prisma.Campaign$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  images<T extends Prisma.Campaign$imagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  attributeTemplates<T extends Prisma.Campaign$attributeTemplatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$attributeTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttributeTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bookmarks<T extends Prisma.Campaign$bookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$bookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  presets<T extends Prisma.Campaign$presetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$presetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PresetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6229,6 +8048,150 @@ export type Campaign$diceRollsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.DiceRollScalarFieldEnum | Prisma.DiceRollScalarFieldEnum[]
+}
+
+/**
+ * Campaign.conversations
+ */
+export type Campaign$conversationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Conversation
+   */
+  select?: Prisma.ConversationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Conversation
+   */
+  omit?: Prisma.ConversationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ConversationInclude<ExtArgs> | null
+  where?: Prisma.ConversationWhereInput
+  orderBy?: Prisma.ConversationOrderByWithRelationInput | Prisma.ConversationOrderByWithRelationInput[]
+  cursor?: Prisma.ConversationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ConversationScalarFieldEnum | Prisma.ConversationScalarFieldEnum[]
+}
+
+/**
+ * Campaign.posts
+ */
+export type Campaign$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Post
+   */
+  select?: Prisma.PostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Post
+   */
+  omit?: Prisma.PostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostInclude<ExtArgs> | null
+  where?: Prisma.PostWhereInput
+  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
+  cursor?: Prisma.PostWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[]
+}
+
+/**
+ * Campaign.images
+ */
+export type Campaign$imagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Image
+   */
+  select?: Prisma.ImageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Image
+   */
+  omit?: Prisma.ImageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ImageInclude<ExtArgs> | null
+  where?: Prisma.ImageWhereInput
+  orderBy?: Prisma.ImageOrderByWithRelationInput | Prisma.ImageOrderByWithRelationInput[]
+  cursor?: Prisma.ImageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ImageScalarFieldEnum | Prisma.ImageScalarFieldEnum[]
+}
+
+/**
+ * Campaign.attributeTemplates
+ */
+export type Campaign$attributeTemplatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttributeTemplate
+   */
+  select?: Prisma.AttributeTemplateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttributeTemplate
+   */
+  omit?: Prisma.AttributeTemplateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttributeTemplateInclude<ExtArgs> | null
+  where?: Prisma.AttributeTemplateWhereInput
+  orderBy?: Prisma.AttributeTemplateOrderByWithRelationInput | Prisma.AttributeTemplateOrderByWithRelationInput[]
+  cursor?: Prisma.AttributeTemplateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttributeTemplateScalarFieldEnum | Prisma.AttributeTemplateScalarFieldEnum[]
+}
+
+/**
+ * Campaign.bookmarks
+ */
+export type Campaign$bookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Bookmark
+   */
+  select?: Prisma.BookmarkSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Bookmark
+   */
+  omit?: Prisma.BookmarkOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BookmarkInclude<ExtArgs> | null
+  where?: Prisma.BookmarkWhereInput
+  orderBy?: Prisma.BookmarkOrderByWithRelationInput | Prisma.BookmarkOrderByWithRelationInput[]
+  cursor?: Prisma.BookmarkWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookmarkScalarFieldEnum | Prisma.BookmarkScalarFieldEnum[]
+}
+
+/**
+ * Campaign.presets
+ */
+export type Campaign$presetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Preset
+   */
+  select?: Prisma.PresetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Preset
+   */
+  omit?: Prisma.PresetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PresetInclude<ExtArgs> | null
+  where?: Prisma.PresetWhereInput
+  orderBy?: Prisma.PresetOrderByWithRelationInput | Prisma.PresetOrderByWithRelationInput[]
+  cursor?: Prisma.PresetWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PresetScalarFieldEnum | Prisma.PresetScalarFieldEnum[]
 }
 
 /**

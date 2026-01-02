@@ -264,6 +264,8 @@ export type ItemWhereInput = {
   createdById?: Prisma.StringFilter<"Item"> | string
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  posts?: Prisma.PostListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
 }
 
 export type ItemOrderByWithRelationInput = {
@@ -284,6 +286,8 @@ export type ItemOrderByWithRelationInput = {
   createdById?: Prisma.SortOrder
   campaign?: Prisma.CampaignOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
+  posts?: Prisma.PostOrderByRelationAggregateInput
+  bookmarks?: Prisma.BookmarkOrderByRelationAggregateInput
 }
 
 export type ItemWhereUniqueInput = Prisma.AtLeast<{
@@ -308,6 +312,8 @@ export type ItemWhereUniqueInput = Prisma.AtLeast<{
   createdById?: Prisma.StringFilter<"Item"> | string
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  posts?: Prisma.PostListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
 }, "id" | "campaignId_slug">
 
 export type ItemOrderByWithAggregationInput = {
@@ -368,6 +374,8 @@ export type ItemCreateInput = {
   updatedAt?: Date | string
   campaign: Prisma.CampaignCreateNestedOneWithoutItemsInput
   createdBy: Prisma.UserCreateNestedOneWithoutItemsInput
+  posts?: Prisma.PostCreateNestedManyWithoutItemInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutItemInput
 }
 
 export type ItemUncheckedCreateInput = {
@@ -386,6 +394,8 @@ export type ItemUncheckedCreateInput = {
   updatedAt?: Date | string
   campaignId: string
   createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutItemInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type ItemUpdateInput = {
@@ -404,6 +414,8 @@ export type ItemUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutItemsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutItemsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutItemNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutItemNestedInput
 }
 
 export type ItemUncheckedUpdateInput = {
@@ -422,6 +434,8 @@ export type ItemUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutItemNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type ItemCreateManyInput = {
@@ -545,6 +559,11 @@ export type ItemMinOrderByAggregateInput = {
   createdById?: Prisma.SortOrder
 }
 
+export type ItemNullableScalarRelationFilter = {
+  is?: Prisma.ItemWhereInput | null
+  isNot?: Prisma.ItemWhereInput | null
+}
+
 export type ItemCreateNestedManyWithoutCreatedByInput = {
   create?: Prisma.XOR<Prisma.ItemCreateWithoutCreatedByInput, Prisma.ItemUncheckedCreateWithoutCreatedByInput> | Prisma.ItemCreateWithoutCreatedByInput[] | Prisma.ItemUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.ItemCreateOrConnectWithoutCreatedByInput | Prisma.ItemCreateOrConnectWithoutCreatedByInput[]
@@ -629,6 +648,38 @@ export type ItemUncheckedUpdateManyWithoutCampaignNestedInput = {
   deleteMany?: Prisma.ItemScalarWhereInput | Prisma.ItemScalarWhereInput[]
 }
 
+export type ItemCreateNestedOneWithoutPostsInput = {
+  create?: Prisma.XOR<Prisma.ItemCreateWithoutPostsInput, Prisma.ItemUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.ItemCreateOrConnectWithoutPostsInput
+  connect?: Prisma.ItemWhereUniqueInput
+}
+
+export type ItemUpdateOneWithoutPostsNestedInput = {
+  create?: Prisma.XOR<Prisma.ItemCreateWithoutPostsInput, Prisma.ItemUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.ItemCreateOrConnectWithoutPostsInput
+  upsert?: Prisma.ItemUpsertWithoutPostsInput
+  disconnect?: Prisma.ItemWhereInput | boolean
+  delete?: Prisma.ItemWhereInput | boolean
+  connect?: Prisma.ItemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ItemUpdateToOneWithWhereWithoutPostsInput, Prisma.ItemUpdateWithoutPostsInput>, Prisma.ItemUncheckedUpdateWithoutPostsInput>
+}
+
+export type ItemCreateNestedOneWithoutBookmarksInput = {
+  create?: Prisma.XOR<Prisma.ItemCreateWithoutBookmarksInput, Prisma.ItemUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.ItemCreateOrConnectWithoutBookmarksInput
+  connect?: Prisma.ItemWhereUniqueInput
+}
+
+export type ItemUpdateOneWithoutBookmarksNestedInput = {
+  create?: Prisma.XOR<Prisma.ItemCreateWithoutBookmarksInput, Prisma.ItemUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.ItemCreateOrConnectWithoutBookmarksInput
+  upsert?: Prisma.ItemUpsertWithoutBookmarksInput
+  disconnect?: Prisma.ItemWhereInput | boolean
+  delete?: Prisma.ItemWhereInput | boolean
+  connect?: Prisma.ItemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ItemUpdateToOneWithWhereWithoutBookmarksInput, Prisma.ItemUpdateWithoutBookmarksInput>, Prisma.ItemUncheckedUpdateWithoutBookmarksInput>
+}
+
 export type ItemCreateWithoutCreatedByInput = {
   id?: string
   name: string
@@ -644,6 +695,8 @@ export type ItemCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   campaign: Prisma.CampaignCreateNestedOneWithoutItemsInput
+  posts?: Prisma.PostCreateNestedManyWithoutItemInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutItemInput
 }
 
 export type ItemUncheckedCreateWithoutCreatedByInput = {
@@ -661,6 +714,8 @@ export type ItemUncheckedCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   campaignId: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutItemInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type ItemCreateOrConnectWithoutCreatedByInput = {
@@ -725,6 +780,8 @@ export type ItemCreateWithoutCampaignInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy: Prisma.UserCreateNestedOneWithoutItemsInput
+  posts?: Prisma.PostCreateNestedManyWithoutItemInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutItemInput
 }
 
 export type ItemUncheckedCreateWithoutCampaignInput = {
@@ -742,6 +799,8 @@ export type ItemUncheckedCreateWithoutCampaignInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutItemInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type ItemCreateOrConnectWithoutCampaignInput = {
@@ -768,6 +827,190 @@ export type ItemUpdateWithWhereUniqueWithoutCampaignInput = {
 export type ItemUpdateManyWithWhereWithoutCampaignInput = {
   where: Prisma.ItemScalarWhereInput
   data: Prisma.XOR<Prisma.ItemUpdateManyMutationInput, Prisma.ItemUncheckedUpdateManyWithoutCampaignInput>
+}
+
+export type ItemCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  character?: string | null
+  price?: string | null
+  size?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutItemsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutItemsInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutItemInput
+}
+
+export type ItemUncheckedCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  character?: string | null
+  price?: string | null
+  size?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutItemInput
+}
+
+export type ItemCreateOrConnectWithoutPostsInput = {
+  where: Prisma.ItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.ItemCreateWithoutPostsInput, Prisma.ItemUncheckedCreateWithoutPostsInput>
+}
+
+export type ItemUpsertWithoutPostsInput = {
+  update: Prisma.XOR<Prisma.ItemUpdateWithoutPostsInput, Prisma.ItemUncheckedUpdateWithoutPostsInput>
+  create: Prisma.XOR<Prisma.ItemCreateWithoutPostsInput, Prisma.ItemUncheckedCreateWithoutPostsInput>
+  where?: Prisma.ItemWhereInput
+}
+
+export type ItemUpdateToOneWithWhereWithoutPostsInput = {
+  where?: Prisma.ItemWhereInput
+  data: Prisma.XOR<Prisma.ItemUpdateWithoutPostsInput, Prisma.ItemUncheckedUpdateWithoutPostsInput>
+}
+
+export type ItemUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  character?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutItemsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutItemsNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutItemNestedInput
+}
+
+export type ItemUncheckedUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  character?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutItemNestedInput
+}
+
+export type ItemCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  character?: string | null
+  price?: string | null
+  size?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutItemsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutItemsInput
+  posts?: Prisma.PostCreateNestedManyWithoutItemInput
+}
+
+export type ItemUncheckedCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  character?: string | null
+  price?: string | null
+  size?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutItemInput
+}
+
+export type ItemCreateOrConnectWithoutBookmarksInput = {
+  where: Prisma.ItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.ItemCreateWithoutBookmarksInput, Prisma.ItemUncheckedCreateWithoutBookmarksInput>
+}
+
+export type ItemUpsertWithoutBookmarksInput = {
+  update: Prisma.XOR<Prisma.ItemUpdateWithoutBookmarksInput, Prisma.ItemUncheckedUpdateWithoutBookmarksInput>
+  create: Prisma.XOR<Prisma.ItemCreateWithoutBookmarksInput, Prisma.ItemUncheckedCreateWithoutBookmarksInput>
+  where?: Prisma.ItemWhereInput
+}
+
+export type ItemUpdateToOneWithWhereWithoutBookmarksInput = {
+  where?: Prisma.ItemWhereInput
+  data: Prisma.XOR<Prisma.ItemUpdateWithoutBookmarksInput, Prisma.ItemUncheckedUpdateWithoutBookmarksInput>
+}
+
+export type ItemUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  character?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutItemsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutItemsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutItemNestedInput
+}
+
+export type ItemUncheckedUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  character?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type ItemCreateManyCreatedByInput = {
@@ -802,6 +1045,8 @@ export type ItemUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutItemsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutItemNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutItemNestedInput
 }
 
 export type ItemUncheckedUpdateWithoutCreatedByInput = {
@@ -819,6 +1064,8 @@ export type ItemUncheckedUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutItemNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type ItemUncheckedUpdateManyWithoutCreatedByInput = {
@@ -870,6 +1117,8 @@ export type ItemUpdateWithoutCampaignInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.UserUpdateOneRequiredWithoutItemsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutItemNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutItemNestedInput
 }
 
 export type ItemUncheckedUpdateWithoutCampaignInput = {
@@ -887,6 +1136,8 @@ export type ItemUncheckedUpdateWithoutCampaignInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutItemNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type ItemUncheckedUpdateManyWithoutCampaignInput = {
@@ -907,6 +1158,44 @@ export type ItemUncheckedUpdateManyWithoutCampaignInput = {
 }
 
 
+/**
+ * Count Type ItemCountOutputType
+ */
+
+export type ItemCountOutputType = {
+  posts: number
+  bookmarks: number
+}
+
+export type ItemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  posts?: boolean | ItemCountOutputTypeCountPostsArgs
+  bookmarks?: boolean | ItemCountOutputTypeCountBookmarksArgs
+}
+
+/**
+ * ItemCountOutputType without action
+ */
+export type ItemCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ItemCountOutputType
+   */
+  select?: Prisma.ItemCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ItemCountOutputType without action
+ */
+export type ItemCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PostWhereInput
+}
+
+/**
+ * ItemCountOutputType without action
+ */
+export type ItemCountOutputTypeCountBookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookmarkWhereInput
+}
+
 
 export type ItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -926,6 +1215,9 @@ export type ItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdById?: boolean
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  posts?: boolean | Prisma.Item$postsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Item$bookmarksArgs<ExtArgs>
+  _count?: boolean | Prisma.ItemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["item"]>
 
 export type ItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -990,6 +1282,9 @@ export type ItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type ItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  posts?: boolean | Prisma.Item$postsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Item$bookmarksArgs<ExtArgs>
+  _count?: boolean | Prisma.ItemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
@@ -1005,6 +1300,8 @@ export type $ItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     campaign: Prisma.$CampaignPayload<ExtArgs>
     createdBy: Prisma.$UserPayload<ExtArgs>
+    posts: Prisma.$PostPayload<ExtArgs>[]
+    bookmarks: Prisma.$BookmarkPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1418,6 +1715,8 @@ export interface Prisma__ItemClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   campaign<T extends Prisma.CampaignDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CampaignDefaultArgs<ExtArgs>>): Prisma.Prisma__CampaignClient<runtime.Types.Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  posts<T extends Prisma.Item$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Item$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bookmarks<T extends Prisma.Item$bookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Item$bookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1855,6 +2154,54 @@ export type ItemDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Items to delete.
    */
   limit?: number
+}
+
+/**
+ * Item.posts
+ */
+export type Item$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Post
+   */
+  select?: Prisma.PostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Post
+   */
+  omit?: Prisma.PostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostInclude<ExtArgs> | null
+  where?: Prisma.PostWhereInput
+  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
+  cursor?: Prisma.PostWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[]
+}
+
+/**
+ * Item.bookmarks
+ */
+export type Item$bookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Bookmark
+   */
+  select?: Prisma.BookmarkSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Bookmark
+   */
+  omit?: Prisma.BookmarkOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BookmarkInclude<ExtArgs> | null
+  where?: Prisma.BookmarkWhereInput
+  orderBy?: Prisma.BookmarkOrderByWithRelationInput | Prisma.BookmarkOrderByWithRelationInput[]
+  cursor?: Prisma.BookmarkWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookmarkScalarFieldEnum | Prisma.BookmarkScalarFieldEnum[]
 }
 
 /**

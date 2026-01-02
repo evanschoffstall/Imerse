@@ -31,7 +31,7 @@ export type LocationMinAggregateOutputType = {
   type: string | null
   parentId: string | null
   description: string | null
-  image: string | null
+  imageId: string | null
   mapImage: string | null
   isPrivate: boolean | null
   createdAt: Date | null
@@ -47,7 +47,7 @@ export type LocationMaxAggregateOutputType = {
   type: string | null
   parentId: string | null
   description: string | null
-  image: string | null
+  imageId: string | null
   mapImage: string | null
   isPrivate: boolean | null
   createdAt: Date | null
@@ -63,7 +63,7 @@ export type LocationCountAggregateOutputType = {
   type: number
   parentId: number
   description: number
-  image: number
+  imageId: number
   mapImage: number
   isPrivate: number
   createdAt: number
@@ -81,7 +81,7 @@ export type LocationMinAggregateInputType = {
   type?: true
   parentId?: true
   description?: true
-  image?: true
+  imageId?: true
   mapImage?: true
   isPrivate?: true
   createdAt?: true
@@ -97,7 +97,7 @@ export type LocationMaxAggregateInputType = {
   type?: true
   parentId?: true
   description?: true
-  image?: true
+  imageId?: true
   mapImage?: true
   isPrivate?: true
   createdAt?: true
@@ -113,7 +113,7 @@ export type LocationCountAggregateInputType = {
   type?: true
   parentId?: true
   description?: true
-  image?: true
+  imageId?: true
   mapImage?: true
   isPrivate?: true
   createdAt?: true
@@ -202,7 +202,7 @@ export type LocationGroupByOutputType = {
   type: string | null
   parentId: string | null
   description: string | null
-  image: string | null
+  imageId: string | null
   mapImage: string | null
   isPrivate: boolean
   createdAt: Date
@@ -239,7 +239,7 @@ export type LocationWhereInput = {
   type?: Prisma.StringNullableFilter<"Location"> | string | null
   parentId?: Prisma.StringNullableFilter<"Location"> | string | null
   description?: Prisma.StringNullableFilter<"Location"> | string | null
-  image?: Prisma.StringNullableFilter<"Location"> | string | null
+  imageId?: Prisma.StringNullableFilter<"Location"> | string | null
   mapImage?: Prisma.StringNullableFilter<"Location"> | string | null
   isPrivate?: Prisma.BoolFilter<"Location"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Location"> | Date | string
@@ -251,6 +251,11 @@ export type LocationWhereInput = {
   parent?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.LocationWhereInput> | null
   children?: Prisma.LocationListRelationFilter
   creatures?: Prisma.CreatureLocationListRelationFilter
+  posts?: Prisma.PostListRelationFilter
+  image?: Prisma.XOR<Prisma.ImageNullableScalarRelationFilter, Prisma.ImageWhereInput> | null
+  imageMentions?: Prisma.ImageMentionListRelationFilter
+  entityAssets?: Prisma.EntityAssetListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
 }
 
 export type LocationOrderByWithRelationInput = {
@@ -260,7 +265,7 @@ export type LocationOrderByWithRelationInput = {
   type?: Prisma.SortOrderInput | Prisma.SortOrder
   parentId?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  image?: Prisma.SortOrderInput | Prisma.SortOrder
+  imageId?: Prisma.SortOrderInput | Prisma.SortOrder
   mapImage?: Prisma.SortOrderInput | Prisma.SortOrder
   isPrivate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -272,6 +277,11 @@ export type LocationOrderByWithRelationInput = {
   parent?: Prisma.LocationOrderByWithRelationInput
   children?: Prisma.LocationOrderByRelationAggregateInput
   creatures?: Prisma.CreatureLocationOrderByRelationAggregateInput
+  posts?: Prisma.PostOrderByRelationAggregateInput
+  image?: Prisma.ImageOrderByWithRelationInput
+  imageMentions?: Prisma.ImageMentionOrderByRelationAggregateInput
+  entityAssets?: Prisma.EntityAssetOrderByRelationAggregateInput
+  bookmarks?: Prisma.BookmarkOrderByRelationAggregateInput
 }
 
 export type LocationWhereUniqueInput = Prisma.AtLeast<{
@@ -285,7 +295,7 @@ export type LocationWhereUniqueInput = Prisma.AtLeast<{
   type?: Prisma.StringNullableFilter<"Location"> | string | null
   parentId?: Prisma.StringNullableFilter<"Location"> | string | null
   description?: Prisma.StringNullableFilter<"Location"> | string | null
-  image?: Prisma.StringNullableFilter<"Location"> | string | null
+  imageId?: Prisma.StringNullableFilter<"Location"> | string | null
   mapImage?: Prisma.StringNullableFilter<"Location"> | string | null
   isPrivate?: Prisma.BoolFilter<"Location"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Location"> | Date | string
@@ -297,6 +307,11 @@ export type LocationWhereUniqueInput = Prisma.AtLeast<{
   parent?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.LocationWhereInput> | null
   children?: Prisma.LocationListRelationFilter
   creatures?: Prisma.CreatureLocationListRelationFilter
+  posts?: Prisma.PostListRelationFilter
+  image?: Prisma.XOR<Prisma.ImageNullableScalarRelationFilter, Prisma.ImageWhereInput> | null
+  imageMentions?: Prisma.ImageMentionListRelationFilter
+  entityAssets?: Prisma.EntityAssetListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
 }, "id" | "campaignId_slug">
 
 export type LocationOrderByWithAggregationInput = {
@@ -306,7 +321,7 @@ export type LocationOrderByWithAggregationInput = {
   type?: Prisma.SortOrderInput | Prisma.SortOrder
   parentId?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  image?: Prisma.SortOrderInput | Prisma.SortOrder
+  imageId?: Prisma.SortOrderInput | Prisma.SortOrder
   mapImage?: Prisma.SortOrderInput | Prisma.SortOrder
   isPrivate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -328,7 +343,7 @@ export type LocationScalarWhereWithAggregatesInput = {
   type?: Prisma.StringNullableWithAggregatesFilter<"Location"> | string | null
   parentId?: Prisma.StringNullableWithAggregatesFilter<"Location"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"Location"> | string | null
-  image?: Prisma.StringNullableWithAggregatesFilter<"Location"> | string | null
+  imageId?: Prisma.StringNullableWithAggregatesFilter<"Location"> | string | null
   mapImage?: Prisma.StringNullableWithAggregatesFilter<"Location"> | string | null
   isPrivate?: Prisma.BoolWithAggregatesFilter<"Location"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Location"> | Date | string
@@ -343,7 +358,6 @@ export type LocationCreateInput = {
   slug: string
   type?: string | null
   description?: string | null
-  image?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -353,6 +367,11 @@ export type LocationCreateInput = {
   parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
   children?: Prisma.LocationCreateNestedManyWithoutParentInput
   creatures?: Prisma.CreatureLocationCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostCreateNestedManyWithoutLocationInput
+  image?: Prisma.ImageCreateNestedOneWithoutLocationsInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUncheckedCreateInput = {
@@ -362,7 +381,7 @@ export type LocationUncheckedCreateInput = {
   type?: string | null
   parentId?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -371,6 +390,10 @@ export type LocationUncheckedCreateInput = {
   createdById: string
   children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
   creatures?: Prisma.CreatureLocationUncheckedCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutLocationInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUpdateInput = {
@@ -379,7 +402,6 @@ export type LocationUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -389,6 +411,11 @@ export type LocationUpdateInput = {
   parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
   children?: Prisma.LocationUpdateManyWithoutParentNestedInput
   creatures?: Prisma.CreatureLocationUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUpdateManyWithoutLocationNestedInput
+  image?: Prisma.ImageUpdateOneWithoutLocationsNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateInput = {
@@ -398,7 +425,7 @@ export type LocationUncheckedUpdateInput = {
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -407,6 +434,10 @@ export type LocationUncheckedUpdateInput = {
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
   creatures?: Prisma.CreatureLocationUncheckedUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutLocationNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationCreateManyInput = {
@@ -416,7 +447,7 @@ export type LocationCreateManyInput = {
   type?: string | null
   parentId?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -431,7 +462,6 @@ export type LocationUpdateManyMutationInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -445,7 +475,7 @@ export type LocationUncheckedUpdateManyInput = {
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -481,7 +511,7 @@ export type LocationCountOrderByAggregateInput = {
   type?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  image?: Prisma.SortOrder
+  imageId?: Prisma.SortOrder
   mapImage?: Prisma.SortOrder
   isPrivate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -497,7 +527,7 @@ export type LocationMaxOrderByAggregateInput = {
   type?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  image?: Prisma.SortOrder
+  imageId?: Prisma.SortOrder
   mapImage?: Prisma.SortOrder
   isPrivate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -513,7 +543,7 @@ export type LocationMinOrderByAggregateInput = {
   type?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  image?: Prisma.SortOrder
+  imageId?: Prisma.SortOrder
   mapImage?: Prisma.SortOrder
   isPrivate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -683,13 +713,118 @@ export type LocationUpdateOneRequiredWithoutCreaturesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutCreaturesInput, Prisma.LocationUpdateWithoutCreaturesInput>, Prisma.LocationUncheckedUpdateWithoutCreaturesInput>
 }
 
+export type LocationCreateNestedOneWithoutPostsInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutPostsInput, Prisma.LocationUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutPostsInput
+  connect?: Prisma.LocationWhereUniqueInput
+}
+
+export type LocationUpdateOneWithoutPostsNestedInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutPostsInput, Prisma.LocationUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutPostsInput
+  upsert?: Prisma.LocationUpsertWithoutPostsInput
+  disconnect?: Prisma.LocationWhereInput | boolean
+  delete?: Prisma.LocationWhereInput | boolean
+  connect?: Prisma.LocationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutPostsInput, Prisma.LocationUpdateWithoutPostsInput>, Prisma.LocationUncheckedUpdateWithoutPostsInput>
+}
+
+export type LocationCreateNestedManyWithoutImageInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutImageInput, Prisma.LocationUncheckedCreateWithoutImageInput> | Prisma.LocationCreateWithoutImageInput[] | Prisma.LocationUncheckedCreateWithoutImageInput[]
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutImageInput | Prisma.LocationCreateOrConnectWithoutImageInput[]
+  createMany?: Prisma.LocationCreateManyImageInputEnvelope
+  connect?: Prisma.LocationWhereUniqueInput | Prisma.LocationWhereUniqueInput[]
+}
+
+export type LocationUncheckedCreateNestedManyWithoutImageInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutImageInput, Prisma.LocationUncheckedCreateWithoutImageInput> | Prisma.LocationCreateWithoutImageInput[] | Prisma.LocationUncheckedCreateWithoutImageInput[]
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutImageInput | Prisma.LocationCreateOrConnectWithoutImageInput[]
+  createMany?: Prisma.LocationCreateManyImageInputEnvelope
+  connect?: Prisma.LocationWhereUniqueInput | Prisma.LocationWhereUniqueInput[]
+}
+
+export type LocationUpdateManyWithoutImageNestedInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutImageInput, Prisma.LocationUncheckedCreateWithoutImageInput> | Prisma.LocationCreateWithoutImageInput[] | Prisma.LocationUncheckedCreateWithoutImageInput[]
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutImageInput | Prisma.LocationCreateOrConnectWithoutImageInput[]
+  upsert?: Prisma.LocationUpsertWithWhereUniqueWithoutImageInput | Prisma.LocationUpsertWithWhereUniqueWithoutImageInput[]
+  createMany?: Prisma.LocationCreateManyImageInputEnvelope
+  set?: Prisma.LocationWhereUniqueInput | Prisma.LocationWhereUniqueInput[]
+  disconnect?: Prisma.LocationWhereUniqueInput | Prisma.LocationWhereUniqueInput[]
+  delete?: Prisma.LocationWhereUniqueInput | Prisma.LocationWhereUniqueInput[]
+  connect?: Prisma.LocationWhereUniqueInput | Prisma.LocationWhereUniqueInput[]
+  update?: Prisma.LocationUpdateWithWhereUniqueWithoutImageInput | Prisma.LocationUpdateWithWhereUniqueWithoutImageInput[]
+  updateMany?: Prisma.LocationUpdateManyWithWhereWithoutImageInput | Prisma.LocationUpdateManyWithWhereWithoutImageInput[]
+  deleteMany?: Prisma.LocationScalarWhereInput | Prisma.LocationScalarWhereInput[]
+}
+
+export type LocationUncheckedUpdateManyWithoutImageNestedInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutImageInput, Prisma.LocationUncheckedCreateWithoutImageInput> | Prisma.LocationCreateWithoutImageInput[] | Prisma.LocationUncheckedCreateWithoutImageInput[]
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutImageInput | Prisma.LocationCreateOrConnectWithoutImageInput[]
+  upsert?: Prisma.LocationUpsertWithWhereUniqueWithoutImageInput | Prisma.LocationUpsertWithWhereUniqueWithoutImageInput[]
+  createMany?: Prisma.LocationCreateManyImageInputEnvelope
+  set?: Prisma.LocationWhereUniqueInput | Prisma.LocationWhereUniqueInput[]
+  disconnect?: Prisma.LocationWhereUniqueInput | Prisma.LocationWhereUniqueInput[]
+  delete?: Prisma.LocationWhereUniqueInput | Prisma.LocationWhereUniqueInput[]
+  connect?: Prisma.LocationWhereUniqueInput | Prisma.LocationWhereUniqueInput[]
+  update?: Prisma.LocationUpdateWithWhereUniqueWithoutImageInput | Prisma.LocationUpdateWithWhereUniqueWithoutImageInput[]
+  updateMany?: Prisma.LocationUpdateManyWithWhereWithoutImageInput | Prisma.LocationUpdateManyWithWhereWithoutImageInput[]
+  deleteMany?: Prisma.LocationScalarWhereInput | Prisma.LocationScalarWhereInput[]
+}
+
+export type LocationCreateNestedOneWithoutImageMentionsInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutImageMentionsInput, Prisma.LocationUncheckedCreateWithoutImageMentionsInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutImageMentionsInput
+  connect?: Prisma.LocationWhereUniqueInput
+}
+
+export type LocationUpdateOneWithoutImageMentionsNestedInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutImageMentionsInput, Prisma.LocationUncheckedCreateWithoutImageMentionsInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutImageMentionsInput
+  upsert?: Prisma.LocationUpsertWithoutImageMentionsInput
+  disconnect?: Prisma.LocationWhereInput | boolean
+  delete?: Prisma.LocationWhereInput | boolean
+  connect?: Prisma.LocationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutImageMentionsInput, Prisma.LocationUpdateWithoutImageMentionsInput>, Prisma.LocationUncheckedUpdateWithoutImageMentionsInput>
+}
+
+export type LocationCreateNestedOneWithoutEntityAssetsInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutEntityAssetsInput, Prisma.LocationUncheckedCreateWithoutEntityAssetsInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutEntityAssetsInput
+  connect?: Prisma.LocationWhereUniqueInput
+}
+
+export type LocationUpdateOneWithoutEntityAssetsNestedInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutEntityAssetsInput, Prisma.LocationUncheckedCreateWithoutEntityAssetsInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutEntityAssetsInput
+  upsert?: Prisma.LocationUpsertWithoutEntityAssetsInput
+  disconnect?: Prisma.LocationWhereInput | boolean
+  delete?: Prisma.LocationWhereInput | boolean
+  connect?: Prisma.LocationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutEntityAssetsInput, Prisma.LocationUpdateWithoutEntityAssetsInput>, Prisma.LocationUncheckedUpdateWithoutEntityAssetsInput>
+}
+
+export type LocationCreateNestedOneWithoutBookmarksInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutBookmarksInput, Prisma.LocationUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutBookmarksInput
+  connect?: Prisma.LocationWhereUniqueInput
+}
+
+export type LocationUpdateOneWithoutBookmarksNestedInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutBookmarksInput, Prisma.LocationUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutBookmarksInput
+  upsert?: Prisma.LocationUpsertWithoutBookmarksInput
+  disconnect?: Prisma.LocationWhereInput | boolean
+  delete?: Prisma.LocationWhereInput | boolean
+  connect?: Prisma.LocationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutBookmarksInput, Prisma.LocationUpdateWithoutBookmarksInput>, Prisma.LocationUncheckedUpdateWithoutBookmarksInput>
+}
+
 export type LocationCreateWithoutCreatedByInput = {
   id?: string
   name: string
   slug: string
   type?: string | null
   description?: string | null
-  image?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -698,6 +833,11 @@ export type LocationCreateWithoutCreatedByInput = {
   parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
   children?: Prisma.LocationCreateNestedManyWithoutParentInput
   creatures?: Prisma.CreatureLocationCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostCreateNestedManyWithoutLocationInput
+  image?: Prisma.ImageCreateNestedOneWithoutLocationsInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUncheckedCreateWithoutCreatedByInput = {
@@ -707,7 +847,7 @@ export type LocationUncheckedCreateWithoutCreatedByInput = {
   type?: string | null
   parentId?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -715,6 +855,10 @@ export type LocationUncheckedCreateWithoutCreatedByInput = {
   campaignId: string
   children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
   creatures?: Prisma.CreatureLocationUncheckedCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutLocationInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutLocationInput
 }
 
 export type LocationCreateOrConnectWithoutCreatedByInput = {
@@ -753,7 +897,7 @@ export type LocationScalarWhereInput = {
   type?: Prisma.StringNullableFilter<"Location"> | string | null
   parentId?: Prisma.StringNullableFilter<"Location"> | string | null
   description?: Prisma.StringNullableFilter<"Location"> | string | null
-  image?: Prisma.StringNullableFilter<"Location"> | string | null
+  imageId?: Prisma.StringNullableFilter<"Location"> | string | null
   mapImage?: Prisma.StringNullableFilter<"Location"> | string | null
   isPrivate?: Prisma.BoolFilter<"Location"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Location"> | Date | string
@@ -768,7 +912,6 @@ export type LocationCreateWithoutCampaignInput = {
   slug: string
   type?: string | null
   description?: string | null
-  image?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -777,6 +920,11 @@ export type LocationCreateWithoutCampaignInput = {
   parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
   children?: Prisma.LocationCreateNestedManyWithoutParentInput
   creatures?: Prisma.CreatureLocationCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostCreateNestedManyWithoutLocationInput
+  image?: Prisma.ImageCreateNestedOneWithoutLocationsInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUncheckedCreateWithoutCampaignInput = {
@@ -786,7 +934,7 @@ export type LocationUncheckedCreateWithoutCampaignInput = {
   type?: string | null
   parentId?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -794,6 +942,10 @@ export type LocationUncheckedCreateWithoutCampaignInput = {
   createdById: string
   children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
   creatures?: Prisma.CreatureLocationUncheckedCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutLocationInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutLocationInput
 }
 
 export type LocationCreateOrConnectWithoutCampaignInput = {
@@ -828,7 +980,6 @@ export type LocationCreateWithoutChildrenInput = {
   slug: string
   type?: string | null
   description?: string | null
-  image?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -837,6 +988,11 @@ export type LocationCreateWithoutChildrenInput = {
   createdBy: Prisma.UserCreateNestedOneWithoutLocationsInput
   parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
   creatures?: Prisma.CreatureLocationCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostCreateNestedManyWithoutLocationInput
+  image?: Prisma.ImageCreateNestedOneWithoutLocationsInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUncheckedCreateWithoutChildrenInput = {
@@ -846,7 +1002,7 @@ export type LocationUncheckedCreateWithoutChildrenInput = {
   type?: string | null
   parentId?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -854,6 +1010,10 @@ export type LocationUncheckedCreateWithoutChildrenInput = {
   campaignId: string
   createdById: string
   creatures?: Prisma.CreatureLocationUncheckedCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutLocationInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutLocationInput
 }
 
 export type LocationCreateOrConnectWithoutChildrenInput = {
@@ -867,7 +1027,6 @@ export type LocationCreateWithoutParentInput = {
   slug: string
   type?: string | null
   description?: string | null
-  image?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -876,6 +1035,11 @@ export type LocationCreateWithoutParentInput = {
   createdBy: Prisma.UserCreateNestedOneWithoutLocationsInput
   children?: Prisma.LocationCreateNestedManyWithoutParentInput
   creatures?: Prisma.CreatureLocationCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostCreateNestedManyWithoutLocationInput
+  image?: Prisma.ImageCreateNestedOneWithoutLocationsInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUncheckedCreateWithoutParentInput = {
@@ -884,7 +1048,7 @@ export type LocationUncheckedCreateWithoutParentInput = {
   slug: string
   type?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -893,6 +1057,10 @@ export type LocationUncheckedCreateWithoutParentInput = {
   createdById: string
   children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
   creatures?: Prisma.CreatureLocationUncheckedCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutLocationInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutLocationInput
 }
 
 export type LocationCreateOrConnectWithoutParentInput = {
@@ -922,7 +1090,6 @@ export type LocationUpdateWithoutChildrenInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -931,6 +1098,11 @@ export type LocationUpdateWithoutChildrenInput = {
   createdBy?: Prisma.UserUpdateOneRequiredWithoutLocationsNestedInput
   parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
   creatures?: Prisma.CreatureLocationUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUpdateManyWithoutLocationNestedInput
+  image?: Prisma.ImageUpdateOneWithoutLocationsNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateWithoutChildrenInput = {
@@ -940,7 +1112,7 @@ export type LocationUncheckedUpdateWithoutChildrenInput = {
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -948,6 +1120,10 @@ export type LocationUncheckedUpdateWithoutChildrenInput = {
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   creatures?: Prisma.CreatureLocationUncheckedUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutLocationNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUpsertWithWhereUniqueWithoutParentInput = {
@@ -972,7 +1148,6 @@ export type LocationCreateWithoutCreaturesInput = {
   slug: string
   type?: string | null
   description?: string | null
-  image?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -981,6 +1156,11 @@ export type LocationCreateWithoutCreaturesInput = {
   createdBy: Prisma.UserCreateNestedOneWithoutLocationsInput
   parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
   children?: Prisma.LocationCreateNestedManyWithoutParentInput
+  posts?: Prisma.PostCreateNestedManyWithoutLocationInput
+  image?: Prisma.ImageCreateNestedOneWithoutLocationsInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUncheckedCreateWithoutCreaturesInput = {
@@ -990,7 +1170,7 @@ export type LocationUncheckedCreateWithoutCreaturesInput = {
   type?: string | null
   parentId?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -998,6 +1178,10 @@ export type LocationUncheckedCreateWithoutCreaturesInput = {
   campaignId: string
   createdById: string
   children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutLocationInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutLocationInput
 }
 
 export type LocationCreateOrConnectWithoutCreaturesInput = {
@@ -1022,7 +1206,6 @@ export type LocationUpdateWithoutCreaturesInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1031,6 +1214,11 @@ export type LocationUpdateWithoutCreaturesInput = {
   createdBy?: Prisma.UserUpdateOneRequiredWithoutLocationsNestedInput
   parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
   children?: Prisma.LocationUpdateManyWithoutParentNestedInput
+  posts?: Prisma.PostUpdateManyWithoutLocationNestedInput
+  image?: Prisma.ImageUpdateOneWithoutLocationsNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateWithoutCreaturesInput = {
@@ -1040,7 +1228,7 @@ export type LocationUncheckedUpdateWithoutCreaturesInput = {
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1048,6 +1236,478 @@ export type LocationUncheckedUpdateWithoutCreaturesInput = {
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutLocationNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  mapImage?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutLocationsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutLocationsInput
+  parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
+  children?: Prisma.LocationCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationCreateNestedManyWithoutLocationInput
+  image?: Prisma.ImageCreateNestedOneWithoutLocationsInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutLocationInput
+}
+
+export type LocationUncheckedCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  parentId?: string | null
+  description?: string | null
+  imageId?: string | null
+  mapImage?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationUncheckedCreateNestedManyWithoutLocationInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutLocationInput
+}
+
+export type LocationCreateOrConnectWithoutPostsInput = {
+  where: Prisma.LocationWhereUniqueInput
+  create: Prisma.XOR<Prisma.LocationCreateWithoutPostsInput, Prisma.LocationUncheckedCreateWithoutPostsInput>
+}
+
+export type LocationUpsertWithoutPostsInput = {
+  update: Prisma.XOR<Prisma.LocationUpdateWithoutPostsInput, Prisma.LocationUncheckedUpdateWithoutPostsInput>
+  create: Prisma.XOR<Prisma.LocationCreateWithoutPostsInput, Prisma.LocationUncheckedCreateWithoutPostsInput>
+  where?: Prisma.LocationWhereInput
+}
+
+export type LocationUpdateToOneWithWhereWithoutPostsInput = {
+  where?: Prisma.LocationWhereInput
+  data: Prisma.XOR<Prisma.LocationUpdateWithoutPostsInput, Prisma.LocationUncheckedUpdateWithoutPostsInput>
+}
+
+export type LocationUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutLocationsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutLocationsNestedInput
+  parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.LocationUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUpdateManyWithoutLocationNestedInput
+  image?: Prisma.ImageUpdateOneWithoutLocationsNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationUncheckedUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUncheckedUpdateManyWithoutLocationNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationCreateWithoutImageInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  mapImage?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutLocationsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutLocationsInput
+  parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
+  children?: Prisma.LocationCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostCreateNestedManyWithoutLocationInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutLocationInput
+}
+
+export type LocationUncheckedCreateWithoutImageInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  parentId?: string | null
+  description?: string | null
+  mapImage?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationUncheckedCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutLocationInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutLocationInput
+}
+
+export type LocationCreateOrConnectWithoutImageInput = {
+  where: Prisma.LocationWhereUniqueInput
+  create: Prisma.XOR<Prisma.LocationCreateWithoutImageInput, Prisma.LocationUncheckedCreateWithoutImageInput>
+}
+
+export type LocationCreateManyImageInputEnvelope = {
+  data: Prisma.LocationCreateManyImageInput | Prisma.LocationCreateManyImageInput[]
+  skipDuplicates?: boolean
+}
+
+export type LocationUpsertWithWhereUniqueWithoutImageInput = {
+  where: Prisma.LocationWhereUniqueInput
+  update: Prisma.XOR<Prisma.LocationUpdateWithoutImageInput, Prisma.LocationUncheckedUpdateWithoutImageInput>
+  create: Prisma.XOR<Prisma.LocationCreateWithoutImageInput, Prisma.LocationUncheckedCreateWithoutImageInput>
+}
+
+export type LocationUpdateWithWhereUniqueWithoutImageInput = {
+  where: Prisma.LocationWhereUniqueInput
+  data: Prisma.XOR<Prisma.LocationUpdateWithoutImageInput, Prisma.LocationUncheckedUpdateWithoutImageInput>
+}
+
+export type LocationUpdateManyWithWhereWithoutImageInput = {
+  where: Prisma.LocationScalarWhereInput
+  data: Prisma.XOR<Prisma.LocationUpdateManyMutationInput, Prisma.LocationUncheckedUpdateManyWithoutImageInput>
+}
+
+export type LocationCreateWithoutImageMentionsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  mapImage?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutLocationsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutLocationsInput
+  parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
+  children?: Prisma.LocationCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostCreateNestedManyWithoutLocationInput
+  image?: Prisma.ImageCreateNestedOneWithoutLocationsInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutLocationInput
+}
+
+export type LocationUncheckedCreateWithoutImageMentionsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  parentId?: string | null
+  description?: string | null
+  imageId?: string | null
+  mapImage?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationUncheckedCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutLocationInput
+}
+
+export type LocationCreateOrConnectWithoutImageMentionsInput = {
+  where: Prisma.LocationWhereUniqueInput
+  create: Prisma.XOR<Prisma.LocationCreateWithoutImageMentionsInput, Prisma.LocationUncheckedCreateWithoutImageMentionsInput>
+}
+
+export type LocationUpsertWithoutImageMentionsInput = {
+  update: Prisma.XOR<Prisma.LocationUpdateWithoutImageMentionsInput, Prisma.LocationUncheckedUpdateWithoutImageMentionsInput>
+  create: Prisma.XOR<Prisma.LocationCreateWithoutImageMentionsInput, Prisma.LocationUncheckedCreateWithoutImageMentionsInput>
+  where?: Prisma.LocationWhereInput
+}
+
+export type LocationUpdateToOneWithWhereWithoutImageMentionsInput = {
+  where?: Prisma.LocationWhereInput
+  data: Prisma.XOR<Prisma.LocationUpdateWithoutImageMentionsInput, Prisma.LocationUncheckedUpdateWithoutImageMentionsInput>
+}
+
+export type LocationUpdateWithoutImageMentionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutLocationsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutLocationsNestedInput
+  parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.LocationUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUpdateManyWithoutLocationNestedInput
+  image?: Prisma.ImageUpdateOneWithoutLocationsNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationUncheckedUpdateWithoutImageMentionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUncheckedUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationCreateWithoutEntityAssetsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  mapImage?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutLocationsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutLocationsInput
+  parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
+  children?: Prisma.LocationCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostCreateNestedManyWithoutLocationInput
+  image?: Prisma.ImageCreateNestedOneWithoutLocationsInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutLocationInput
+}
+
+export type LocationUncheckedCreateWithoutEntityAssetsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  parentId?: string | null
+  description?: string | null
+  imageId?: string | null
+  mapImage?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationUncheckedCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutLocationInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutLocationInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutLocationInput
+}
+
+export type LocationCreateOrConnectWithoutEntityAssetsInput = {
+  where: Prisma.LocationWhereUniqueInput
+  create: Prisma.XOR<Prisma.LocationCreateWithoutEntityAssetsInput, Prisma.LocationUncheckedCreateWithoutEntityAssetsInput>
+}
+
+export type LocationUpsertWithoutEntityAssetsInput = {
+  update: Prisma.XOR<Prisma.LocationUpdateWithoutEntityAssetsInput, Prisma.LocationUncheckedUpdateWithoutEntityAssetsInput>
+  create: Prisma.XOR<Prisma.LocationCreateWithoutEntityAssetsInput, Prisma.LocationUncheckedCreateWithoutEntityAssetsInput>
+  where?: Prisma.LocationWhereInput
+}
+
+export type LocationUpdateToOneWithWhereWithoutEntityAssetsInput = {
+  where?: Prisma.LocationWhereInput
+  data: Prisma.XOR<Prisma.LocationUpdateWithoutEntityAssetsInput, Prisma.LocationUncheckedUpdateWithoutEntityAssetsInput>
+}
+
+export type LocationUpdateWithoutEntityAssetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutLocationsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutLocationsNestedInput
+  parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.LocationUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUpdateManyWithoutLocationNestedInput
+  image?: Prisma.ImageUpdateOneWithoutLocationsNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationUncheckedUpdateWithoutEntityAssetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUncheckedUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutLocationNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  mapImage?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutLocationsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutLocationsInput
+  parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
+  children?: Prisma.LocationCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostCreateNestedManyWithoutLocationInput
+  image?: Prisma.ImageCreateNestedOneWithoutLocationsInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutLocationInput
+}
+
+export type LocationUncheckedCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  parentId?: string | null
+  description?: string | null
+  imageId?: string | null
+  mapImage?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
+  creatures?: Prisma.CreatureLocationUncheckedCreateNestedManyWithoutLocationInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutLocationInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutLocationInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutLocationInput
+}
+
+export type LocationCreateOrConnectWithoutBookmarksInput = {
+  where: Prisma.LocationWhereUniqueInput
+  create: Prisma.XOR<Prisma.LocationCreateWithoutBookmarksInput, Prisma.LocationUncheckedCreateWithoutBookmarksInput>
+}
+
+export type LocationUpsertWithoutBookmarksInput = {
+  update: Prisma.XOR<Prisma.LocationUpdateWithoutBookmarksInput, Prisma.LocationUncheckedUpdateWithoutBookmarksInput>
+  create: Prisma.XOR<Prisma.LocationCreateWithoutBookmarksInput, Prisma.LocationUncheckedCreateWithoutBookmarksInput>
+  where?: Prisma.LocationWhereInput
+}
+
+export type LocationUpdateToOneWithWhereWithoutBookmarksInput = {
+  where?: Prisma.LocationWhereInput
+  data: Prisma.XOR<Prisma.LocationUpdateWithoutBookmarksInput, Prisma.LocationUncheckedUpdateWithoutBookmarksInput>
+}
+
+export type LocationUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutLocationsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutLocationsNestedInput
+  parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.LocationUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUpdateManyWithoutLocationNestedInput
+  image?: Prisma.ImageUpdateOneWithoutLocationsNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationUncheckedUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUncheckedUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutLocationNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationCreateManyCreatedByInput = {
@@ -1057,7 +1717,7 @@ export type LocationCreateManyCreatedByInput = {
   type?: string | null
   parentId?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -1071,7 +1731,6 @@ export type LocationUpdateWithoutCreatedByInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1080,6 +1739,11 @@ export type LocationUpdateWithoutCreatedByInput = {
   parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
   children?: Prisma.LocationUpdateManyWithoutParentNestedInput
   creatures?: Prisma.CreatureLocationUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUpdateManyWithoutLocationNestedInput
+  image?: Prisma.ImageUpdateOneWithoutLocationsNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateWithoutCreatedByInput = {
@@ -1089,7 +1753,7 @@ export type LocationUncheckedUpdateWithoutCreatedByInput = {
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1097,6 +1761,10 @@ export type LocationUncheckedUpdateWithoutCreatedByInput = {
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
   creatures?: Prisma.CreatureLocationUncheckedUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutLocationNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1106,7 +1774,7 @@ export type LocationUncheckedUpdateManyWithoutCreatedByInput = {
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1121,7 +1789,7 @@ export type LocationCreateManyCampaignInput = {
   type?: string | null
   parentId?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -1135,7 +1803,6 @@ export type LocationUpdateWithoutCampaignInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1144,6 +1811,11 @@ export type LocationUpdateWithoutCampaignInput = {
   parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
   children?: Prisma.LocationUpdateManyWithoutParentNestedInput
   creatures?: Prisma.CreatureLocationUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUpdateManyWithoutLocationNestedInput
+  image?: Prisma.ImageUpdateOneWithoutLocationsNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateWithoutCampaignInput = {
@@ -1153,7 +1825,7 @@ export type LocationUncheckedUpdateWithoutCampaignInput = {
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1161,6 +1833,10 @@ export type LocationUncheckedUpdateWithoutCampaignInput = {
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
   creatures?: Prisma.CreatureLocationUncheckedUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutLocationNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateManyWithoutCampaignInput = {
@@ -1170,7 +1846,7 @@ export type LocationUncheckedUpdateManyWithoutCampaignInput = {
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1184,7 +1860,7 @@ export type LocationCreateManyParentInput = {
   slug: string
   type?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   mapImage?: string | null
   isPrivate?: boolean
   createdAt?: Date | string
@@ -1199,7 +1875,6 @@ export type LocationUpdateWithoutParentInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1208,6 +1883,11 @@ export type LocationUpdateWithoutParentInput = {
   createdBy?: Prisma.UserUpdateOneRequiredWithoutLocationsNestedInput
   children?: Prisma.LocationUpdateManyWithoutParentNestedInput
   creatures?: Prisma.CreatureLocationUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUpdateManyWithoutLocationNestedInput
+  image?: Prisma.ImageUpdateOneWithoutLocationsNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateWithoutParentInput = {
@@ -1216,7 +1896,7 @@ export type LocationUncheckedUpdateWithoutParentInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1225,6 +1905,10 @@ export type LocationUncheckedUpdateWithoutParentInput = {
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
   creatures?: Prisma.CreatureLocationUncheckedUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutLocationNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateManyWithoutParentInput = {
@@ -1233,7 +1917,79 @@ export type LocationUncheckedUpdateManyWithoutParentInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type LocationCreateManyImageInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  parentId?: string | null
+  description?: string | null
+  mapImage?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+}
+
+export type LocationUpdateWithoutImageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutLocationsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutLocationsNestedInput
+  parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.LocationUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUpdateManyWithoutLocationNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationUncheckedUpdateWithoutImageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
+  creatures?: Prisma.CreatureLocationUncheckedUpdateManyWithoutLocationNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutLocationNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutLocationNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutLocationNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationUncheckedUpdateManyWithoutImageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1250,11 +2006,19 @@ export type LocationUncheckedUpdateManyWithoutParentInput = {
 export type LocationCountOutputType = {
   children: number
   creatures: number
+  posts: number
+  imageMentions: number
+  entityAssets: number
+  bookmarks: number
 }
 
 export type LocationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   children?: boolean | LocationCountOutputTypeCountChildrenArgs
   creatures?: boolean | LocationCountOutputTypeCountCreaturesArgs
+  posts?: boolean | LocationCountOutputTypeCountPostsArgs
+  imageMentions?: boolean | LocationCountOutputTypeCountImageMentionsArgs
+  entityAssets?: boolean | LocationCountOutputTypeCountEntityAssetsArgs
+  bookmarks?: boolean | LocationCountOutputTypeCountBookmarksArgs
 }
 
 /**
@@ -1281,6 +2045,34 @@ export type LocationCountOutputTypeCountCreaturesArgs<ExtArgs extends runtime.Ty
   where?: Prisma.CreatureLocationWhereInput
 }
 
+/**
+ * LocationCountOutputType without action
+ */
+export type LocationCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PostWhereInput
+}
+
+/**
+ * LocationCountOutputType without action
+ */
+export type LocationCountOutputTypeCountImageMentionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ImageMentionWhereInput
+}
+
+/**
+ * LocationCountOutputType without action
+ */
+export type LocationCountOutputTypeCountEntityAssetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EntityAssetWhereInput
+}
+
+/**
+ * LocationCountOutputType without action
+ */
+export type LocationCountOutputTypeCountBookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookmarkWhereInput
+}
+
 
 export type LocationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1289,7 +2081,7 @@ export type LocationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   type?: boolean
   parentId?: boolean
   description?: boolean
-  image?: boolean
+  imageId?: boolean
   mapImage?: boolean
   isPrivate?: boolean
   createdAt?: boolean
@@ -1301,6 +2093,11 @@ export type LocationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   parent?: boolean | Prisma.Location$parentArgs<ExtArgs>
   children?: boolean | Prisma.Location$childrenArgs<ExtArgs>
   creatures?: boolean | Prisma.Location$creaturesArgs<ExtArgs>
+  posts?: boolean | Prisma.Location$postsArgs<ExtArgs>
+  image?: boolean | Prisma.Location$imageArgs<ExtArgs>
+  imageMentions?: boolean | Prisma.Location$imageMentionsArgs<ExtArgs>
+  entityAssets?: boolean | Prisma.Location$entityAssetsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Location$bookmarksArgs<ExtArgs>
   _count?: boolean | Prisma.LocationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["location"]>
 
@@ -1311,7 +2108,7 @@ export type LocationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   type?: boolean
   parentId?: boolean
   description?: boolean
-  image?: boolean
+  imageId?: boolean
   mapImage?: boolean
   isPrivate?: boolean
   createdAt?: boolean
@@ -1321,6 +2118,7 @@ export type LocationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   parent?: boolean | Prisma.Location$parentArgs<ExtArgs>
+  image?: boolean | Prisma.Location$imageArgs<ExtArgs>
 }, ExtArgs["result"]["location"]>
 
 export type LocationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1330,7 +2128,7 @@ export type LocationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   type?: boolean
   parentId?: boolean
   description?: boolean
-  image?: boolean
+  imageId?: boolean
   mapImage?: boolean
   isPrivate?: boolean
   createdAt?: boolean
@@ -1340,6 +2138,7 @@ export type LocationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   parent?: boolean | Prisma.Location$parentArgs<ExtArgs>
+  image?: boolean | Prisma.Location$imageArgs<ExtArgs>
 }, ExtArgs["result"]["location"]>
 
 export type LocationSelectScalar = {
@@ -1349,7 +2148,7 @@ export type LocationSelectScalar = {
   type?: boolean
   parentId?: boolean
   description?: boolean
-  image?: boolean
+  imageId?: boolean
   mapImage?: boolean
   isPrivate?: boolean
   createdAt?: boolean
@@ -1358,24 +2157,31 @@ export type LocationSelectScalar = {
   createdById?: boolean
 }
 
-export type LocationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "type" | "parentId" | "description" | "image" | "mapImage" | "isPrivate" | "createdAt" | "updatedAt" | "campaignId" | "createdById", ExtArgs["result"]["location"]>
+export type LocationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "type" | "parentId" | "description" | "imageId" | "mapImage" | "isPrivate" | "createdAt" | "updatedAt" | "campaignId" | "createdById", ExtArgs["result"]["location"]>
 export type LocationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   parent?: boolean | Prisma.Location$parentArgs<ExtArgs>
   children?: boolean | Prisma.Location$childrenArgs<ExtArgs>
   creatures?: boolean | Prisma.Location$creaturesArgs<ExtArgs>
+  posts?: boolean | Prisma.Location$postsArgs<ExtArgs>
+  image?: boolean | Prisma.Location$imageArgs<ExtArgs>
+  imageMentions?: boolean | Prisma.Location$imageMentionsArgs<ExtArgs>
+  entityAssets?: boolean | Prisma.Location$entityAssetsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Location$bookmarksArgs<ExtArgs>
   _count?: boolean | Prisma.LocationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type LocationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   parent?: boolean | Prisma.Location$parentArgs<ExtArgs>
+  image?: boolean | Prisma.Location$imageArgs<ExtArgs>
 }
 export type LocationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   parent?: boolean | Prisma.Location$parentArgs<ExtArgs>
+  image?: boolean | Prisma.Location$imageArgs<ExtArgs>
 }
 
 export type $LocationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1386,6 +2192,11 @@ export type $LocationPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     parent: Prisma.$LocationPayload<ExtArgs> | null
     children: Prisma.$LocationPayload<ExtArgs>[]
     creatures: Prisma.$CreatureLocationPayload<ExtArgs>[]
+    posts: Prisma.$PostPayload<ExtArgs>[]
+    image: Prisma.$ImagePayload<ExtArgs> | null
+    imageMentions: Prisma.$ImageMentionPayload<ExtArgs>[]
+    entityAssets: Prisma.$EntityAssetPayload<ExtArgs>[]
+    bookmarks: Prisma.$BookmarkPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1394,7 +2205,7 @@ export type $LocationPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     type: string | null
     parentId: string | null
     description: string | null
-    image: string | null
+    imageId: string | null
     mapImage: string | null
     isPrivate: boolean
     createdAt: Date
@@ -1800,6 +2611,11 @@ export interface Prisma__LocationClient<T, Null = never, ExtArgs extends runtime
   parent<T extends Prisma.Location$parentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Location$parentArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   children<T extends Prisma.Location$childrenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Location$childrenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   creatures<T extends Prisma.Location$creaturesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Location$creaturesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CreatureLocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  posts<T extends Prisma.Location$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Location$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  image<T extends Prisma.Location$imageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Location$imageArgs<ExtArgs>>): Prisma.Prisma__ImageClient<runtime.Types.Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  imageMentions<T extends Prisma.Location$imageMentionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Location$imageMentionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImageMentionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  entityAssets<T extends Prisma.Location$entityAssetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Location$entityAssetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntityAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bookmarks<T extends Prisma.Location$bookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Location$bookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1835,7 +2651,7 @@ export interface LocationFieldRefs {
   readonly type: Prisma.FieldRef<"Location", 'String'>
   readonly parentId: Prisma.FieldRef<"Location", 'String'>
   readonly description: Prisma.FieldRef<"Location", 'String'>
-  readonly image: Prisma.FieldRef<"Location", 'String'>
+  readonly imageId: Prisma.FieldRef<"Location", 'String'>
   readonly mapImage: Prisma.FieldRef<"Location", 'String'>
   readonly isPrivate: Prisma.FieldRef<"Location", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Location", 'DateTime'>
@@ -2302,6 +3118,121 @@ export type Location$creaturesArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.CreatureLocationScalarFieldEnum | Prisma.CreatureLocationScalarFieldEnum[]
+}
+
+/**
+ * Location.posts
+ */
+export type Location$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Post
+   */
+  select?: Prisma.PostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Post
+   */
+  omit?: Prisma.PostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostInclude<ExtArgs> | null
+  where?: Prisma.PostWhereInput
+  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
+  cursor?: Prisma.PostWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[]
+}
+
+/**
+ * Location.image
+ */
+export type Location$imageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Image
+   */
+  select?: Prisma.ImageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Image
+   */
+  omit?: Prisma.ImageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ImageInclude<ExtArgs> | null
+  where?: Prisma.ImageWhereInput
+}
+
+/**
+ * Location.imageMentions
+ */
+export type Location$imageMentionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ImageMention
+   */
+  select?: Prisma.ImageMentionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ImageMention
+   */
+  omit?: Prisma.ImageMentionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ImageMentionInclude<ExtArgs> | null
+  where?: Prisma.ImageMentionWhereInput
+  orderBy?: Prisma.ImageMentionOrderByWithRelationInput | Prisma.ImageMentionOrderByWithRelationInput[]
+  cursor?: Prisma.ImageMentionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ImageMentionScalarFieldEnum | Prisma.ImageMentionScalarFieldEnum[]
+}
+
+/**
+ * Location.entityAssets
+ */
+export type Location$entityAssetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EntityAsset
+   */
+  select?: Prisma.EntityAssetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EntityAsset
+   */
+  omit?: Prisma.EntityAssetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EntityAssetInclude<ExtArgs> | null
+  where?: Prisma.EntityAssetWhereInput
+  orderBy?: Prisma.EntityAssetOrderByWithRelationInput | Prisma.EntityAssetOrderByWithRelationInput[]
+  cursor?: Prisma.EntityAssetWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EntityAssetScalarFieldEnum | Prisma.EntityAssetScalarFieldEnum[]
+}
+
+/**
+ * Location.bookmarks
+ */
+export type Location$bookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Bookmark
+   */
+  select?: Prisma.BookmarkSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Bookmark
+   */
+  omit?: Prisma.BookmarkOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BookmarkInclude<ExtArgs> | null
+  where?: Prisma.BookmarkWhereInput
+  orderBy?: Prisma.BookmarkOrderByWithRelationInput | Prisma.BookmarkOrderByWithRelationInput[]
+  cursor?: Prisma.BookmarkWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookmarkScalarFieldEnum | Prisma.BookmarkScalarFieldEnum[]
 }
 
 /**

@@ -194,3 +194,68 @@ export type DiceRoll = Prisma.DiceRollModel
  * 
  */
 export type DiceRollResult = Prisma.DiceRollResultModel
+/**
+ * Model Conversation
+ * 
+ */
+export type Conversation = Prisma.ConversationModel
+/**
+ * Model ConversationMessage
+ * 
+ */
+export type ConversationMessage = Prisma.ConversationMessageModel
+/**
+ * Model ConversationParticipant
+ * 
+ */
+export type ConversationParticipant = Prisma.ConversationParticipantModel
+/**
+ * Model Post
+ * 
+ */
+export type Post = Prisma.PostModel
+/**
+ * Model PostTag
+ * 
+ */
+export type PostTag = Prisma.PostTagModel
+/**
+ * Model PostPermission
+ * 
+ */
+export type PostPermission = Prisma.PostPermissionModel
+/**
+ * Model Image
+ * 
+ */
+export type Image = Prisma.ImageModel
+/**
+ * Model ImageMention
+ * 
+ */
+export type ImageMention = Prisma.ImageMentionModel
+/**
+ * Model EntityAsset
+ * 
+ */
+export type EntityAsset = Prisma.EntityAssetModel
+/**
+ * Model AttributeTemplate
+ * 
+ */
+export type AttributeTemplate = Prisma.AttributeTemplateModel
+/**
+ * Model Bookmark
+ * 
+ */
+export type Bookmark = Prisma.BookmarkModel
+/**
+ * Model PresetType
+ * 
+ */
+export type PresetType = Prisma.PresetTypeModel
+/**
+ * Model Preset
+ * 
+ */
+export type Preset = Prisma.PresetModel

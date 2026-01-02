@@ -36,7 +36,7 @@ export type CharacterMinAggregateOutputType = {
   location: string | null
   family: string | null
   description: string | null
-  image: string | null
+  imageId: string | null
   isPrivate: boolean | null
   birthCalendarId: string | null
   birthDate: string | null
@@ -58,7 +58,7 @@ export type CharacterMaxAggregateOutputType = {
   location: string | null
   family: string | null
   description: string | null
-  image: string | null
+  imageId: string | null
   isPrivate: boolean | null
   birthCalendarId: string | null
   birthDate: string | null
@@ -80,7 +80,7 @@ export type CharacterCountAggregateOutputType = {
   location: number
   family: number
   description: number
-  image: number
+  imageId: number
   isPrivate: number
   birthCalendarId: number
   birthDate: number
@@ -104,7 +104,7 @@ export type CharacterMinAggregateInputType = {
   location?: true
   family?: true
   description?: true
-  image?: true
+  imageId?: true
   isPrivate?: true
   birthCalendarId?: true
   birthDate?: true
@@ -126,7 +126,7 @@ export type CharacterMaxAggregateInputType = {
   location?: true
   family?: true
   description?: true
-  image?: true
+  imageId?: true
   isPrivate?: true
   birthCalendarId?: true
   birthDate?: true
@@ -148,7 +148,7 @@ export type CharacterCountAggregateInputType = {
   location?: true
   family?: true
   description?: true
-  image?: true
+  imageId?: true
   isPrivate?: true
   birthCalendarId?: true
   birthDate?: true
@@ -243,7 +243,7 @@ export type CharacterGroupByOutputType = {
   location: string | null
   family: string | null
   description: string | null
-  image: string | null
+  imageId: string | null
   isPrivate: boolean
   birthCalendarId: string | null
   birthDate: string | null
@@ -286,7 +286,7 @@ export type CharacterWhereInput = {
   location?: Prisma.StringNullableFilter<"Character"> | string | null
   family?: Prisma.StringNullableFilter<"Character"> | string | null
   description?: Prisma.StringNullableFilter<"Character"> | string | null
-  image?: Prisma.StringNullableFilter<"Character"> | string | null
+  imageId?: Prisma.StringNullableFilter<"Character"> | string | null
   isPrivate?: Prisma.BoolFilter<"Character"> | boolean
   birthCalendarId?: Prisma.StringNullableFilter<"Character"> | string | null
   birthDate?: Prisma.StringNullableFilter<"Character"> | string | null
@@ -298,6 +298,13 @@ export type CharacterWhereInput = {
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   diceRolls?: Prisma.DiceRollListRelationFilter
+  conversationMessages?: Prisma.ConversationMessageListRelationFilter
+  conversationParticipants?: Prisma.ConversationParticipantListRelationFilter
+  posts?: Prisma.PostListRelationFilter
+  image?: Prisma.XOR<Prisma.ImageNullableScalarRelationFilter, Prisma.ImageWhereInput> | null
+  imageMentions?: Prisma.ImageMentionListRelationFilter
+  entityAssets?: Prisma.EntityAssetListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
 }
 
 export type CharacterOrderByWithRelationInput = {
@@ -312,7 +319,7 @@ export type CharacterOrderByWithRelationInput = {
   location?: Prisma.SortOrderInput | Prisma.SortOrder
   family?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  image?: Prisma.SortOrderInput | Prisma.SortOrder
+  imageId?: Prisma.SortOrderInput | Prisma.SortOrder
   isPrivate?: Prisma.SortOrder
   birthCalendarId?: Prisma.SortOrderInput | Prisma.SortOrder
   birthDate?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -324,6 +331,13 @@ export type CharacterOrderByWithRelationInput = {
   campaign?: Prisma.CampaignOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
   diceRolls?: Prisma.DiceRollOrderByRelationAggregateInput
+  conversationMessages?: Prisma.ConversationMessageOrderByRelationAggregateInput
+  conversationParticipants?: Prisma.ConversationParticipantOrderByRelationAggregateInput
+  posts?: Prisma.PostOrderByRelationAggregateInput
+  image?: Prisma.ImageOrderByWithRelationInput
+  imageMentions?: Prisma.ImageMentionOrderByRelationAggregateInput
+  entityAssets?: Prisma.EntityAssetOrderByRelationAggregateInput
+  bookmarks?: Prisma.BookmarkOrderByRelationAggregateInput
 }
 
 export type CharacterWhereUniqueInput = Prisma.AtLeast<{
@@ -342,7 +356,7 @@ export type CharacterWhereUniqueInput = Prisma.AtLeast<{
   location?: Prisma.StringNullableFilter<"Character"> | string | null
   family?: Prisma.StringNullableFilter<"Character"> | string | null
   description?: Prisma.StringNullableFilter<"Character"> | string | null
-  image?: Prisma.StringNullableFilter<"Character"> | string | null
+  imageId?: Prisma.StringNullableFilter<"Character"> | string | null
   isPrivate?: Prisma.BoolFilter<"Character"> | boolean
   birthCalendarId?: Prisma.StringNullableFilter<"Character"> | string | null
   birthDate?: Prisma.StringNullableFilter<"Character"> | string | null
@@ -354,6 +368,13 @@ export type CharacterWhereUniqueInput = Prisma.AtLeast<{
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   diceRolls?: Prisma.DiceRollListRelationFilter
+  conversationMessages?: Prisma.ConversationMessageListRelationFilter
+  conversationParticipants?: Prisma.ConversationParticipantListRelationFilter
+  posts?: Prisma.PostListRelationFilter
+  image?: Prisma.XOR<Prisma.ImageNullableScalarRelationFilter, Prisma.ImageWhereInput> | null
+  imageMentions?: Prisma.ImageMentionListRelationFilter
+  entityAssets?: Prisma.EntityAssetListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
 }, "id" | "campaignId_slug">
 
 export type CharacterOrderByWithAggregationInput = {
@@ -368,7 +389,7 @@ export type CharacterOrderByWithAggregationInput = {
   location?: Prisma.SortOrderInput | Prisma.SortOrder
   family?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  image?: Prisma.SortOrderInput | Prisma.SortOrder
+  imageId?: Prisma.SortOrderInput | Prisma.SortOrder
   isPrivate?: Prisma.SortOrder
   birthCalendarId?: Prisma.SortOrderInput | Prisma.SortOrder
   birthDate?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -396,7 +417,7 @@ export type CharacterScalarWhereWithAggregatesInput = {
   location?: Prisma.StringNullableWithAggregatesFilter<"Character"> | string | null
   family?: Prisma.StringNullableWithAggregatesFilter<"Character"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"Character"> | string | null
-  image?: Prisma.StringNullableWithAggregatesFilter<"Character"> | string | null
+  imageId?: Prisma.StringNullableWithAggregatesFilter<"Character"> | string | null
   isPrivate?: Prisma.BoolWithAggregatesFilter<"Character"> | boolean
   birthCalendarId?: Prisma.StringNullableWithAggregatesFilter<"Character"> | string | null
   birthDate?: Prisma.StringNullableWithAggregatesFilter<"Character"> | string | null
@@ -418,7 +439,6 @@ export type CharacterCreateInput = {
   location?: string | null
   family?: string | null
   description?: string | null
-  image?: string | null
   isPrivate?: boolean
   birthDate?: string | null
   createdAt?: Date | string
@@ -427,6 +447,13 @@ export type CharacterCreateInput = {
   campaign: Prisma.CampaignCreateNestedOneWithoutCharactersInput
   createdBy: Prisma.UserCreateNestedOneWithoutCharactersInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostCreateNestedManyWithoutCharacterInput
+  image?: Prisma.ImageCreateNestedOneWithoutCharactersInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterUncheckedCreateInput = {
@@ -441,7 +468,7 @@ export type CharacterUncheckedCreateInput = {
   location?: string | null
   family?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   isPrivate?: boolean
   birthCalendarId?: string | null
   birthDate?: string | null
@@ -450,6 +477,12 @@ export type CharacterUncheckedCreateInput = {
   campaignId: string
   createdById: string
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCharacterInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterUpdateInput = {
@@ -464,7 +497,6 @@ export type CharacterUpdateInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -473,6 +505,13 @@ export type CharacterUpdateInput = {
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutCharactersNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCharactersNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCharacterNestedInput
+  image?: Prisma.ImageUpdateOneWithoutCharactersNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterUncheckedUpdateInput = {
@@ -487,7 +526,7 @@ export type CharacterUncheckedUpdateInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -496,6 +535,12 @@ export type CharacterUncheckedUpdateInput = {
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCharacterNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterCreateManyInput = {
@@ -510,7 +555,7 @@ export type CharacterCreateManyInput = {
   location?: string | null
   family?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   isPrivate?: boolean
   birthCalendarId?: string | null
   birthDate?: string | null
@@ -532,7 +577,6 @@ export type CharacterUpdateManyMutationInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -551,7 +595,7 @@ export type CharacterUncheckedUpdateManyInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -588,7 +632,7 @@ export type CharacterCountOrderByAggregateInput = {
   location?: Prisma.SortOrder
   family?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  image?: Prisma.SortOrder
+  imageId?: Prisma.SortOrder
   isPrivate?: Prisma.SortOrder
   birthCalendarId?: Prisma.SortOrder
   birthDate?: Prisma.SortOrder
@@ -610,7 +654,7 @@ export type CharacterMaxOrderByAggregateInput = {
   location?: Prisma.SortOrder
   family?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  image?: Prisma.SortOrder
+  imageId?: Prisma.SortOrder
   isPrivate?: Prisma.SortOrder
   birthCalendarId?: Prisma.SortOrder
   birthDate?: Prisma.SortOrder
@@ -632,7 +676,7 @@ export type CharacterMinOrderByAggregateInput = {
   location?: Prisma.SortOrder
   family?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  image?: Prisma.SortOrder
+  imageId?: Prisma.SortOrder
   isPrivate?: Prisma.SortOrder
   birthCalendarId?: Prisma.SortOrder
   birthDate?: Prisma.SortOrder
@@ -789,6 +833,144 @@ export type CharacterUpdateOneWithoutDiceRollsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CharacterUpdateToOneWithWhereWithoutDiceRollsInput, Prisma.CharacterUpdateWithoutDiceRollsInput>, Prisma.CharacterUncheckedUpdateWithoutDiceRollsInput>
 }
 
+export type CharacterCreateNestedOneWithoutConversationMessagesInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutConversationMessagesInput, Prisma.CharacterUncheckedCreateWithoutConversationMessagesInput>
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutConversationMessagesInput
+  connect?: Prisma.CharacterWhereUniqueInput
+}
+
+export type CharacterUpdateOneWithoutConversationMessagesNestedInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutConversationMessagesInput, Prisma.CharacterUncheckedCreateWithoutConversationMessagesInput>
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutConversationMessagesInput
+  upsert?: Prisma.CharacterUpsertWithoutConversationMessagesInput
+  disconnect?: Prisma.CharacterWhereInput | boolean
+  delete?: Prisma.CharacterWhereInput | boolean
+  connect?: Prisma.CharacterWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CharacterUpdateToOneWithWhereWithoutConversationMessagesInput, Prisma.CharacterUpdateWithoutConversationMessagesInput>, Prisma.CharacterUncheckedUpdateWithoutConversationMessagesInput>
+}
+
+export type CharacterCreateNestedOneWithoutConversationParticipantsInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutConversationParticipantsInput, Prisma.CharacterUncheckedCreateWithoutConversationParticipantsInput>
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutConversationParticipantsInput
+  connect?: Prisma.CharacterWhereUniqueInput
+}
+
+export type CharacterUpdateOneWithoutConversationParticipantsNestedInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutConversationParticipantsInput, Prisma.CharacterUncheckedCreateWithoutConversationParticipantsInput>
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutConversationParticipantsInput
+  upsert?: Prisma.CharacterUpsertWithoutConversationParticipantsInput
+  disconnect?: Prisma.CharacterWhereInput | boolean
+  delete?: Prisma.CharacterWhereInput | boolean
+  connect?: Prisma.CharacterWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CharacterUpdateToOneWithWhereWithoutConversationParticipantsInput, Prisma.CharacterUpdateWithoutConversationParticipantsInput>, Prisma.CharacterUncheckedUpdateWithoutConversationParticipantsInput>
+}
+
+export type CharacterCreateNestedOneWithoutPostsInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutPostsInput, Prisma.CharacterUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutPostsInput
+  connect?: Prisma.CharacterWhereUniqueInput
+}
+
+export type CharacterUpdateOneWithoutPostsNestedInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutPostsInput, Prisma.CharacterUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutPostsInput
+  upsert?: Prisma.CharacterUpsertWithoutPostsInput
+  disconnect?: Prisma.CharacterWhereInput | boolean
+  delete?: Prisma.CharacterWhereInput | boolean
+  connect?: Prisma.CharacterWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CharacterUpdateToOneWithWhereWithoutPostsInput, Prisma.CharacterUpdateWithoutPostsInput>, Prisma.CharacterUncheckedUpdateWithoutPostsInput>
+}
+
+export type CharacterCreateNestedManyWithoutImageInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutImageInput, Prisma.CharacterUncheckedCreateWithoutImageInput> | Prisma.CharacterCreateWithoutImageInput[] | Prisma.CharacterUncheckedCreateWithoutImageInput[]
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutImageInput | Prisma.CharacterCreateOrConnectWithoutImageInput[]
+  createMany?: Prisma.CharacterCreateManyImageInputEnvelope
+  connect?: Prisma.CharacterWhereUniqueInput | Prisma.CharacterWhereUniqueInput[]
+}
+
+export type CharacterUncheckedCreateNestedManyWithoutImageInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutImageInput, Prisma.CharacterUncheckedCreateWithoutImageInput> | Prisma.CharacterCreateWithoutImageInput[] | Prisma.CharacterUncheckedCreateWithoutImageInput[]
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutImageInput | Prisma.CharacterCreateOrConnectWithoutImageInput[]
+  createMany?: Prisma.CharacterCreateManyImageInputEnvelope
+  connect?: Prisma.CharacterWhereUniqueInput | Prisma.CharacterWhereUniqueInput[]
+}
+
+export type CharacterUpdateManyWithoutImageNestedInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutImageInput, Prisma.CharacterUncheckedCreateWithoutImageInput> | Prisma.CharacterCreateWithoutImageInput[] | Prisma.CharacterUncheckedCreateWithoutImageInput[]
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutImageInput | Prisma.CharacterCreateOrConnectWithoutImageInput[]
+  upsert?: Prisma.CharacterUpsertWithWhereUniqueWithoutImageInput | Prisma.CharacterUpsertWithWhereUniqueWithoutImageInput[]
+  createMany?: Prisma.CharacterCreateManyImageInputEnvelope
+  set?: Prisma.CharacterWhereUniqueInput | Prisma.CharacterWhereUniqueInput[]
+  disconnect?: Prisma.CharacterWhereUniqueInput | Prisma.CharacterWhereUniqueInput[]
+  delete?: Prisma.CharacterWhereUniqueInput | Prisma.CharacterWhereUniqueInput[]
+  connect?: Prisma.CharacterWhereUniqueInput | Prisma.CharacterWhereUniqueInput[]
+  update?: Prisma.CharacterUpdateWithWhereUniqueWithoutImageInput | Prisma.CharacterUpdateWithWhereUniqueWithoutImageInput[]
+  updateMany?: Prisma.CharacterUpdateManyWithWhereWithoutImageInput | Prisma.CharacterUpdateManyWithWhereWithoutImageInput[]
+  deleteMany?: Prisma.CharacterScalarWhereInput | Prisma.CharacterScalarWhereInput[]
+}
+
+export type CharacterUncheckedUpdateManyWithoutImageNestedInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutImageInput, Prisma.CharacterUncheckedCreateWithoutImageInput> | Prisma.CharacterCreateWithoutImageInput[] | Prisma.CharacterUncheckedCreateWithoutImageInput[]
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutImageInput | Prisma.CharacterCreateOrConnectWithoutImageInput[]
+  upsert?: Prisma.CharacterUpsertWithWhereUniqueWithoutImageInput | Prisma.CharacterUpsertWithWhereUniqueWithoutImageInput[]
+  createMany?: Prisma.CharacterCreateManyImageInputEnvelope
+  set?: Prisma.CharacterWhereUniqueInput | Prisma.CharacterWhereUniqueInput[]
+  disconnect?: Prisma.CharacterWhereUniqueInput | Prisma.CharacterWhereUniqueInput[]
+  delete?: Prisma.CharacterWhereUniqueInput | Prisma.CharacterWhereUniqueInput[]
+  connect?: Prisma.CharacterWhereUniqueInput | Prisma.CharacterWhereUniqueInput[]
+  update?: Prisma.CharacterUpdateWithWhereUniqueWithoutImageInput | Prisma.CharacterUpdateWithWhereUniqueWithoutImageInput[]
+  updateMany?: Prisma.CharacterUpdateManyWithWhereWithoutImageInput | Prisma.CharacterUpdateManyWithWhereWithoutImageInput[]
+  deleteMany?: Prisma.CharacterScalarWhereInput | Prisma.CharacterScalarWhereInput[]
+}
+
+export type CharacterCreateNestedOneWithoutImageMentionsInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutImageMentionsInput, Prisma.CharacterUncheckedCreateWithoutImageMentionsInput>
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutImageMentionsInput
+  connect?: Prisma.CharacterWhereUniqueInput
+}
+
+export type CharacterUpdateOneWithoutImageMentionsNestedInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutImageMentionsInput, Prisma.CharacterUncheckedCreateWithoutImageMentionsInput>
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutImageMentionsInput
+  upsert?: Prisma.CharacterUpsertWithoutImageMentionsInput
+  disconnect?: Prisma.CharacterWhereInput | boolean
+  delete?: Prisma.CharacterWhereInput | boolean
+  connect?: Prisma.CharacterWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CharacterUpdateToOneWithWhereWithoutImageMentionsInput, Prisma.CharacterUpdateWithoutImageMentionsInput>, Prisma.CharacterUncheckedUpdateWithoutImageMentionsInput>
+}
+
+export type CharacterCreateNestedOneWithoutEntityAssetsInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutEntityAssetsInput, Prisma.CharacterUncheckedCreateWithoutEntityAssetsInput>
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutEntityAssetsInput
+  connect?: Prisma.CharacterWhereUniqueInput
+}
+
+export type CharacterUpdateOneWithoutEntityAssetsNestedInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutEntityAssetsInput, Prisma.CharacterUncheckedCreateWithoutEntityAssetsInput>
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutEntityAssetsInput
+  upsert?: Prisma.CharacterUpsertWithoutEntityAssetsInput
+  disconnect?: Prisma.CharacterWhereInput | boolean
+  delete?: Prisma.CharacterWhereInput | boolean
+  connect?: Prisma.CharacterWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CharacterUpdateToOneWithWhereWithoutEntityAssetsInput, Prisma.CharacterUpdateWithoutEntityAssetsInput>, Prisma.CharacterUncheckedUpdateWithoutEntityAssetsInput>
+}
+
+export type CharacterCreateNestedOneWithoutBookmarksInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutBookmarksInput, Prisma.CharacterUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutBookmarksInput
+  connect?: Prisma.CharacterWhereUniqueInput
+}
+
+export type CharacterUpdateOneWithoutBookmarksNestedInput = {
+  create?: Prisma.XOR<Prisma.CharacterCreateWithoutBookmarksInput, Prisma.CharacterUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutBookmarksInput
+  upsert?: Prisma.CharacterUpsertWithoutBookmarksInput
+  disconnect?: Prisma.CharacterWhereInput | boolean
+  delete?: Prisma.CharacterWhereInput | boolean
+  connect?: Prisma.CharacterWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CharacterUpdateToOneWithWhereWithoutBookmarksInput, Prisma.CharacterUpdateWithoutBookmarksInput>, Prisma.CharacterUncheckedUpdateWithoutBookmarksInput>
+}
+
 export type CharacterCreateWithoutCreatedByInput = {
   id?: string
   name: string
@@ -801,7 +983,6 @@ export type CharacterCreateWithoutCreatedByInput = {
   location?: string | null
   family?: string | null
   description?: string | null
-  image?: string | null
   isPrivate?: boolean
   birthDate?: string | null
   createdAt?: Date | string
@@ -809,6 +990,13 @@ export type CharacterCreateWithoutCreatedByInput = {
   birthCalendar?: Prisma.CalendarCreateNestedOneWithoutCharacterBirthdaysInput
   campaign: Prisma.CampaignCreateNestedOneWithoutCharactersInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostCreateNestedManyWithoutCharacterInput
+  image?: Prisma.ImageCreateNestedOneWithoutCharactersInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterUncheckedCreateWithoutCreatedByInput = {
@@ -823,7 +1011,7 @@ export type CharacterUncheckedCreateWithoutCreatedByInput = {
   location?: string | null
   family?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   isPrivate?: boolean
   birthCalendarId?: string | null
   birthDate?: string | null
@@ -831,6 +1019,12 @@ export type CharacterUncheckedCreateWithoutCreatedByInput = {
   updatedAt?: Date | string
   campaignId: string
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCharacterInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterCreateOrConnectWithoutCreatedByInput = {
@@ -874,7 +1068,7 @@ export type CharacterScalarWhereInput = {
   location?: Prisma.StringNullableFilter<"Character"> | string | null
   family?: Prisma.StringNullableFilter<"Character"> | string | null
   description?: Prisma.StringNullableFilter<"Character"> | string | null
-  image?: Prisma.StringNullableFilter<"Character"> | string | null
+  imageId?: Prisma.StringNullableFilter<"Character"> | string | null
   isPrivate?: Prisma.BoolFilter<"Character"> | boolean
   birthCalendarId?: Prisma.StringNullableFilter<"Character"> | string | null
   birthDate?: Prisma.StringNullableFilter<"Character"> | string | null
@@ -896,7 +1090,6 @@ export type CharacterCreateWithoutCampaignInput = {
   location?: string | null
   family?: string | null
   description?: string | null
-  image?: string | null
   isPrivate?: boolean
   birthDate?: string | null
   createdAt?: Date | string
@@ -904,6 +1097,13 @@ export type CharacterCreateWithoutCampaignInput = {
   birthCalendar?: Prisma.CalendarCreateNestedOneWithoutCharacterBirthdaysInput
   createdBy: Prisma.UserCreateNestedOneWithoutCharactersInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostCreateNestedManyWithoutCharacterInput
+  image?: Prisma.ImageCreateNestedOneWithoutCharactersInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterUncheckedCreateWithoutCampaignInput = {
@@ -918,7 +1118,7 @@ export type CharacterUncheckedCreateWithoutCampaignInput = {
   location?: string | null
   family?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   isPrivate?: boolean
   birthCalendarId?: string | null
   birthDate?: string | null
@@ -926,6 +1126,12 @@ export type CharacterUncheckedCreateWithoutCampaignInput = {
   updatedAt?: Date | string
   createdById: string
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCharacterInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterCreateOrConnectWithoutCampaignInput = {
@@ -966,7 +1172,6 @@ export type CharacterCreateWithoutBirthCalendarInput = {
   location?: string | null
   family?: string | null
   description?: string | null
-  image?: string | null
   isPrivate?: boolean
   birthDate?: string | null
   createdAt?: Date | string
@@ -974,6 +1179,13 @@ export type CharacterCreateWithoutBirthCalendarInput = {
   campaign: Prisma.CampaignCreateNestedOneWithoutCharactersInput
   createdBy: Prisma.UserCreateNestedOneWithoutCharactersInput
   diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostCreateNestedManyWithoutCharacterInput
+  image?: Prisma.ImageCreateNestedOneWithoutCharactersInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterUncheckedCreateWithoutBirthCalendarInput = {
@@ -988,7 +1200,7 @@ export type CharacterUncheckedCreateWithoutBirthCalendarInput = {
   location?: string | null
   family?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   isPrivate?: boolean
   birthDate?: string | null
   createdAt?: Date | string
@@ -996,6 +1208,12 @@ export type CharacterUncheckedCreateWithoutBirthCalendarInput = {
   campaignId: string
   createdById: string
   diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCharacterInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterCreateOrConnectWithoutBirthCalendarInput = {
@@ -1036,7 +1254,6 @@ export type CharacterCreateWithoutDiceRollsInput = {
   location?: string | null
   family?: string | null
   description?: string | null
-  image?: string | null
   isPrivate?: boolean
   birthDate?: string | null
   createdAt?: Date | string
@@ -1044,6 +1261,13 @@ export type CharacterCreateWithoutDiceRollsInput = {
   birthCalendar?: Prisma.CalendarCreateNestedOneWithoutCharacterBirthdaysInput
   campaign: Prisma.CampaignCreateNestedOneWithoutCharactersInput
   createdBy: Prisma.UserCreateNestedOneWithoutCharactersInput
+  conversationMessages?: Prisma.ConversationMessageCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostCreateNestedManyWithoutCharacterInput
+  image?: Prisma.ImageCreateNestedOneWithoutCharactersInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterUncheckedCreateWithoutDiceRollsInput = {
@@ -1058,7 +1282,7 @@ export type CharacterUncheckedCreateWithoutDiceRollsInput = {
   location?: string | null
   family?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   isPrivate?: boolean
   birthCalendarId?: string | null
   birthDate?: string | null
@@ -1066,6 +1290,12 @@ export type CharacterUncheckedCreateWithoutDiceRollsInput = {
   updatedAt?: Date | string
   campaignId: string
   createdById: string
+  conversationMessages?: Prisma.ConversationMessageUncheckedCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCharacterInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCharacterInput
 }
 
 export type CharacterCreateOrConnectWithoutDiceRollsInput = {
@@ -1096,7 +1326,6 @@ export type CharacterUpdateWithoutDiceRollsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1104,6 +1333,13 @@ export type CharacterUpdateWithoutDiceRollsInput = {
   birthCalendar?: Prisma.CalendarUpdateOneWithoutCharacterBirthdaysNestedInput
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutCharactersNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCharactersNestedInput
+  conversationMessages?: Prisma.ConversationMessageUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCharacterNestedInput
+  image?: Prisma.ImageUpdateOneWithoutCharactersNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterUncheckedUpdateWithoutDiceRollsInput = {
@@ -1118,7 +1354,7 @@ export type CharacterUncheckedUpdateWithoutDiceRollsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1126,6 +1362,862 @@ export type CharacterUncheckedUpdateWithoutDiceRollsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  conversationMessages?: Prisma.ConversationMessageUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCharacterNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCharacterNestedInput
+}
+
+export type CharacterCreateWithoutConversationMessagesInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  isPrivate?: boolean
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  birthCalendar?: Prisma.CalendarCreateNestedOneWithoutCharacterBirthdaysInput
+  campaign: Prisma.CampaignCreateNestedOneWithoutCharactersInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCharactersInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostCreateNestedManyWithoutCharacterInput
+  image?: Prisma.ImageCreateNestedOneWithoutCharactersInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCharacterInput
+}
+
+export type CharacterUncheckedCreateWithoutConversationMessagesInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  imageId?: string | null
+  isPrivate?: boolean
+  birthCalendarId?: string | null
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCharacterInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCharacterInput
+}
+
+export type CharacterCreateOrConnectWithoutConversationMessagesInput = {
+  where: Prisma.CharacterWhereUniqueInput
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutConversationMessagesInput, Prisma.CharacterUncheckedCreateWithoutConversationMessagesInput>
+}
+
+export type CharacterUpsertWithoutConversationMessagesInput = {
+  update: Prisma.XOR<Prisma.CharacterUpdateWithoutConversationMessagesInput, Prisma.CharacterUncheckedUpdateWithoutConversationMessagesInput>
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutConversationMessagesInput, Prisma.CharacterUncheckedCreateWithoutConversationMessagesInput>
+  where?: Prisma.CharacterWhereInput
+}
+
+export type CharacterUpdateToOneWithWhereWithoutConversationMessagesInput = {
+  where?: Prisma.CharacterWhereInput
+  data: Prisma.XOR<Prisma.CharacterUpdateWithoutConversationMessagesInput, Prisma.CharacterUncheckedUpdateWithoutConversationMessagesInput>
+}
+
+export type CharacterUpdateWithoutConversationMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthCalendar?: Prisma.CalendarUpdateOneWithoutCharacterBirthdaysNestedInput
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutCharactersNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCharactersNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCharacterNestedInput
+  image?: Prisma.ImageUpdateOneWithoutCharactersNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCharacterNestedInput
+}
+
+export type CharacterUncheckedUpdateWithoutConversationMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCharacterNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCharacterNestedInput
+}
+
+export type CharacterCreateWithoutConversationParticipantsInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  isPrivate?: boolean
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  birthCalendar?: Prisma.CalendarCreateNestedOneWithoutCharacterBirthdaysInput
+  campaign: Prisma.CampaignCreateNestedOneWithoutCharactersInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCharactersInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostCreateNestedManyWithoutCharacterInput
+  image?: Prisma.ImageCreateNestedOneWithoutCharactersInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCharacterInput
+}
+
+export type CharacterUncheckedCreateWithoutConversationParticipantsInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  imageId?: string | null
+  isPrivate?: boolean
+  birthCalendarId?: string | null
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCharacterInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCharacterInput
+}
+
+export type CharacterCreateOrConnectWithoutConversationParticipantsInput = {
+  where: Prisma.CharacterWhereUniqueInput
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutConversationParticipantsInput, Prisma.CharacterUncheckedCreateWithoutConversationParticipantsInput>
+}
+
+export type CharacterUpsertWithoutConversationParticipantsInput = {
+  update: Prisma.XOR<Prisma.CharacterUpdateWithoutConversationParticipantsInput, Prisma.CharacterUncheckedUpdateWithoutConversationParticipantsInput>
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutConversationParticipantsInput, Prisma.CharacterUncheckedCreateWithoutConversationParticipantsInput>
+  where?: Prisma.CharacterWhereInput
+}
+
+export type CharacterUpdateToOneWithWhereWithoutConversationParticipantsInput = {
+  where?: Prisma.CharacterWhereInput
+  data: Prisma.XOR<Prisma.CharacterUpdateWithoutConversationParticipantsInput, Prisma.CharacterUncheckedUpdateWithoutConversationParticipantsInput>
+}
+
+export type CharacterUpdateWithoutConversationParticipantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthCalendar?: Prisma.CalendarUpdateOneWithoutCharacterBirthdaysNestedInput
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutCharactersNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCharactersNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCharacterNestedInput
+  image?: Prisma.ImageUpdateOneWithoutCharactersNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCharacterNestedInput
+}
+
+export type CharacterUncheckedUpdateWithoutConversationParticipantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCharacterNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCharacterNestedInput
+}
+
+export type CharacterCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  isPrivate?: boolean
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  birthCalendar?: Prisma.CalendarCreateNestedOneWithoutCharacterBirthdaysInput
+  campaign: Prisma.CampaignCreateNestedOneWithoutCharactersInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCharactersInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantCreateNestedManyWithoutCharacterInput
+  image?: Prisma.ImageCreateNestedOneWithoutCharactersInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCharacterInput
+}
+
+export type CharacterUncheckedCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  imageId?: string | null
+  isPrivate?: boolean
+  birthCalendarId?: string | null
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutCharacterInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCharacterInput
+}
+
+export type CharacterCreateOrConnectWithoutPostsInput = {
+  where: Prisma.CharacterWhereUniqueInput
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutPostsInput, Prisma.CharacterUncheckedCreateWithoutPostsInput>
+}
+
+export type CharacterUpsertWithoutPostsInput = {
+  update: Prisma.XOR<Prisma.CharacterUpdateWithoutPostsInput, Prisma.CharacterUncheckedUpdateWithoutPostsInput>
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutPostsInput, Prisma.CharacterUncheckedCreateWithoutPostsInput>
+  where?: Prisma.CharacterWhereInput
+}
+
+export type CharacterUpdateToOneWithWhereWithoutPostsInput = {
+  where?: Prisma.CharacterWhereInput
+  data: Prisma.XOR<Prisma.CharacterUpdateWithoutPostsInput, Prisma.CharacterUncheckedUpdateWithoutPostsInput>
+}
+
+export type CharacterUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthCalendar?: Prisma.CalendarUpdateOneWithoutCharacterBirthdaysNestedInput
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutCharactersNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCharactersNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUpdateManyWithoutCharacterNestedInput
+  image?: Prisma.ImageUpdateOneWithoutCharactersNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCharacterNestedInput
+}
+
+export type CharacterUncheckedUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutCharacterNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCharacterNestedInput
+}
+
+export type CharacterCreateWithoutImageInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  isPrivate?: boolean
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  birthCalendar?: Prisma.CalendarCreateNestedOneWithoutCharacterBirthdaysInput
+  campaign: Prisma.CampaignCreateNestedOneWithoutCharactersInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCharactersInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostCreateNestedManyWithoutCharacterInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCharacterInput
+}
+
+export type CharacterUncheckedCreateWithoutImageInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  isPrivate?: boolean
+  birthCalendarId?: string | null
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCharacterInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCharacterInput
+}
+
+export type CharacterCreateOrConnectWithoutImageInput = {
+  where: Prisma.CharacterWhereUniqueInput
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutImageInput, Prisma.CharacterUncheckedCreateWithoutImageInput>
+}
+
+export type CharacterCreateManyImageInputEnvelope = {
+  data: Prisma.CharacterCreateManyImageInput | Prisma.CharacterCreateManyImageInput[]
+  skipDuplicates?: boolean
+}
+
+export type CharacterUpsertWithWhereUniqueWithoutImageInput = {
+  where: Prisma.CharacterWhereUniqueInput
+  update: Prisma.XOR<Prisma.CharacterUpdateWithoutImageInput, Prisma.CharacterUncheckedUpdateWithoutImageInput>
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutImageInput, Prisma.CharacterUncheckedCreateWithoutImageInput>
+}
+
+export type CharacterUpdateWithWhereUniqueWithoutImageInput = {
+  where: Prisma.CharacterWhereUniqueInput
+  data: Prisma.XOR<Prisma.CharacterUpdateWithoutImageInput, Prisma.CharacterUncheckedUpdateWithoutImageInput>
+}
+
+export type CharacterUpdateManyWithWhereWithoutImageInput = {
+  where: Prisma.CharacterScalarWhereInput
+  data: Prisma.XOR<Prisma.CharacterUpdateManyMutationInput, Prisma.CharacterUncheckedUpdateManyWithoutImageInput>
+}
+
+export type CharacterCreateWithoutImageMentionsInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  isPrivate?: boolean
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  birthCalendar?: Prisma.CalendarCreateNestedOneWithoutCharacterBirthdaysInput
+  campaign: Prisma.CampaignCreateNestedOneWithoutCharactersInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCharactersInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostCreateNestedManyWithoutCharacterInput
+  image?: Prisma.ImageCreateNestedOneWithoutCharactersInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCharacterInput
+}
+
+export type CharacterUncheckedCreateWithoutImageMentionsInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  imageId?: string | null
+  isPrivate?: boolean
+  birthCalendarId?: string | null
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCharacterInput
+}
+
+export type CharacterCreateOrConnectWithoutImageMentionsInput = {
+  where: Prisma.CharacterWhereUniqueInput
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutImageMentionsInput, Prisma.CharacterUncheckedCreateWithoutImageMentionsInput>
+}
+
+export type CharacterUpsertWithoutImageMentionsInput = {
+  update: Prisma.XOR<Prisma.CharacterUpdateWithoutImageMentionsInput, Prisma.CharacterUncheckedUpdateWithoutImageMentionsInput>
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutImageMentionsInput, Prisma.CharacterUncheckedCreateWithoutImageMentionsInput>
+  where?: Prisma.CharacterWhereInput
+}
+
+export type CharacterUpdateToOneWithWhereWithoutImageMentionsInput = {
+  where?: Prisma.CharacterWhereInput
+  data: Prisma.XOR<Prisma.CharacterUpdateWithoutImageMentionsInput, Prisma.CharacterUncheckedUpdateWithoutImageMentionsInput>
+}
+
+export type CharacterUpdateWithoutImageMentionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthCalendar?: Prisma.CalendarUpdateOneWithoutCharacterBirthdaysNestedInput
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutCharactersNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCharactersNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCharacterNestedInput
+  image?: Prisma.ImageUpdateOneWithoutCharactersNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCharacterNestedInput
+}
+
+export type CharacterUncheckedUpdateWithoutImageMentionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCharacterNestedInput
+}
+
+export type CharacterCreateWithoutEntityAssetsInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  isPrivate?: boolean
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  birthCalendar?: Prisma.CalendarCreateNestedOneWithoutCharacterBirthdaysInput
+  campaign: Prisma.CampaignCreateNestedOneWithoutCharactersInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCharactersInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostCreateNestedManyWithoutCharacterInput
+  image?: Prisma.ImageCreateNestedOneWithoutCharactersInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCharacterInput
+}
+
+export type CharacterUncheckedCreateWithoutEntityAssetsInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  imageId?: string | null
+  isPrivate?: boolean
+  birthCalendarId?: string | null
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCharacterInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutCharacterInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCharacterInput
+}
+
+export type CharacterCreateOrConnectWithoutEntityAssetsInput = {
+  where: Prisma.CharacterWhereUniqueInput
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutEntityAssetsInput, Prisma.CharacterUncheckedCreateWithoutEntityAssetsInput>
+}
+
+export type CharacterUpsertWithoutEntityAssetsInput = {
+  update: Prisma.XOR<Prisma.CharacterUpdateWithoutEntityAssetsInput, Prisma.CharacterUncheckedUpdateWithoutEntityAssetsInput>
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutEntityAssetsInput, Prisma.CharacterUncheckedCreateWithoutEntityAssetsInput>
+  where?: Prisma.CharacterWhereInput
+}
+
+export type CharacterUpdateToOneWithWhereWithoutEntityAssetsInput = {
+  where?: Prisma.CharacterWhereInput
+  data: Prisma.XOR<Prisma.CharacterUpdateWithoutEntityAssetsInput, Prisma.CharacterUncheckedUpdateWithoutEntityAssetsInput>
+}
+
+export type CharacterUpdateWithoutEntityAssetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthCalendar?: Prisma.CalendarUpdateOneWithoutCharacterBirthdaysNestedInput
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutCharactersNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCharactersNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCharacterNestedInput
+  image?: Prisma.ImageUpdateOneWithoutCharactersNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCharacterNestedInput
+}
+
+export type CharacterUncheckedUpdateWithoutEntityAssetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCharacterNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCharacterNestedInput
+}
+
+export type CharacterCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  isPrivate?: boolean
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  birthCalendar?: Prisma.CalendarCreateNestedOneWithoutCharacterBirthdaysInput
+  campaign: Prisma.CampaignCreateNestedOneWithoutCharactersInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCharactersInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostCreateNestedManyWithoutCharacterInput
+  image?: Prisma.ImageCreateNestedOneWithoutCharactersInput
+  imageMentions?: Prisma.ImageMentionCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetCreateNestedManyWithoutCharacterInput
+}
+
+export type CharacterUncheckedCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  imageId?: string | null
+  isPrivate?: boolean
+  birthCalendarId?: string | null
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCharacterInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedCreateNestedManyWithoutCharacterInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutCharacterInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCharacterInput
+  imageMentions?: Prisma.ImageMentionUncheckedCreateNestedManyWithoutCharacterInput
+  entityAssets?: Prisma.EntityAssetUncheckedCreateNestedManyWithoutCharacterInput
+}
+
+export type CharacterCreateOrConnectWithoutBookmarksInput = {
+  where: Prisma.CharacterWhereUniqueInput
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutBookmarksInput, Prisma.CharacterUncheckedCreateWithoutBookmarksInput>
+}
+
+export type CharacterUpsertWithoutBookmarksInput = {
+  update: Prisma.XOR<Prisma.CharacterUpdateWithoutBookmarksInput, Prisma.CharacterUncheckedUpdateWithoutBookmarksInput>
+  create: Prisma.XOR<Prisma.CharacterCreateWithoutBookmarksInput, Prisma.CharacterUncheckedCreateWithoutBookmarksInput>
+  where?: Prisma.CharacterWhereInput
+}
+
+export type CharacterUpdateToOneWithWhereWithoutBookmarksInput = {
+  where?: Prisma.CharacterWhereInput
+  data: Prisma.XOR<Prisma.CharacterUpdateWithoutBookmarksInput, Prisma.CharacterUncheckedUpdateWithoutBookmarksInput>
+}
+
+export type CharacterUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthCalendar?: Prisma.CalendarUpdateOneWithoutCharacterBirthdaysNestedInput
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutCharactersNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCharactersNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCharacterNestedInput
+  image?: Prisma.ImageUpdateOneWithoutCharactersNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutCharacterNestedInput
+}
+
+export type CharacterUncheckedUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCharacterNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterCreateManyCreatedByInput = {
@@ -1140,7 +2232,7 @@ export type CharacterCreateManyCreatedByInput = {
   location?: string | null
   family?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   isPrivate?: boolean
   birthCalendarId?: string | null
   birthDate?: string | null
@@ -1161,7 +2253,6 @@ export type CharacterUpdateWithoutCreatedByInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1169,6 +2260,13 @@ export type CharacterUpdateWithoutCreatedByInput = {
   birthCalendar?: Prisma.CalendarUpdateOneWithoutCharacterBirthdaysNestedInput
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutCharactersNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCharacterNestedInput
+  image?: Prisma.ImageUpdateOneWithoutCharactersNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterUncheckedUpdateWithoutCreatedByInput = {
@@ -1183,7 +2281,7 @@ export type CharacterUncheckedUpdateWithoutCreatedByInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1191,6 +2289,12 @@ export type CharacterUncheckedUpdateWithoutCreatedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCharacterNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1205,7 +2309,7 @@ export type CharacterUncheckedUpdateManyWithoutCreatedByInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1226,7 +2330,7 @@ export type CharacterCreateManyCampaignInput = {
   location?: string | null
   family?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   isPrivate?: boolean
   birthCalendarId?: string | null
   birthDate?: string | null
@@ -1247,7 +2351,6 @@ export type CharacterUpdateWithoutCampaignInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1255,6 +2358,13 @@ export type CharacterUpdateWithoutCampaignInput = {
   birthCalendar?: Prisma.CalendarUpdateOneWithoutCharacterBirthdaysNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCharactersNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCharacterNestedInput
+  image?: Prisma.ImageUpdateOneWithoutCharactersNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterUncheckedUpdateWithoutCampaignInput = {
@@ -1269,7 +2379,7 @@ export type CharacterUncheckedUpdateWithoutCampaignInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1277,6 +2387,12 @@ export type CharacterUncheckedUpdateWithoutCampaignInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCharacterNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterUncheckedUpdateManyWithoutCampaignInput = {
@@ -1291,7 +2407,7 @@ export type CharacterUncheckedUpdateManyWithoutCampaignInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1312,7 +2428,7 @@ export type CharacterCreateManyBirthCalendarInput = {
   location?: string | null
   family?: string | null
   description?: string | null
-  image?: string | null
+  imageId?: string | null
   isPrivate?: boolean
   birthDate?: string | null
   createdAt?: Date | string
@@ -1333,7 +2449,6 @@ export type CharacterUpdateWithoutBirthCalendarInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1341,6 +2456,13 @@ export type CharacterUpdateWithoutBirthCalendarInput = {
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutCharactersNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCharactersNestedInput
   diceRolls?: Prisma.DiceRollUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCharacterNestedInput
+  image?: Prisma.ImageUpdateOneWithoutCharactersNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterUncheckedUpdateWithoutBirthCalendarInput = {
@@ -1355,7 +2477,7 @@ export type CharacterUncheckedUpdateWithoutBirthCalendarInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
   birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1363,6 +2485,12 @@ export type CharacterUncheckedUpdateWithoutBirthCalendarInput = {
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCharacterNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCharacterNestedInput
 }
 
 export type CharacterUncheckedUpdateManyWithoutBirthCalendarInput = {
@@ -1377,8 +2505,106 @@ export type CharacterUncheckedUpdateManyWithoutBirthCalendarInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type CharacterCreateManyImageInput = {
+  id?: string
+  name: string
+  slug: string
+  title?: string | null
+  type?: string | null
+  age?: string | null
+  sex?: string | null
+  pronouns?: string | null
+  location?: string | null
+  family?: string | null
+  description?: string | null
+  isPrivate?: boolean
+  birthCalendarId?: string | null
+  birthDate?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+}
+
+export type CharacterUpdateWithoutImageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthCalendar?: Prisma.CalendarUpdateOneWithoutCharacterBirthdaysNestedInput
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutCharactersNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCharactersNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCharacterNestedInput
+  imageMentions?: Prisma.ImageMentionUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCharacterNestedInput
+}
+
+export type CharacterUncheckedUpdateWithoutImageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationMessages?: Prisma.ConversationMessageUncheckedUpdateManyWithoutCharacterNestedInput
+  conversationParticipants?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutCharacterNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCharacterNestedInput
+  imageMentions?: Prisma.ImageMentionUncheckedUpdateManyWithoutCharacterNestedInput
+  entityAssets?: Prisma.EntityAssetUncheckedUpdateManyWithoutCharacterNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCharacterNestedInput
+}
+
+export type CharacterUncheckedUpdateManyWithoutImageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  family?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  birthCalendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1393,10 +2619,22 @@ export type CharacterUncheckedUpdateManyWithoutBirthCalendarInput = {
 
 export type CharacterCountOutputType = {
   diceRolls: number
+  conversationMessages: number
+  conversationParticipants: number
+  posts: number
+  imageMentions: number
+  entityAssets: number
+  bookmarks: number
 }
 
 export type CharacterCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   diceRolls?: boolean | CharacterCountOutputTypeCountDiceRollsArgs
+  conversationMessages?: boolean | CharacterCountOutputTypeCountConversationMessagesArgs
+  conversationParticipants?: boolean | CharacterCountOutputTypeCountConversationParticipantsArgs
+  posts?: boolean | CharacterCountOutputTypeCountPostsArgs
+  imageMentions?: boolean | CharacterCountOutputTypeCountImageMentionsArgs
+  entityAssets?: boolean | CharacterCountOutputTypeCountEntityAssetsArgs
+  bookmarks?: boolean | CharacterCountOutputTypeCountBookmarksArgs
 }
 
 /**
@@ -1416,6 +2654,48 @@ export type CharacterCountOutputTypeCountDiceRollsArgs<ExtArgs extends runtime.T
   where?: Prisma.DiceRollWhereInput
 }
 
+/**
+ * CharacterCountOutputType without action
+ */
+export type CharacterCountOutputTypeCountConversationMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ConversationMessageWhereInput
+}
+
+/**
+ * CharacterCountOutputType without action
+ */
+export type CharacterCountOutputTypeCountConversationParticipantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ConversationParticipantWhereInput
+}
+
+/**
+ * CharacterCountOutputType without action
+ */
+export type CharacterCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PostWhereInput
+}
+
+/**
+ * CharacterCountOutputType without action
+ */
+export type CharacterCountOutputTypeCountImageMentionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ImageMentionWhereInput
+}
+
+/**
+ * CharacterCountOutputType without action
+ */
+export type CharacterCountOutputTypeCountEntityAssetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EntityAssetWhereInput
+}
+
+/**
+ * CharacterCountOutputType without action
+ */
+export type CharacterCountOutputTypeCountBookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookmarkWhereInput
+}
+
 
 export type CharacterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1429,7 +2709,7 @@ export type CharacterSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   location?: boolean
   family?: boolean
   description?: boolean
-  image?: boolean
+  imageId?: boolean
   isPrivate?: boolean
   birthCalendarId?: boolean
   birthDate?: boolean
@@ -1441,6 +2721,13 @@ export type CharacterSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   diceRolls?: boolean | Prisma.Character$diceRollsArgs<ExtArgs>
+  conversationMessages?: boolean | Prisma.Character$conversationMessagesArgs<ExtArgs>
+  conversationParticipants?: boolean | Prisma.Character$conversationParticipantsArgs<ExtArgs>
+  posts?: boolean | Prisma.Character$postsArgs<ExtArgs>
+  image?: boolean | Prisma.Character$imageArgs<ExtArgs>
+  imageMentions?: boolean | Prisma.Character$imageMentionsArgs<ExtArgs>
+  entityAssets?: boolean | Prisma.Character$entityAssetsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Character$bookmarksArgs<ExtArgs>
   _count?: boolean | Prisma.CharacterCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["character"]>
 
@@ -1456,7 +2743,7 @@ export type CharacterSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   location?: boolean
   family?: boolean
   description?: boolean
-  image?: boolean
+  imageId?: boolean
   isPrivate?: boolean
   birthCalendarId?: boolean
   birthDate?: boolean
@@ -1467,6 +2754,7 @@ export type CharacterSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   birthCalendar?: boolean | Prisma.Character$birthCalendarArgs<ExtArgs>
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  image?: boolean | Prisma.Character$imageArgs<ExtArgs>
 }, ExtArgs["result"]["character"]>
 
 export type CharacterSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1481,7 +2769,7 @@ export type CharacterSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   location?: boolean
   family?: boolean
   description?: boolean
-  image?: boolean
+  imageId?: boolean
   isPrivate?: boolean
   birthCalendarId?: boolean
   birthDate?: boolean
@@ -1492,6 +2780,7 @@ export type CharacterSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   birthCalendar?: boolean | Prisma.Character$birthCalendarArgs<ExtArgs>
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  image?: boolean | Prisma.Character$imageArgs<ExtArgs>
 }, ExtArgs["result"]["character"]>
 
 export type CharacterSelectScalar = {
@@ -1506,7 +2795,7 @@ export type CharacterSelectScalar = {
   location?: boolean
   family?: boolean
   description?: boolean
-  image?: boolean
+  imageId?: boolean
   isPrivate?: boolean
   birthCalendarId?: boolean
   birthDate?: boolean
@@ -1516,23 +2805,32 @@ export type CharacterSelectScalar = {
   createdById?: boolean
 }
 
-export type CharacterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "title" | "type" | "age" | "sex" | "pronouns" | "location" | "family" | "description" | "image" | "isPrivate" | "birthCalendarId" | "birthDate" | "createdAt" | "updatedAt" | "campaignId" | "createdById", ExtArgs["result"]["character"]>
+export type CharacterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "title" | "type" | "age" | "sex" | "pronouns" | "location" | "family" | "description" | "imageId" | "isPrivate" | "birthCalendarId" | "birthDate" | "createdAt" | "updatedAt" | "campaignId" | "createdById", ExtArgs["result"]["character"]>
 export type CharacterInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   birthCalendar?: boolean | Prisma.Character$birthCalendarArgs<ExtArgs>
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   diceRolls?: boolean | Prisma.Character$diceRollsArgs<ExtArgs>
+  conversationMessages?: boolean | Prisma.Character$conversationMessagesArgs<ExtArgs>
+  conversationParticipants?: boolean | Prisma.Character$conversationParticipantsArgs<ExtArgs>
+  posts?: boolean | Prisma.Character$postsArgs<ExtArgs>
+  image?: boolean | Prisma.Character$imageArgs<ExtArgs>
+  imageMentions?: boolean | Prisma.Character$imageMentionsArgs<ExtArgs>
+  entityAssets?: boolean | Prisma.Character$entityAssetsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Character$bookmarksArgs<ExtArgs>
   _count?: boolean | Prisma.CharacterCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CharacterIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   birthCalendar?: boolean | Prisma.Character$birthCalendarArgs<ExtArgs>
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  image?: boolean | Prisma.Character$imageArgs<ExtArgs>
 }
 export type CharacterIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   birthCalendar?: boolean | Prisma.Character$birthCalendarArgs<ExtArgs>
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  image?: boolean | Prisma.Character$imageArgs<ExtArgs>
 }
 
 export type $CharacterPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1542,6 +2840,13 @@ export type $CharacterPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     campaign: Prisma.$CampaignPayload<ExtArgs>
     createdBy: Prisma.$UserPayload<ExtArgs>
     diceRolls: Prisma.$DiceRollPayload<ExtArgs>[]
+    conversationMessages: Prisma.$ConversationMessagePayload<ExtArgs>[]
+    conversationParticipants: Prisma.$ConversationParticipantPayload<ExtArgs>[]
+    posts: Prisma.$PostPayload<ExtArgs>[]
+    image: Prisma.$ImagePayload<ExtArgs> | null
+    imageMentions: Prisma.$ImageMentionPayload<ExtArgs>[]
+    entityAssets: Prisma.$EntityAssetPayload<ExtArgs>[]
+    bookmarks: Prisma.$BookmarkPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1555,7 +2860,7 @@ export type $CharacterPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     location: string | null
     family: string | null
     description: string | null
-    image: string | null
+    imageId: string | null
     isPrivate: boolean
     birthCalendarId: string | null
     birthDate: string | null
@@ -1961,6 +3266,13 @@ export interface Prisma__CharacterClient<T, Null = never, ExtArgs extends runtim
   campaign<T extends Prisma.CampaignDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CampaignDefaultArgs<ExtArgs>>): Prisma.Prisma__CampaignClient<runtime.Types.Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   diceRolls<T extends Prisma.Character$diceRollsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Character$diceRollsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DiceRollPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  conversationMessages<T extends Prisma.Character$conversationMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Character$conversationMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConversationMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  conversationParticipants<T extends Prisma.Character$conversationParticipantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Character$conversationParticipantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConversationParticipantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  posts<T extends Prisma.Character$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Character$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  image<T extends Prisma.Character$imageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Character$imageArgs<ExtArgs>>): Prisma.Prisma__ImageClient<runtime.Types.Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  imageMentions<T extends Prisma.Character$imageMentionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Character$imageMentionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImageMentionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  entityAssets<T extends Prisma.Character$entityAssetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Character$entityAssetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntityAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bookmarks<T extends Prisma.Character$bookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Character$bookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2001,7 +3313,7 @@ export interface CharacterFieldRefs {
   readonly location: Prisma.FieldRef<"Character", 'String'>
   readonly family: Prisma.FieldRef<"Character", 'String'>
   readonly description: Prisma.FieldRef<"Character", 'String'>
-  readonly image: Prisma.FieldRef<"Character", 'String'>
+  readonly imageId: Prisma.FieldRef<"Character", 'String'>
   readonly isPrivate: Prisma.FieldRef<"Character", 'Boolean'>
   readonly birthCalendarId: Prisma.FieldRef<"Character", 'String'>
   readonly birthDate: Prisma.FieldRef<"Character", 'String'>
@@ -2445,6 +3757,169 @@ export type Character$diceRollsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.DiceRollScalarFieldEnum | Prisma.DiceRollScalarFieldEnum[]
+}
+
+/**
+ * Character.conversationMessages
+ */
+export type Character$conversationMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ConversationMessage
+   */
+  select?: Prisma.ConversationMessageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ConversationMessage
+   */
+  omit?: Prisma.ConversationMessageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ConversationMessageInclude<ExtArgs> | null
+  where?: Prisma.ConversationMessageWhereInput
+  orderBy?: Prisma.ConversationMessageOrderByWithRelationInput | Prisma.ConversationMessageOrderByWithRelationInput[]
+  cursor?: Prisma.ConversationMessageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ConversationMessageScalarFieldEnum | Prisma.ConversationMessageScalarFieldEnum[]
+}
+
+/**
+ * Character.conversationParticipants
+ */
+export type Character$conversationParticipantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ConversationParticipant
+   */
+  select?: Prisma.ConversationParticipantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ConversationParticipant
+   */
+  omit?: Prisma.ConversationParticipantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ConversationParticipantInclude<ExtArgs> | null
+  where?: Prisma.ConversationParticipantWhereInput
+  orderBy?: Prisma.ConversationParticipantOrderByWithRelationInput | Prisma.ConversationParticipantOrderByWithRelationInput[]
+  cursor?: Prisma.ConversationParticipantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ConversationParticipantScalarFieldEnum | Prisma.ConversationParticipantScalarFieldEnum[]
+}
+
+/**
+ * Character.posts
+ */
+export type Character$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Post
+   */
+  select?: Prisma.PostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Post
+   */
+  omit?: Prisma.PostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostInclude<ExtArgs> | null
+  where?: Prisma.PostWhereInput
+  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
+  cursor?: Prisma.PostWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[]
+}
+
+/**
+ * Character.image
+ */
+export type Character$imageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Image
+   */
+  select?: Prisma.ImageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Image
+   */
+  omit?: Prisma.ImageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ImageInclude<ExtArgs> | null
+  where?: Prisma.ImageWhereInput
+}
+
+/**
+ * Character.imageMentions
+ */
+export type Character$imageMentionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ImageMention
+   */
+  select?: Prisma.ImageMentionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ImageMention
+   */
+  omit?: Prisma.ImageMentionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ImageMentionInclude<ExtArgs> | null
+  where?: Prisma.ImageMentionWhereInput
+  orderBy?: Prisma.ImageMentionOrderByWithRelationInput | Prisma.ImageMentionOrderByWithRelationInput[]
+  cursor?: Prisma.ImageMentionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ImageMentionScalarFieldEnum | Prisma.ImageMentionScalarFieldEnum[]
+}
+
+/**
+ * Character.entityAssets
+ */
+export type Character$entityAssetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EntityAsset
+   */
+  select?: Prisma.EntityAssetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EntityAsset
+   */
+  omit?: Prisma.EntityAssetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EntityAssetInclude<ExtArgs> | null
+  where?: Prisma.EntityAssetWhereInput
+  orderBy?: Prisma.EntityAssetOrderByWithRelationInput | Prisma.EntityAssetOrderByWithRelationInput[]
+  cursor?: Prisma.EntityAssetWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EntityAssetScalarFieldEnum | Prisma.EntityAssetScalarFieldEnum[]
+}
+
+/**
+ * Character.bookmarks
+ */
+export type Character$bookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Bookmark
+   */
+  select?: Prisma.BookmarkSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Bookmark
+   */
+  omit?: Prisma.BookmarkOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BookmarkInclude<ExtArgs> | null
+  where?: Prisma.BookmarkWhereInput
+  orderBy?: Prisma.BookmarkOrderByWithRelationInput | Prisma.BookmarkOrderByWithRelationInput[]
+  cursor?: Prisma.BookmarkWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookmarkScalarFieldEnum | Prisma.BookmarkScalarFieldEnum[]
 }
 
 /**

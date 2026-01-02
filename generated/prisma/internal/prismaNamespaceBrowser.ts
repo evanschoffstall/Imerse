@@ -81,7 +81,20 @@ export const ModelName = {
   Creature: 'Creature',
   CreatureLocation: 'CreatureLocation',
   DiceRoll: 'DiceRoll',
-  DiceRollResult: 'DiceRollResult'
+  DiceRollResult: 'DiceRollResult',
+  Conversation: 'Conversation',
+  ConversationMessage: 'ConversationMessage',
+  ConversationParticipant: 'ConversationParticipant',
+  Post: 'Post',
+  PostTag: 'PostTag',
+  PostPermission: 'PostPermission',
+  Image: 'Image',
+  ImageMention: 'ImageMention',
+  EntityAsset: 'EntityAsset',
+  AttributeTemplate: 'AttributeTemplate',
+  Bookmark: 'Bookmark',
+  PresetType: 'PresetType',
+  Preset: 'Preset'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -156,7 +169,7 @@ export const CharacterScalarFieldEnum = {
   location: 'location',
   family: 'family',
   description: 'description',
-  image: 'image',
+  imageId: 'imageId',
   isPrivate: 'isPrivate',
   birthCalendarId: 'birthCalendarId',
   birthDate: 'birthDate',
@@ -176,7 +189,7 @@ export const LocationScalarFieldEnum = {
   type: 'type',
   parentId: 'parentId',
   description: 'description',
-  image: 'image',
+  imageId: 'imageId',
   mapImage: 'mapImage',
   isPrivate: 'isPrivate',
   createdAt: 'createdAt',
@@ -681,6 +694,213 @@ export const DiceRollResultScalarFieldEnum = {
 } as const
 
 export type DiceRollResultScalarFieldEnum = (typeof DiceRollResultScalarFieldEnum)[keyof typeof DiceRollResultScalarFieldEnum]
+
+
+export const ConversationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  target: 'target',
+  isPrivate: 'isPrivate',
+  isClosed: 'isClosed',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  campaignId: 'campaignId',
+  createdById: 'createdById'
+} as const
+
+export type ConversationScalarFieldEnum = (typeof ConversationScalarFieldEnum)[keyof typeof ConversationScalarFieldEnum]
+
+
+export const ConversationMessageScalarFieldEnum = {
+  id: 'id',
+  message: 'message',
+  createdAt: 'createdAt',
+  conversationId: 'conversationId',
+  userId: 'userId',
+  characterId: 'characterId',
+  createdById: 'createdById'
+} as const
+
+export type ConversationMessageScalarFieldEnum = (typeof ConversationMessageScalarFieldEnum)[keyof typeof ConversationMessageScalarFieldEnum]
+
+
+export const ConversationParticipantScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  conversationId: 'conversationId',
+  userId: 'userId',
+  characterId: 'characterId'
+} as const
+
+export type ConversationParticipantScalarFieldEnum = (typeof ConversationParticipantScalarFieldEnum)[keyof typeof ConversationParticipantScalarFieldEnum]
+
+
+export const PostScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  entry: 'entry',
+  isPrivate: 'isPrivate',
+  isPinned: 'isPinned',
+  position: 'position',
+  layoutId: 'layoutId',
+  settings: 'settings',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  campaignId: 'campaignId',
+  createdById: 'createdById',
+  characterId: 'characterId',
+  locationId: 'locationId',
+  itemId: 'itemId',
+  questId: 'questId',
+  eventId: 'eventId',
+  journalId: 'journalId',
+  familyId: 'familyId',
+  organisationId: 'organisationId'
+} as const
+
+export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
+
+
+export const PostTagScalarFieldEnum = {
+  id: 'id',
+  postId: 'postId',
+  tagId: 'tagId'
+} as const
+
+export type PostTagScalarFieldEnum = (typeof PostTagScalarFieldEnum)[keyof typeof PostTagScalarFieldEnum]
+
+
+export const PostPermissionScalarFieldEnum = {
+  id: 'id',
+  permission: 'permission',
+  postId: 'postId',
+  roleId: 'roleId',
+  userId: 'userId'
+} as const
+
+export type PostPermissionScalarFieldEnum = (typeof PostPermissionScalarFieldEnum)[keyof typeof PostPermissionScalarFieldEnum]
+
+
+export const ImageScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  ext: 'ext',
+  size: 'size',
+  width: 'width',
+  height: 'height',
+  focusX: 'focusX',
+  focusY: 'focusY',
+  isFolder: 'isFolder',
+  isDefault: 'isDefault',
+  visibility: 'visibility',
+  campaignId: 'campaignId',
+  folderId: 'folderId',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ImageScalarFieldEnum = (typeof ImageScalarFieldEnum)[keyof typeof ImageScalarFieldEnum]
+
+
+export const ImageMentionScalarFieldEnum = {
+  id: 'id',
+  imageId: 'imageId',
+  characterId: 'characterId',
+  locationId: 'locationId',
+  postId: 'postId',
+  createdAt: 'createdAt'
+} as const
+
+export type ImageMentionScalarFieldEnum = (typeof ImageMentionScalarFieldEnum)[keyof typeof ImageMentionScalarFieldEnum]
+
+
+export const EntityAssetScalarFieldEnum = {
+  id: 'id',
+  metadata: 'metadata',
+  imageId: 'imageId',
+  characterId: 'characterId',
+  locationId: 'locationId',
+  createdAt: 'createdAt'
+} as const
+
+export type EntityAssetScalarFieldEnum = (typeof EntityAssetScalarFieldEnum)[keyof typeof EntityAssetScalarFieldEnum]
+
+
+export const AttributeTemplateScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  config: 'config',
+  entityType: 'entityType',
+  isPublic: 'isPublic',
+  position: 'position',
+  campaignId: 'campaignId',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttributeTemplateScalarFieldEnum = (typeof AttributeTemplateScalarFieldEnum)[keyof typeof AttributeTemplateScalarFieldEnum]
+
+
+export const BookmarkScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  icon: 'icon',
+  color: 'color',
+  type: 'type',
+  config: 'config',
+  folder: 'folder',
+  position: 'position',
+  campaignId: 'campaignId',
+  userId: 'userId',
+  characterId: 'characterId',
+  locationId: 'locationId',
+  itemId: 'itemId',
+  questId: 'questId',
+  eventId: 'eventId',
+  journalId: 'journalId',
+  familyId: 'familyId',
+  organisationId: 'organisationId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BookmarkScalarFieldEnum = (typeof BookmarkScalarFieldEnum)[keyof typeof BookmarkScalarFieldEnum]
+
+
+export const PresetTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  category: 'category',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PresetTypeScalarFieldEnum = (typeof PresetTypeScalarFieldEnum)[keyof typeof PresetTypeScalarFieldEnum]
+
+
+export const PresetScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  config: 'config',
+  isPublic: 'isPublic',
+  isOfficial: 'isOfficial',
+  category: 'category',
+  tags: 'tags',
+  typeId: 'typeId',
+  campaignId: 'campaignId',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PresetScalarFieldEnum = (typeof PresetScalarFieldEnum)[keyof typeof PresetScalarFieldEnum]
 
 
 export const SortOrder = {

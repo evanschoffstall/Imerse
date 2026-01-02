@@ -240,6 +240,8 @@ export type QuestWhereInput = {
   createdById?: Prisma.StringFilter<"Quest"> | string
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  posts?: Prisma.PostListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
 }
 
 export type QuestOrderByWithRelationInput = {
@@ -257,6 +259,8 @@ export type QuestOrderByWithRelationInput = {
   createdById?: Prisma.SortOrder
   campaign?: Prisma.CampaignOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
+  posts?: Prisma.PostOrderByRelationAggregateInput
+  bookmarks?: Prisma.BookmarkOrderByRelationAggregateInput
 }
 
 export type QuestWhereUniqueInput = Prisma.AtLeast<{
@@ -278,6 +282,8 @@ export type QuestWhereUniqueInput = Prisma.AtLeast<{
   createdById?: Prisma.StringFilter<"Quest"> | string
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  posts?: Prisma.PostListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
 }, "id" | "campaignId_slug">
 
 export type QuestOrderByWithAggregationInput = {
@@ -329,6 +335,8 @@ export type QuestCreateInput = {
   updatedAt?: Date | string
   campaign: Prisma.CampaignCreateNestedOneWithoutQuestsInput
   createdBy: Prisma.UserCreateNestedOneWithoutQuestsInput
+  posts?: Prisma.PostCreateNestedManyWithoutQuestInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutQuestInput
 }
 
 export type QuestUncheckedCreateInput = {
@@ -344,6 +352,8 @@ export type QuestUncheckedCreateInput = {
   updatedAt?: Date | string
   campaignId: string
   createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutQuestInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutQuestInput
 }
 
 export type QuestUpdateInput = {
@@ -359,6 +369,8 @@ export type QuestUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutQuestsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutQuestsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutQuestNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutQuestNestedInput
 }
 
 export type QuestUncheckedUpdateInput = {
@@ -374,6 +386,8 @@ export type QuestUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutQuestNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutQuestNestedInput
 }
 
 export type QuestCreateManyInput = {
@@ -479,6 +493,11 @@ export type QuestMinOrderByAggregateInput = {
   createdById?: Prisma.SortOrder
 }
 
+export type QuestNullableScalarRelationFilter = {
+  is?: Prisma.QuestWhereInput | null
+  isNot?: Prisma.QuestWhereInput | null
+}
+
 export type QuestCreateNestedManyWithoutCreatedByInput = {
   create?: Prisma.XOR<Prisma.QuestCreateWithoutCreatedByInput, Prisma.QuestUncheckedCreateWithoutCreatedByInput> | Prisma.QuestCreateWithoutCreatedByInput[] | Prisma.QuestUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.QuestCreateOrConnectWithoutCreatedByInput | Prisma.QuestCreateOrConnectWithoutCreatedByInput[]
@@ -563,6 +582,38 @@ export type QuestUncheckedUpdateManyWithoutCampaignNestedInput = {
   deleteMany?: Prisma.QuestScalarWhereInput | Prisma.QuestScalarWhereInput[]
 }
 
+export type QuestCreateNestedOneWithoutPostsInput = {
+  create?: Prisma.XOR<Prisma.QuestCreateWithoutPostsInput, Prisma.QuestUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.QuestCreateOrConnectWithoutPostsInput
+  connect?: Prisma.QuestWhereUniqueInput
+}
+
+export type QuestUpdateOneWithoutPostsNestedInput = {
+  create?: Prisma.XOR<Prisma.QuestCreateWithoutPostsInput, Prisma.QuestUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.QuestCreateOrConnectWithoutPostsInput
+  upsert?: Prisma.QuestUpsertWithoutPostsInput
+  disconnect?: Prisma.QuestWhereInput | boolean
+  delete?: Prisma.QuestWhereInput | boolean
+  connect?: Prisma.QuestWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.QuestUpdateToOneWithWhereWithoutPostsInput, Prisma.QuestUpdateWithoutPostsInput>, Prisma.QuestUncheckedUpdateWithoutPostsInput>
+}
+
+export type QuestCreateNestedOneWithoutBookmarksInput = {
+  create?: Prisma.XOR<Prisma.QuestCreateWithoutBookmarksInput, Prisma.QuestUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.QuestCreateOrConnectWithoutBookmarksInput
+  connect?: Prisma.QuestWhereUniqueInput
+}
+
+export type QuestUpdateOneWithoutBookmarksNestedInput = {
+  create?: Prisma.XOR<Prisma.QuestCreateWithoutBookmarksInput, Prisma.QuestUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.QuestCreateOrConnectWithoutBookmarksInput
+  upsert?: Prisma.QuestUpsertWithoutBookmarksInput
+  disconnect?: Prisma.QuestWhereInput | boolean
+  delete?: Prisma.QuestWhereInput | boolean
+  connect?: Prisma.QuestWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.QuestUpdateToOneWithWhereWithoutBookmarksInput, Prisma.QuestUpdateWithoutBookmarksInput>, Prisma.QuestUncheckedUpdateWithoutBookmarksInput>
+}
+
 export type QuestCreateWithoutCreatedByInput = {
   id?: string
   name: string
@@ -575,6 +626,8 @@ export type QuestCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   campaign: Prisma.CampaignCreateNestedOneWithoutQuestsInput
+  posts?: Prisma.PostCreateNestedManyWithoutQuestInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutQuestInput
 }
 
 export type QuestUncheckedCreateWithoutCreatedByInput = {
@@ -589,6 +642,8 @@ export type QuestUncheckedCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   campaignId: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutQuestInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutQuestInput
 }
 
 export type QuestCreateOrConnectWithoutCreatedByInput = {
@@ -647,6 +702,8 @@ export type QuestCreateWithoutCampaignInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy: Prisma.UserCreateNestedOneWithoutQuestsInput
+  posts?: Prisma.PostCreateNestedManyWithoutQuestInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutQuestInput
 }
 
 export type QuestUncheckedCreateWithoutCampaignInput = {
@@ -661,6 +718,8 @@ export type QuestUncheckedCreateWithoutCampaignInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutQuestInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutQuestInput
 }
 
 export type QuestCreateOrConnectWithoutCampaignInput = {
@@ -689,6 +748,166 @@ export type QuestUpdateManyWithWhereWithoutCampaignInput = {
   data: Prisma.XOR<Prisma.QuestUpdateManyMutationInput, Prisma.QuestUncheckedUpdateManyWithoutCampaignInput>
 }
 
+export type QuestCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  status?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutQuestsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutQuestsInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutQuestInput
+}
+
+export type QuestUncheckedCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  status?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutQuestInput
+}
+
+export type QuestCreateOrConnectWithoutPostsInput = {
+  where: Prisma.QuestWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuestCreateWithoutPostsInput, Prisma.QuestUncheckedCreateWithoutPostsInput>
+}
+
+export type QuestUpsertWithoutPostsInput = {
+  update: Prisma.XOR<Prisma.QuestUpdateWithoutPostsInput, Prisma.QuestUncheckedUpdateWithoutPostsInput>
+  create: Prisma.XOR<Prisma.QuestCreateWithoutPostsInput, Prisma.QuestUncheckedCreateWithoutPostsInput>
+  where?: Prisma.QuestWhereInput
+}
+
+export type QuestUpdateToOneWithWhereWithoutPostsInput = {
+  where?: Prisma.QuestWhereInput
+  data: Prisma.XOR<Prisma.QuestUpdateWithoutPostsInput, Prisma.QuestUncheckedUpdateWithoutPostsInput>
+}
+
+export type QuestUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutQuestsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutQuestsNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutQuestNestedInput
+}
+
+export type QuestUncheckedUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutQuestNestedInput
+}
+
+export type QuestCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  status?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutQuestsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutQuestsInput
+  posts?: Prisma.PostCreateNestedManyWithoutQuestInput
+}
+
+export type QuestUncheckedCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  status?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutQuestInput
+}
+
+export type QuestCreateOrConnectWithoutBookmarksInput = {
+  where: Prisma.QuestWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuestCreateWithoutBookmarksInput, Prisma.QuestUncheckedCreateWithoutBookmarksInput>
+}
+
+export type QuestUpsertWithoutBookmarksInput = {
+  update: Prisma.XOR<Prisma.QuestUpdateWithoutBookmarksInput, Prisma.QuestUncheckedUpdateWithoutBookmarksInput>
+  create: Prisma.XOR<Prisma.QuestCreateWithoutBookmarksInput, Prisma.QuestUncheckedCreateWithoutBookmarksInput>
+  where?: Prisma.QuestWhereInput
+}
+
+export type QuestUpdateToOneWithWhereWithoutBookmarksInput = {
+  where?: Prisma.QuestWhereInput
+  data: Prisma.XOR<Prisma.QuestUpdateWithoutBookmarksInput, Prisma.QuestUncheckedUpdateWithoutBookmarksInput>
+}
+
+export type QuestUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutQuestsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutQuestsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutQuestNestedInput
+}
+
+export type QuestUncheckedUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutQuestNestedInput
+}
+
 export type QuestCreateManyCreatedByInput = {
   id?: string
   name: string
@@ -715,6 +934,8 @@ export type QuestUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutQuestsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutQuestNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutQuestNestedInput
 }
 
 export type QuestUncheckedUpdateWithoutCreatedByInput = {
@@ -729,6 +950,8 @@ export type QuestUncheckedUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutQuestNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutQuestNestedInput
 }
 
 export type QuestUncheckedUpdateManyWithoutCreatedByInput = {
@@ -771,6 +994,8 @@ export type QuestUpdateWithoutCampaignInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.UserUpdateOneRequiredWithoutQuestsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutQuestNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutQuestNestedInput
 }
 
 export type QuestUncheckedUpdateWithoutCampaignInput = {
@@ -785,6 +1010,8 @@ export type QuestUncheckedUpdateWithoutCampaignInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutQuestNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutQuestNestedInput
 }
 
 export type QuestUncheckedUpdateManyWithoutCampaignInput = {
@@ -802,6 +1029,44 @@ export type QuestUncheckedUpdateManyWithoutCampaignInput = {
 }
 
 
+/**
+ * Count Type QuestCountOutputType
+ */
+
+export type QuestCountOutputType = {
+  posts: number
+  bookmarks: number
+}
+
+export type QuestCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  posts?: boolean | QuestCountOutputTypeCountPostsArgs
+  bookmarks?: boolean | QuestCountOutputTypeCountBookmarksArgs
+}
+
+/**
+ * QuestCountOutputType without action
+ */
+export type QuestCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QuestCountOutputType
+   */
+  select?: Prisma.QuestCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * QuestCountOutputType without action
+ */
+export type QuestCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PostWhereInput
+}
+
+/**
+ * QuestCountOutputType without action
+ */
+export type QuestCountOutputTypeCountBookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookmarkWhereInput
+}
+
 
 export type QuestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -818,6 +1083,9 @@ export type QuestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   createdById?: boolean
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  posts?: boolean | Prisma.Quest$postsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Quest$bookmarksArgs<ExtArgs>
+  _count?: boolean | Prisma.QuestCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quest"]>
 
 export type QuestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -873,6 +1141,9 @@ export type QuestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type QuestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  posts?: boolean | Prisma.Quest$postsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Quest$bookmarksArgs<ExtArgs>
+  _count?: boolean | Prisma.QuestCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type QuestIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
@@ -888,6 +1159,8 @@ export type $QuestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     campaign: Prisma.$CampaignPayload<ExtArgs>
     createdBy: Prisma.$UserPayload<ExtArgs>
+    posts: Prisma.$PostPayload<ExtArgs>[]
+    bookmarks: Prisma.$BookmarkPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1298,6 +1571,8 @@ export interface Prisma__QuestClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   campaign<T extends Prisma.CampaignDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CampaignDefaultArgs<ExtArgs>>): Prisma.Prisma__CampaignClient<runtime.Types.Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  posts<T extends Prisma.Quest$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quest$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bookmarks<T extends Prisma.Quest$bookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quest$bookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1732,6 +2007,54 @@ export type QuestDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Limit how many Quests to delete.
    */
   limit?: number
+}
+
+/**
+ * Quest.posts
+ */
+export type Quest$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Post
+   */
+  select?: Prisma.PostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Post
+   */
+  omit?: Prisma.PostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostInclude<ExtArgs> | null
+  where?: Prisma.PostWhereInput
+  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
+  cursor?: Prisma.PostWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[]
+}
+
+/**
+ * Quest.bookmarks
+ */
+export type Quest$bookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Bookmark
+   */
+  select?: Prisma.BookmarkSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Bookmark
+   */
+  omit?: Prisma.BookmarkOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BookmarkInclude<ExtArgs> | null
+  where?: Prisma.BookmarkWhereInput
+  orderBy?: Prisma.BookmarkOrderByWithRelationInput | Prisma.BookmarkOrderByWithRelationInput[]
+  cursor?: Prisma.BookmarkWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookmarkScalarFieldEnum | Prisma.BookmarkScalarFieldEnum[]
 }
 
 /**

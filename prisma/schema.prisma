@@ -22,38 +22,44 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  campaigns     Campaign[]
-  campaignRoles CampaignRole[]
-  characters    Character[]
-  locations     Location[]
-  items         Item[]
-  quests        Quest[]
-  events        Event[]
-  journals      Journal[]
-  notes         Note[]
-  families      Family[]
-  races         Race[]
-  organisations Organisation[]
-  tags          Tag[]
-  timelines     Timeline[]
-  maps          Map[]
-  relations     Relation[]
-  calendars     Calendar[]
-  attributes    Attribute[]
-  relationships Relationship[]
-  versions      Version[]
-  mapLayers     MapLayer[]
-  mapMarkers    MapMarker[]
-  mapGroups     MapGroup[]
-  abilities     Ability[]
-  entityAbilities EntityAbility[]
-  creatures     Creature[]
-  diceRolls     DiceRoll[]
-  diceRollResults DiceRollResult[]
-  conversationsCreated Conversation[]
-  conversationMessages ConversationMessage[] @relation("MessageCreator")
+  campaigns                 Campaign[]
+  campaignRoles             CampaignRole[]
+  characters                Character[]
+  locations                 Location[]
+  items                     Item[]
+  quests                    Quest[]
+  events                    Event[]
+  journals                  Journal[]
+  notes                     Note[]
+  families                  Family[]
+  races                     Race[]
+  organisations             Organisation[]
+  tags                      Tag[]
+  timelines                 Timeline[]
+  maps                      Map[]
+  relations                 Relation[]
+  calendars                 Calendar[]
+  attributes                Attribute[]
+  relationships             Relationship[]
+  versions                  Version[]
+  mapLayers                 MapLayer[]
+  mapMarkers                MapMarker[]
+  mapGroups                 MapGroup[]
+  abilities                 Ability[]
+  entityAbilities           EntityAbility[]
+  creatures                 Creature[]
+  diceRolls                 DiceRoll[]
+  diceRollResults           DiceRollResult[]
+  conversationsCreated      Conversation[]
+  conversationMessages      ConversationMessage[]     @relation("MessageCreator")
   conversationMessageAuthor ConversationMessage[]
-  conversationParticipants ConversationParticipant[]
+  conversationParticipants  ConversationParticipant[]
+  posts                     Post[]
+  postPermissions           PostPermission[]
+  images                    Image[]
+  attributeTemplates        AttributeTemplate[]
+  bookmarks                 Bookmark[]
+  presets                   Preset[]
 
   @@map("users")
 }
@@ -72,29 +78,34 @@ model Campaign {
   ownerId String
   owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 
-  characters    Character[]
-  locations     Location[]
-  items         Item[]
-  quests        Quest[]
-  events        Event[]
-  journals      Journal[]
-  notes         Note[]
-  families      Family[]
-  races         Race[]
-  organisations Organisation[]
-  tags          Tag[]
-  timelines     Timeline[]
-  maps          Map[]
-  campaignRoles CampaignRole[]
-  relations     Relation[]
-  calendars     Calendar[]
-  attributes    Attribute[]
-  relationships Relationship[]
-  versions      Version[]
-  abilities     Ability[]
-  creatures     Creature[]
-  diceRolls     DiceRoll[]
-  conversations Conversation[]
+  characters         Character[]
+  locations          Location[]
+  items              Item[]
+  quests             Quest[]
+  events             Event[]
+  journals           Journal[]
+  notes              Note[]
+  families           Family[]
+  races              Race[]
+  organisations      Organisation[]
+  tags               Tag[]
+  timelines          Timeline[]
+  maps               Map[]
+  campaignRoles      CampaignRole[]
+  relations          Relation[]
+  calendars          Calendar[]
+  attributes         Attribute[]
+  relationships      Relationship[]
+  versions           Version[]
+  abilities          Ability[]
+  creatures          Creature[]
+  diceRolls          DiceRoll[]
+  conversations      Conversation[]
+  posts              Post[]
+  images             Image[]
+  attributeTemplates AttributeTemplate[]
+  bookmarks          Bookmark[]
+  presets            Preset[]
 
   @@map("campaigns")
 }
@@ -112,6 +123,8 @@ model CampaignRole {
   campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
   user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  postPermissions PostPermission[]
+
   @@unique([campaignId, userId])
   @@map("campaign_roles")
 }
@@ -128,7 +141,7 @@ model Character {
   location    String?
   family      String?
   description String? @db.Text
-  image       String?
+  imageId     String?
   isPrivate   Boolean @default(false)
 
   // Birthday Tracking
@@ -145,9 +158,14 @@ model Character {
   createdById String
   createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
 
-  diceRolls   DiceRoll[]
-  conversationMessages ConversationMessage[]
+  diceRolls                DiceRoll[]
+  conversationMessages     ConversationMessage[]
   conversationParticipants ConversationParticipant[]
+  posts                    Post[]
+  image                    Image?                    @relation("CharacterImage", fields: [imageId], references: [id], onDelete: SetNull)
+  imageMentions            ImageMention[]
+  entityAssets             EntityAsset[]
+  bookmarks                Bookmark[]
 
   @@unique([campaignId, slug])
   @@map("characters")
@@ -160,7 +178,7 @@ model Location {
   type        String?
   parentId    String?
   description String?  @db.Text
-  image       String?
+  imageId     String?
   mapImage    String?
   isPrivate   Boolean  @default(false)
   createdAt   DateTime @default(now())
@@ -175,7 +193,12 @@ model Location {
   parent   Location?  @relation("LocationHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
   children Location[] @relation("LocationHierarchy")
 
-  creatures CreatureLocation[]
+  creatures     CreatureLocation[]
+  posts         Post[]
+  image         Image?             @relation("LocationImage", fields: [imageId], references: [id], onDelete: SetNull)
+  imageMentions ImageMention[]
+  entityAssets  EntityAsset[]
+  bookmarks     Bookmark[]
 
   @@unique([campaignId, slug])
   @@map("locations")
@@ -202,6 +225,9 @@ model Item {
   createdById String
   createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
 
+  posts     Post[]
+  bookmarks Bookmark[]
+
   @@unique([campaignId, slug])
   @@map("items")
 }
@@ -223,6 +249,9 @@ model Quest {
 
   createdById String
   createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  posts     Post[]
+  bookmarks Bookmark[]
 
   @@unique([campaignId, slug])
   @@map("quests")
@@ -249,6 +278,9 @@ model Event {
   // Timeline Integration
   timelineId String?
   timeline   Timeline? @relation(fields: [timelineId], references: [id], onDelete: SetNull)
+
+  posts     Post[]
+  bookmarks Bookmark[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -280,6 +312,9 @@ model Journal {
 
   createdById String
   createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  posts     Post[]
+  bookmarks Bookmark[]
 
   @@unique([campaignId, slug])
   @@map("journals")
@@ -324,6 +359,9 @@ model Family {
   createdById String
   createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
 
+  posts     Post[]
+  bookmarks Bookmark[]
+
   @@unique([campaignId, slug])
   @@map("families")
 }
@@ -367,6 +405,9 @@ model Organisation {
   createdById String
   createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
 
+  posts     Post[]
+  bookmarks Bookmark[]
+
   @@unique([campaignId, slug])
   @@map("organisations")
 }
@@ -387,6 +428,8 @@ model Tag {
 
   createdById String
   createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  postTags PostTag[]
 
   @@unique([campaignId, slug])
   @@map("tags")
@@ -559,18 +602,19 @@ model CalendarWeather {
   @@index([calendarId, date])
   @@map("calendar_weather")
 }
+
 model Attribute {
-  id          String   @id @default(cuid())
-  entityType  String // 'character', 'item', 'location', 'quest', etc.
-  entityId    String // ID of the entity this attribute belongs to
-  key         String // Attribute name (e.g., "HP", "Strength", "Level")
-  value       String // Attribute value (stored as string, parsed by type)
-  type        String   @default("text") // 'text', 'number', 'boolean', 'date', 'url'
-  category    String? // Optional grouping (e.g., "Stats", "Skills", "Properties")
-  order       Int      @default(0) // Display order
-  isPrivate   Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id         String   @id @default(cuid())
+  entityType String // 'character', 'item', 'location', 'quest', etc.
+  entityId   String // ID of the entity this attribute belongs to
+  key        String // Attribute name (e.g., "HP", "Strength", "Level")
+  value      String // Attribute value (stored as string, parsed by type)
+  type       String   @default("text") // 'text', 'number', 'boolean', 'date', 'url'
+  category   String? // Optional grouping (e.g., "Stats", "Skills", "Properties")
+  order      Int      @default(0) // Display order
+  isPrivate  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   campaignId String
   campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
@@ -585,18 +629,18 @@ model Attribute {
 }
 
 model Relationship {
-  id                 String   @id @default(cuid())
-  sourceEntityType   String // 'character', 'location', 'item', etc.
-  sourceEntityId     String // ID of the source entity
-  targetEntityType   String // 'character', 'location', 'item', etc.
-  targetEntityId     String // ID of the target entity
-  relationshipType   String // 'ally', 'enemy', 'family', 'member', 'owns', 'located_in', etc.
-  description        String? // Optional description of the relationship
-  metadata           Json? // Additional flexible data (e.g., relationship strength, tags)
-  bidirectional      Boolean  @default(false) // If true, relationship works both ways
-  isPrivate          Boolean  @default(false)
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  id               String   @id @default(cuid())
+  sourceEntityType String // 'character', 'location', 'item', etc.
+  sourceEntityId   String // ID of the source entity
+  targetEntityType String // 'character', 'location', 'item', etc.
+  targetEntityId   String // ID of the target entity
+  relationshipType String // 'ally', 'enemy', 'family', 'member', 'owns', 'located_in', etc.
+  description      String? // Optional description of the relationship
+  metadata         Json? // Additional flexible data (e.g., relationship strength, tags)
+  bidirectional    Boolean  @default(false) // If true, relationship works both ways
+  isPrivate        Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 
   campaignId String
   campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
@@ -612,15 +656,15 @@ model Relationship {
 }
 
 model Version {
-  id             String   @id @default(cuid())
-  entityType     String // 'character', 'location', 'item', etc.
-  entityId       String // ID of the versioned entity
-  versionNumber  Int // Sequential version number (1, 2, 3, ...)
-  snapshot       Json // Complete entity state at this version
-  changeType     String   @default("update") // 'create', 'update', 'delete'
-  changesMade    String? // Human-readable summary of changes
-  changedFields  Json? // List of field names that changed
-  createdAt      DateTime @default(now())
+  id            String   @id @default(cuid())
+  entityType    String // 'character', 'location', 'item', etc.
+  entityId      String // ID of the versioned entity
+  versionNumber Int // Sequential version number (1, 2, 3, ...)
+  snapshot      Json // Complete entity state at this version
+  changeType    String   @default("update") // 'create', 'update', 'delete'
+  changesMade   String? // Human-readable summary of changes
+  changedFields Json? // List of field names that changed
+  createdAt     DateTime @default(now())
 
   campaignId String
   campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
@@ -636,18 +680,18 @@ model Version {
 }
 
 model MapLayer {
-  id          String   @id @default(cuid())
-  name        String
-  image       String? // Image path for the layer
-  entry       String?  @db.Text // Rich text description
-  position    Int      @default(0) // Z-index/ordering (higher = on top)
-  width       Int? // Layer dimensions
-  height      Int?
-  opacity     Float    @default(1.0) // 0.0 to 1.0
-  isVisible   Boolean  @default(true)
-  isPrivate   Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(cuid())
+  name      String
+  image     String? // Image path for the layer
+  entry     String?  @db.Text // Rich text description
+  position  Int      @default(0) // Z-index/ordering (higher = on top)
+  width     Int? // Layer dimensions
+  height    Int?
+  opacity   Float    @default(1.0) // 0.0 to 1.0
+  isVisible Boolean  @default(true)
+  isPrivate Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   mapId String
   map   Map    @relation(fields: [mapId], references: [id], onDelete: Cascade)
@@ -661,20 +705,20 @@ model MapLayer {
 }
 
 model MapGroup {
-  id         String   @id @default(cuid())
-  name       String
-  position   Int      @default(0) // Display order
-  isShown    Boolean  @default(true) // Visibility toggle for entire group
-  isPrivate  Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id        String   @id @default(cuid())
+  name      String
+  position  Int      @default(0) // Display order
+  isShown   Boolean  @default(true) // Visibility toggle for entire group
+  isPrivate Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   mapId String
   map   Map    @relation(fields: [mapId], references: [id], onDelete: Cascade)
 
   parentId String?
-  parent   MapGroup?   @relation("MapGroupHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
-  children MapGroup[]  @relation("MapGroupHierarchy")
+  parent   MapGroup?  @relation("MapGroupHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children MapGroup[] @relation("MapGroupHierarchy")
 
   markers MapMarker[]
 
@@ -687,41 +731,41 @@ model MapGroup {
 }
 
 model MapMarker {
-  id           String   @id @default(cuid())
-  name         String
-  entry        String?  @db.Text // Rich text description
-  longitude    Float // X coordinate on map
-  latitude     Float // Y coordinate on map
-  
+  id        String  @id @default(cuid())
+  name      String
+  entry     String? @db.Text // Rich text description
+  longitude Float // X coordinate on map
+  latitude  Float // Y coordinate on map
+
   // Appearance
-  shape        String   @default("marker") // 'marker', 'circle', 'label', 'polygon'
-  size         Int      @default(1) // Size multiplier (1-5)
-  colour       String   @default("#ff0000") // Hex color
-  fontColour   String   @default("#ffffff") // Text color for labels
-  icon         String? // Icon identifier
-  customIcon   String? // Custom icon path
-  customShape  String? // Custom SVG shape or polygon coordinates (JSON)
-  opacity      Float    @default(1.0) // 0.0 to 1.0
-  
+  shape       String  @default("marker") // 'marker', 'circle', 'label', 'polygon'
+  size        Int     @default(1) // Size multiplier (1-5)
+  colour      String  @default("#ff0000") // Hex color
+  fontColour  String  @default("#ffffff") // Text color for labels
+  icon        String? // Icon identifier
+  customIcon  String? // Custom icon path
+  customShape String? // Custom SVG shape or polygon coordinates (JSON)
+  opacity     Float   @default(1.0) // 0.0 to 1.0
+
   // Circle-specific
   circleRadius Int? // Radius for circle markers
-  
+
   // Polygon-specific
   polygonStyle Json? // {strokeWidth, strokeColor, fillColor, etc.}
-  
+
   // Behavior
-  isDraggable  Boolean  @default(false) // Can be moved on the map
-  isPopupless  Boolean  @default(false) // Don't show popup on click
-  pinSize      Int? // Pin size override
-  css          String? // Custom CSS classes or styles
-  
+  isDraggable Boolean @default(false) // Can be moved on the map
+  isPopupless Boolean @default(false) // Don't show popup on click
+  pinSize     Int? // Pin size override
+  css         String? // Custom CSS classes or styles
+
   // Relations
-  entityId     String? // Optional link to a Character, Location, etc.
-  entityType   String? // Type of linked entity
-  
-  isPrivate    Boolean  @default(false)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  entityId   String? // Optional link to a Character, Location, etc.
+  entityType String? // Type of linked entity
+
+  isPrivate Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   mapId String
   map   Map    @relation(fields: [mapId], references: [id], onDelete: Cascade)
@@ -737,15 +781,16 @@ model MapMarker {
   @@index([entityType, entityId])
   @@map("map_markers")
 }
+
 model Ability {
-  id          String   @id @default(cuid())
-  name        String
-  entry       String?  @db.Text // Rich text description
-  charges     Int? // Number of uses/charges
-  type        String? // Ability category/type
-  isPrivate   Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(cuid())
+  name      String
+  entry     String?  @db.Text // Rich text description
+  charges   Int? // Number of uses/charges
+  type      String? // Ability category/type
+  isPrivate Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   campaignId String
   campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
@@ -755,8 +800,8 @@ model Ability {
 
   // Hierarchical structure
   parentId String?
-  parent   Ability?   @relation("AbilityHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
-  children Ability[]  @relation("AbilityHierarchy")
+  parent   Ability?  @relation("AbilityHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children Ability[] @relation("AbilityHierarchy")
 
   // Entity links
   entityAbilities EntityAbility[]
@@ -768,13 +813,13 @@ model Ability {
 }
 
 model EntityAbility {
-  id         String   @id @default(cuid())
-  charges    Int? // Override ability charges
-  position   Int      @default(0) // Display order
-  note       String?  @db.Text // Custom notes
-  isPrivate  Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id        String   @id @default(cuid())
+  charges   Int? // Override ability charges
+  position  Int      @default(0) // Display order
+  note      String?  @db.Text // Custom notes
+  isPrivate Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   entityId   String // Character, Creature, etc.
   entityType String // 'character', 'creature', etc.
@@ -792,16 +837,16 @@ model EntityAbility {
 }
 
 model Creature {
-  id         String   @id @default(cuid())
-  name       String
-  entry      String?  @db.Text // Rich text description
-  type       String? // Creature type/category (Beast, Humanoid, etc.)
-  image      String? // Image path
-  isExtinct  Boolean  @default(false)
-  isDead     Boolean  @default(false)
-  isPrivate  Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id        String   @id @default(cuid())
+  name      String
+  entry     String?  @db.Text // Rich text description
+  type      String? // Creature type/category (Beast, Humanoid, etc.)
+  image     String? // Image path
+  isExtinct Boolean  @default(false)
+  isDead    Boolean  @default(false)
+  isPrivate Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   campaignId String
   campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
@@ -811,8 +856,8 @@ model Creature {
 
   // Hierarchical structure
   parentId String?
-  parent   Creature?   @relation("CreatureHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
-  children Creature[]  @relation("CreatureHierarchy")
+  parent   Creature?  @relation("CreatureHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children Creature[] @relation("CreatureHierarchy")
 
   // Location relationships
   locations CreatureLocation[]
@@ -843,7 +888,7 @@ model CreatureLocation {
 model DiceRoll {
   id         String   @id @default(cuid())
   name       String
-  system     String?  // System name (d20, d100, etc.)
+  system     String? // System name (d20, d100, etc.)
   parameters String   @db.Text // Dice expression (3d6+2, 1d20+{character.strength}, etc.)
   isPrivate  Boolean  @default(false)
   createdAt  DateTime @default(now())
@@ -953,4 +998,306 @@ model ConversationParticipant {
   @@index([userId])
   @@index([characterId])
   @@map("conversation_participants")
+}
+
+// Phase 21: Posts & Forums System
+
+model Post {
+  id        String   @id @default(cuid())
+  name      String
+  entry     String?  @db.Text // Rich text content
+  isPrivate Boolean  @default(false)
+  isPinned  Boolean  @default(false)
+  position  Int      @default(0) // For sorting
+  layoutId  String? // Layout configuration
+  settings  Json     @default("{}") // Additional settings
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  // Optional link to an entity (character, location, etc.)
+  characterId    String?
+  character      Character?    @relation(fields: [characterId], references: [id], onDelete: SetNull)
+  locationId     String?
+  location       Location?     @relation(fields: [locationId], references: [id], onDelete: SetNull)
+  itemId         String?
+  item           Item?         @relation(fields: [itemId], references: [id], onDelete: SetNull)
+  questId        String?
+  quest          Quest?        @relation(fields: [questId], references: [id], onDelete: SetNull)
+  eventId        String?
+  event          Event?        @relation(fields: [eventId], references: [id], onDelete: SetNull)
+  journalId      String?
+  journal        Journal?      @relation(fields: [journalId], references: [id], onDelete: SetNull)
+  familyId       String?
+  family         Family?       @relation(fields: [familyId], references: [id], onDelete: SetNull)
+  organisationId String?
+  organisation   Organisation? @relation(fields: [organisationId], references: [id], onDelete: SetNull)
+
+  tags          PostTag[]
+  permissions   PostPermission[]
+  imageMentions ImageMention[]
+
+  @@index([campaignId])
+  @@index([campaignId, name])
+  @@index([isPinned])
+  @@index([characterId])
+  @@index([locationId])
+  @@map("posts")
+}
+
+model PostTag {
+  id String @id @default(cuid())
+
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  tagId String
+  tag   Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, tagId])
+  @@index([postId])
+  @@index([tagId])
+  @@map("post_tags")
+}
+
+model PostPermission {
+  id         String @id @default(cuid())
+  permission Int    @default(0) // 0 = view, 1 = edit, 2 = deny
+
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  roleId String?
+  role   CampaignRole? @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([postId])
+  @@index([roleId])
+  @@index([userId])
+  @@map("post_permissions")
+}
+
+// Phase 22: Gallery & Image Management
+
+model Image {
+  id         String  @id @default(cuid())
+  name       String
+  ext        String // File extension
+  size       Int // File size in KB
+  width      Int? // Image width in pixels
+  height     Int? // Image height in pixels
+  focusX     Int? // Focus point X coordinate for cropping
+  focusY     Int? // Focus point Y coordinate for cropping
+  isFolder   Boolean @default(false)
+  isDefault  Boolean @default(false)
+  visibility Int     @default(0) // 0 = all, 1 = admin, 2 = admin & self, 3 = self, 4 = members
+
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  folderId String?
+  folder   Image?  @relation("ImageToFolder", fields: [folderId], references: [id], onDelete: Cascade)
+  images   Image[] @relation("ImageToFolder")
+
+  createdBy String
+  creator   User   @relation(fields: [createdBy], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Reverse relations for image usage
+  characters    Character[]    @relation("CharacterImage")
+  locations     Location[]     @relation("LocationImage")
+  entityAssets  EntityAsset[]
+  imageMentions ImageMention[]
+
+  @@index([campaignId])
+  @@index([folderId])
+  @@index([createdBy])
+  @@index([isFolder])
+  @@map("images")
+}
+
+model ImageMention {
+  id String @id @default(cuid())
+
+  imageId String
+  image   Image  @relation(fields: [imageId], references: [id], onDelete: Cascade)
+
+  // Polymorphic relations to entities that mention this image
+  characterId String?
+  character   Character? @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  locationId String?
+  location   Location? @relation(fields: [locationId], references: [id], onDelete: Cascade)
+
+  postId String?
+  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@index([imageId])
+  @@index([characterId])
+  @@index([locationId])
+  @@index([postId])
+  @@map("image_mentions")
+}
+
+model EntityAsset {
+  id       String @id @default(cuid())
+  metadata Json? // Additional metadata for the asset
+
+  imageId String
+  image   Image  @relation(fields: [imageId], references: [id], onDelete: Cascade)
+
+  // Polymorphic relations to entities that use this asset
+  characterId String?
+  character   Character? @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  locationId String?
+  location   Location? @relation(fields: [locationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@index([imageId])
+  @@index([characterId])
+  @@index([locationId])
+  @@map("entity_assets")
+}
+
+// Phase 23: Attribute Templates
+
+model AttributeTemplate {
+  id          String  @id @default(cuid())
+  name        String
+  slug        String
+  description String? @db.Text
+  config      Json    @default("{}") // Template configuration including attributes and random value rules
+  entityType  String? // character, location, item, quest, etc. - null means applies to all
+  isPublic    Boolean @default(false)
+  position    Int     @default(0) // For sorting
+
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([campaignId, slug])
+  @@index([campaignId])
+  @@index([entityType])
+  @@map("attribute_templates")
+}
+
+// Phase 24: Bookmarks & Quick Access
+
+model Bookmark {
+  id       String  @id @default(cuid())
+  name     String
+  icon     String? // Icon identifier
+  color    String? // Hex color code
+  type     String  @default("entity") // entity, search, filter, random
+  config   Json    @default("{}") // Bookmark configuration (filters, search params, etc.)
+  folder   String? // Organization folder
+  position Int     @default(0) // For sorting within folder
+
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Polymorphic entity links (for type="entity")
+  characterId String?
+  character   Character? @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  locationId String?
+  location   Location? @relation(fields: [locationId], references: [id], onDelete: Cascade)
+
+  itemId String?
+  item   Item?   @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  questId String?
+  quest   Quest?  @relation(fields: [questId], references: [id], onDelete: Cascade)
+
+  eventId String?
+  event   Event?  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  journalId String?
+  journal   Journal? @relation(fields: [journalId], references: [id], onDelete: Cascade)
+
+  familyId String?
+  family   Family? @relation(fields: [familyId], references: [id], onDelete: Cascade)
+
+  organisationId String?
+  organisation   Organisation? @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([campaignId])
+  @@index([userId])
+  @@index([folder])
+  @@index([characterId])
+  @@index([locationId])
+  @@map("bookmarks")
+}
+
+// Phase 25: Presets System
+
+model PresetType {
+  id          String  @id @default(cuid())
+  name        String
+  description String? @db.Text
+  category    String? // calendar, attribute, theme, etc.
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  presets Preset[]
+
+  @@unique([name])
+  @@map("preset_types")
+}
+
+model Preset {
+  id          String  @id @default(cuid())
+  name        String
+  slug        String
+  description String? @db.Text
+  config      Json    @default("{}") // Preset configuration data
+  isPublic    Boolean @default(false)
+  isOfficial  Boolean @default(false) // Community/official preset
+  category    String? // For organizing presets
+  tags        Json    @default("[]") // Array of tag strings for search
+
+  typeId String
+  type   PresetType @relation(fields: [typeId], references: [id], onDelete: Cascade)
+
+  campaignId String?
+  campaign   Campaign? @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  createdById String?
+  createdBy   User?   @relation(fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([slug])
+  @@index([typeId])
+  @@index([campaignId])
+  @@index([category])
+  @@index([isPublic])
+  @@index([isOfficial])
+  @@map("presets")
 }

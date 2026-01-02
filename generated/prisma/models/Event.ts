@@ -284,6 +284,8 @@ export type EventWhereInput = {
   createdById?: Prisma.StringFilter<"Event"> | string
   calendar?: Prisma.XOR<Prisma.CalendarNullableScalarRelationFilter, Prisma.CalendarWhereInput> | null
   timeline?: Prisma.XOR<Prisma.TimelineNullableScalarRelationFilter, Prisma.TimelineWhereInput> | null
+  posts?: Prisma.PostListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
@@ -309,6 +311,8 @@ export type EventOrderByWithRelationInput = {
   createdById?: Prisma.SortOrder
   calendar?: Prisma.CalendarOrderByWithRelationInput
   timeline?: Prisma.TimelineOrderByWithRelationInput
+  posts?: Prisma.PostOrderByRelationAggregateInput
+  bookmarks?: Prisma.BookmarkOrderByRelationAggregateInput
   campaign?: Prisma.CampaignOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
 }
@@ -338,6 +342,8 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   createdById?: Prisma.StringFilter<"Event"> | string
   calendar?: Prisma.XOR<Prisma.CalendarNullableScalarRelationFilter, Prisma.CalendarWhereInput> | null
   timeline?: Prisma.XOR<Prisma.TimelineNullableScalarRelationFilter, Prisma.TimelineWhereInput> | null
+  posts?: Prisma.PostListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "campaignId_slug">
@@ -407,6 +413,8 @@ export type EventCreateInput = {
   updatedAt?: Date | string
   calendar?: Prisma.CalendarCreateNestedOneWithoutEventsInput
   timeline?: Prisma.TimelineCreateNestedOneWithoutEventsInput
+  posts?: Prisma.PostCreateNestedManyWithoutEventInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutEventInput
   campaign: Prisma.CampaignCreateNestedOneWithoutEventsInput
   createdBy: Prisma.UserCreateNestedOneWithoutEventsInput
 }
@@ -430,6 +438,8 @@ export type EventUncheckedCreateInput = {
   updatedAt?: Date | string
   campaignId: string
   createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutEventInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventUpdateInput = {
@@ -449,6 +459,8 @@ export type EventUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   calendar?: Prisma.CalendarUpdateOneWithoutEventsNestedInput
   timeline?: Prisma.TimelineUpdateOneWithoutEventsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutEventNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutEventNestedInput
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutEventsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
 }
@@ -472,6 +484,8 @@ export type EventUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutEventNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateManyInput = {
@@ -607,6 +621,11 @@ export type EventMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   campaignId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
+}
+
+export type EventNullableScalarRelationFilter = {
+  is?: Prisma.EventWhereInput | null
+  isNot?: Prisma.EventWhereInput | null
 }
 
 export type EventCreateNestedManyWithoutCreatedByInput = {
@@ -777,6 +796,38 @@ export type EventUncheckedUpdateManyWithoutCalendarNestedInput = {
   deleteMany?: Prisma.EventScalarWhereInput | Prisma.EventScalarWhereInput[]
 }
 
+export type EventCreateNestedOneWithoutPostsInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutPostsInput, Prisma.EventUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutPostsInput
+  connect?: Prisma.EventWhereUniqueInput
+}
+
+export type EventUpdateOneWithoutPostsNestedInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutPostsInput, Prisma.EventUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutPostsInput
+  upsert?: Prisma.EventUpsertWithoutPostsInput
+  disconnect?: Prisma.EventWhereInput | boolean
+  delete?: Prisma.EventWhereInput | boolean
+  connect?: Prisma.EventWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EventUpdateToOneWithWhereWithoutPostsInput, Prisma.EventUpdateWithoutPostsInput>, Prisma.EventUncheckedUpdateWithoutPostsInput>
+}
+
+export type EventCreateNestedOneWithoutBookmarksInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutBookmarksInput, Prisma.EventUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutBookmarksInput
+  connect?: Prisma.EventWhereUniqueInput
+}
+
+export type EventUpdateOneWithoutBookmarksNestedInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutBookmarksInput, Prisma.EventUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutBookmarksInput
+  upsert?: Prisma.EventUpsertWithoutBookmarksInput
+  disconnect?: Prisma.EventWhereInput | boolean
+  delete?: Prisma.EventWhereInput | boolean
+  connect?: Prisma.EventWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EventUpdateToOneWithWhereWithoutBookmarksInput, Prisma.EventUpdateWithoutBookmarksInput>, Prisma.EventUncheckedUpdateWithoutBookmarksInput>
+}
+
 export type EventCreateWithoutCreatedByInput = {
   id?: string
   name: string
@@ -794,6 +845,8 @@ export type EventCreateWithoutCreatedByInput = {
   updatedAt?: Date | string
   calendar?: Prisma.CalendarCreateNestedOneWithoutEventsInput
   timeline?: Prisma.TimelineCreateNestedOneWithoutEventsInput
+  posts?: Prisma.PostCreateNestedManyWithoutEventInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutEventInput
   campaign: Prisma.CampaignCreateNestedOneWithoutEventsInput
 }
 
@@ -815,6 +868,8 @@ export type EventUncheckedCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   campaignId: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutEventInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutCreatedByInput = {
@@ -884,6 +939,8 @@ export type EventCreateWithoutCampaignInput = {
   updatedAt?: Date | string
   calendar?: Prisma.CalendarCreateNestedOneWithoutEventsInput
   timeline?: Prisma.TimelineCreateNestedOneWithoutEventsInput
+  posts?: Prisma.PostCreateNestedManyWithoutEventInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutEventInput
   createdBy: Prisma.UserCreateNestedOneWithoutEventsInput
 }
 
@@ -905,6 +962,8 @@ export type EventUncheckedCreateWithoutCampaignInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutEventInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutCampaignInput = {
@@ -949,6 +1008,8 @@ export type EventCreateWithoutTimelineInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   calendar?: Prisma.CalendarCreateNestedOneWithoutEventsInput
+  posts?: Prisma.PostCreateNestedManyWithoutEventInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutEventInput
   campaign: Prisma.CampaignCreateNestedOneWithoutEventsInput
   createdBy: Prisma.UserCreateNestedOneWithoutEventsInput
 }
@@ -971,6 +1032,8 @@ export type EventUncheckedCreateWithoutTimelineInput = {
   updatedAt?: Date | string
   campaignId: string
   createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutEventInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutTimelineInput = {
@@ -1015,6 +1078,8 @@ export type EventCreateWithoutCalendarInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   timeline?: Prisma.TimelineCreateNestedOneWithoutEventsInput
+  posts?: Prisma.PostCreateNestedManyWithoutEventInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutEventInput
   campaign: Prisma.CampaignCreateNestedOneWithoutEventsInput
   createdBy: Prisma.UserCreateNestedOneWithoutEventsInput
 }
@@ -1037,6 +1102,8 @@ export type EventUncheckedCreateWithoutCalendarInput = {
   updatedAt?: Date | string
   campaignId: string
   createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutEventInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutCalendarInput = {
@@ -1063,6 +1130,214 @@ export type EventUpdateWithWhereUniqueWithoutCalendarInput = {
 export type EventUpdateManyWithWhereWithoutCalendarInput = {
   where: Prisma.EventScalarWhereInput
   data: Prisma.XOR<Prisma.EventUpdateManyMutationInput, Prisma.EventUncheckedUpdateManyWithoutCalendarInput>
+}
+
+export type EventCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  date?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  isPrivate?: boolean
+  calendarDate?: string | null
+  isRecurring?: boolean
+  recurrenceRule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  calendar?: Prisma.CalendarCreateNestedOneWithoutEventsInput
+  timeline?: Prisma.TimelineCreateNestedOneWithoutEventsInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutEventInput
+  campaign: Prisma.CampaignCreateNestedOneWithoutEventsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutEventsInput
+}
+
+export type EventUncheckedCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  date?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  isPrivate?: boolean
+  calendarId?: string | null
+  calendarDate?: string | null
+  isRecurring?: boolean
+  recurrenceRule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  timelineId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutEventInput
+}
+
+export type EventCreateOrConnectWithoutPostsInput = {
+  where: Prisma.EventWhereUniqueInput
+  create: Prisma.XOR<Prisma.EventCreateWithoutPostsInput, Prisma.EventUncheckedCreateWithoutPostsInput>
+}
+
+export type EventUpsertWithoutPostsInput = {
+  update: Prisma.XOR<Prisma.EventUpdateWithoutPostsInput, Prisma.EventUncheckedUpdateWithoutPostsInput>
+  create: Prisma.XOR<Prisma.EventCreateWithoutPostsInput, Prisma.EventUncheckedCreateWithoutPostsInput>
+  where?: Prisma.EventWhereInput
+}
+
+export type EventUpdateToOneWithWhereWithoutPostsInput = {
+  where?: Prisma.EventWhereInput
+  data: Prisma.XOR<Prisma.EventUpdateWithoutPostsInput, Prisma.EventUncheckedUpdateWithoutPostsInput>
+}
+
+export type EventUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendarDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isRecurring?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  recurrenceRule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  calendar?: Prisma.CalendarUpdateOneWithoutEventsNestedInput
+  timeline?: Prisma.TimelineUpdateOneWithoutEventsNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutEventNestedInput
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutEventsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
+}
+
+export type EventUncheckedUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendarDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isRecurring?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  recurrenceRule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  timelineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutEventNestedInput
+}
+
+export type EventCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  date?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  isPrivate?: boolean
+  calendarDate?: string | null
+  isRecurring?: boolean
+  recurrenceRule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  calendar?: Prisma.CalendarCreateNestedOneWithoutEventsInput
+  timeline?: Prisma.TimelineCreateNestedOneWithoutEventsInput
+  posts?: Prisma.PostCreateNestedManyWithoutEventInput
+  campaign: Prisma.CampaignCreateNestedOneWithoutEventsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutEventsInput
+}
+
+export type EventUncheckedCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  date?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  isPrivate?: boolean
+  calendarId?: string | null
+  calendarDate?: string | null
+  isRecurring?: boolean
+  recurrenceRule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  timelineId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutEventInput
+}
+
+export type EventCreateOrConnectWithoutBookmarksInput = {
+  where: Prisma.EventWhereUniqueInput
+  create: Prisma.XOR<Prisma.EventCreateWithoutBookmarksInput, Prisma.EventUncheckedCreateWithoutBookmarksInput>
+}
+
+export type EventUpsertWithoutBookmarksInput = {
+  update: Prisma.XOR<Prisma.EventUpdateWithoutBookmarksInput, Prisma.EventUncheckedUpdateWithoutBookmarksInput>
+  create: Prisma.XOR<Prisma.EventCreateWithoutBookmarksInput, Prisma.EventUncheckedCreateWithoutBookmarksInput>
+  where?: Prisma.EventWhereInput
+}
+
+export type EventUpdateToOneWithWhereWithoutBookmarksInput = {
+  where?: Prisma.EventWhereInput
+  data: Prisma.XOR<Prisma.EventUpdateWithoutBookmarksInput, Prisma.EventUncheckedUpdateWithoutBookmarksInput>
+}
+
+export type EventUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendarDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isRecurring?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  recurrenceRule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  calendar?: Prisma.CalendarUpdateOneWithoutEventsNestedInput
+  timeline?: Prisma.TimelineUpdateOneWithoutEventsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutEventNestedInput
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutEventsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
+}
+
+export type EventUncheckedUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendarDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isRecurring?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  recurrenceRule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  timelineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateManyCreatedByInput = {
@@ -1102,6 +1377,8 @@ export type EventUpdateWithoutCreatedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   calendar?: Prisma.CalendarUpdateOneWithoutEventsNestedInput
   timeline?: Prisma.TimelineUpdateOneWithoutEventsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutEventNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutEventNestedInput
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutEventsNestedInput
 }
 
@@ -1123,6 +1400,8 @@ export type EventUncheckedUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutEventNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1182,6 +1461,8 @@ export type EventUpdateWithoutCampaignInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   calendar?: Prisma.CalendarUpdateOneWithoutEventsNestedInput
   timeline?: Prisma.TimelineUpdateOneWithoutEventsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutEventNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutEventNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
 }
 
@@ -1203,6 +1484,8 @@ export type EventUncheckedUpdateWithoutCampaignInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutEventNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateManyWithoutCampaignInput = {
@@ -1261,6 +1544,8 @@ export type EventUpdateWithoutTimelineInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   calendar?: Prisma.CalendarUpdateOneWithoutEventsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutEventNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutEventNestedInput
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutEventsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
 }
@@ -1283,6 +1568,8 @@ export type EventUncheckedUpdateWithoutTimelineInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutEventNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateManyWithoutTimelineInput = {
@@ -1341,6 +1628,8 @@ export type EventUpdateWithoutCalendarInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   timeline?: Prisma.TimelineUpdateOneWithoutEventsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutEventNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutEventNestedInput
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutEventsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
 }
@@ -1363,6 +1652,8 @@ export type EventUncheckedUpdateWithoutCalendarInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutEventNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateManyWithoutCalendarInput = {
@@ -1386,6 +1677,44 @@ export type EventUncheckedUpdateManyWithoutCalendarInput = {
 }
 
 
+/**
+ * Count Type EventCountOutputType
+ */
+
+export type EventCountOutputType = {
+  posts: number
+  bookmarks: number
+}
+
+export type EventCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  posts?: boolean | EventCountOutputTypeCountPostsArgs
+  bookmarks?: boolean | EventCountOutputTypeCountBookmarksArgs
+}
+
+/**
+ * EventCountOutputType without action
+ */
+export type EventCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EventCountOutputType
+   */
+  select?: Prisma.EventCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * EventCountOutputType without action
+ */
+export type EventCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PostWhereInput
+}
+
+/**
+ * EventCountOutputType without action
+ */
+export type EventCountOutputTypeCountBookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookmarkWhereInput
+}
+
 
 export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1408,8 +1737,11 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   createdById?: boolean
   calendar?: boolean | Prisma.Event$calendarArgs<ExtArgs>
   timeline?: boolean | Prisma.Event$timelineArgs<ExtArgs>
+  posts?: boolean | Prisma.Event$postsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Event$bookmarksArgs<ExtArgs>
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["event"]>
 
 export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1487,8 +1819,11 @@ export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type EventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   calendar?: boolean | Prisma.Event$calendarArgs<ExtArgs>
   timeline?: boolean | Prisma.Event$timelineArgs<ExtArgs>
+  posts?: boolean | Prisma.Event$postsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Event$bookmarksArgs<ExtArgs>
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EventIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   calendar?: boolean | Prisma.Event$calendarArgs<ExtArgs>
@@ -1508,6 +1843,8 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     calendar: Prisma.$CalendarPayload<ExtArgs> | null
     timeline: Prisma.$TimelinePayload<ExtArgs> | null
+    posts: Prisma.$PostPayload<ExtArgs>[]
+    bookmarks: Prisma.$BookmarkPayload<ExtArgs>[]
     campaign: Prisma.$CampaignPayload<ExtArgs>
     createdBy: Prisma.$UserPayload<ExtArgs>
   }
@@ -1926,6 +2263,8 @@ export interface Prisma__EventClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   calendar<T extends Prisma.Event$calendarArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$calendarArgs<ExtArgs>>): Prisma.Prisma__CalendarClient<runtime.Types.Result.GetResult<Prisma.$CalendarPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   timeline<T extends Prisma.Event$timelineArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$timelineArgs<ExtArgs>>): Prisma.Prisma__TimelineClient<runtime.Types.Result.GetResult<Prisma.$TimelinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  posts<T extends Prisma.Event$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bookmarks<T extends Prisma.Event$bookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$bookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   campaign<T extends Prisma.CampaignDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CampaignDefaultArgs<ExtArgs>>): Prisma.Prisma__CampaignClient<runtime.Types.Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -2406,6 +2745,54 @@ export type Event$timelineArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   include?: Prisma.TimelineInclude<ExtArgs> | null
   where?: Prisma.TimelineWhereInput
+}
+
+/**
+ * Event.posts
+ */
+export type Event$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Post
+   */
+  select?: Prisma.PostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Post
+   */
+  omit?: Prisma.PostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostInclude<ExtArgs> | null
+  where?: Prisma.PostWhereInput
+  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
+  cursor?: Prisma.PostWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[]
+}
+
+/**
+ * Event.bookmarks
+ */
+export type Event$bookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Bookmark
+   */
+  select?: Prisma.BookmarkSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Bookmark
+   */
+  omit?: Prisma.BookmarkOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BookmarkInclude<ExtArgs> | null
+  where?: Prisma.BookmarkWhereInput
+  orderBy?: Prisma.BookmarkOrderByWithRelationInput | Prisma.BookmarkOrderByWithRelationInput[]
+  cursor?: Prisma.BookmarkWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookmarkScalarFieldEnum | Prisma.BookmarkScalarFieldEnum[]
 }
 
 /**

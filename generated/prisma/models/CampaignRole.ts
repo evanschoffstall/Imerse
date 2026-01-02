@@ -204,6 +204,7 @@ export type CampaignRoleWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"CampaignRole"> | Date | string
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  postPermissions?: Prisma.PostPermissionListRelationFilter
 }
 
 export type CampaignRoleOrderByWithRelationInput = {
@@ -217,6 +218,7 @@ export type CampaignRoleOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   campaign?: Prisma.CampaignOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
+  postPermissions?: Prisma.PostPermissionOrderByRelationAggregateInput
 }
 
 export type CampaignRoleWhereUniqueInput = Prisma.AtLeast<{
@@ -234,6 +236,7 @@ export type CampaignRoleWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"CampaignRole"> | Date | string
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  postPermissions?: Prisma.PostPermissionListRelationFilter
 }, "id" | "campaignId_userId">
 
 export type CampaignRoleOrderByWithAggregationInput = {
@@ -273,6 +276,7 @@ export type CampaignRoleCreateInput = {
   updatedAt?: Date | string
   campaign: Prisma.CampaignCreateNestedOneWithoutCampaignRolesInput
   user: Prisma.UserCreateNestedOneWithoutCampaignRolesInput
+  postPermissions?: Prisma.PostPermissionCreateNestedManyWithoutRoleInput
 }
 
 export type CampaignRoleUncheckedCreateInput = {
@@ -284,6 +288,7 @@ export type CampaignRoleUncheckedCreateInput = {
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  postPermissions?: Prisma.PostPermissionUncheckedCreateNestedManyWithoutRoleInput
 }
 
 export type CampaignRoleUpdateInput = {
@@ -295,6 +300,7 @@ export type CampaignRoleUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutCampaignRolesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutCampaignRolesNestedInput
+  postPermissions?: Prisma.PostPermissionUpdateManyWithoutRoleNestedInput
 }
 
 export type CampaignRoleUncheckedUpdateInput = {
@@ -306,6 +312,7 @@ export type CampaignRoleUncheckedUpdateInput = {
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  postPermissions?: Prisma.PostPermissionUncheckedUpdateManyWithoutRoleNestedInput
 }
 
 export type CampaignRoleCreateManyInput = {
@@ -383,6 +390,11 @@ export type CampaignRoleMinOrderByAggregateInput = {
   isAdmin?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type CampaignRoleNullableScalarRelationFilter = {
+  is?: Prisma.CampaignRoleWhereInput | null
+  isNot?: Prisma.CampaignRoleWhereInput | null
 }
 
 export type CampaignRoleCreateNestedManyWithoutUserInput = {
@@ -473,6 +485,22 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type CampaignRoleCreateNestedOneWithoutPostPermissionsInput = {
+  create?: Prisma.XOR<Prisma.CampaignRoleCreateWithoutPostPermissionsInput, Prisma.CampaignRoleUncheckedCreateWithoutPostPermissionsInput>
+  connectOrCreate?: Prisma.CampaignRoleCreateOrConnectWithoutPostPermissionsInput
+  connect?: Prisma.CampaignRoleWhereUniqueInput
+}
+
+export type CampaignRoleUpdateOneWithoutPostPermissionsNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignRoleCreateWithoutPostPermissionsInput, Prisma.CampaignRoleUncheckedCreateWithoutPostPermissionsInput>
+  connectOrCreate?: Prisma.CampaignRoleCreateOrConnectWithoutPostPermissionsInput
+  upsert?: Prisma.CampaignRoleUpsertWithoutPostPermissionsInput
+  disconnect?: Prisma.CampaignRoleWhereInput | boolean
+  delete?: Prisma.CampaignRoleWhereInput | boolean
+  connect?: Prisma.CampaignRoleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignRoleUpdateToOneWithWhereWithoutPostPermissionsInput, Prisma.CampaignRoleUpdateWithoutPostPermissionsInput>, Prisma.CampaignRoleUncheckedUpdateWithoutPostPermissionsInput>
+}
+
 export type CampaignRoleCreateWithoutUserInput = {
   id?: string
   role: string
@@ -481,6 +509,7 @@ export type CampaignRoleCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   campaign: Prisma.CampaignCreateNestedOneWithoutCampaignRolesInput
+  postPermissions?: Prisma.PostPermissionCreateNestedManyWithoutRoleInput
 }
 
 export type CampaignRoleUncheckedCreateWithoutUserInput = {
@@ -491,6 +520,7 @@ export type CampaignRoleUncheckedCreateWithoutUserInput = {
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  postPermissions?: Prisma.PostPermissionUncheckedCreateNestedManyWithoutRoleInput
 }
 
 export type CampaignRoleCreateOrConnectWithoutUserInput = {
@@ -541,6 +571,7 @@ export type CampaignRoleCreateWithoutCampaignInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCampaignRolesInput
+  postPermissions?: Prisma.PostPermissionCreateNestedManyWithoutRoleInput
 }
 
 export type CampaignRoleUncheckedCreateWithoutCampaignInput = {
@@ -551,6 +582,7 @@ export type CampaignRoleUncheckedCreateWithoutCampaignInput = {
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  postPermissions?: Prisma.PostPermissionUncheckedCreateNestedManyWithoutRoleInput
 }
 
 export type CampaignRoleCreateOrConnectWithoutCampaignInput = {
@@ -579,6 +611,66 @@ export type CampaignRoleUpdateManyWithWhereWithoutCampaignInput = {
   data: Prisma.XOR<Prisma.CampaignRoleUpdateManyMutationInput, Prisma.CampaignRoleUncheckedUpdateManyWithoutCampaignInput>
 }
 
+export type CampaignRoleCreateWithoutPostPermissionsInput = {
+  id?: string
+  role: string
+  isAdmin?: boolean
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutCampaignRolesInput
+  user: Prisma.UserCreateNestedOneWithoutCampaignRolesInput
+}
+
+export type CampaignRoleUncheckedCreateWithoutPostPermissionsInput = {
+  id?: string
+  campaignId: string
+  userId: string
+  role: string
+  isAdmin?: boolean
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type CampaignRoleCreateOrConnectWithoutPostPermissionsInput = {
+  where: Prisma.CampaignRoleWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignRoleCreateWithoutPostPermissionsInput, Prisma.CampaignRoleUncheckedCreateWithoutPostPermissionsInput>
+}
+
+export type CampaignRoleUpsertWithoutPostPermissionsInput = {
+  update: Prisma.XOR<Prisma.CampaignRoleUpdateWithoutPostPermissionsInput, Prisma.CampaignRoleUncheckedUpdateWithoutPostPermissionsInput>
+  create: Prisma.XOR<Prisma.CampaignRoleCreateWithoutPostPermissionsInput, Prisma.CampaignRoleUncheckedCreateWithoutPostPermissionsInput>
+  where?: Prisma.CampaignRoleWhereInput
+}
+
+export type CampaignRoleUpdateToOneWithWhereWithoutPostPermissionsInput = {
+  where?: Prisma.CampaignRoleWhereInput
+  data: Prisma.XOR<Prisma.CampaignRoleUpdateWithoutPostPermissionsInput, Prisma.CampaignRoleUncheckedUpdateWithoutPostPermissionsInput>
+}
+
+export type CampaignRoleUpdateWithoutPostPermissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutCampaignRolesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutCampaignRolesNestedInput
+}
+
+export type CampaignRoleUncheckedUpdateWithoutPostPermissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type CampaignRoleCreateManyUserInput = {
   id?: string
   campaignId: string
@@ -597,6 +689,7 @@ export type CampaignRoleUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutCampaignRolesNestedInput
+  postPermissions?: Prisma.PostPermissionUpdateManyWithoutRoleNestedInput
 }
 
 export type CampaignRoleUncheckedUpdateWithoutUserInput = {
@@ -607,6 +700,7 @@ export type CampaignRoleUncheckedUpdateWithoutUserInput = {
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  postPermissions?: Prisma.PostPermissionUncheckedUpdateManyWithoutRoleNestedInput
 }
 
 export type CampaignRoleUncheckedUpdateManyWithoutUserInput = {
@@ -637,6 +731,7 @@ export type CampaignRoleUpdateWithoutCampaignInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCampaignRolesNestedInput
+  postPermissions?: Prisma.PostPermissionUpdateManyWithoutRoleNestedInput
 }
 
 export type CampaignRoleUncheckedUpdateWithoutCampaignInput = {
@@ -647,6 +742,7 @@ export type CampaignRoleUncheckedUpdateWithoutCampaignInput = {
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  postPermissions?: Prisma.PostPermissionUncheckedUpdateManyWithoutRoleNestedInput
 }
 
 export type CampaignRoleUncheckedUpdateManyWithoutCampaignInput = {
@@ -660,6 +756,35 @@ export type CampaignRoleUncheckedUpdateManyWithoutCampaignInput = {
 }
 
 
+/**
+ * Count Type CampaignRoleCountOutputType
+ */
+
+export type CampaignRoleCountOutputType = {
+  postPermissions: number
+}
+
+export type CampaignRoleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  postPermissions?: boolean | CampaignRoleCountOutputTypeCountPostPermissionsArgs
+}
+
+/**
+ * CampaignRoleCountOutputType without action
+ */
+export type CampaignRoleCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CampaignRoleCountOutputType
+   */
+  select?: Prisma.CampaignRoleCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * CampaignRoleCountOutputType without action
+ */
+export type CampaignRoleCountOutputTypeCountPostPermissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PostPermissionWhereInput
+}
+
 
 export type CampaignRoleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -672,6 +797,8 @@ export type CampaignRoleSelect<ExtArgs extends runtime.Types.Extensions.Internal
   updatedAt?: boolean
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  postPermissions?: boolean | Prisma.CampaignRole$postPermissionsArgs<ExtArgs>
+  _count?: boolean | Prisma.CampaignRoleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["campaignRole"]>
 
 export type CampaignRoleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -715,6 +842,8 @@ export type CampaignRoleOmit<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type CampaignRoleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  postPermissions?: boolean | Prisma.CampaignRole$postPermissionsArgs<ExtArgs>
+  _count?: boolean | Prisma.CampaignRoleCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CampaignRoleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
@@ -730,6 +859,7 @@ export type $CampaignRolePayload<ExtArgs extends runtime.Types.Extensions.Intern
   objects: {
     campaign: Prisma.$CampaignPayload<ExtArgs>
     user: Prisma.$UserPayload<ExtArgs>
+    postPermissions: Prisma.$PostPermissionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1136,6 +1266,7 @@ export interface Prisma__CampaignRoleClient<T, Null = never, ExtArgs extends run
   readonly [Symbol.toStringTag]: "PrismaPromise"
   campaign<T extends Prisma.CampaignDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CampaignDefaultArgs<ExtArgs>>): Prisma.Prisma__CampaignClient<runtime.Types.Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  postPermissions<T extends Prisma.CampaignRole$postPermissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CampaignRole$postPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1566,6 +1697,30 @@ export type CampaignRoleDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many CampaignRoles to delete.
    */
   limit?: number
+}
+
+/**
+ * CampaignRole.postPermissions
+ */
+export type CampaignRole$postPermissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PostPermission
+   */
+  select?: Prisma.PostPermissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PostPermission
+   */
+  omit?: Prisma.PostPermissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostPermissionInclude<ExtArgs> | null
+  where?: Prisma.PostPermissionWhereInput
+  orderBy?: Prisma.PostPermissionOrderByWithRelationInput | Prisma.PostPermissionOrderByWithRelationInput[]
+  cursor?: Prisma.PostPermissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PostPermissionScalarFieldEnum | Prisma.PostPermissionScalarFieldEnum[]
 }
 
 /**

@@ -240,6 +240,8 @@ export type FamilyWhereInput = {
   createdById?: Prisma.StringFilter<"Family"> | string
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  posts?: Prisma.PostListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
 }
 
 export type FamilyOrderByWithRelationInput = {
@@ -257,6 +259,8 @@ export type FamilyOrderByWithRelationInput = {
   createdById?: Prisma.SortOrder
   campaign?: Prisma.CampaignOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
+  posts?: Prisma.PostOrderByRelationAggregateInput
+  bookmarks?: Prisma.BookmarkOrderByRelationAggregateInput
 }
 
 export type FamilyWhereUniqueInput = Prisma.AtLeast<{
@@ -278,6 +282,8 @@ export type FamilyWhereUniqueInput = Prisma.AtLeast<{
   createdById?: Prisma.StringFilter<"Family"> | string
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  posts?: Prisma.PostListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
 }, "id" | "campaignId_slug">
 
 export type FamilyOrderByWithAggregationInput = {
@@ -329,6 +335,8 @@ export type FamilyCreateInput = {
   updatedAt?: Date | string
   campaign: Prisma.CampaignCreateNestedOneWithoutFamiliesInput
   createdBy: Prisma.UserCreateNestedOneWithoutFamiliesInput
+  posts?: Prisma.PostCreateNestedManyWithoutFamilyInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutFamilyInput
 }
 
 export type FamilyUncheckedCreateInput = {
@@ -344,6 +352,8 @@ export type FamilyUncheckedCreateInput = {
   updatedAt?: Date | string
   campaignId: string
   createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutFamilyInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutFamilyInput
 }
 
 export type FamilyUpdateInput = {
@@ -359,6 +369,8 @@ export type FamilyUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutFamiliesNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutFamiliesNestedInput
+  posts?: Prisma.PostUpdateManyWithoutFamilyNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutFamilyNestedInput
 }
 
 export type FamilyUncheckedUpdateInput = {
@@ -374,6 +386,8 @@ export type FamilyUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutFamilyNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutFamilyNestedInput
 }
 
 export type FamilyCreateManyInput = {
@@ -479,6 +493,11 @@ export type FamilyMinOrderByAggregateInput = {
   createdById?: Prisma.SortOrder
 }
 
+export type FamilyNullableScalarRelationFilter = {
+  is?: Prisma.FamilyWhereInput | null
+  isNot?: Prisma.FamilyWhereInput | null
+}
+
 export type FamilyCreateNestedManyWithoutCreatedByInput = {
   create?: Prisma.XOR<Prisma.FamilyCreateWithoutCreatedByInput, Prisma.FamilyUncheckedCreateWithoutCreatedByInput> | Prisma.FamilyCreateWithoutCreatedByInput[] | Prisma.FamilyUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.FamilyCreateOrConnectWithoutCreatedByInput | Prisma.FamilyCreateOrConnectWithoutCreatedByInput[]
@@ -563,6 +582,38 @@ export type FamilyUncheckedUpdateManyWithoutCampaignNestedInput = {
   deleteMany?: Prisma.FamilyScalarWhereInput | Prisma.FamilyScalarWhereInput[]
 }
 
+export type FamilyCreateNestedOneWithoutPostsInput = {
+  create?: Prisma.XOR<Prisma.FamilyCreateWithoutPostsInput, Prisma.FamilyUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.FamilyCreateOrConnectWithoutPostsInput
+  connect?: Prisma.FamilyWhereUniqueInput
+}
+
+export type FamilyUpdateOneWithoutPostsNestedInput = {
+  create?: Prisma.XOR<Prisma.FamilyCreateWithoutPostsInput, Prisma.FamilyUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.FamilyCreateOrConnectWithoutPostsInput
+  upsert?: Prisma.FamilyUpsertWithoutPostsInput
+  disconnect?: Prisma.FamilyWhereInput | boolean
+  delete?: Prisma.FamilyWhereInput | boolean
+  connect?: Prisma.FamilyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FamilyUpdateToOneWithWhereWithoutPostsInput, Prisma.FamilyUpdateWithoutPostsInput>, Prisma.FamilyUncheckedUpdateWithoutPostsInput>
+}
+
+export type FamilyCreateNestedOneWithoutBookmarksInput = {
+  create?: Prisma.XOR<Prisma.FamilyCreateWithoutBookmarksInput, Prisma.FamilyUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.FamilyCreateOrConnectWithoutBookmarksInput
+  connect?: Prisma.FamilyWhereUniqueInput
+}
+
+export type FamilyUpdateOneWithoutBookmarksNestedInput = {
+  create?: Prisma.XOR<Prisma.FamilyCreateWithoutBookmarksInput, Prisma.FamilyUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.FamilyCreateOrConnectWithoutBookmarksInput
+  upsert?: Prisma.FamilyUpsertWithoutBookmarksInput
+  disconnect?: Prisma.FamilyWhereInput | boolean
+  delete?: Prisma.FamilyWhereInput | boolean
+  connect?: Prisma.FamilyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FamilyUpdateToOneWithWhereWithoutBookmarksInput, Prisma.FamilyUpdateWithoutBookmarksInput>, Prisma.FamilyUncheckedUpdateWithoutBookmarksInput>
+}
+
 export type FamilyCreateWithoutCreatedByInput = {
   id?: string
   name: string
@@ -575,6 +626,8 @@ export type FamilyCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   campaign: Prisma.CampaignCreateNestedOneWithoutFamiliesInput
+  posts?: Prisma.PostCreateNestedManyWithoutFamilyInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutFamilyInput
 }
 
 export type FamilyUncheckedCreateWithoutCreatedByInput = {
@@ -589,6 +642,8 @@ export type FamilyUncheckedCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   campaignId: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutFamilyInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutFamilyInput
 }
 
 export type FamilyCreateOrConnectWithoutCreatedByInput = {
@@ -647,6 +702,8 @@ export type FamilyCreateWithoutCampaignInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy: Prisma.UserCreateNestedOneWithoutFamiliesInput
+  posts?: Prisma.PostCreateNestedManyWithoutFamilyInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutFamilyInput
 }
 
 export type FamilyUncheckedCreateWithoutCampaignInput = {
@@ -661,6 +718,8 @@ export type FamilyUncheckedCreateWithoutCampaignInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutFamilyInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutFamilyInput
 }
 
 export type FamilyCreateOrConnectWithoutCampaignInput = {
@@ -689,6 +748,166 @@ export type FamilyUpdateManyWithWhereWithoutCampaignInput = {
   data: Prisma.XOR<Prisma.FamilyUpdateManyMutationInput, Prisma.FamilyUncheckedUpdateManyWithoutCampaignInput>
 }
 
+export type FamilyCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutFamiliesInput
+  createdBy: Prisma.UserCreateNestedOneWithoutFamiliesInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutFamilyInput
+}
+
+export type FamilyUncheckedCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutFamilyInput
+}
+
+export type FamilyCreateOrConnectWithoutPostsInput = {
+  where: Prisma.FamilyWhereUniqueInput
+  create: Prisma.XOR<Prisma.FamilyCreateWithoutPostsInput, Prisma.FamilyUncheckedCreateWithoutPostsInput>
+}
+
+export type FamilyUpsertWithoutPostsInput = {
+  update: Prisma.XOR<Prisma.FamilyUpdateWithoutPostsInput, Prisma.FamilyUncheckedUpdateWithoutPostsInput>
+  create: Prisma.XOR<Prisma.FamilyCreateWithoutPostsInput, Prisma.FamilyUncheckedCreateWithoutPostsInput>
+  where?: Prisma.FamilyWhereInput
+}
+
+export type FamilyUpdateToOneWithWhereWithoutPostsInput = {
+  where?: Prisma.FamilyWhereInput
+  data: Prisma.XOR<Prisma.FamilyUpdateWithoutPostsInput, Prisma.FamilyUncheckedUpdateWithoutPostsInput>
+}
+
+export type FamilyUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutFamiliesNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutFamiliesNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutFamilyNestedInput
+}
+
+export type FamilyUncheckedUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutFamilyNestedInput
+}
+
+export type FamilyCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutFamiliesInput
+  createdBy: Prisma.UserCreateNestedOneWithoutFamiliesInput
+  posts?: Prisma.PostCreateNestedManyWithoutFamilyInput
+}
+
+export type FamilyUncheckedCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutFamilyInput
+}
+
+export type FamilyCreateOrConnectWithoutBookmarksInput = {
+  where: Prisma.FamilyWhereUniqueInput
+  create: Prisma.XOR<Prisma.FamilyCreateWithoutBookmarksInput, Prisma.FamilyUncheckedCreateWithoutBookmarksInput>
+}
+
+export type FamilyUpsertWithoutBookmarksInput = {
+  update: Prisma.XOR<Prisma.FamilyUpdateWithoutBookmarksInput, Prisma.FamilyUncheckedUpdateWithoutBookmarksInput>
+  create: Prisma.XOR<Prisma.FamilyCreateWithoutBookmarksInput, Prisma.FamilyUncheckedCreateWithoutBookmarksInput>
+  where?: Prisma.FamilyWhereInput
+}
+
+export type FamilyUpdateToOneWithWhereWithoutBookmarksInput = {
+  where?: Prisma.FamilyWhereInput
+  data: Prisma.XOR<Prisma.FamilyUpdateWithoutBookmarksInput, Prisma.FamilyUncheckedUpdateWithoutBookmarksInput>
+}
+
+export type FamilyUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutFamiliesNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutFamiliesNestedInput
+  posts?: Prisma.PostUpdateManyWithoutFamilyNestedInput
+}
+
+export type FamilyUncheckedUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutFamilyNestedInput
+}
+
 export type FamilyCreateManyCreatedByInput = {
   id?: string
   name: string
@@ -715,6 +934,8 @@ export type FamilyUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutFamiliesNestedInput
+  posts?: Prisma.PostUpdateManyWithoutFamilyNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutFamilyNestedInput
 }
 
 export type FamilyUncheckedUpdateWithoutCreatedByInput = {
@@ -729,6 +950,8 @@ export type FamilyUncheckedUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutFamilyNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutFamilyNestedInput
 }
 
 export type FamilyUncheckedUpdateManyWithoutCreatedByInput = {
@@ -771,6 +994,8 @@ export type FamilyUpdateWithoutCampaignInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.UserUpdateOneRequiredWithoutFamiliesNestedInput
+  posts?: Prisma.PostUpdateManyWithoutFamilyNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutFamilyNestedInput
 }
 
 export type FamilyUncheckedUpdateWithoutCampaignInput = {
@@ -785,6 +1010,8 @@ export type FamilyUncheckedUpdateWithoutCampaignInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutFamilyNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutFamilyNestedInput
 }
 
 export type FamilyUncheckedUpdateManyWithoutCampaignInput = {
@@ -802,6 +1029,44 @@ export type FamilyUncheckedUpdateManyWithoutCampaignInput = {
 }
 
 
+/**
+ * Count Type FamilyCountOutputType
+ */
+
+export type FamilyCountOutputType = {
+  posts: number
+  bookmarks: number
+}
+
+export type FamilyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  posts?: boolean | FamilyCountOutputTypeCountPostsArgs
+  bookmarks?: boolean | FamilyCountOutputTypeCountBookmarksArgs
+}
+
+/**
+ * FamilyCountOutputType without action
+ */
+export type FamilyCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FamilyCountOutputType
+   */
+  select?: Prisma.FamilyCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * FamilyCountOutputType without action
+ */
+export type FamilyCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PostWhereInput
+}
+
+/**
+ * FamilyCountOutputType without action
+ */
+export type FamilyCountOutputTypeCountBookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookmarkWhereInput
+}
+
 
 export type FamilySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -818,6 +1083,9 @@ export type FamilySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   createdById?: boolean
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  posts?: boolean | Prisma.Family$postsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Family$bookmarksArgs<ExtArgs>
+  _count?: boolean | Prisma.FamilyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["family"]>
 
 export type FamilySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -873,6 +1141,9 @@ export type FamilyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 export type FamilyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  posts?: boolean | Prisma.Family$postsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Family$bookmarksArgs<ExtArgs>
+  _count?: boolean | Prisma.FamilyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type FamilyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
@@ -888,6 +1159,8 @@ export type $FamilyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   objects: {
     campaign: Prisma.$CampaignPayload<ExtArgs>
     createdBy: Prisma.$UserPayload<ExtArgs>
+    posts: Prisma.$PostPayload<ExtArgs>[]
+    bookmarks: Prisma.$BookmarkPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1298,6 +1571,8 @@ export interface Prisma__FamilyClient<T, Null = never, ExtArgs extends runtime.T
   readonly [Symbol.toStringTag]: "PrismaPromise"
   campaign<T extends Prisma.CampaignDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CampaignDefaultArgs<ExtArgs>>): Prisma.Prisma__CampaignClient<runtime.Types.Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  posts<T extends Prisma.Family$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Family$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bookmarks<T extends Prisma.Family$bookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Family$bookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1732,6 +2007,54 @@ export type FamilyDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Families to delete.
    */
   limit?: number
+}
+
+/**
+ * Family.posts
+ */
+export type Family$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Post
+   */
+  select?: Prisma.PostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Post
+   */
+  omit?: Prisma.PostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostInclude<ExtArgs> | null
+  where?: Prisma.PostWhereInput
+  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
+  cursor?: Prisma.PostWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[]
+}
+
+/**
+ * Family.bookmarks
+ */
+export type Family$bookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Bookmark
+   */
+  select?: Prisma.BookmarkSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Bookmark
+   */
+  omit?: Prisma.BookmarkOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BookmarkInclude<ExtArgs> | null
+  where?: Prisma.BookmarkWhereInput
+  orderBy?: Prisma.BookmarkOrderByWithRelationInput | Prisma.BookmarkOrderByWithRelationInput[]
+  cursor?: Prisma.BookmarkWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookmarkScalarFieldEnum | Prisma.BookmarkScalarFieldEnum[]
 }
 
 /**

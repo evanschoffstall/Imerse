@@ -240,6 +240,8 @@ export type OrganisationWhereInput = {
   createdById?: Prisma.StringFilter<"Organisation"> | string
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  posts?: Prisma.PostListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
 }
 
 export type OrganisationOrderByWithRelationInput = {
@@ -257,6 +259,8 @@ export type OrganisationOrderByWithRelationInput = {
   createdById?: Prisma.SortOrder
   campaign?: Prisma.CampaignOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
+  posts?: Prisma.PostOrderByRelationAggregateInput
+  bookmarks?: Prisma.BookmarkOrderByRelationAggregateInput
 }
 
 export type OrganisationWhereUniqueInput = Prisma.AtLeast<{
@@ -278,6 +282,8 @@ export type OrganisationWhereUniqueInput = Prisma.AtLeast<{
   createdById?: Prisma.StringFilter<"Organisation"> | string
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  posts?: Prisma.PostListRelationFilter
+  bookmarks?: Prisma.BookmarkListRelationFilter
 }, "id" | "campaignId_slug">
 
 export type OrganisationOrderByWithAggregationInput = {
@@ -329,6 +335,8 @@ export type OrganisationCreateInput = {
   updatedAt?: Date | string
   campaign: Prisma.CampaignCreateNestedOneWithoutOrganisationsInput
   createdBy: Prisma.UserCreateNestedOneWithoutOrganisationsInput
+  posts?: Prisma.PostCreateNestedManyWithoutOrganisationInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateInput = {
@@ -344,6 +352,8 @@ export type OrganisationUncheckedCreateInput = {
   updatedAt?: Date | string
   campaignId: string
   createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutOrganisationInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUpdateInput = {
@@ -359,6 +369,8 @@ export type OrganisationUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutOrganisationsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutOrganisationsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutOrganisationNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateInput = {
@@ -374,6 +386,8 @@ export type OrganisationUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutOrganisationNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateManyInput = {
@@ -479,6 +493,11 @@ export type OrganisationMinOrderByAggregateInput = {
   createdById?: Prisma.SortOrder
 }
 
+export type OrganisationNullableScalarRelationFilter = {
+  is?: Prisma.OrganisationWhereInput | null
+  isNot?: Prisma.OrganisationWhereInput | null
+}
+
 export type OrganisationCreateNestedManyWithoutCreatedByInput = {
   create?: Prisma.XOR<Prisma.OrganisationCreateWithoutCreatedByInput, Prisma.OrganisationUncheckedCreateWithoutCreatedByInput> | Prisma.OrganisationCreateWithoutCreatedByInput[] | Prisma.OrganisationUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutCreatedByInput | Prisma.OrganisationCreateOrConnectWithoutCreatedByInput[]
@@ -563,6 +582,38 @@ export type OrganisationUncheckedUpdateManyWithoutCampaignNestedInput = {
   deleteMany?: Prisma.OrganisationScalarWhereInput | Prisma.OrganisationScalarWhereInput[]
 }
 
+export type OrganisationCreateNestedOneWithoutPostsInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutPostsInput, Prisma.OrganisationUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutPostsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneWithoutPostsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutPostsInput, Prisma.OrganisationUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutPostsInput
+  upsert?: Prisma.OrganisationUpsertWithoutPostsInput
+  disconnect?: Prisma.OrganisationWhereInput | boolean
+  delete?: Prisma.OrganisationWhereInput | boolean
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutPostsInput, Prisma.OrganisationUpdateWithoutPostsInput>, Prisma.OrganisationUncheckedUpdateWithoutPostsInput>
+}
+
+export type OrganisationCreateNestedOneWithoutBookmarksInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutBookmarksInput, Prisma.OrganisationUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutBookmarksInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneWithoutBookmarksNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutBookmarksInput, Prisma.OrganisationUncheckedCreateWithoutBookmarksInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutBookmarksInput
+  upsert?: Prisma.OrganisationUpsertWithoutBookmarksInput
+  disconnect?: Prisma.OrganisationWhereInput | boolean
+  delete?: Prisma.OrganisationWhereInput | boolean
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutBookmarksInput, Prisma.OrganisationUpdateWithoutBookmarksInput>, Prisma.OrganisationUncheckedUpdateWithoutBookmarksInput>
+}
+
 export type OrganisationCreateWithoutCreatedByInput = {
   id?: string
   name: string
@@ -575,6 +626,8 @@ export type OrganisationCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   campaign: Prisma.CampaignCreateNestedOneWithoutOrganisationsInput
+  posts?: Prisma.PostCreateNestedManyWithoutOrganisationInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutCreatedByInput = {
@@ -589,6 +642,8 @@ export type OrganisationUncheckedCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   campaignId: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutOrganisationInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutCreatedByInput = {
@@ -647,6 +702,8 @@ export type OrganisationCreateWithoutCampaignInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy: Prisma.UserCreateNestedOneWithoutOrganisationsInput
+  posts?: Prisma.PostCreateNestedManyWithoutOrganisationInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutCampaignInput = {
@@ -661,6 +718,8 @@ export type OrganisationUncheckedCreateWithoutCampaignInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutOrganisationInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutCampaignInput = {
@@ -689,6 +748,166 @@ export type OrganisationUpdateManyWithWhereWithoutCampaignInput = {
   data: Prisma.XOR<Prisma.OrganisationUpdateManyMutationInput, Prisma.OrganisationUncheckedUpdateManyWithoutCampaignInput>
 }
 
+export type OrganisationCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutOrganisationsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutOrganisationsInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutPostsInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutPostsInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutPostsInput, Prisma.OrganisationUncheckedCreateWithoutPostsInput>
+}
+
+export type OrganisationUpsertWithoutPostsInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutPostsInput, Prisma.OrganisationUncheckedUpdateWithoutPostsInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutPostsInput, Prisma.OrganisationUncheckedCreateWithoutPostsInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutPostsInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutPostsInput, Prisma.OrganisationUncheckedUpdateWithoutPostsInput>
+}
+
+export type OrganisationUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutOrganisationsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutOrganisationsNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaign: Prisma.CampaignCreateNestedOneWithoutOrganisationsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutOrganisationsInput
+  posts?: Prisma.PostCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutBookmarksInput = {
+  id?: string
+  name: string
+  slug: string
+  type?: string | null
+  description?: string | null
+  image?: string | null
+  location?: string | null
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  campaignId: string
+  createdById: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutBookmarksInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutBookmarksInput, Prisma.OrganisationUncheckedCreateWithoutBookmarksInput>
+}
+
+export type OrganisationUpsertWithoutBookmarksInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutBookmarksInput, Prisma.OrganisationUncheckedUpdateWithoutBookmarksInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutBookmarksInput, Prisma.OrganisationUncheckedCreateWithoutBookmarksInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutBookmarksInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutBookmarksInput, Prisma.OrganisationUncheckedUpdateWithoutBookmarksInput>
+}
+
+export type OrganisationUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutOrganisationsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutOrganisationsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutOrganisationNestedInput
+}
+
 export type OrganisationCreateManyCreatedByInput = {
   id?: string
   name: string
@@ -715,6 +934,8 @@ export type OrganisationUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutOrganisationsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutOrganisationNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutCreatedByInput = {
@@ -729,6 +950,8 @@ export type OrganisationUncheckedUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutOrganisationNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateManyWithoutCreatedByInput = {
@@ -771,6 +994,8 @@ export type OrganisationUpdateWithoutCampaignInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.UserUpdateOneRequiredWithoutOrganisationsNestedInput
+  posts?: Prisma.PostUpdateManyWithoutOrganisationNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutCampaignInput = {
@@ -785,6 +1010,8 @@ export type OrganisationUncheckedUpdateWithoutCampaignInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutOrganisationNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateManyWithoutCampaignInput = {
@@ -802,6 +1029,44 @@ export type OrganisationUncheckedUpdateManyWithoutCampaignInput = {
 }
 
 
+/**
+ * Count Type OrganisationCountOutputType
+ */
+
+export type OrganisationCountOutputType = {
+  posts: number
+  bookmarks: number
+}
+
+export type OrganisationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  posts?: boolean | OrganisationCountOutputTypeCountPostsArgs
+  bookmarks?: boolean | OrganisationCountOutputTypeCountBookmarksArgs
+}
+
+/**
+ * OrganisationCountOutputType without action
+ */
+export type OrganisationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OrganisationCountOutputType
+   */
+  select?: Prisma.OrganisationCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * OrganisationCountOutputType without action
+ */
+export type OrganisationCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PostWhereInput
+}
+
+/**
+ * OrganisationCountOutputType without action
+ */
+export type OrganisationCountOutputTypeCountBookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookmarkWhereInput
+}
+
 
 export type OrganisationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -818,6 +1083,9 @@ export type OrganisationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   createdById?: boolean
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  posts?: boolean | Prisma.Organisation$postsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Organisation$bookmarksArgs<ExtArgs>
+  _count?: boolean | Prisma.OrganisationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organisation"]>
 
 export type OrganisationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -873,6 +1141,9 @@ export type OrganisationOmit<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type OrganisationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  posts?: boolean | Prisma.Organisation$postsArgs<ExtArgs>
+  bookmarks?: boolean | Prisma.Organisation$bookmarksArgs<ExtArgs>
+  _count?: boolean | Prisma.OrganisationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganisationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
@@ -888,6 +1159,8 @@ export type $OrganisationPayload<ExtArgs extends runtime.Types.Extensions.Intern
   objects: {
     campaign: Prisma.$CampaignPayload<ExtArgs>
     createdBy: Prisma.$UserPayload<ExtArgs>
+    posts: Prisma.$PostPayload<ExtArgs>[]
+    bookmarks: Prisma.$BookmarkPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1298,6 +1571,8 @@ export interface Prisma__OrganisationClient<T, Null = never, ExtArgs extends run
   readonly [Symbol.toStringTag]: "PrismaPromise"
   campaign<T extends Prisma.CampaignDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CampaignDefaultArgs<ExtArgs>>): Prisma.Prisma__CampaignClient<runtime.Types.Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  posts<T extends Prisma.Organisation$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bookmarks<T extends Prisma.Organisation$bookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$bookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1732,6 +2007,54 @@ export type OrganisationDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many Organisations to delete.
    */
   limit?: number
+}
+
+/**
+ * Organisation.posts
+ */
+export type Organisation$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Post
+   */
+  select?: Prisma.PostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Post
+   */
+  omit?: Prisma.PostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostInclude<ExtArgs> | null
+  where?: Prisma.PostWhereInput
+  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
+  cursor?: Prisma.PostWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[]
+}
+
+/**
+ * Organisation.bookmarks
+ */
+export type Organisation$bookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Bookmark
+   */
+  select?: Prisma.BookmarkSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Bookmark
+   */
+  omit?: Prisma.BookmarkOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BookmarkInclude<ExtArgs> | null
+  where?: Prisma.BookmarkWhereInput
+  orderBy?: Prisma.BookmarkOrderByWithRelationInput | Prisma.BookmarkOrderByWithRelationInput[]
+  cursor?: Prisma.BookmarkWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookmarkScalarFieldEnum | Prisma.BookmarkScalarFieldEnum[]
 }
 
 /**
