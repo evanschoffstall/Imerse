@@ -2,7 +2,7 @@
 
 import { SearchFilters, SearchFiltersState } from '@/components/search/SearchFilters'
 import { SearchResults } from '@/components/search/SearchResults'
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import type { SearchResult } from '@/types/search'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'

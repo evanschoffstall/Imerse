@@ -13,6 +13,11 @@ export enum Permission {
   GALLERY = "gallery",
   TEMPLATES = "templates",
   BOOKMARKS = "bookmarks",
+  VIEW_ENTITIES = "VIEW_ENTITIES",
+  EDIT_ENTITIES = "EDIT_ENTITIES",
+  CREATE_ENTITIES = "CREATE_ENTITIES",
+  DELETE_ENTITIES = "DELETE_ENTITIES",
+  MANAGE_ENTITIES = "MANAGE_ENTITIES",
 }
 
 export enum RoleLevel {

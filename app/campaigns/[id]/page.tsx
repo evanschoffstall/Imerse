@@ -1,6 +1,6 @@
 'use client';
 
-import Button from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { ConfirmDialog } from '@/components/ui/Dialog';
 import { Campaign } from '@/types/campaign';
 import NextImage from 'next/image';
@@ -108,7 +108,7 @@ export default function CampaignDetailPage() {
                 <Button variant="secondary">Edit Campaign</Button>
               </Link>
               <Button
-                variant="danger"
+                variant="destructive"
                 onClick={() => setShowDeleteDialog(true)}
               >
                 Delete Campaign

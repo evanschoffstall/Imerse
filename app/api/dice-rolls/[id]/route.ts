@@ -1,7 +1,6 @@
-import { authOptions } from "@/auth";
+import { auth } from "@/auth";
 import { hasPermission, Permission } from "@/lib/permissions";
-import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
+import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 // GET /api/dice-rolls/[id] - Get single dice roll
@@ -10,7 +9,7 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -64,9 +63,9 @@ export async function GET(
 
     // Check view permission
     const canView = await hasPermission(
-      session.user.id,
       diceRoll.campaignId,
-      Permission.VIEW_ENTITIES
+      Permission.READ,
+      session.user.id
     );
 
     if (!canView) {
@@ -89,7 +88,7 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -107,9 +106,9 @@ export async function PATCH(
 
     // Check edit permission
     const canEdit = await hasPermission(
-      session.user.id,
       diceRoll.campaignId,
-      Permission.EDIT_ENTITIES
+      Permission.EDIT,
+      session.user.id
     );
 
     if (!canEdit) {
@@ -166,7 +165,7 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -184,9 +183,9 @@ export async function DELETE(
 
     // Check delete permission
     const canDelete = await hasPermission(
-      session.user.id,
       diceRoll.campaignId,
-      Permission.DELETE_ENTITIES
+      Permission.DELETE,
+      session.user.id
     );
 
     if (!canDelete) {

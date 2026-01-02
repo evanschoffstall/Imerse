@@ -21,7 +21,10 @@ export interface AbilityWithRelations extends Ability {
     id: string;
     name: string;
   };
-  parent?: Ability | null;
+  parent?: {
+    id: string;
+    name: string;
+  } | null;
   children?: Ability[];
   entityAbilities?: EntityAbility[];
   _count?: {

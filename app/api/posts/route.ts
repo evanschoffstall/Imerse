@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
-import { checkPermission } from "@/lib/permissions";
-import prisma from "@/lib/prisma";
+import { hasPermission, Permission } from "@/lib/permissions";
+import { prisma } from "@/lib/prisma";
 import { NextRequest } from "next/server";
 
 // GET /api/posts - List posts
@@ -22,10 +22,10 @@ export async function GET(req: NextRequest) {
     }
 
     // Check campaign access
-    const hasAccess = await checkPermission(
-      session.user.id,
+    const hasAccess = await hasPermission(
       campaignId,
-      "READ"
+      Permission.READ,
+      session.user.id
     );
     if (!hasAccess) {
       return Response.json({ error: "Forbidden" }, { status: 403 });
@@ -130,10 +130,10 @@ export async function POST(req: NextRequest) {
     }
 
     // Check campaign access
-    const hasAccess = await checkPermission(
-      session.user.id,
+    const hasAccess = await hasPermission(
       campaignId,
-      "CREATE"
+      Permission.CREATE,
+      session.user.id
     );
     if (!hasAccess) {
       return Response.json({ error: "Forbidden" }, { status: 403 });

@@ -1,6 +1,6 @@
 'use client'
 
-import Input from '@/components/ui/Input'
+import { Input } from '@/components/ui/input'
 import { ENTITY_TYPE_LABELS, EntityType } from '@/types/search'
 import * as React from 'react'
 
@@ -201,7 +201,7 @@ export function SearchFilters({ onFiltersChange, campaignId }: SearchFiltersProp
                 <Input
                   type="date"
                   value={filters.createdAfter}
-                  onChange={(e) => handleFilterChange({ createdAfter: e.target.value })}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFilterChange({ createdAfter: e.target.value })}
                 />
               </div>
               <div>
@@ -211,7 +211,7 @@ export function SearchFilters({ onFiltersChange, campaignId }: SearchFiltersProp
                 <Input
                   type="date"
                   value={filters.createdBefore}
-                  onChange={(e) => handleFilterChange({ createdBefore: e.target.value })}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFilterChange({ createdBefore: e.target.value })}
                 />
               </div>
               <div>
@@ -221,7 +221,7 @@ export function SearchFilters({ onFiltersChange, campaignId }: SearchFiltersProp
                 <Input
                   type="date"
                   value={filters.updatedAfter}
-                  onChange={(e) => handleFilterChange({ updatedAfter: e.target.value })}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFilterChange({ updatedAfter: e.target.value })}
                 />
               </div>
               <div>
@@ -231,7 +231,7 @@ export function SearchFilters({ onFiltersChange, campaignId }: SearchFiltersProp
                 <Input
                   type="date"
                   value={filters.updatedBefore}
-                  onChange={(e) => handleFilterChange({ updatedBefore: e.target.value })}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFilterChange({ updatedBefore: e.target.value })}
                 />
               </div>
             </div>

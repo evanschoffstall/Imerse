@@ -1,7 +1,6 @@
-import { authOptions } from '@/auth';
+import { auth } from '@/auth';
 import DiceRollList from '@/components/dice-rolls/DiceRollList';
-import prisma from '@/lib/prisma';
-import { getServerSession } from 'next-auth';
+import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
@@ -11,7 +10,7 @@ export default async function DiceRollsPage({
 }: {
   searchParams: { campaignId?: string };
 }) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   if (!session?.user) {
     redirect('/login');
   }
@@ -32,6 +31,12 @@ export default async function DiceRollsPage({
   const diceRolls = await prisma.diceRoll.findMany({
     where: { campaignId },
     include: {
+      campaign: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
       createdBy: {
         select: {
           id: true,

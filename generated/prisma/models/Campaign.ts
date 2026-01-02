@@ -251,6 +251,12 @@ export type CampaignWhereInput = {
   attributeTemplates?: Prisma.AttributeTemplateListRelationFilter
   bookmarks?: Prisma.BookmarkListRelationFilter
   presets?: Prisma.PresetListRelationFilter
+  reminders?: Prisma.ReminderListRelationFilter
+  whiteboards?: Prisma.WhiteboardListRelationFilter
+  campaignDashboards?: Prisma.CampaignDashboardListRelationFilter
+  campaignStyle?: Prisma.XOR<Prisma.CampaignStyleNullableScalarRelationFilter, Prisma.CampaignStyleWhereInput> | null
+  entityLogs?: Prisma.EntityLogListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
 }
 
 export type CampaignOrderByWithRelationInput = {
@@ -293,6 +299,12 @@ export type CampaignOrderByWithRelationInput = {
   attributeTemplates?: Prisma.AttributeTemplateOrderByRelationAggregateInput
   bookmarks?: Prisma.BookmarkOrderByRelationAggregateInput
   presets?: Prisma.PresetOrderByRelationAggregateInput
+  reminders?: Prisma.ReminderOrderByRelationAggregateInput
+  whiteboards?: Prisma.WhiteboardOrderByRelationAggregateInput
+  campaignDashboards?: Prisma.CampaignDashboardOrderByRelationAggregateInput
+  campaignStyle?: Prisma.CampaignStyleOrderByWithRelationInput
+  entityLogs?: Prisma.EntityLogOrderByRelationAggregateInput
+  notifications?: Prisma.NotificationOrderByRelationAggregateInput
 }
 
 export type CampaignWhereUniqueInput = Prisma.AtLeast<{
@@ -338,6 +350,12 @@ export type CampaignWhereUniqueInput = Prisma.AtLeast<{
   attributeTemplates?: Prisma.AttributeTemplateListRelationFilter
   bookmarks?: Prisma.BookmarkListRelationFilter
   presets?: Prisma.PresetListRelationFilter
+  reminders?: Prisma.ReminderListRelationFilter
+  whiteboards?: Prisma.WhiteboardListRelationFilter
+  campaignDashboards?: Prisma.CampaignDashboardListRelationFilter
+  campaignStyle?: Prisma.XOR<Prisma.CampaignStyleNullableScalarRelationFilter, Prisma.CampaignStyleWhereInput> | null
+  entityLogs?: Prisma.EntityLogListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
 }, "id" | "slug">
 
 export type CampaignOrderByWithAggregationInput = {
@@ -411,6 +429,12 @@ export type CampaignCreateInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateInput = {
@@ -452,6 +476,12 @@ export type CampaignUncheckedCreateInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUpdateInput = {
@@ -493,6 +523,12 @@ export type CampaignUpdateInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateInput = {
@@ -534,6 +570,12 @@ export type CampaignUncheckedUpdateInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateManyInput = {
@@ -1069,6 +1111,92 @@ export type CampaignUpdateOneWithoutPresetsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutPresetsInput, Prisma.CampaignUpdateWithoutPresetsInput>, Prisma.CampaignUncheckedUpdateWithoutPresetsInput>
 }
 
+export type CampaignCreateNestedOneWithoutRemindersInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutRemindersInput, Prisma.CampaignUncheckedCreateWithoutRemindersInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutRemindersInput
+  connect?: Prisma.CampaignWhereUniqueInput
+}
+
+export type CampaignUpdateOneRequiredWithoutRemindersNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutRemindersInput, Prisma.CampaignUncheckedCreateWithoutRemindersInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutRemindersInput
+  upsert?: Prisma.CampaignUpsertWithoutRemindersInput
+  connect?: Prisma.CampaignWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutRemindersInput, Prisma.CampaignUpdateWithoutRemindersInput>, Prisma.CampaignUncheckedUpdateWithoutRemindersInput>
+}
+
+export type CampaignCreateNestedOneWithoutWhiteboardsInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutWhiteboardsInput, Prisma.CampaignUncheckedCreateWithoutWhiteboardsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutWhiteboardsInput
+  connect?: Prisma.CampaignWhereUniqueInput
+}
+
+export type CampaignUpdateOneRequiredWithoutWhiteboardsNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutWhiteboardsInput, Prisma.CampaignUncheckedCreateWithoutWhiteboardsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutWhiteboardsInput
+  upsert?: Prisma.CampaignUpsertWithoutWhiteboardsInput
+  connect?: Prisma.CampaignWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutWhiteboardsInput, Prisma.CampaignUpdateWithoutWhiteboardsInput>, Prisma.CampaignUncheckedUpdateWithoutWhiteboardsInput>
+}
+
+export type CampaignCreateNestedOneWithoutCampaignDashboardsInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutCampaignDashboardsInput, Prisma.CampaignUncheckedCreateWithoutCampaignDashboardsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutCampaignDashboardsInput
+  connect?: Prisma.CampaignWhereUniqueInput
+}
+
+export type CampaignUpdateOneRequiredWithoutCampaignDashboardsNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutCampaignDashboardsInput, Prisma.CampaignUncheckedCreateWithoutCampaignDashboardsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutCampaignDashboardsInput
+  upsert?: Prisma.CampaignUpsertWithoutCampaignDashboardsInput
+  connect?: Prisma.CampaignWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutCampaignDashboardsInput, Prisma.CampaignUpdateWithoutCampaignDashboardsInput>, Prisma.CampaignUncheckedUpdateWithoutCampaignDashboardsInput>
+}
+
+export type CampaignCreateNestedOneWithoutCampaignStyleInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutCampaignStyleInput, Prisma.CampaignUncheckedCreateWithoutCampaignStyleInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutCampaignStyleInput
+  connect?: Prisma.CampaignWhereUniqueInput
+}
+
+export type CampaignUpdateOneRequiredWithoutCampaignStyleNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutCampaignStyleInput, Prisma.CampaignUncheckedCreateWithoutCampaignStyleInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutCampaignStyleInput
+  upsert?: Prisma.CampaignUpsertWithoutCampaignStyleInput
+  connect?: Prisma.CampaignWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutCampaignStyleInput, Prisma.CampaignUpdateWithoutCampaignStyleInput>, Prisma.CampaignUncheckedUpdateWithoutCampaignStyleInput>
+}
+
+export type CampaignCreateNestedOneWithoutEntityLogsInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutEntityLogsInput, Prisma.CampaignUncheckedCreateWithoutEntityLogsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutEntityLogsInput
+  connect?: Prisma.CampaignWhereUniqueInput
+}
+
+export type CampaignUpdateOneRequiredWithoutEntityLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutEntityLogsInput, Prisma.CampaignUncheckedCreateWithoutEntityLogsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutEntityLogsInput
+  upsert?: Prisma.CampaignUpsertWithoutEntityLogsInput
+  connect?: Prisma.CampaignWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutEntityLogsInput, Prisma.CampaignUpdateWithoutEntityLogsInput>, Prisma.CampaignUncheckedUpdateWithoutEntityLogsInput>
+}
+
+export type CampaignCreateNestedOneWithoutNotificationsInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutNotificationsInput, Prisma.CampaignUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutNotificationsInput
+  connect?: Prisma.CampaignWhereUniqueInput
+}
+
+export type CampaignUpdateOneWithoutNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutNotificationsInput, Prisma.CampaignUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutNotificationsInput
+  upsert?: Prisma.CampaignUpsertWithoutNotificationsInput
+  disconnect?: Prisma.CampaignWhereInput | boolean
+  delete?: Prisma.CampaignWhereInput | boolean
+  connect?: Prisma.CampaignWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutNotificationsInput, Prisma.CampaignUpdateWithoutNotificationsInput>, Prisma.CampaignUncheckedUpdateWithoutNotificationsInput>
+}
+
 export type CampaignCreateWithoutOwnerInput = {
   id?: string
   name: string
@@ -1107,6 +1235,12 @@ export type CampaignCreateWithoutOwnerInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutOwnerInput = {
@@ -1147,6 +1281,12 @@ export type CampaignUncheckedCreateWithoutOwnerInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutOwnerInput = {
@@ -1229,6 +1369,12 @@ export type CampaignCreateWithoutCampaignRolesInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutCampaignRolesInput = {
@@ -1269,6 +1415,12 @@ export type CampaignUncheckedCreateWithoutCampaignRolesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutCampaignRolesInput = {
@@ -1325,6 +1477,12 @@ export type CampaignUpdateWithoutCampaignRolesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutCampaignRolesInput = {
@@ -1365,6 +1523,12 @@ export type CampaignUncheckedUpdateWithoutCampaignRolesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutCharactersInput = {
@@ -1405,6 +1569,12 @@ export type CampaignCreateWithoutCharactersInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutCharactersInput = {
@@ -1445,6 +1615,12 @@ export type CampaignUncheckedCreateWithoutCharactersInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutCharactersInput = {
@@ -1501,6 +1677,12 @@ export type CampaignUpdateWithoutCharactersInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutCharactersInput = {
@@ -1541,6 +1723,12 @@ export type CampaignUncheckedUpdateWithoutCharactersInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutLocationsInput = {
@@ -1581,6 +1769,12 @@ export type CampaignCreateWithoutLocationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutLocationsInput = {
@@ -1621,6 +1815,12 @@ export type CampaignUncheckedCreateWithoutLocationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutLocationsInput = {
@@ -1677,6 +1877,12 @@ export type CampaignUpdateWithoutLocationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutLocationsInput = {
@@ -1717,6 +1923,12 @@ export type CampaignUncheckedUpdateWithoutLocationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutItemsInput = {
@@ -1757,6 +1969,12 @@ export type CampaignCreateWithoutItemsInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutItemsInput = {
@@ -1797,6 +2015,12 @@ export type CampaignUncheckedCreateWithoutItemsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutItemsInput = {
@@ -1853,6 +2077,12 @@ export type CampaignUpdateWithoutItemsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutItemsInput = {
@@ -1893,6 +2123,12 @@ export type CampaignUncheckedUpdateWithoutItemsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutQuestsInput = {
@@ -1933,6 +2169,12 @@ export type CampaignCreateWithoutQuestsInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutQuestsInput = {
@@ -1973,6 +2215,12 @@ export type CampaignUncheckedCreateWithoutQuestsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutQuestsInput = {
@@ -2029,6 +2277,12 @@ export type CampaignUpdateWithoutQuestsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutQuestsInput = {
@@ -2069,6 +2323,12 @@ export type CampaignUncheckedUpdateWithoutQuestsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutEventsInput = {
@@ -2109,6 +2369,12 @@ export type CampaignCreateWithoutEventsInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutEventsInput = {
@@ -2149,6 +2415,12 @@ export type CampaignUncheckedCreateWithoutEventsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutEventsInput = {
@@ -2205,6 +2477,12 @@ export type CampaignUpdateWithoutEventsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutEventsInput = {
@@ -2245,6 +2523,12 @@ export type CampaignUncheckedUpdateWithoutEventsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutJournalsInput = {
@@ -2285,6 +2569,12 @@ export type CampaignCreateWithoutJournalsInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutJournalsInput = {
@@ -2325,6 +2615,12 @@ export type CampaignUncheckedCreateWithoutJournalsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutJournalsInput = {
@@ -2381,6 +2677,12 @@ export type CampaignUpdateWithoutJournalsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutJournalsInput = {
@@ -2421,6 +2723,12 @@ export type CampaignUncheckedUpdateWithoutJournalsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutNotesInput = {
@@ -2461,6 +2769,12 @@ export type CampaignCreateWithoutNotesInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutNotesInput = {
@@ -2501,6 +2815,12 @@ export type CampaignUncheckedCreateWithoutNotesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutNotesInput = {
@@ -2557,6 +2877,12 @@ export type CampaignUpdateWithoutNotesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutNotesInput = {
@@ -2597,6 +2923,12 @@ export type CampaignUncheckedUpdateWithoutNotesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutFamiliesInput = {
@@ -2637,6 +2969,12 @@ export type CampaignCreateWithoutFamiliesInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutFamiliesInput = {
@@ -2677,6 +3015,12 @@ export type CampaignUncheckedCreateWithoutFamiliesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutFamiliesInput = {
@@ -2733,6 +3077,12 @@ export type CampaignUpdateWithoutFamiliesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutFamiliesInput = {
@@ -2773,6 +3123,12 @@ export type CampaignUncheckedUpdateWithoutFamiliesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutRacesInput = {
@@ -2813,6 +3169,12 @@ export type CampaignCreateWithoutRacesInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutRacesInput = {
@@ -2853,6 +3215,12 @@ export type CampaignUncheckedCreateWithoutRacesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutRacesInput = {
@@ -2909,6 +3277,12 @@ export type CampaignUpdateWithoutRacesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutRacesInput = {
@@ -2949,6 +3323,12 @@ export type CampaignUncheckedUpdateWithoutRacesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutOrganisationsInput = {
@@ -2989,6 +3369,12 @@ export type CampaignCreateWithoutOrganisationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutOrganisationsInput = {
@@ -3029,6 +3415,12 @@ export type CampaignUncheckedCreateWithoutOrganisationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutOrganisationsInput = {
@@ -3085,6 +3477,12 @@ export type CampaignUpdateWithoutOrganisationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutOrganisationsInput = {
@@ -3125,6 +3523,12 @@ export type CampaignUncheckedUpdateWithoutOrganisationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutTagsInput = {
@@ -3165,6 +3569,12 @@ export type CampaignCreateWithoutTagsInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutTagsInput = {
@@ -3205,6 +3615,12 @@ export type CampaignUncheckedCreateWithoutTagsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutTagsInput = {
@@ -3261,6 +3677,12 @@ export type CampaignUpdateWithoutTagsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutTagsInput = {
@@ -3301,6 +3723,12 @@ export type CampaignUncheckedUpdateWithoutTagsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutTimelinesInput = {
@@ -3341,6 +3769,12 @@ export type CampaignCreateWithoutTimelinesInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutTimelinesInput = {
@@ -3381,6 +3815,12 @@ export type CampaignUncheckedCreateWithoutTimelinesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutTimelinesInput = {
@@ -3437,6 +3877,12 @@ export type CampaignUpdateWithoutTimelinesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutTimelinesInput = {
@@ -3477,6 +3923,12 @@ export type CampaignUncheckedUpdateWithoutTimelinesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutMapsInput = {
@@ -3517,6 +3969,12 @@ export type CampaignCreateWithoutMapsInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutMapsInput = {
@@ -3557,6 +4015,12 @@ export type CampaignUncheckedCreateWithoutMapsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutMapsInput = {
@@ -3613,6 +4077,12 @@ export type CampaignUpdateWithoutMapsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutMapsInput = {
@@ -3653,6 +4123,12 @@ export type CampaignUncheckedUpdateWithoutMapsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutRelationsInput = {
@@ -3693,6 +4169,12 @@ export type CampaignCreateWithoutRelationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutRelationsInput = {
@@ -3733,6 +4215,12 @@ export type CampaignUncheckedCreateWithoutRelationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutRelationsInput = {
@@ -3789,6 +4277,12 @@ export type CampaignUpdateWithoutRelationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutRelationsInput = {
@@ -3829,6 +4323,12 @@ export type CampaignUncheckedUpdateWithoutRelationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutCalendarsInput = {
@@ -3869,6 +4369,12 @@ export type CampaignCreateWithoutCalendarsInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutCalendarsInput = {
@@ -3909,6 +4415,12 @@ export type CampaignUncheckedCreateWithoutCalendarsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutCalendarsInput = {
@@ -3965,6 +4477,12 @@ export type CampaignUpdateWithoutCalendarsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutCalendarsInput = {
@@ -4005,6 +4523,12 @@ export type CampaignUncheckedUpdateWithoutCalendarsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutAttributesInput = {
@@ -4045,6 +4569,12 @@ export type CampaignCreateWithoutAttributesInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutAttributesInput = {
@@ -4085,6 +4615,12 @@ export type CampaignUncheckedCreateWithoutAttributesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutAttributesInput = {
@@ -4141,6 +4677,12 @@ export type CampaignUpdateWithoutAttributesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutAttributesInput = {
@@ -4181,6 +4723,12 @@ export type CampaignUncheckedUpdateWithoutAttributesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutRelationshipsInput = {
@@ -4221,6 +4769,12 @@ export type CampaignCreateWithoutRelationshipsInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutRelationshipsInput = {
@@ -4261,6 +4815,12 @@ export type CampaignUncheckedCreateWithoutRelationshipsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutRelationshipsInput = {
@@ -4317,6 +4877,12 @@ export type CampaignUpdateWithoutRelationshipsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutRelationshipsInput = {
@@ -4357,6 +4923,12 @@ export type CampaignUncheckedUpdateWithoutRelationshipsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutVersionsInput = {
@@ -4397,6 +4969,12 @@ export type CampaignCreateWithoutVersionsInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutVersionsInput = {
@@ -4437,6 +5015,12 @@ export type CampaignUncheckedCreateWithoutVersionsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutVersionsInput = {
@@ -4493,6 +5077,12 @@ export type CampaignUpdateWithoutVersionsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutVersionsInput = {
@@ -4533,6 +5123,12 @@ export type CampaignUncheckedUpdateWithoutVersionsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutAbilitiesInput = {
@@ -4573,6 +5169,12 @@ export type CampaignCreateWithoutAbilitiesInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutAbilitiesInput = {
@@ -4613,6 +5215,12 @@ export type CampaignUncheckedCreateWithoutAbilitiesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutAbilitiesInput = {
@@ -4669,6 +5277,12 @@ export type CampaignUpdateWithoutAbilitiesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutAbilitiesInput = {
@@ -4709,6 +5323,12 @@ export type CampaignUncheckedUpdateWithoutAbilitiesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutCreaturesInput = {
@@ -4749,6 +5369,12 @@ export type CampaignCreateWithoutCreaturesInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutCreaturesInput = {
@@ -4789,6 +5415,12 @@ export type CampaignUncheckedCreateWithoutCreaturesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutCreaturesInput = {
@@ -4845,6 +5477,12 @@ export type CampaignUpdateWithoutCreaturesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutCreaturesInput = {
@@ -4885,6 +5523,12 @@ export type CampaignUncheckedUpdateWithoutCreaturesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutDiceRollsInput = {
@@ -4925,6 +5569,12 @@ export type CampaignCreateWithoutDiceRollsInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutDiceRollsInput = {
@@ -4965,6 +5615,12 @@ export type CampaignUncheckedCreateWithoutDiceRollsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutDiceRollsInput = {
@@ -5021,6 +5677,12 @@ export type CampaignUpdateWithoutDiceRollsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutDiceRollsInput = {
@@ -5061,6 +5723,12 @@ export type CampaignUncheckedUpdateWithoutDiceRollsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutConversationsInput = {
@@ -5101,6 +5769,12 @@ export type CampaignCreateWithoutConversationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutConversationsInput = {
@@ -5141,6 +5815,12 @@ export type CampaignUncheckedCreateWithoutConversationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutConversationsInput = {
@@ -5197,6 +5877,12 @@ export type CampaignUpdateWithoutConversationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutConversationsInput = {
@@ -5237,6 +5923,12 @@ export type CampaignUncheckedUpdateWithoutConversationsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutPostsInput = {
@@ -5277,6 +5969,12 @@ export type CampaignCreateWithoutPostsInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutPostsInput = {
@@ -5317,6 +6015,12 @@ export type CampaignUncheckedCreateWithoutPostsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutPostsInput = {
@@ -5373,6 +6077,12 @@ export type CampaignUpdateWithoutPostsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutPostsInput = {
@@ -5413,6 +6123,12 @@ export type CampaignUncheckedUpdateWithoutPostsInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutImagesInput = {
@@ -5453,6 +6169,12 @@ export type CampaignCreateWithoutImagesInput = {
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutImagesInput = {
@@ -5493,6 +6215,12 @@ export type CampaignUncheckedCreateWithoutImagesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutImagesInput = {
@@ -5549,6 +6277,12 @@ export type CampaignUpdateWithoutImagesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutImagesInput = {
@@ -5589,6 +6323,12 @@ export type CampaignUncheckedUpdateWithoutImagesInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutAttributeTemplatesInput = {
@@ -5629,6 +6369,12 @@ export type CampaignCreateWithoutAttributeTemplatesInput = {
   images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutAttributeTemplatesInput = {
@@ -5669,6 +6415,12 @@ export type CampaignUncheckedCreateWithoutAttributeTemplatesInput = {
   images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutAttributeTemplatesInput = {
@@ -5725,6 +6477,12 @@ export type CampaignUpdateWithoutAttributeTemplatesInput = {
   images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutAttributeTemplatesInput = {
@@ -5765,6 +6523,12 @@ export type CampaignUncheckedUpdateWithoutAttributeTemplatesInput = {
   images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutBookmarksInput = {
@@ -5805,6 +6569,12 @@ export type CampaignCreateWithoutBookmarksInput = {
   images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutBookmarksInput = {
@@ -5845,6 +6615,12 @@ export type CampaignUncheckedCreateWithoutBookmarksInput = {
   images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutBookmarksInput = {
@@ -5901,6 +6677,12 @@ export type CampaignUpdateWithoutBookmarksInput = {
   images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutBookmarksInput = {
@@ -5941,6 +6723,12 @@ export type CampaignUncheckedUpdateWithoutBookmarksInput = {
   images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutPresetsInput = {
@@ -5981,6 +6769,12 @@ export type CampaignCreateWithoutPresetsInput = {
   images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
   attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutPresetsInput = {
@@ -6021,6 +6815,12 @@ export type CampaignUncheckedCreateWithoutPresetsInput = {
   images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
   attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutPresetsInput = {
@@ -6077,6 +6877,12 @@ export type CampaignUpdateWithoutPresetsInput = {
   images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutPresetsInput = {
@@ -6117,6 +6923,1212 @@ export type CampaignUncheckedUpdateWithoutPresetsInput = {
   images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignCreateWithoutRemindersInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutCampaignsInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignUncheckedCreateWithoutRemindersInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId: string
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignCreateOrConnectWithoutRemindersInput = {
+  where: Prisma.CampaignWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutRemindersInput, Prisma.CampaignUncheckedCreateWithoutRemindersInput>
+}
+
+export type CampaignUpsertWithoutRemindersInput = {
+  update: Prisma.XOR<Prisma.CampaignUpdateWithoutRemindersInput, Prisma.CampaignUncheckedUpdateWithoutRemindersInput>
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutRemindersInput, Prisma.CampaignUncheckedCreateWithoutRemindersInput>
+  where?: Prisma.CampaignWhereInput
+}
+
+export type CampaignUpdateToOneWithWhereWithoutRemindersInput = {
+  where?: Prisma.CampaignWhereInput
+  data: Prisma.XOR<Prisma.CampaignUpdateWithoutRemindersInput, Prisma.CampaignUncheckedUpdateWithoutRemindersInput>
+}
+
+export type CampaignUpdateWithoutRemindersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignUncheckedUpdateWithoutRemindersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignCreateWithoutWhiteboardsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutCampaignsInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignUncheckedCreateWithoutWhiteboardsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId: string
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignCreateOrConnectWithoutWhiteboardsInput = {
+  where: Prisma.CampaignWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutWhiteboardsInput, Prisma.CampaignUncheckedCreateWithoutWhiteboardsInput>
+}
+
+export type CampaignUpsertWithoutWhiteboardsInput = {
+  update: Prisma.XOR<Prisma.CampaignUpdateWithoutWhiteboardsInput, Prisma.CampaignUncheckedUpdateWithoutWhiteboardsInput>
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutWhiteboardsInput, Prisma.CampaignUncheckedCreateWithoutWhiteboardsInput>
+  where?: Prisma.CampaignWhereInput
+}
+
+export type CampaignUpdateToOneWithWhereWithoutWhiteboardsInput = {
+  where?: Prisma.CampaignWhereInput
+  data: Prisma.XOR<Prisma.CampaignUpdateWithoutWhiteboardsInput, Prisma.CampaignUncheckedUpdateWithoutWhiteboardsInput>
+}
+
+export type CampaignUpdateWithoutWhiteboardsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignUncheckedUpdateWithoutWhiteboardsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignCreateWithoutCampaignDashboardsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutCampaignsInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignUncheckedCreateWithoutCampaignDashboardsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId: string
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignCreateOrConnectWithoutCampaignDashboardsInput = {
+  where: Prisma.CampaignWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutCampaignDashboardsInput, Prisma.CampaignUncheckedCreateWithoutCampaignDashboardsInput>
+}
+
+export type CampaignUpsertWithoutCampaignDashboardsInput = {
+  update: Prisma.XOR<Prisma.CampaignUpdateWithoutCampaignDashboardsInput, Prisma.CampaignUncheckedUpdateWithoutCampaignDashboardsInput>
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutCampaignDashboardsInput, Prisma.CampaignUncheckedCreateWithoutCampaignDashboardsInput>
+  where?: Prisma.CampaignWhereInput
+}
+
+export type CampaignUpdateToOneWithWhereWithoutCampaignDashboardsInput = {
+  where?: Prisma.CampaignWhereInput
+  data: Prisma.XOR<Prisma.CampaignUpdateWithoutCampaignDashboardsInput, Prisma.CampaignUncheckedUpdateWithoutCampaignDashboardsInput>
+}
+
+export type CampaignUpdateWithoutCampaignDashboardsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignUncheckedUpdateWithoutCampaignDashboardsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignCreateWithoutCampaignStyleInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutCampaignsInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignUncheckedCreateWithoutCampaignStyleInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId: string
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignCreateOrConnectWithoutCampaignStyleInput = {
+  where: Prisma.CampaignWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutCampaignStyleInput, Prisma.CampaignUncheckedCreateWithoutCampaignStyleInput>
+}
+
+export type CampaignUpsertWithoutCampaignStyleInput = {
+  update: Prisma.XOR<Prisma.CampaignUpdateWithoutCampaignStyleInput, Prisma.CampaignUncheckedUpdateWithoutCampaignStyleInput>
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutCampaignStyleInput, Prisma.CampaignUncheckedCreateWithoutCampaignStyleInput>
+  where?: Prisma.CampaignWhereInput
+}
+
+export type CampaignUpdateToOneWithWhereWithoutCampaignStyleInput = {
+  where?: Prisma.CampaignWhereInput
+  data: Prisma.XOR<Prisma.CampaignUpdateWithoutCampaignStyleInput, Prisma.CampaignUncheckedUpdateWithoutCampaignStyleInput>
+}
+
+export type CampaignUpdateWithoutCampaignStyleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignUncheckedUpdateWithoutCampaignStyleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignCreateWithoutEntityLogsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutCampaignsInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignUncheckedCreateWithoutEntityLogsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId: string
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignCreateOrConnectWithoutEntityLogsInput = {
+  where: Prisma.CampaignWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutEntityLogsInput, Prisma.CampaignUncheckedCreateWithoutEntityLogsInput>
+}
+
+export type CampaignUpsertWithoutEntityLogsInput = {
+  update: Prisma.XOR<Prisma.CampaignUpdateWithoutEntityLogsInput, Prisma.CampaignUncheckedUpdateWithoutEntityLogsInput>
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutEntityLogsInput, Prisma.CampaignUncheckedCreateWithoutEntityLogsInput>
+  where?: Prisma.CampaignWhereInput
+}
+
+export type CampaignUpdateToOneWithWhereWithoutEntityLogsInput = {
+  where?: Prisma.CampaignWhereInput
+  data: Prisma.XOR<Prisma.CampaignUpdateWithoutEntityLogsInput, Prisma.CampaignUncheckedUpdateWithoutEntityLogsInput>
+}
+
+export type CampaignUpdateWithoutEntityLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignUncheckedUpdateWithoutEntityLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignCreateWithoutNotificationsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutCampaignsInput
+  characters?: Prisma.CharacterCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignUncheckedCreateWithoutNotificationsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  visibility?: string
+  locale?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId: string
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutCampaignInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCampaignInput
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutCampaignInput
+  quests?: Prisma.QuestUncheckedCreateNestedManyWithoutCampaignInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCampaignInput
+  journals?: Prisma.JournalUncheckedCreateNestedManyWithoutCampaignInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCampaignInput
+  families?: Prisma.FamilyUncheckedCreateNestedManyWithoutCampaignInput
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutCampaignInput
+  organisations?: Prisma.OrganisationUncheckedCreateNestedManyWithoutCampaignInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCampaignInput
+  timelines?: Prisma.TimelineUncheckedCreateNestedManyWithoutCampaignInput
+  maps?: Prisma.MapUncheckedCreateNestedManyWithoutCampaignInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedCreateNestedManyWithoutCampaignInput
+  relations?: Prisma.RelationUncheckedCreateNestedManyWithoutCampaignInput
+  calendars?: Prisma.CalendarUncheckedCreateNestedManyWithoutCampaignInput
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutCampaignInput
+  relationships?: Prisma.RelationshipUncheckedCreateNestedManyWithoutCampaignInput
+  versions?: Prisma.VersionUncheckedCreateNestedManyWithoutCampaignInput
+  abilities?: Prisma.AbilityUncheckedCreateNestedManyWithoutCampaignInput
+  creatures?: Prisma.CreatureUncheckedCreateNestedManyWithoutCampaignInput
+  diceRolls?: Prisma.DiceRollUncheckedCreateNestedManyWithoutCampaignInput
+  conversations?: Prisma.ConversationUncheckedCreateNestedManyWithoutCampaignInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutCampaignInput
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutCampaignInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedCreateNestedManyWithoutCampaignInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutCampaignInput
+  presets?: Prisma.PresetUncheckedCreateNestedManyWithoutCampaignInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCampaignInput
+  whiteboards?: Prisma.WhiteboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedCreateNestedManyWithoutCampaignInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedCreateNestedOneWithoutCampaignInput
+  entityLogs?: Prisma.EntityLogUncheckedCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignCreateOrConnectWithoutNotificationsInput = {
+  where: Prisma.CampaignWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutNotificationsInput, Prisma.CampaignUncheckedCreateWithoutNotificationsInput>
+}
+
+export type CampaignUpsertWithoutNotificationsInput = {
+  update: Prisma.XOR<Prisma.CampaignUpdateWithoutNotificationsInput, Prisma.CampaignUncheckedUpdateWithoutNotificationsInput>
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutNotificationsInput, Prisma.CampaignUncheckedCreateWithoutNotificationsInput>
+  where?: Prisma.CampaignWhereInput
+}
+
+export type CampaignUpdateToOneWithWhereWithoutNotificationsInput = {
+  where?: Prisma.CampaignWhereInput
+  data: Prisma.XOR<Prisma.CampaignUpdateWithoutNotificationsInput, Prisma.CampaignUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type CampaignUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
+  characters?: Prisma.CharacterUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignUncheckedUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutCampaignNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutCampaignNestedInput
+  items?: Prisma.ItemUncheckedUpdateManyWithoutCampaignNestedInput
+  quests?: Prisma.QuestUncheckedUpdateManyWithoutCampaignNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCampaignNestedInput
+  journals?: Prisma.JournalUncheckedUpdateManyWithoutCampaignNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCampaignNestedInput
+  families?: Prisma.FamilyUncheckedUpdateManyWithoutCampaignNestedInput
+  races?: Prisma.RaceUncheckedUpdateManyWithoutCampaignNestedInput
+  organisations?: Prisma.OrganisationUncheckedUpdateManyWithoutCampaignNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCampaignNestedInput
+  timelines?: Prisma.TimelineUncheckedUpdateManyWithoutCampaignNestedInput
+  maps?: Prisma.MapUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignRoles?: Prisma.CampaignRoleUncheckedUpdateManyWithoutCampaignNestedInput
+  relations?: Prisma.RelationUncheckedUpdateManyWithoutCampaignNestedInput
+  calendars?: Prisma.CalendarUncheckedUpdateManyWithoutCampaignNestedInput
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutCampaignNestedInput
+  relationships?: Prisma.RelationshipUncheckedUpdateManyWithoutCampaignNestedInput
+  versions?: Prisma.VersionUncheckedUpdateManyWithoutCampaignNestedInput
+  abilities?: Prisma.AbilityUncheckedUpdateManyWithoutCampaignNestedInput
+  creatures?: Prisma.CreatureUncheckedUpdateManyWithoutCampaignNestedInput
+  diceRolls?: Prisma.DiceRollUncheckedUpdateManyWithoutCampaignNestedInput
+  conversations?: Prisma.ConversationUncheckedUpdateManyWithoutCampaignNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutCampaignNestedInput
+  images?: Prisma.ImageUncheckedUpdateManyWithoutCampaignNestedInput
+  attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
+  presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateManyOwnerInput = {
@@ -6169,6 +8181,12 @@ export type CampaignUpdateWithoutOwnerInput = {
   attributeTemplates?: Prisma.AttributeTemplateUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutOwnerInput = {
@@ -6209,6 +8227,12 @@ export type CampaignUncheckedUpdateWithoutOwnerInput = {
   attributeTemplates?: Prisma.AttributeTemplateUncheckedUpdateManyWithoutCampaignNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutCampaignNestedInput
   presets?: Prisma.PresetUncheckedUpdateManyWithoutCampaignNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCampaignNestedInput
+  whiteboards?: Prisma.WhiteboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignDashboards?: Prisma.CampaignDashboardUncheckedUpdateManyWithoutCampaignNestedInput
+  campaignStyle?: Prisma.CampaignStyleUncheckedUpdateOneWithoutCampaignNestedInput
+  entityLogs?: Prisma.EntityLogUncheckedUpdateManyWithoutCampaignNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateManyWithoutOwnerInput = {
@@ -6257,6 +8281,11 @@ export type CampaignCountOutputType = {
   attributeTemplates: number
   bookmarks: number
   presets: number
+  reminders: number
+  whiteboards: number
+  campaignDashboards: number
+  entityLogs: number
+  notifications: number
 }
 
 export type CampaignCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -6288,6 +8317,11 @@ export type CampaignCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   attributeTemplates?: boolean | CampaignCountOutputTypeCountAttributeTemplatesArgs
   bookmarks?: boolean | CampaignCountOutputTypeCountBookmarksArgs
   presets?: boolean | CampaignCountOutputTypeCountPresetsArgs
+  reminders?: boolean | CampaignCountOutputTypeCountRemindersArgs
+  whiteboards?: boolean | CampaignCountOutputTypeCountWhiteboardsArgs
+  campaignDashboards?: boolean | CampaignCountOutputTypeCountCampaignDashboardsArgs
+  entityLogs?: boolean | CampaignCountOutputTypeCountEntityLogsArgs
+  notifications?: boolean | CampaignCountOutputTypeCountNotificationsArgs
 }
 
 /**
@@ -6496,6 +8530,41 @@ export type CampaignCountOutputTypeCountPresetsArgs<ExtArgs extends runtime.Type
   where?: Prisma.PresetWhereInput
 }
 
+/**
+ * CampaignCountOutputType without action
+ */
+export type CampaignCountOutputTypeCountRemindersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReminderWhereInput
+}
+
+/**
+ * CampaignCountOutputType without action
+ */
+export type CampaignCountOutputTypeCountWhiteboardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WhiteboardWhereInput
+}
+
+/**
+ * CampaignCountOutputType without action
+ */
+export type CampaignCountOutputTypeCountCampaignDashboardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CampaignDashboardWhereInput
+}
+
+/**
+ * CampaignCountOutputType without action
+ */
+export type CampaignCountOutputTypeCountEntityLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EntityLogWhereInput
+}
+
+/**
+ * CampaignCountOutputType without action
+ */
+export type CampaignCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationWhereInput
+}
+
 
 export type CampaignSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -6537,6 +8606,12 @@ export type CampaignSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   attributeTemplates?: boolean | Prisma.Campaign$attributeTemplatesArgs<ExtArgs>
   bookmarks?: boolean | Prisma.Campaign$bookmarksArgs<ExtArgs>
   presets?: boolean | Prisma.Campaign$presetsArgs<ExtArgs>
+  reminders?: boolean | Prisma.Campaign$remindersArgs<ExtArgs>
+  whiteboards?: boolean | Prisma.Campaign$whiteboardsArgs<ExtArgs>
+  campaignDashboards?: boolean | Prisma.Campaign$campaignDashboardsArgs<ExtArgs>
+  campaignStyle?: boolean | Prisma.Campaign$campaignStyleArgs<ExtArgs>
+  entityLogs?: boolean | Prisma.Campaign$entityLogsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Campaign$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.CampaignCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["campaign"]>
 
@@ -6612,6 +8687,12 @@ export type CampaignInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   attributeTemplates?: boolean | Prisma.Campaign$attributeTemplatesArgs<ExtArgs>
   bookmarks?: boolean | Prisma.Campaign$bookmarksArgs<ExtArgs>
   presets?: boolean | Prisma.Campaign$presetsArgs<ExtArgs>
+  reminders?: boolean | Prisma.Campaign$remindersArgs<ExtArgs>
+  whiteboards?: boolean | Prisma.Campaign$whiteboardsArgs<ExtArgs>
+  campaignDashboards?: boolean | Prisma.Campaign$campaignDashboardsArgs<ExtArgs>
+  campaignStyle?: boolean | Prisma.Campaign$campaignStyleArgs<ExtArgs>
+  entityLogs?: boolean | Prisma.Campaign$entityLogsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Campaign$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.CampaignCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CampaignIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -6653,6 +8734,12 @@ export type $CampaignPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     attributeTemplates: Prisma.$AttributeTemplatePayload<ExtArgs>[]
     bookmarks: Prisma.$BookmarkPayload<ExtArgs>[]
     presets: Prisma.$PresetPayload<ExtArgs>[]
+    reminders: Prisma.$ReminderPayload<ExtArgs>[]
+    whiteboards: Prisma.$WhiteboardPayload<ExtArgs>[]
+    campaignDashboards: Prisma.$CampaignDashboardPayload<ExtArgs>[]
+    campaignStyle: Prisma.$CampaignStylePayload<ExtArgs> | null
+    entityLogs: Prisma.$EntityLogPayload<ExtArgs>[]
+    notifications: Prisma.$NotificationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -7088,6 +9175,12 @@ export interface Prisma__CampaignClient<T, Null = never, ExtArgs extends runtime
   attributeTemplates<T extends Prisma.Campaign$attributeTemplatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$attributeTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttributeTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   bookmarks<T extends Prisma.Campaign$bookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$bookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   presets<T extends Prisma.Campaign$presetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$presetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PresetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reminders<T extends Prisma.Campaign$remindersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$remindersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReminderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  whiteboards<T extends Prisma.Campaign$whiteboardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$whiteboardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WhiteboardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  campaignDashboards<T extends Prisma.Campaign$campaignDashboardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$campaignDashboardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CampaignDashboardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  campaignStyle<T extends Prisma.Campaign$campaignStyleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$campaignStyleArgs<ExtArgs>>): Prisma.Prisma__CampaignStyleClient<runtime.Types.Result.GetResult<Prisma.$CampaignStylePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  entityLogs<T extends Prisma.Campaign$entityLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$entityLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntityLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.Campaign$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8192,6 +10285,145 @@ export type Campaign$presetsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.PresetScalarFieldEnum | Prisma.PresetScalarFieldEnum[]
+}
+
+/**
+ * Campaign.reminders
+ */
+export type Campaign$remindersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Reminder
+   */
+  select?: Prisma.ReminderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Reminder
+   */
+  omit?: Prisma.ReminderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReminderInclude<ExtArgs> | null
+  where?: Prisma.ReminderWhereInput
+  orderBy?: Prisma.ReminderOrderByWithRelationInput | Prisma.ReminderOrderByWithRelationInput[]
+  cursor?: Prisma.ReminderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReminderScalarFieldEnum | Prisma.ReminderScalarFieldEnum[]
+}
+
+/**
+ * Campaign.whiteboards
+ */
+export type Campaign$whiteboardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Whiteboard
+   */
+  select?: Prisma.WhiteboardSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Whiteboard
+   */
+  omit?: Prisma.WhiteboardOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhiteboardInclude<ExtArgs> | null
+  where?: Prisma.WhiteboardWhereInput
+  orderBy?: Prisma.WhiteboardOrderByWithRelationInput | Prisma.WhiteboardOrderByWithRelationInput[]
+  cursor?: Prisma.WhiteboardWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WhiteboardScalarFieldEnum | Prisma.WhiteboardScalarFieldEnum[]
+}
+
+/**
+ * Campaign.campaignDashboards
+ */
+export type Campaign$campaignDashboardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CampaignDashboard
+   */
+  select?: Prisma.CampaignDashboardSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CampaignDashboard
+   */
+  omit?: Prisma.CampaignDashboardOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CampaignDashboardInclude<ExtArgs> | null
+  where?: Prisma.CampaignDashboardWhereInput
+  orderBy?: Prisma.CampaignDashboardOrderByWithRelationInput | Prisma.CampaignDashboardOrderByWithRelationInput[]
+  cursor?: Prisma.CampaignDashboardWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CampaignDashboardScalarFieldEnum | Prisma.CampaignDashboardScalarFieldEnum[]
+}
+
+/**
+ * Campaign.campaignStyle
+ */
+export type Campaign$campaignStyleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CampaignStyle
+   */
+  select?: Prisma.CampaignStyleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CampaignStyle
+   */
+  omit?: Prisma.CampaignStyleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CampaignStyleInclude<ExtArgs> | null
+  where?: Prisma.CampaignStyleWhereInput
+}
+
+/**
+ * Campaign.entityLogs
+ */
+export type Campaign$entityLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EntityLog
+   */
+  select?: Prisma.EntityLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EntityLog
+   */
+  omit?: Prisma.EntityLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EntityLogInclude<ExtArgs> | null
+  where?: Prisma.EntityLogWhereInput
+  orderBy?: Prisma.EntityLogOrderByWithRelationInput | Prisma.EntityLogOrderByWithRelationInput[]
+  cursor?: Prisma.EntityLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EntityLogScalarFieldEnum | Prisma.EntityLogScalarFieldEnum[]
+}
+
+/**
+ * Campaign.notifications
+ */
+export type Campaign$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notification
+   */
+  select?: Prisma.NotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notification
+   */
+  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationInclude<ExtArgs> | null
+  where?: Prisma.NotificationWhereInput
+  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
 }
 
 /**

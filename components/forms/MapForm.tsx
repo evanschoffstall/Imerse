@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import ImageUpload from '@/components/ui/ImageUpload'
 import type { Map, MapFormData } from '@/types/map'
 import { MAP_TYPES } from '@/types/map'

@@ -1,7 +1,7 @@
 import { PrismaPg } from "@prisma/adapter-pg";
 // @ts-ignore - pg ESM types issue with @types/pg
+import { PrismaClient } from "@prisma/client";
 import { Pool } from "pg";
-import { PrismaClient } from "../generated/prisma/client";
 
 // Create connection pool
 const pool = new Pool({

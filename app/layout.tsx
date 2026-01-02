@@ -1,5 +1,6 @@
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
+import { ThemeProvider } from '@/components/theme/ThemeProvider'
 import ToastProvider from '@/components/ui/ToastProvider'
 import '@fontsource-variable/roboto'
 import type { Metadata } from 'next'
@@ -16,12 +17,19 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="antialiased min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <ToastProvider />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <ToastProvider />
+        </ThemeProvider>
       </body>
     </html>
   )

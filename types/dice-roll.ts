@@ -1,5 +1,3 @@
-import { Campaign } from "./campaign";
-import { Character } from "./character";
 import { User } from "./index";
 
 export interface DiceRoll {
@@ -16,9 +14,19 @@ export interface DiceRoll {
 }
 
 export interface DiceRollWithRelations extends DiceRoll {
-  campaign: Campaign;
-  createdBy: User;
-  character?: Character | null;
+  campaign: {
+    id: string;
+    name: string;
+  };
+  createdBy: {
+    id: string;
+    name: string;
+    email: string;
+  };
+  character?: {
+    id: string;
+    name: string;
+  } | null;
   results?: DiceRollResult[];
   _count?: {
     results: number;

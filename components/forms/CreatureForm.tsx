@@ -1,7 +1,7 @@
 'use client';
 
 import RichTextEditor from '@/components/editor/RichTextEditor';
-import ImageUpload from '@/components/forms/ImageUpload';
+import ImageUpload from '@/components/ui/ImageUpload';
 import { Creature, CREATURE_TYPES } from '@/types/creature';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -102,7 +102,7 @@ export default function CreatureForm({
         </label>
         <ImageUpload
           currentImage={image || undefined}
-          onImageUploaded={(url) => setValue('image', url)}
+          onImageUpload={(url: string) => setValue('image', url)}
         />
       </div>
 

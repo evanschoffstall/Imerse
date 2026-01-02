@@ -1,7 +1,6 @@
-import { authOptions } from "@/auth";
+import { auth } from "@/auth";
 import { hasPermission, Permission } from "@/lib/permissions";
-import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
+import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 // DELETE /api/dice-roll-results/[id] - Delete dice roll result
@@ -10,7 +9,7 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -27,11 +26,7 @@ export async function DELETE(
     }
 
     // Check edit permission (need edit to delete results)
-    const canEdit = await hasPermission(
-      session.user.id,
-      result.diceRoll.campaignId,
-      Permission.EDIT_ENTITIES
-    );
+    const canEdit = await hasPermission(result.diceRoll.campaignId, Permission.EDIT, session.user.id);
 
     if (!canEdit) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });

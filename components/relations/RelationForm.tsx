@@ -1,9 +1,9 @@
 'use client'
 
-import Button from '@/components/ui/Button'
-import Input from '@/components/ui/Input'
-import Label from '@/components/ui/Label'
-import Select from '@/components/ui/Select'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import Select from '@/components/ui/select'
 import { ATTITUDE_LABELS, RELATION_COLOURS, type CreateRelationInput } from '@/types/relation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'

@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import ImageUpload from '@/components/ui/ImageUpload'
 import type { Race, RaceFormData } from '@/types/race'
 import { RACE_TYPES } from '@/types/race'

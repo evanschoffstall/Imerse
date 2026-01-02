@@ -94,7 +94,20 @@ export const ModelName = {
   AttributeTemplate: 'AttributeTemplate',
   Bookmark: 'Bookmark',
   PresetType: 'PresetType',
-  Preset: 'Preset'
+  Preset: 'Preset',
+  EntityEventType: 'EntityEventType',
+  Reminder: 'Reminder',
+  Whiteboard: 'Whiteboard',
+  CampaignDashboard: 'CampaignDashboard',
+  CampaignDashboardWidget: 'CampaignDashboardWidget',
+  CampaignDashboardRole: 'CampaignDashboardRole',
+  CampaignDashboardWidgetTag: 'CampaignDashboardWidgetTag',
+  Theme: 'Theme',
+  CampaignStyle: 'CampaignStyle',
+  EntityLog: 'EntityLog',
+  UserLog: 'UserLog',
+  Notification: 'Notification',
+  NotificationPreference: 'NotificationPreference'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -901,6 +914,226 @@ export const PresetScalarFieldEnum = {
 } as const
 
 export type PresetScalarFieldEnum = (typeof PresetScalarFieldEnum)[keyof typeof PresetScalarFieldEnum]
+
+
+export const EntityEventTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  icon: 'icon',
+  color: 'color',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EntityEventTypeScalarFieldEnum = (typeof EntityEventTypeScalarFieldEnum)[keyof typeof EntityEventTypeScalarFieldEnum]
+
+
+export const ReminderScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  entityType: 'entityType',
+  entityId: 'entityId',
+  eventTypeId: 'eventTypeId',
+  calendarId: 'calendarId',
+  calendarDate: 'calendarDate',
+  isRecurring: 'isRecurring',
+  recurrenceRule: 'recurrenceRule',
+  notifyBefore: 'notifyBefore',
+  isNotification: 'isNotification',
+  campaignId: 'campaignId',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReminderScalarFieldEnum = (typeof ReminderScalarFieldEnum)[keyof typeof ReminderScalarFieldEnum]
+
+
+export const WhiteboardScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  content: 'content',
+  thumbnail: 'thumbnail',
+  template: 'template',
+  isPrivate: 'isPrivate',
+  campaignId: 'campaignId',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WhiteboardScalarFieldEnum = (typeof WhiteboardScalarFieldEnum)[keyof typeof WhiteboardScalarFieldEnum]
+
+
+export const CampaignDashboardScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  isDefault: 'isDefault',
+  visibility: 'visibility',
+  layout: 'layout',
+  position: 'position',
+  campaignId: 'campaignId',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CampaignDashboardScalarFieldEnum = (typeof CampaignDashboardScalarFieldEnum)[keyof typeof CampaignDashboardScalarFieldEnum]
+
+
+export const CampaignDashboardWidgetScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  title: 'title',
+  config: 'config',
+  x: 'x',
+  y: 'y',
+  width: 'width',
+  height: 'height',
+  dashboardId: 'dashboardId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CampaignDashboardWidgetScalarFieldEnum = (typeof CampaignDashboardWidgetScalarFieldEnum)[keyof typeof CampaignDashboardWidgetScalarFieldEnum]
+
+
+export const CampaignDashboardRoleScalarFieldEnum = {
+  id: 'id',
+  dashboardId: 'dashboardId',
+  roleId: 'roleId',
+  canEdit: 'canEdit',
+  canView: 'canView',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CampaignDashboardRoleScalarFieldEnum = (typeof CampaignDashboardRoleScalarFieldEnum)[keyof typeof CampaignDashboardRoleScalarFieldEnum]
+
+
+export const CampaignDashboardWidgetTagScalarFieldEnum = {
+  id: 'id',
+  widgetId: 'widgetId',
+  tagId: 'tagId',
+  createdAt: 'createdAt'
+} as const
+
+export type CampaignDashboardWidgetTagScalarFieldEnum = (typeof CampaignDashboardWidgetTagScalarFieldEnum)[keyof typeof CampaignDashboardWidgetTagScalarFieldEnum]
+
+
+export const ThemeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  preview: 'preview',
+  isOfficial: 'isOfficial',
+  isPublic: 'isPublic',
+  colors: 'colors',
+  fonts: 'fonts',
+  layout: 'layout',
+  customCSS: 'customCSS',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ThemeScalarFieldEnum = (typeof ThemeScalarFieldEnum)[keyof typeof ThemeScalarFieldEnum]
+
+
+export const CampaignStyleScalarFieldEnum = {
+  id: 'id',
+  headerImage: 'headerImage',
+  colors: 'colors',
+  fonts: 'fonts',
+  customCSS: 'customCSS',
+  themeId: 'themeId',
+  campaignId: 'campaignId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CampaignStyleScalarFieldEnum = (typeof CampaignStyleScalarFieldEnum)[keyof typeof CampaignStyleScalarFieldEnum]
+
+
+export const EntityLogScalarFieldEnum = {
+  id: 'id',
+  entityType: 'entityType',
+  entityId: 'entityId',
+  action: 'action',
+  changes: 'changes',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  userId: 'userId',
+  campaignId: 'campaignId',
+  createdAt: 'createdAt'
+} as const
+
+export type EntityLogScalarFieldEnum = (typeof EntityLogScalarFieldEnum)[keyof typeof EntityLogScalarFieldEnum]
+
+
+export const UserLogScalarFieldEnum = {
+  id: 'id',
+  action: 'action',
+  details: 'details',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type UserLogScalarFieldEnum = (typeof UserLogScalarFieldEnum)[keyof typeof UserLogScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  title: 'title',
+  message: 'message',
+  link: 'link',
+  read: 'read',
+  entityType: 'entityType',
+  entityId: 'entityId',
+  userId: 'userId',
+  creatorId: 'creatorId',
+  campaignId: 'campaignId',
+  createdAt: 'createdAt',
+  readAt: 'readAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+export const NotificationPreferenceScalarFieldEnum = {
+  id: 'id',
+  emailOnMention: 'emailOnMention',
+  emailOnComment: 'emailOnComment',
+  emailOnCalendar: 'emailOnCalendar',
+  emailOnReminder: 'emailOnReminder',
+  emailOnCampaign: 'emailOnCampaign',
+  emailOnQuest: 'emailOnQuest',
+  emailOnCharacter: 'emailOnCharacter',
+  emailDigest: 'emailDigest',
+  emailDigestFrequency: 'emailDigestFrequency',
+  notifyOnMention: 'notifyOnMention',
+  notifyOnComment: 'notifyOnComment',
+  notifyOnCalendar: 'notifyOnCalendar',
+  notifyOnReminder: 'notifyOnReminder',
+  notifyOnCampaign: 'notifyOnCampaign',
+  notifyOnQuest: 'notifyOnQuest',
+  notifyOnCharacter: 'notifyOnCharacter',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type NotificationPreferenceScalarFieldEnum = (typeof NotificationPreferenceScalarFieldEnum)[keyof typeof NotificationPreferenceScalarFieldEnum]
 
 
 export const SortOrder = {

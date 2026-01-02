@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import Dialog from '@/components/ui/Dialog'
 import type { Item } from '@/types/item'
 import NextImage from 'next/image'
@@ -125,7 +125,7 @@ export default function ItemDetailPage({ params }: { params: { id: string } }) {
                 <Button>Edit</Button>
               </Link>
               <Button
-                variant="danger"
+                variant="destructive"
                 onClick={() => setDeleteDialogOpen(true)}
               >
                 Delete
@@ -214,7 +214,7 @@ export default function ItemDetailPage({ params }: { params: { id: string } }) {
             Cancel
           </Button>
           <Button
-            variant="danger"
+            variant="destructive"
             onClick={handleDelete}
             disabled={isDeleting}
           >

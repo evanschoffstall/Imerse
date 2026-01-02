@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import ImageUpload from '@/components/ui/ImageUpload'
 import type { Timeline, TimelineFormData } from '@/types/timeline'
 import { TIMELINE_TYPES } from '@/types/timeline'

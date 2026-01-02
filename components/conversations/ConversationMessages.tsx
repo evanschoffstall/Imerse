@@ -185,8 +185,8 @@ export function ConversationMessages({
               <Label>Send as:</Label>
               <RadioGroup
                 value={formData.authorType}
-                onValueChange={(value: 'user' | 'character') =>
-                  setFormData((prev) => ({ ...prev, authorType: value, authorId: '' }))
+                onValueChange={(value) =>
+                  setFormData((prev) => ({ ...prev, authorType: value as 'user' | 'character', authorId: '' }))
                 }
                 className="flex gap-4"
               >
@@ -230,7 +230,7 @@ export function ConversationMessages({
             <div>
               <Textarea
                 value={formData.message}
-                onChange={(e) =>
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                   setFormData((prev) => ({ ...prev, message: e.target.value }))
                 }
                 placeholder="Type your message..."

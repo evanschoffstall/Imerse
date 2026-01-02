@@ -3,7 +3,7 @@
 import { AttributeManager } from '@/components/attributes/AttributeManager'
 import RelationsList from '@/components/relations/RelationsList'
 import { RelationshipManager } from '@/components/relationships/RelationshipManager'
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import Dialog from '@/components/ui/Dialog'
 import { VersionHistory } from '@/components/versions/VersionHistory'
 import type { Character } from '@/types/character'
@@ -129,7 +129,7 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
                 <Button>Edit</Button>
               </Link>
               <Button
-                variant="danger"
+                variant="destructive"
                 onClick={() => setDeleteDialogOpen(true)}
               >
                 Delete
@@ -273,7 +273,7 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
             Cancel
           </Button>
           <Button
-            variant="danger"
+            variant="destructive"
             onClick={handleDelete}
             disabled={isDeleting}
           >

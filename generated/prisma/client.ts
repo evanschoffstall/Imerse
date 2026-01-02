@@ -259,3 +259,68 @@ export type PresetType = Prisma.PresetTypeModel
  * 
  */
 export type Preset = Prisma.PresetModel
+/**
+ * Model EntityEventType
+ * 
+ */
+export type EntityEventType = Prisma.EntityEventTypeModel
+/**
+ * Model Reminder
+ * 
+ */
+export type Reminder = Prisma.ReminderModel
+/**
+ * Model Whiteboard
+ * 
+ */
+export type Whiteboard = Prisma.WhiteboardModel
+/**
+ * Model CampaignDashboard
+ * 
+ */
+export type CampaignDashboard = Prisma.CampaignDashboardModel
+/**
+ * Model CampaignDashboardWidget
+ * 
+ */
+export type CampaignDashboardWidget = Prisma.CampaignDashboardWidgetModel
+/**
+ * Model CampaignDashboardRole
+ * 
+ */
+export type CampaignDashboardRole = Prisma.CampaignDashboardRoleModel
+/**
+ * Model CampaignDashboardWidgetTag
+ * 
+ */
+export type CampaignDashboardWidgetTag = Prisma.CampaignDashboardWidgetTagModel
+/**
+ * Model Theme
+ * 
+ */
+export type Theme = Prisma.ThemeModel
+/**
+ * Model CampaignStyle
+ * 
+ */
+export type CampaignStyle = Prisma.CampaignStyleModel
+/**
+ * Model EntityLog
+ * 
+ */
+export type EntityLog = Prisma.EntityLogModel
+/**
+ * Model UserLog
+ * 
+ */
+export type UserLog = Prisma.UserLogModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel
+/**
+ * Model NotificationPreference
+ * 
+ */
+export type NotificationPreference = Prisma.NotificationPreferenceModel

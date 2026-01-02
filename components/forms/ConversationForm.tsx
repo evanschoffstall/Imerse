@@ -66,9 +66,9 @@ export function ConversationForm({
   const handleParticipantToggle = (id: string) => {
     setFormData((prev) => ({
       ...prev,
-      participantIds: prev.participantIds.includes(id)
-        ? prev.participantIds.filter((pid) => pid !== id)
-        : [...prev.participantIds, id],
+      participantIds: (prev.participantIds || []).includes(id)
+        ? (prev.participantIds || []).filter((pid) => pid !== id)
+        : [...(prev.participantIds || []), id],
     }));
   };
 
@@ -86,7 +86,7 @@ export function ConversationForm({
         <Input
           id="name"
           value={formData.name}
-          onChange={(e) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setFormData((prev) => ({ ...prev, name: e.target.value }))
           }
           placeholder="Enter conversation name"
@@ -98,8 +98,8 @@ export function ConversationForm({
         <Label>Target Type</Label>
         <RadioGroup
           value={formData.target}
-          onValueChange={(value: 'users' | 'characters') =>
-            setFormData((prev) => ({ ...prev, target: value, participantIds: [] }))
+          onValueChange={(value) =>
+            setFormData((prev) => ({ ...prev, target: value as 'users' | 'characters', participantIds: [] }))
           }
         >
           {CONVERSATION_TARGETS.map((target) => (
@@ -122,8 +122,8 @@ export function ConversationForm({
         <Checkbox
           id="isPrivate"
           checked={formData.isPrivate}
-          onCheckedChange={(checked) =>
-            setFormData((prev) => ({ ...prev, isPrivate: checked as boolean }))
+          onCheckedChange={(checked: boolean) =>
+            setFormData((prev) => ({ ...prev, isPrivate: checked }))
           }
         />
         <Label htmlFor="isPrivate" className="font-normal">
@@ -143,7 +143,7 @@ export function ConversationForm({
               <div key={participant.id} className="flex items-center space-x-2">
                 <Checkbox
                   id={`participant-${participant.id}`}
-                  checked={formData.participantIds.includes(participant.id)}
+                  checked={(formData.participantIds || []).includes(participant.id)}
                   onCheckedChange={() => handleParticipantToggle(participant.id)}
                 />
                 <Label

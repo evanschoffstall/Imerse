@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import Label from './Label';
+import { Label } from './label';
 
 export interface FormFieldProps {
   label?: string;
@@ -21,8 +21,8 @@ export default function FormField({
   return (
     <div className={`mb-4 ${className}`}>
       {label && (
-        <Label htmlFor={htmlFor} required={required}>
-          {label}
+        <Label htmlFor={htmlFor}>
+          {label}{required && <span className="text-red-500 ml-1">*</span>}
         </Label>
       )}
       {children}

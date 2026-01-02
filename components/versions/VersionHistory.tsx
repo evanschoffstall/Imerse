@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import {
   EntityType,
   FieldDiff,
@@ -294,7 +294,7 @@ export function VersionHistory({
                   <Button
                     onClick={() => handleRestore(selectedVersion)}
                     disabled={restoring}
-                    variant="primary"
+                    variant="default"
                   >
                     {restoring ? 'Restoring...' : 'Restore This Version'}
                   </Button>

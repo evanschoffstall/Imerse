@@ -137,7 +137,7 @@ test.describe("Map Enhancements", () => {
     await page.click("text=Layers");
 
     // Click Edit button on first layer
-    await page.click('button:has-text("Edit")').first();
+    await page.locator('button:has-text("Edit")').first().click();
 
     // Change name
     await page.fill('input[type="text"][required]', "Updated Ground Layer");
@@ -167,7 +167,7 @@ test.describe("Map Enhancements", () => {
 
     // Click Delete button on first marker
     page.on("dialog", (dialog) => dialog.accept());
-    await page.click('button:has-text("Delete")').first();
+    await page.locator('button:has-text("Delete")').first().click();
 
     // Wait for marker to be removed
     await page.waitForTimeout(500);
@@ -191,7 +191,7 @@ test.describe("Map Enhancements", () => {
     await page.click("text=Layers");
 
     // Click visibility toggle
-    await page.click('button[title*="layer"]').first();
+    await page.locator('button[title*="layer"]').first().click();
 
     // Verify toast notification
     await expect(page.locator("text=Layer visibility updated")).toBeVisible();
@@ -286,7 +286,7 @@ test.describe("Map Enhancements", () => {
 
     // Select group (assuming "Points of Interest" group exists from previous test)
     const groupSelect = page.locator("select").last();
-    await groupSelect.selectOption({ label: /Points of Interest/i });
+    await groupSelect.selectOption({ label: "Points of Interest" });
 
     // Submit form
     await page.click('button[type="submit"]:has-text("Create")');

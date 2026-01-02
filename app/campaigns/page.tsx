@@ -1,6 +1,6 @@
 'use client';
 
-import Button from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { Campaign } from '@/types/campaign';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';

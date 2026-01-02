@@ -1,7 +1,6 @@
-import { authOptions } from "@/auth";
+import { auth } from "@/auth";
 import { hasPermission, Permission } from "@/lib/permissions";
-import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
+import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 // GET /api/conversations/[id] - Get single conversation
@@ -10,7 +9,7 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -88,11 +87,7 @@ export async function GET(
     }
 
     // Check view permission
-    const canView = await hasPermission(
-      session.user.id,
-      conversation.campaignId,
-      Permission.VIEW_ENTITIES
-    );
+    const canView = await hasPermission(conversation.campaignId, Permission.READ, session.user.id);
 
     if (!canView) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
@@ -114,7 +109,7 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -131,11 +126,7 @@ export async function PATCH(
     }
 
     // Check edit permission
-    const canEdit = await hasPermission(
-      session.user.id,
-      conversation.campaignId,
-      Permission.EDIT_ENTITIES
-    );
+    const canEdit = await hasPermission(conversation.campaignId, Permission.EDIT, session.user.id);
 
     if (!canEdit) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
@@ -184,7 +175,7 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -201,11 +192,7 @@ export async function DELETE(
     }
 
     // Check delete permission
-    const canDelete = await hasPermission(
-      session.user.id,
-      conversation.campaignId,
-      Permission.DELETE_ENTITIES
-    );
+    const canDelete = await hasPermission(conversation.campaignId, Permission.DELETE, session.user.id);
 
     if (!canDelete) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });

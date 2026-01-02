@@ -1,9 +1,9 @@
 'use client'
 
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import ImageUpload from '@/components/ui/ImageUpload'
-import Input from '@/components/ui/Input'
-import Select from '@/components/ui/Select'
+import { Input } from '@/components/ui/input'
+import Select from '@/components/ui/select'
 import type { Note, NoteFormData } from '@/types/note'
 import { NOTE_TYPES } from '@/types/note'
 import { zodResolver } from '@hookform/resolvers/zod'

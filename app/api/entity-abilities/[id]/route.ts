@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { hasPermission } from "@/lib/permissions";
+import { hasPermission, Permission } from "@/lib/permissions";
 import { prisma } from "@/lib/prisma";
 import { NextRequest } from "next/server";
 
@@ -70,8 +70,8 @@ export async function PATCH(
     // Check permissions
     const canEdit = await hasPermission(
       campaignId,
-      session.user.id,
-      "EDIT_ENTITIES"
+      Permission.EDIT_ENTITIES,
+      session.user.id
     );
     if (!canEdit) {
       return Response.json({ error: "Forbidden" }, { status: 403 });
@@ -151,8 +151,8 @@ export async function DELETE(
     // Check permissions
     const canDelete = await hasPermission(
       campaignId,
-      session.user.id,
-      "EDIT_ENTITIES"
+      Permission.EDIT_ENTITIES,
+      session.user.id
     );
     if (!canDelete) {
       return Response.json({ error: "Forbidden" }, { status: 403 });

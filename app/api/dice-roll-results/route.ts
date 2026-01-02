@@ -1,14 +1,13 @@
-import { authOptions } from "@/auth";
+import { auth } from "@/auth";
 import { rollDice } from "@/lib/dice-roller";
 import { hasPermission, Permission } from "@/lib/permissions";
-import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
+import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 // GET /api/dice-roll-results - List dice roll results
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -41,9 +40,9 @@ export async function GET(request: NextRequest) {
       }
 
       const canView = await hasPermission(
-        session.user.id,
         diceRoll.campaignId,
-        Permission.VIEW_ENTITIES
+        Permission.READ,
+        session.user.id
       );
 
       if (!canView) {
@@ -54,9 +53,9 @@ export async function GET(request: NextRequest) {
     } else if (campaignId) {
       // Check campaign access
       const canView = await hasPermission(
-        session.user.id,
         campaignId,
-        Permission.VIEW_ENTITIES
+        Permission.READ,
+        session.user.id
       );
 
       if (!canView) {
@@ -111,7 +110,7 @@ export async function GET(request: NextRequest) {
 // POST /api/dice-roll-results - Execute roll and create result
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -147,9 +146,9 @@ export async function POST(request: NextRequest) {
 
     // Check permission
     const canView = await hasPermission(
-      session.user.id,
       diceRoll.campaignId,
-      Permission.VIEW_ENTITIES
+      Permission.READ,
+      session.user.id
     );
 
     if (!canView) {
@@ -169,7 +168,7 @@ export async function POST(request: NextRequest) {
 
       // Convert to key-value pairs
       attributes.forEach((attr) => {
-        characterAttributes[attr.name.toLowerCase()] = attr.value || "";
+        characterAttributes[attr.key.toLowerCase()] = attr.value || "";
       });
     }
 

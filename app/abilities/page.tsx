@@ -31,6 +31,12 @@ export default async function AbilitiesPage({ searchParams }: AbilitiesPageProps
       campaignId,
     },
     include: {
+      campaign: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
       createdBy: {
         select: {
           id: true,

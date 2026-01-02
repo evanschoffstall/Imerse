@@ -101,7 +101,7 @@ export default function ConversationDetailPage() {
           <div className="flex flex-wrap gap-2">
             {conversation.participants.map((p) => (
               <Badge key={p.id} variant="outline">
-                {getParticipantName(p)}
+                {getParticipantName(p as any)}
               </Badge>
             ))}
           </div>

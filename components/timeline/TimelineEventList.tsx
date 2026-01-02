@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { Event } from '@/types/event'
 import Link from 'next/link'
 import * as React from 'react'

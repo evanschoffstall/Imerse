@@ -1,13 +1,12 @@
-import { authOptions } from "@/auth";
+import { auth } from "@/auth";
 import { hasPermission, Permission } from "@/lib/permissions";
-import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
+import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 // GET /api/dice-rolls - List dice rolls
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -26,9 +25,9 @@ export async function GET(request: NextRequest) {
 
     // Check view permission
     const canView = await hasPermission(
-      session.user.id,
       campaignId,
-      Permission.VIEW_ENTITIES
+      Permission.READ,
+      session.user.id
     );
 
     if (!canView) {
@@ -91,7 +90,7 @@ export async function GET(request: NextRequest) {
 // POST /api/dice-rolls - Create dice roll
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -109,9 +108,9 @@ export async function POST(request: NextRequest) {
 
     // Check create permission
     const canCreate = await hasPermission(
-      session.user.id,
       campaignId,
-      Permission.CREATE_ENTITIES
+      Permission.CREATE,
+      session.user.id
     );
 
     if (!canCreate) {

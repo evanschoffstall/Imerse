@@ -209,7 +209,7 @@ export function getBookmarkIcon(bookmark: Bookmark): string {
 
   if (bookmark.type === "entity") {
     const entityType = getBookmarkEntityType(bookmark);
-    return DEFAULT_ICONS[entityType] || "🔗";
+    return (entityType && DEFAULT_ICONS[entityType]) || "🔗";
   }
 
   return DEFAULT_ICONS[bookmark.type] || "🔖";

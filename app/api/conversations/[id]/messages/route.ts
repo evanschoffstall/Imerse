@@ -1,7 +1,6 @@
-import { authOptions } from "@/auth";
+import { auth } from "@/auth";
 import { hasPermission, Permission } from "@/lib/permissions";
-import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
+import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 // GET /api/conversations/[id]/messages - Get conversation messages
@@ -10,7 +9,7 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -27,11 +26,7 @@ export async function GET(
     }
 
     // Check view permission
-    const canView = await hasPermission(
-      session.user.id,
-      conversation.campaignId,
-      Permission.VIEW_ENTITIES
-    );
+    const canView = await hasPermission(conversation.campaignId, Permission.READ, session.user.id);
 
     if (!canView) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
@@ -90,7 +85,7 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -115,11 +110,7 @@ export async function POST(
     }
 
     // Check create permission
-    const canCreate = await hasPermission(
-      session.user.id,
-      conversation.campaignId,
-      Permission.CREATE_ENTITIES
-    );
+    const canCreate = await hasPermission(conversation.campaignId, Permission.CREATE, session.user.id);
 
     if (!canCreate) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });

@@ -2,8 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -60,6 +59,15 @@ model User {
   attributeTemplates        AttributeTemplate[]
   bookmarks                 Bookmark[]
   presets                   Preset[]
+  reminders                 Reminder[]
+  whiteboards               Whiteboard[]
+  campaignDashboards        CampaignDashboard[]
+  themes                    Theme[]
+  entityLogs                EntityLog[]      @relation("EntityLogs")
+  userLogs                  UserLog[]        @relation("UserLogs")
+  notifications             Notification[]   @relation("UserNotifications")
+  notificationsCreated      Notification[]   @relation("NotificationCreator")
+  notificationPreferences   NotificationPreference?
 
   @@map("users")
 }
@@ -106,6 +114,12 @@ model Campaign {
   attributeTemplates AttributeTemplate[]
   bookmarks          Bookmark[]
   presets            Preset[]
+  reminders          Reminder[]
+  whiteboards        Whiteboard[]
+  campaignDashboards CampaignDashboard[]
+  campaignStyle      CampaignStyle?
+  entityLogs         EntityLog[]
+  notifications      Notification[]
 
   @@map("campaigns")
 }
@@ -429,7 +443,8 @@ model Tag {
   createdById String
   createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
 
-  postTags PostTag[]
+  postTags                     PostTag[]
+  campaignDashboardWidgetTags  CampaignDashboardWidgetTag[]
 
   @@unique([campaignId, slug])
   @@map("tags")
@@ -575,6 +590,7 @@ model Calendar {
   weather            CalendarWeather[]
   events             Event[]
   characterBirthdays Character[]
+  reminders          Reminder[]
 
   @@unique([campaignId, slug])
   @@index([campaignId])
@@ -1300,4 +1316,346 @@ model Preset {
   @@index([isPublic])
   @@index([isOfficial])
   @@map("presets")
+}
+
+// Phase 26: Reminders & Entity Events
+
+model EntityEventType {
+  id          String  @id @default(cuid())
+  name        String // birth, death, event, custom
+  description String? @db.Text
+  icon        String? // Icon identifier
+  color       String? // Hex color code
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  reminders Reminder[]
+
+  @@unique([name])
+  @@map("entity_event_types")
+}
+
+model Reminder {
+  id          String  @id @default(cuid())
+  name        String
+  description String? @db.Text
+  
+  // Polymorphic entity relationship
+  entityType  String // character, location, event, quest, etc.
+  entityId    String
+  
+  // Event type
+  eventTypeId String
+  eventType   EntityEventType @relation(fields: [eventTypeId], references: [id], onDelete: Cascade)
+  
+  // Calendar date
+  calendarId   String?
+  calendar     Calendar? @relation(fields: [calendarId], references: [id], onDelete: SetNull)
+  calendarDate String? // YYYY-MM-DD format
+  
+  // Recurrence
+  isRecurring    Boolean @default(false)
+  recurrenceRule Json? // { type: 'daily'|'monthly'|'yearly'|'moon', interval: 1, endDate?: string }
+  
+  // Notification
+  notifyBefore   Int? // Days before event to notify
+  isNotification Boolean @default(false)
+  
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([campaignId])
+  @@index([entityType, entityId])
+  @@index([calendarId])
+  @@index([eventTypeId])
+  @@map("reminders")
+}
+
+// Phase 27: Whiteboards & Collaborative Spaces
+
+model Whiteboard {
+  id          String  @id @default(cuid())
+  name        String
+  slug        String
+  description String? @db.Text
+  content     Json    @default("{}") // Canvas data (shapes, notes, images)
+  thumbnail   String? // Preview image URL
+  template    String? // Template identifier for preset layouts
+  isPrivate   Boolean @default(false)
+  
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@unique([campaignId, slug])
+  @@index([campaignId])
+  @@map("whiteboards")
+}
+
+// Phase 28: Dashboard Widgets
+
+model CampaignDashboard {
+  id          String  @id @default(cuid())
+  name        String
+  slug        String
+  description String? @db.Text
+  isDefault   Boolean @default(false) // One default dashboard per campaign
+  visibility  String  @default("members") // members, admins, public
+  layout      Json    @default("{}") // Grid layout configuration
+  position    Int     @default(0) // For ordering multiple dashboards
+  
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  
+  widgets CampaignDashboardWidget[]
+  roles   CampaignDashboardRole[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@unique([campaignId, slug])
+  @@index([campaignId])
+  @@index([isDefault])
+  @@map("campaign_dashboards")
+}
+
+model CampaignDashboardWidget {
+  id     String @id @default(cuid())
+  type   String // calendar, events, entities, stats, preview, map, recent, etc.
+  title  String
+  config Json   @default("{}") // Widget-specific configuration (filters, entity types, etc.)
+  
+  // Position and size
+  x      Int // Grid X position
+  y      Int // Grid Y position
+  width  Int @default(4) // Grid width
+  height Int @default(4) // Grid height
+  
+  dashboardId String
+  dashboard   CampaignDashboard @relation(fields: [dashboardId], references: [id], onDelete: Cascade)
+  
+  tags CampaignDashboardWidgetTag[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([dashboardId])
+  @@index([type])
+  @@map("campaign_dashboard_widgets")
+}
+
+model CampaignDashboardRole {
+  id          String @id @default(cuid())
+  dashboardId String
+  roleId      String // CampaignRole ID
+  canEdit     Boolean @default(false)
+  canView     Boolean @default(true)
+  
+  dashboard CampaignDashboard @relation(fields: [dashboardId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@unique([dashboardId, roleId])
+  @@index([dashboardId])
+  @@map("campaign_dashboard_roles")
+}
+
+model CampaignDashboardWidgetTag {
+  id       String @id @default(cuid())
+  widgetId String
+  tagId    String
+  
+  widget CampaignDashboardWidget @relation(fields: [widgetId], references: [id], onDelete: Cascade)
+  tag    Tag                     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  
+  @@unique([widgetId, tagId])
+  @@index([widgetId])
+  @@index([tagId])
+  @@map("campaign_dashboard_widget_tags")
+}
+
+// Phase 29: Campaign Styling & Themes
+
+model Theme {
+  id          String  @id @default(cuid())
+  name        String
+  slug        String  @unique
+  description String? @db.Text
+  preview     String? // Preview image URL
+  isOfficial  Boolean @default(false)
+  isPublic    Boolean @default(false)
+  
+  // Theme configuration
+  colors      Json    @default("{}") // Color palette
+  fonts       Json    @default("{}") // Font configuration
+  layout      Json    @default("{}") // Layout settings
+  customCSS   String? @db.Text // Additional CSS
+  
+  createdById String?
+  createdBy   User?   @relation(fields: [createdById], references: [id])
+  
+  campaignStyles CampaignStyle[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([isOfficial])
+  @@index([isPublic])
+  @@map("themes")
+}
+
+model CampaignStyle {
+  id String @id @default(cuid())
+  
+  // Campaign-specific overrides
+  headerImage String? // Header/banner image
+  colors      Json    @default("{}") // Color overrides
+  fonts       Json    @default("{}") // Font overrides
+  customCSS   String? @db.Text // Custom CSS injection
+  
+  // Theme reference (optional)
+  themeId String?
+  theme   Theme?  @relation(fields: [themeId], references: [id], onDelete: SetNull)
+  
+  campaignId String   @unique
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([themeId])
+  @@map("campaign_styles")
+}
+
+// Phase 30: Entity Logs & History
+
+model EntityLog {
+  id         String @id @default(cuid())
+  entityType String // character, location, event, etc.
+  entityId   String
+  action     String // create, update, delete, restore
+  changes    Json   @default("{}") // Diff of changes (before/after)
+  ipAddress  String?
+  userAgent  String?
+  
+  userId String?
+  user   User?   @relation("EntityLogs", fields: [userId], references: [id], onDelete: SetNull)
+  
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  
+  @@index([entityType, entityId])
+  @@index([campaignId])
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+  @@map("entity_logs")
+}
+
+model UserLog {
+  id        String @id @default(cuid())
+  action    String // login, logout, password_change, etc.
+  details   Json   @default("{}") // Additional action details
+  ipAddress String?
+  userAgent String?
+  
+  userId String
+  user   User   @relation("UserLogs", fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+  @@map("user_logs")
+}
+
+// ============================================================================
+// Notifications System (Phase 31)
+// ============================================================================
+
+model Notification {
+  id      String  @id @default(cuid())
+  type    String  // mention, comment, calendar, reminder, campaign, quest, character, etc.
+  title   String
+  message String  @db.Text
+  link    String? // URL to the related entity
+  read    Boolean @default(false)
+  
+  // Polymorphic relationship to any entity
+  entityType String? // character, location, quest, etc.
+  entityId   String?
+  
+  // User who receives the notification
+  userId String
+  user   User   @relation("UserNotifications", fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Optional: User who triggered the notification
+  creatorId String?
+  creator   User?   @relation("NotificationCreator", fields: [creatorId], references: [id], onDelete: SetNull)
+  
+  // Optional: Associated campaign
+  campaignId String?
+  campaign   Campaign? @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  readAt    DateTime?
+  
+  @@index([userId, read])
+  @@index([createdAt])
+  @@index([type])
+  @@index([campaignId])
+  @@map("notifications")
+}
+
+model NotificationPreference {
+  id String @id @default(cuid())
+  
+  // Email notification settings
+  emailOnMention     Boolean @default(true)
+  emailOnComment     Boolean @default(true)
+  emailOnCalendar    Boolean @default(true)
+  emailOnReminder    Boolean @default(true)
+  emailOnCampaign    Boolean @default(true)
+  emailOnQuest       Boolean @default(false)
+  emailOnCharacter   Boolean @default(false)
+  emailDigest        Boolean @default(false)
+  emailDigestFrequency String @default("daily") // daily, weekly, never
+  
+  // In-app notification settings
+  notifyOnMention    Boolean @default(true)
+  notifyOnComment    Boolean @default(true)
+  notifyOnCalendar   Boolean @default(true)
+  notifyOnReminder   Boolean @default(true)
+  notifyOnCampaign   Boolean @default(true)
+  notifyOnQuest      Boolean @default(true)
+  notifyOnCharacter  Boolean @default(true)
+  
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("notification_preferences")
 }

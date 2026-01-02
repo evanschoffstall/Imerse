@@ -407,6 +407,7 @@ export type CalendarWhereInput = {
   weather?: Prisma.CalendarWeatherListRelationFilter
   events?: Prisma.EventListRelationFilter
   characterBirthdays?: Prisma.CharacterListRelationFilter
+  reminders?: Prisma.ReminderListRelationFilter
 }
 
 export type CalendarOrderByWithRelationInput = {
@@ -447,6 +448,7 @@ export type CalendarOrderByWithRelationInput = {
   weather?: Prisma.CalendarWeatherOrderByRelationAggregateInput
   events?: Prisma.EventOrderByRelationAggregateInput
   characterBirthdays?: Prisma.CharacterOrderByRelationAggregateInput
+  reminders?: Prisma.ReminderOrderByRelationAggregateInput
 }
 
 export type CalendarWhereUniqueInput = Prisma.AtLeast<{
@@ -491,6 +493,7 @@ export type CalendarWhereUniqueInput = Prisma.AtLeast<{
   weather?: Prisma.CalendarWeatherListRelationFilter
   events?: Prisma.EventListRelationFilter
   characterBirthdays?: Prisma.CharacterListRelationFilter
+  reminders?: Prisma.ReminderListRelationFilter
 }, "id" | "campaignId_slug">
 
 export type CalendarOrderByWithAggregationInput = {
@@ -602,6 +605,7 @@ export type CalendarCreateInput = {
   weather?: Prisma.CalendarWeatherCreateNestedManyWithoutCalendarInput
   events?: Prisma.EventCreateNestedManyWithoutCalendarInput
   characterBirthdays?: Prisma.CharacterCreateNestedManyWithoutBirthCalendarInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarUncheckedCreateInput = {
@@ -639,6 +643,7 @@ export type CalendarUncheckedCreateInput = {
   weather?: Prisma.CalendarWeatherUncheckedCreateNestedManyWithoutCalendarInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutCalendarInput
   characterBirthdays?: Prisma.CharacterUncheckedCreateNestedManyWithoutBirthCalendarInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarUpdateInput = {
@@ -676,6 +681,7 @@ export type CalendarUpdateInput = {
   weather?: Prisma.CalendarWeatherUpdateManyWithoutCalendarNestedInput
   events?: Prisma.EventUpdateManyWithoutCalendarNestedInput
   characterBirthdays?: Prisma.CharacterUpdateManyWithoutBirthCalendarNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCalendarNestedInput
 }
 
 export type CalendarUncheckedUpdateInput = {
@@ -713,6 +719,7 @@ export type CalendarUncheckedUpdateInput = {
   weather?: Prisma.CalendarWeatherUncheckedUpdateManyWithoutCalendarNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutCalendarNestedInput
   characterBirthdays?: Prisma.CharacterUncheckedUpdateManyWithoutBirthCalendarNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCalendarNestedInput
 }
 
 export type CalendarCreateManyInput = {
@@ -1131,6 +1138,22 @@ export type CalendarUpdateOneRequiredWithoutWeatherNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CalendarUpdateToOneWithWhereWithoutWeatherInput, Prisma.CalendarUpdateWithoutWeatherInput>, Prisma.CalendarUncheckedUpdateWithoutWeatherInput>
 }
 
+export type CalendarCreateNestedOneWithoutRemindersInput = {
+  create?: Prisma.XOR<Prisma.CalendarCreateWithoutRemindersInput, Prisma.CalendarUncheckedCreateWithoutRemindersInput>
+  connectOrCreate?: Prisma.CalendarCreateOrConnectWithoutRemindersInput
+  connect?: Prisma.CalendarWhereUniqueInput
+}
+
+export type CalendarUpdateOneWithoutRemindersNestedInput = {
+  create?: Prisma.XOR<Prisma.CalendarCreateWithoutRemindersInput, Prisma.CalendarUncheckedCreateWithoutRemindersInput>
+  connectOrCreate?: Prisma.CalendarCreateOrConnectWithoutRemindersInput
+  upsert?: Prisma.CalendarUpsertWithoutRemindersInput
+  disconnect?: Prisma.CalendarWhereInput | boolean
+  delete?: Prisma.CalendarWhereInput | boolean
+  connect?: Prisma.CalendarWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CalendarUpdateToOneWithWhereWithoutRemindersInput, Prisma.CalendarUpdateWithoutRemindersInput>, Prisma.CalendarUncheckedUpdateWithoutRemindersInput>
+}
+
 export type CalendarCreateWithoutCreatedByInput = {
   id?: string
   name: string
@@ -1165,6 +1188,7 @@ export type CalendarCreateWithoutCreatedByInput = {
   weather?: Prisma.CalendarWeatherCreateNestedManyWithoutCalendarInput
   events?: Prisma.EventCreateNestedManyWithoutCalendarInput
   characterBirthdays?: Prisma.CharacterCreateNestedManyWithoutBirthCalendarInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarUncheckedCreateWithoutCreatedByInput = {
@@ -1201,6 +1225,7 @@ export type CalendarUncheckedCreateWithoutCreatedByInput = {
   weather?: Prisma.CalendarWeatherUncheckedCreateNestedManyWithoutCalendarInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutCalendarInput
   characterBirthdays?: Prisma.CharacterUncheckedCreateNestedManyWithoutBirthCalendarInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarCreateOrConnectWithoutCreatedByInput = {
@@ -1299,6 +1324,7 @@ export type CalendarCreateWithoutCampaignInput = {
   weather?: Prisma.CalendarWeatherCreateNestedManyWithoutCalendarInput
   events?: Prisma.EventCreateNestedManyWithoutCalendarInput
   characterBirthdays?: Prisma.CharacterCreateNestedManyWithoutBirthCalendarInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarUncheckedCreateWithoutCampaignInput = {
@@ -1335,6 +1361,7 @@ export type CalendarUncheckedCreateWithoutCampaignInput = {
   weather?: Prisma.CalendarWeatherUncheckedCreateNestedManyWithoutCalendarInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutCalendarInput
   characterBirthdays?: Prisma.CharacterUncheckedCreateNestedManyWithoutBirthCalendarInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarCreateOrConnectWithoutCampaignInput = {
@@ -1397,6 +1424,7 @@ export type CalendarCreateWithoutCharacterBirthdaysInput = {
   createdBy: Prisma.UserCreateNestedOneWithoutCalendarsInput
   weather?: Prisma.CalendarWeatherCreateNestedManyWithoutCalendarInput
   events?: Prisma.EventCreateNestedManyWithoutCalendarInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarUncheckedCreateWithoutCharacterBirthdaysInput = {
@@ -1433,6 +1461,7 @@ export type CalendarUncheckedCreateWithoutCharacterBirthdaysInput = {
   children?: Prisma.CalendarUncheckedCreateNestedManyWithoutParentInput
   weather?: Prisma.CalendarWeatherUncheckedCreateNestedManyWithoutCalendarInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutCalendarInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarCreateOrConnectWithoutCharacterBirthdaysInput = {
@@ -1485,6 +1514,7 @@ export type CalendarUpdateWithoutCharacterBirthdaysInput = {
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCalendarsNestedInput
   weather?: Prisma.CalendarWeatherUpdateManyWithoutCalendarNestedInput
   events?: Prisma.EventUpdateManyWithoutCalendarNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCalendarNestedInput
 }
 
 export type CalendarUncheckedUpdateWithoutCharacterBirthdaysInput = {
@@ -1521,6 +1551,7 @@ export type CalendarUncheckedUpdateWithoutCharacterBirthdaysInput = {
   children?: Prisma.CalendarUncheckedUpdateManyWithoutParentNestedInput
   weather?: Prisma.CalendarWeatherUncheckedUpdateManyWithoutCalendarNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutCalendarNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCalendarNestedInput
 }
 
 export type CalendarCreateWithoutEventsInput = {
@@ -1557,6 +1588,7 @@ export type CalendarCreateWithoutEventsInput = {
   createdBy: Prisma.UserCreateNestedOneWithoutCalendarsInput
   weather?: Prisma.CalendarWeatherCreateNestedManyWithoutCalendarInput
   characterBirthdays?: Prisma.CharacterCreateNestedManyWithoutBirthCalendarInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarUncheckedCreateWithoutEventsInput = {
@@ -1593,6 +1625,7 @@ export type CalendarUncheckedCreateWithoutEventsInput = {
   children?: Prisma.CalendarUncheckedCreateNestedManyWithoutParentInput
   weather?: Prisma.CalendarWeatherUncheckedCreateNestedManyWithoutCalendarInput
   characterBirthdays?: Prisma.CharacterUncheckedCreateNestedManyWithoutBirthCalendarInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarCreateOrConnectWithoutEventsInput = {
@@ -1645,6 +1678,7 @@ export type CalendarUpdateWithoutEventsInput = {
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCalendarsNestedInput
   weather?: Prisma.CalendarWeatherUpdateManyWithoutCalendarNestedInput
   characterBirthdays?: Prisma.CharacterUpdateManyWithoutBirthCalendarNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCalendarNestedInput
 }
 
 export type CalendarUncheckedUpdateWithoutEventsInput = {
@@ -1681,6 +1715,7 @@ export type CalendarUncheckedUpdateWithoutEventsInput = {
   children?: Prisma.CalendarUncheckedUpdateManyWithoutParentNestedInput
   weather?: Prisma.CalendarWeatherUncheckedUpdateManyWithoutCalendarNestedInput
   characterBirthdays?: Prisma.CharacterUncheckedUpdateManyWithoutBirthCalendarNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCalendarNestedInput
 }
 
 export type CalendarCreateWithoutChildrenInput = {
@@ -1717,6 +1752,7 @@ export type CalendarCreateWithoutChildrenInput = {
   weather?: Prisma.CalendarWeatherCreateNestedManyWithoutCalendarInput
   events?: Prisma.EventCreateNestedManyWithoutCalendarInput
   characterBirthdays?: Prisma.CharacterCreateNestedManyWithoutBirthCalendarInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarUncheckedCreateWithoutChildrenInput = {
@@ -1753,6 +1789,7 @@ export type CalendarUncheckedCreateWithoutChildrenInput = {
   weather?: Prisma.CalendarWeatherUncheckedCreateNestedManyWithoutCalendarInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutCalendarInput
   characterBirthdays?: Prisma.CharacterUncheckedCreateNestedManyWithoutBirthCalendarInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarCreateOrConnectWithoutChildrenInput = {
@@ -1794,6 +1831,7 @@ export type CalendarCreateWithoutParentInput = {
   weather?: Prisma.CalendarWeatherCreateNestedManyWithoutCalendarInput
   events?: Prisma.EventCreateNestedManyWithoutCalendarInput
   characterBirthdays?: Prisma.CharacterCreateNestedManyWithoutBirthCalendarInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarUncheckedCreateWithoutParentInput = {
@@ -1830,6 +1868,7 @@ export type CalendarUncheckedCreateWithoutParentInput = {
   weather?: Prisma.CalendarWeatherUncheckedCreateNestedManyWithoutCalendarInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutCalendarInput
   characterBirthdays?: Prisma.CharacterUncheckedCreateNestedManyWithoutBirthCalendarInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarCreateOrConnectWithoutParentInput = {
@@ -1887,6 +1926,7 @@ export type CalendarUpdateWithoutChildrenInput = {
   weather?: Prisma.CalendarWeatherUpdateManyWithoutCalendarNestedInput
   events?: Prisma.EventUpdateManyWithoutCalendarNestedInput
   characterBirthdays?: Prisma.CharacterUpdateManyWithoutBirthCalendarNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCalendarNestedInput
 }
 
 export type CalendarUncheckedUpdateWithoutChildrenInput = {
@@ -1923,6 +1963,7 @@ export type CalendarUncheckedUpdateWithoutChildrenInput = {
   weather?: Prisma.CalendarWeatherUncheckedUpdateManyWithoutCalendarNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutCalendarNestedInput
   characterBirthdays?: Prisma.CharacterUncheckedUpdateManyWithoutBirthCalendarNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCalendarNestedInput
 }
 
 export type CalendarUpsertWithWhereUniqueWithoutParentInput = {
@@ -1975,6 +2016,7 @@ export type CalendarCreateWithoutWeatherInput = {
   createdBy: Prisma.UserCreateNestedOneWithoutCalendarsInput
   events?: Prisma.EventCreateNestedManyWithoutCalendarInput
   characterBirthdays?: Prisma.CharacterCreateNestedManyWithoutBirthCalendarInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarUncheckedCreateWithoutWeatherInput = {
@@ -2011,6 +2053,7 @@ export type CalendarUncheckedCreateWithoutWeatherInput = {
   children?: Prisma.CalendarUncheckedCreateNestedManyWithoutParentInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutCalendarInput
   characterBirthdays?: Prisma.CharacterUncheckedCreateNestedManyWithoutBirthCalendarInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutCalendarInput
 }
 
 export type CalendarCreateOrConnectWithoutWeatherInput = {
@@ -2063,6 +2106,7 @@ export type CalendarUpdateWithoutWeatherInput = {
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCalendarsNestedInput
   events?: Prisma.EventUpdateManyWithoutCalendarNestedInput
   characterBirthdays?: Prisma.CharacterUpdateManyWithoutBirthCalendarNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCalendarNestedInput
 }
 
 export type CalendarUncheckedUpdateWithoutWeatherInput = {
@@ -2097,6 +2141,171 @@ export type CalendarUncheckedUpdateWithoutWeatherInput = {
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   children?: Prisma.CalendarUncheckedUpdateManyWithoutParentNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutCalendarNestedInput
+  characterBirthdays?: Prisma.CharacterUncheckedUpdateManyWithoutBirthCalendarNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCalendarNestedInput
+}
+
+export type CalendarCreateWithoutRemindersInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  date?: string | null
+  months?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  weekdays?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  years?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  seasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  moons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  weekNames?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  monthAliases?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  suffix?: string | null
+  format?: string | null
+  hasLeapYear?: boolean
+  leapYearAmount?: number | null
+  leapYearMonth?: number | null
+  leapYearOffset?: number | null
+  leapYearStart?: number | null
+  startOffset?: number
+  skipYearZero?: boolean
+  showBirthdays?: boolean
+  parameters?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  parent?: Prisma.CalendarCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CalendarCreateNestedManyWithoutParentInput
+  campaign: Prisma.CampaignCreateNestedOneWithoutCalendarsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCalendarsInput
+  weather?: Prisma.CalendarWeatherCreateNestedManyWithoutCalendarInput
+  events?: Prisma.EventCreateNestedManyWithoutCalendarInput
+  characterBirthdays?: Prisma.CharacterCreateNestedManyWithoutBirthCalendarInput
+}
+
+export type CalendarUncheckedCreateWithoutRemindersInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  image?: string | null
+  date?: string | null
+  months?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  weekdays?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  years?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  seasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  moons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  weekNames?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  monthAliases?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  suffix?: string | null
+  format?: string | null
+  hasLeapYear?: boolean
+  leapYearAmount?: number | null
+  leapYearMonth?: number | null
+  leapYearOffset?: number | null
+  leapYearStart?: number | null
+  startOffset?: number
+  skipYearZero?: boolean
+  showBirthdays?: boolean
+  parameters?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isPrivate?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  parentId?: string | null
+  campaignId: string
+  createdById: string
+  children?: Prisma.CalendarUncheckedCreateNestedManyWithoutParentInput
+  weather?: Prisma.CalendarWeatherUncheckedCreateNestedManyWithoutCalendarInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutCalendarInput
+  characterBirthdays?: Prisma.CharacterUncheckedCreateNestedManyWithoutBirthCalendarInput
+}
+
+export type CalendarCreateOrConnectWithoutRemindersInput = {
+  where: Prisma.CalendarWhereUniqueInput
+  create: Prisma.XOR<Prisma.CalendarCreateWithoutRemindersInput, Prisma.CalendarUncheckedCreateWithoutRemindersInput>
+}
+
+export type CalendarUpsertWithoutRemindersInput = {
+  update: Prisma.XOR<Prisma.CalendarUpdateWithoutRemindersInput, Prisma.CalendarUncheckedUpdateWithoutRemindersInput>
+  create: Prisma.XOR<Prisma.CalendarCreateWithoutRemindersInput, Prisma.CalendarUncheckedCreateWithoutRemindersInput>
+  where?: Prisma.CalendarWhereInput
+}
+
+export type CalendarUpdateToOneWithWhereWithoutRemindersInput = {
+  where?: Prisma.CalendarWhereInput
+  data: Prisma.XOR<Prisma.CalendarUpdateWithoutRemindersInput, Prisma.CalendarUncheckedUpdateWithoutRemindersInput>
+}
+
+export type CalendarUpdateWithoutRemindersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  months?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  weekdays?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  years?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  seasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  moons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  weekNames?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  monthAliases?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  suffix?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  format?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasLeapYear?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  leapYearAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  leapYearMonth?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  leapYearOffset?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  leapYearStart?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  startOffset?: Prisma.IntFieldUpdateOperationsInput | number
+  skipYearZero?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showBirthdays?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  parameters?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parent?: Prisma.CalendarUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CalendarUpdateManyWithoutParentNestedInput
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutCalendarsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCalendarsNestedInput
+  weather?: Prisma.CalendarWeatherUpdateManyWithoutCalendarNestedInput
+  events?: Prisma.EventUpdateManyWithoutCalendarNestedInput
+  characterBirthdays?: Prisma.CharacterUpdateManyWithoutBirthCalendarNestedInput
+}
+
+export type CalendarUncheckedUpdateWithoutRemindersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  months?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  weekdays?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  years?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  seasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  moons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  weekNames?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  monthAliases?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  suffix?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  format?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasLeapYear?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  leapYearAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  leapYearMonth?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  leapYearOffset?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  leapYearStart?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  startOffset?: Prisma.IntFieldUpdateOperationsInput | number
+  skipYearZero?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showBirthdays?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  parameters?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isPrivate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  children?: Prisma.CalendarUncheckedUpdateManyWithoutParentNestedInput
+  weather?: Prisma.CalendarWeatherUncheckedUpdateManyWithoutCalendarNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutCalendarNestedInput
   characterBirthdays?: Prisma.CharacterUncheckedUpdateManyWithoutBirthCalendarNestedInput
 }
@@ -2167,6 +2376,7 @@ export type CalendarUpdateWithoutCreatedByInput = {
   weather?: Prisma.CalendarWeatherUpdateManyWithoutCalendarNestedInput
   events?: Prisma.EventUpdateManyWithoutCalendarNestedInput
   characterBirthdays?: Prisma.CharacterUpdateManyWithoutBirthCalendarNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCalendarNestedInput
 }
 
 export type CalendarUncheckedUpdateWithoutCreatedByInput = {
@@ -2203,6 +2413,7 @@ export type CalendarUncheckedUpdateWithoutCreatedByInput = {
   weather?: Prisma.CalendarWeatherUncheckedUpdateManyWithoutCalendarNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutCalendarNestedInput
   characterBirthdays?: Prisma.CharacterUncheckedUpdateManyWithoutBirthCalendarNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCalendarNestedInput
 }
 
 export type CalendarUncheckedUpdateManyWithoutCreatedByInput = {
@@ -2303,6 +2514,7 @@ export type CalendarUpdateWithoutCampaignInput = {
   weather?: Prisma.CalendarWeatherUpdateManyWithoutCalendarNestedInput
   events?: Prisma.EventUpdateManyWithoutCalendarNestedInput
   characterBirthdays?: Prisma.CharacterUpdateManyWithoutBirthCalendarNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCalendarNestedInput
 }
 
 export type CalendarUncheckedUpdateWithoutCampaignInput = {
@@ -2339,6 +2551,7 @@ export type CalendarUncheckedUpdateWithoutCampaignInput = {
   weather?: Prisma.CalendarWeatherUncheckedUpdateManyWithoutCalendarNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutCalendarNestedInput
   characterBirthdays?: Prisma.CharacterUncheckedUpdateManyWithoutBirthCalendarNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCalendarNestedInput
 }
 
 export type CalendarUncheckedUpdateManyWithoutCampaignInput = {
@@ -2439,6 +2652,7 @@ export type CalendarUpdateWithoutParentInput = {
   weather?: Prisma.CalendarWeatherUpdateManyWithoutCalendarNestedInput
   events?: Prisma.EventUpdateManyWithoutCalendarNestedInput
   characterBirthdays?: Prisma.CharacterUpdateManyWithoutBirthCalendarNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutCalendarNestedInput
 }
 
 export type CalendarUncheckedUpdateWithoutParentInput = {
@@ -2475,6 +2689,7 @@ export type CalendarUncheckedUpdateWithoutParentInput = {
   weather?: Prisma.CalendarWeatherUncheckedUpdateManyWithoutCalendarNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutCalendarNestedInput
   characterBirthdays?: Prisma.CharacterUncheckedUpdateManyWithoutBirthCalendarNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutCalendarNestedInput
 }
 
 export type CalendarUncheckedUpdateManyWithoutParentInput = {
@@ -2519,6 +2734,7 @@ export type CalendarCountOutputType = {
   weather: number
   events: number
   characterBirthdays: number
+  reminders: number
 }
 
 export type CalendarCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2526,6 +2742,7 @@ export type CalendarCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   weather?: boolean | CalendarCountOutputTypeCountWeatherArgs
   events?: boolean | CalendarCountOutputTypeCountEventsArgs
   characterBirthdays?: boolean | CalendarCountOutputTypeCountCharacterBirthdaysArgs
+  reminders?: boolean | CalendarCountOutputTypeCountRemindersArgs
 }
 
 /**
@@ -2564,6 +2781,13 @@ export type CalendarCountOutputTypeCountEventsArgs<ExtArgs extends runtime.Types
  */
 export type CalendarCountOutputTypeCountCharacterBirthdaysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CharacterWhereInput
+}
+
+/**
+ * CalendarCountOutputType without action
+ */
+export type CalendarCountOutputTypeCountRemindersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReminderWhereInput
 }
 
 
@@ -2605,6 +2829,7 @@ export type CalendarSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   weather?: boolean | Prisma.Calendar$weatherArgs<ExtArgs>
   events?: boolean | Prisma.Calendar$eventsArgs<ExtArgs>
   characterBirthdays?: boolean | Prisma.Calendar$characterBirthdaysArgs<ExtArgs>
+  reminders?: boolean | Prisma.Calendar$remindersArgs<ExtArgs>
   _count?: boolean | Prisma.CalendarCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["calendar"]>
 
@@ -2722,6 +2947,7 @@ export type CalendarInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   weather?: boolean | Prisma.Calendar$weatherArgs<ExtArgs>
   events?: boolean | Prisma.Calendar$eventsArgs<ExtArgs>
   characterBirthdays?: boolean | Prisma.Calendar$characterBirthdaysArgs<ExtArgs>
+  reminders?: boolean | Prisma.Calendar$remindersArgs<ExtArgs>
   _count?: boolean | Prisma.CalendarCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CalendarIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2745,6 +2971,7 @@ export type $CalendarPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     weather: Prisma.$CalendarWeatherPayload<ExtArgs>[]
     events: Prisma.$EventPayload<ExtArgs>[]
     characterBirthdays: Prisma.$CharacterPayload<ExtArgs>[]
+    reminders: Prisma.$ReminderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3178,6 +3405,7 @@ export interface Prisma__CalendarClient<T, Null = never, ExtArgs extends runtime
   weather<T extends Prisma.Calendar$weatherArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Calendar$weatherArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CalendarWeatherPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   events<T extends Prisma.Calendar$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Calendar$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   characterBirthdays<T extends Prisma.Calendar$characterBirthdaysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Calendar$characterBirthdaysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CharacterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reminders<T extends Prisma.Calendar$remindersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Calendar$remindersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReminderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3745,6 +3973,30 @@ export type Calendar$characterBirthdaysArgs<ExtArgs extends runtime.Types.Extens
   take?: number
   skip?: number
   distinct?: Prisma.CharacterScalarFieldEnum | Prisma.CharacterScalarFieldEnum[]
+}
+
+/**
+ * Calendar.reminders
+ */
+export type Calendar$remindersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Reminder
+   */
+  select?: Prisma.ReminderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Reminder
+   */
+  omit?: Prisma.ReminderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReminderInclude<ExtArgs> | null
+  where?: Prisma.ReminderWhereInput
+  orderBy?: Prisma.ReminderOrderByWithRelationInput | Prisma.ReminderOrderByWithRelationInput[]
+  cursor?: Prisma.ReminderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReminderScalarFieldEnum | Prisma.ReminderScalarFieldEnum[]
 }
 
 /**

@@ -1,7 +1,6 @@
-import { authOptions } from '@/auth';
+import { auth } from '@/auth';
 import { ConversationList } from '@/components/conversations/ConversationList';
 import { Button } from '@/components/ui/button';
-import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
@@ -10,7 +9,7 @@ export default async function ConversationsPage({
 }: {
   searchParams: { campaignId: string };
 }) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   if (!session) {
     redirect('/login');
   }

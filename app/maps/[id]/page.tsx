@@ -3,7 +3,7 @@
 import InteractiveMap from '@/components/maps/InteractiveMap'
 import LayerManager from '@/components/maps/LayerManager'
 import MarkerManager from '@/components/maps/MarkerManager'
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import type { Map, MapGroup, MapLayer, MapMarker } from '@/types/map'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -187,7 +187,7 @@ export default function MapDetailPage({ params }: { params: { id: string } }) {
               <Link href={`/maps/${map.id}/edit`}>
                 <Button>Edit</Button>
               </Link>
-              <Button onClick={handleDelete} variant="danger">
+              <Button onClick={handleDelete} variant="destructive">
                 Delete
               </Button>
             </div>
@@ -236,8 +236,8 @@ export default function MapDetailPage({ params }: { params: { id: string } }) {
         <button
           onClick={() => setActiveTab('map')}
           className={`px-4 py-2 font-medium border-b-2 -mb-px ${activeTab === 'map'
-              ? 'border-blue-500 text-blue-600'
-              : 'border-transparent text-gray-600 hover:text-gray-800'
+            ? 'border-blue-500 text-blue-600'
+            : 'border-transparent text-gray-600 hover:text-gray-800'
             }`}
         >
           Interactive Map
@@ -245,8 +245,8 @@ export default function MapDetailPage({ params }: { params: { id: string } }) {
         <button
           onClick={() => setActiveTab('layers')}
           className={`px-4 py-2 font-medium border-b-2 -mb-px ${activeTab === 'layers'
-              ? 'border-blue-500 text-blue-600'
-              : 'border-transparent text-gray-600 hover:text-gray-800'
+            ? 'border-blue-500 text-blue-600'
+            : 'border-transparent text-gray-600 hover:text-gray-800'
             }`}
         >
           Layers ({layers.length})
@@ -254,8 +254,8 @@ export default function MapDetailPage({ params }: { params: { id: string } }) {
         <button
           onClick={() => setActiveTab('markers')}
           className={`px-4 py-2 font-medium border-b-2 -mb-px ${activeTab === 'markers'
-              ? 'border-blue-500 text-blue-600'
-              : 'border-transparent text-gray-600 hover:text-gray-800'
+            ? 'border-blue-500 text-blue-600'
+            : 'border-transparent text-gray-600 hover:text-gray-800'
             }`}
         >
           Markers & Groups ({markers.length})

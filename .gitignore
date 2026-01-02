@@ -28,11 +28,14 @@ next-env.d.ts
 *.lock
 package-lock.json
 
-
 # Playwright
 /test-results/
 /playwright-report/
 /playwright/.cache/
+/tests/.auth/
 
 # Prisma
 /lib/generated/prisma
+generated/
+*storybook.log
+storybook-static

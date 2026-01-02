@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import type { Race } from '@/types/race'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -117,7 +117,7 @@ export default function RaceDetailPage({ params }: { params: { id: string } }) {
               <Link href={`/races/${race.id}/edit`}>
                 <Button>Edit</Button>
               </Link>
-              <Button onClick={handleDelete} variant="danger">
+              <Button onClick={handleDelete} variant="destructive">
                 Delete
               </Button>
             </div>

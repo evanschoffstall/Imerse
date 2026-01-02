@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
-import { checkPermission } from "@/lib/permissions";
-import prisma from "@/lib/prisma";
+import { hasPermission } from "@/lib/permissions";
+import { Permission } from "@/lib/permissions-types";
+import { prisma } from "@/lib/prisma";
 import { NextRequest } from "next/server";
 
 type Params = {
@@ -126,10 +127,10 @@ export async function GET(req: NextRequest, { params }: Params) {
     }
 
     // Check campaign access
-    const hasAccess = await checkPermission(
-      session.user.id,
+    const hasAccess = await hasPermission(
       post.campaignId,
-      "READ"
+      Permission.READ,
+      session.user.id
     );
     if (!hasAccess) {
       return Response.json({ error: "Forbidden" }, { status: 403 });
@@ -164,10 +165,10 @@ export async function PATCH(req: NextRequest, { params }: Params) {
     }
 
     // Check permissions
-    const hasAccess = await checkPermission(
-      session.user.id,
+    const hasAccess = await hasPermission(
       post.campaignId,
-      "UPDATE"
+      Permission.EDIT,
+      session.user.id
     );
     const isOwner = post.createdById === session.user.id;
     if (!hasAccess && !isOwner) {
@@ -286,10 +287,10 @@ export async function DELETE(req: NextRequest, { params }: Params) {
     }
 
     // Check permissions
-    const hasAccess = await checkPermission(
-      session.user.id,
+    const hasAccess = await hasPermission(
       post.campaignId,
-      "DELETE"
+      Permission.DELETE,
+      session.user.id
     );
     const isOwner = post.createdById === session.user.id;
     if (!hasAccess && !isOwner) {

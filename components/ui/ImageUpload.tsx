@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { ChangeEvent, useRef, useState } from 'react'
 import { toast } from 'sonner'
-import Button from './Button'
+import { Button } from './button'
 
 interface ImageUploadProps {
   currentImage?: string
@@ -118,7 +118,7 @@ export default function ImageUpload({
               type="button"
               onClick={handleRemove}
               disabled={uploading}
-              variant="danger"
+              variant="destructive"
               size="sm"
             >
               Remove

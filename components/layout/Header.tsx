@@ -1,5 +1,6 @@
 'use client'
 
+import { ThemeToggle } from '@/components/theme/ThemeToggle'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import GlobalSearch from './GlobalSearch'
@@ -8,7 +9,7 @@ export default function Header() {
   const router = useRouter()
 
   return (
-    <header className="bg-gray-800 text-white shadow-lg">
+    <header className="bg-gray-800 dark:bg-gray-900 text-white shadow-lg">
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between gap-6">
           <div className="text-2xl font-bold flex-shrink-0">
@@ -35,7 +36,8 @@ export default function Header() {
             </Link>
           </div>
 
-          <div className="flex space-x-4">
+          <div className="flex items-center space-x-4">
+            <ThemeToggle />
             <Link href="/login" className="hover:text-gray-300 transition">
               Login
             </Link>

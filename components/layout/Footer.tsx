@@ -6,7 +6,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">About Imerse</h3>
             <p className="text-gray-400">
-              The ultimate RPG campaign management and worldbuilding tool.
+              An ultimate RPG campaign management and worldbuilding tool.
             </p>
           </div>
           <div>

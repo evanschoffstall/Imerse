@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import type { Note } from '@/types/note'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -117,7 +117,7 @@ export default function NoteDetailPage({ params }: { params: { id: string } }) {
               <Link href={`/notes/${note.id}/edit`}>
                 <Button>Edit</Button>
               </Link>
-              <Button onClick={handleDelete} variant="danger">
+              <Button onClick={handleDelete} variant="destructive">
                 Delete
               </Button>
             </div>

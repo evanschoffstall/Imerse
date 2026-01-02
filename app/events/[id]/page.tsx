@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import type { Event } from '@/types/event'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -122,7 +122,7 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
               <Link href={`/events/${event.id}/edit`}>
                 <Button>Edit</Button>
               </Link>
-              <Button onClick={handleDelete} variant="danger">
+              <Button onClick={handleDelete} variant="destructive">
                 Delete
               </Button>
             </div>

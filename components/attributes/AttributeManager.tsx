@@ -1,8 +1,8 @@
 'use client'
 
-import Button from '@/components/ui/Button'
-import Input from '@/components/ui/Input'
-import Select from '@/components/ui/Select'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import Select from '@/components/ui/select'
 import { Attribute, ATTRIBUTE_TYPES, AttributeFormData, COMMON_ATTRIBUTE_CATEGORIES, formatAttributeValue, groupAttributesByCategory } from '@/types/attribute'
 import * as React from 'react'
 import { toast } from 'sonner'
@@ -180,7 +180,7 @@ export function AttributeManager({ entityType, entityId, campaignId, createdById
               <label className="block text-sm font-medium mb-1">Key *</label>
               <Input
                 value={formData.key}
-                onChange={(e) => setFormData({ ...formData, key: e.target.value })}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, key: e.target.value })}
                 placeholder="e.g., HP, Strength, Level"
                 required
               />
@@ -189,7 +189,7 @@ export function AttributeManager({ entityType, entityId, campaignId, createdById
               <label className="block text-sm font-medium mb-1">Value *</label>
               <Input
                 value={formData.value}
-                onChange={(e) => setFormData({ ...formData, value: e.target.value })}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, value: e.target.value })}
                 placeholder="Enter value"
                 required
               />
@@ -201,7 +201,7 @@ export function AttributeManager({ entityType, entityId, campaignId, createdById
               <label className="block text-sm font-medium mb-1">Type</label>
               <Select
                 value={formData.type}
-                onChange={(e) => setFormData({ ...formData, type: e.target.value as any })}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFormData({ ...formData, type: e.target.value as any })}
               >
                 {ATTRIBUTE_TYPES.map(type => (
                   <option key={type.value} value={type.value}>
@@ -214,7 +214,7 @@ export function AttributeManager({ entityType, entityId, campaignId, createdById
               <label className="block text-sm font-medium mb-1">Category</label>
               <Input
                 value={formData.category}
-                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, category: e.target.value })}
                 placeholder="e.g., Stats, Skills"
                 list="category-suggestions"
               />
@@ -229,7 +229,7 @@ export function AttributeManager({ entityType, entityId, campaignId, createdById
               <Input
                 type="number"
                 value={formData.order}
-                onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 0 })}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, order: parseInt(e.target.value) || 0 })}
               />
             </div>
           </div>

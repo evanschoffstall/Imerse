@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { hasPermission } from "@/lib/permissions";
+import { hasPermission, Permission } from "@/lib/permissions";
 import { prisma } from "@/lib/prisma";
 import { NextRequest } from "next/server";
 
@@ -31,8 +31,8 @@ export async function GET(
     // Check campaign permission
     const canView = await hasPermission(
       map.campaignId,
-      session.user.id,
-      "VIEW_ENTITIES"
+      Permission.READ,
+      session.user.id
     );
     if (!canView) {
       return Response.json({ error: "Forbidden" }, { status: 403 });
@@ -91,8 +91,8 @@ export async function POST(
     // Check campaign permission
     const canEdit = await hasPermission(
       map.campaignId,
-      session.user.id,
-      "CREATE_ENTITIES"
+      Permission.CREATE,
+      session.user.id
     );
     if (!canEdit) {
       return Response.json({ error: "Forbidden" }, { status: 403 });

@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import ImageUpload from '@/components/ui/ImageUpload'
 import type { Family, FamilyFormData } from '@/types/family'
 import { FAMILY_TYPES } from '@/types/family'

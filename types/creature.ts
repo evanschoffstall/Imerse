@@ -23,7 +23,10 @@ export interface CreatureWithRelations extends Creature {
     id: string;
     name: string;
   };
-  parent?: Creature | null;
+  parent?: {
+    id: string;
+    name: string;
+  } | null;
   children?: Creature[];
   locations?: CreatureLocationWithLocation[];
   _count?: {

@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { hasPermission } from "@/lib/permissions";
+import { hasPermission, Permission } from "@/lib/permissions";
 import { prisma } from "@/lib/prisma";
 import { NextRequest } from "next/server";
 
@@ -42,8 +42,8 @@ export async function GET(
     // Check campaign permission
     const canView = await hasPermission(
       group.map.campaignId,
-      session.user.id,
-      "VIEW_ENTITIES"
+      Permission.VIEW_ENTITIES,
+      session.user.id
     );
     if (!canView) {
       return Response.json({ error: "Forbidden" }, { status: 403 });
@@ -83,8 +83,8 @@ export async function PATCH(
     // Check campaign permission
     const canEdit = await hasPermission(
       group.map.campaignId,
-      session.user.id,
-      "EDIT_ENTITIES"
+      Permission.EDIT_ENTITIES,
+      session.user.id
     );
     if (!canEdit) {
       return Response.json({ error: "Forbidden" }, { status: 403 });
@@ -151,8 +151,8 @@ export async function DELETE(
     // Check campaign permission
     const canDelete = await hasPermission(
       group.map.campaignId,
-      session.user.id,
-      "DELETE_ENTITIES"
+      Permission.DELETE_ENTITIES,
+      session.user.id
     );
     if (!canDelete) {
       return Response.json({ error: "Forbidden" }, { status: 403 });

@@ -1,0 +1,25 @@
+// Dark Theme Extensions for Campaign Customization
+// Extends shadcn/ui's .dark theme (defined in /app/globals.css)
+// ONLY adds campaign-specific color mappings, never overrides shadcn/ui
+
+@layer theme {
+  .dark {
+    // Campaign theme support (Phase 29)
+    // Maps phpapp color system to shadcn/ui dark mode for campaign customization
+    // These variables are ONLY used for campaign-specific theming, not base UI
+
+    // Primary campaign color (for campaign headers, custom styling)
+    --campaign-primary: hsl(var(--primary));
+    --campaign-primary-foreground: hsl(var(--primary-foreground));
+
+    // Accent campaign color (for campaign highlights)
+    --campaign-accent: hsl(var(--accent));
+    --campaign-accent-foreground: hsl(var(--accent-foreground));
+
+    // Background override for campaign pages (if custom theme is set)
+    --campaign-background: hsl(var(--background));
+
+    // These can be overridden by campaign-specific CSS (Phase 29)
+    // But they default to shadcn/ui values
+  }
+}

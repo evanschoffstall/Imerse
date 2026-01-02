@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import type { Tag, TagFormData } from '@/types/tag'
 import { TAG_COLORS, TAG_TYPES } from '@/types/tag'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -120,8 +120,8 @@ export default function TagForm({ tag, campaignId, onSubmit, onCancel }: TagForm
               type="button"
               onClick={() => setValue('color', color)}
               className={`w-10 h-10 rounded-lg border-2 transition-all ${selectedColor === color
-                  ? 'border-gray-900 dark:border-white scale-110'
-                  : 'border-gray-300 dark:border-gray-600 hover:scale-105'
+                ? 'border-gray-900 dark:border-white scale-110'
+                : 'border-gray-300 dark:border-gray-600 hover:scale-105'
                 }`}
               style={{ backgroundColor: color }}
               title={color}

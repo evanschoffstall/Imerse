@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import type { Timeline } from '@/types/timeline'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'

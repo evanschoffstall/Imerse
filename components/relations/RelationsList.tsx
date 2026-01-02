@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { ATTITUDE_LABELS, type RelationWithEntities } from '@/types/relation'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'

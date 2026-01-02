@@ -1,10 +1,10 @@
 'use client';
 
 import RichTextEditor from '@/components/editor/RichTextEditor';
-import Button from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import FormField from '@/components/ui/FormField';
 import ImageUpload from '@/components/ui/ImageUpload';
-import Input from '@/components/ui/Input';
+import { Input } from '@/components/ui/input';
 import { CampaignFormData } from '@/types/campaign';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';

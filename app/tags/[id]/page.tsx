@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import type { Tag } from '@/types/tag'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -111,7 +111,7 @@ export default function TagDetailPage({ params }: { params: { id: string } }) {
               <Link href={`/tags/${tag.id}/edit`}>
                 <Button>Edit</Button>
               </Link>
-              <Button onClick={handleDelete} variant="danger">
+              <Button onClick={handleDelete} variant="destructive">
                 Delete
               </Button>
             </div>
