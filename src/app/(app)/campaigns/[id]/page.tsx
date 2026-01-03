@@ -66,6 +66,7 @@ export default function CampaignDashboardPage() {
     <>
       {/* Dashboard Content */}
       <div className="p-8">
+        <h1 className="text-4xl font-bold mb-8">Dashboard</h1>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Recently Modified Entities */}
           <Card className="lg:col-span-2">

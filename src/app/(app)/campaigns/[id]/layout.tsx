@@ -176,21 +176,6 @@ export default function CampaignLayout({
 
       {/* Main Content Area */}
       <div className="flex-1 overflow-y-auto">
-        {/* Campaign Banner Header - Scrolls with content */}
-        <div className="relative h-20 border-b border-border">
-          {campaign.image && (
-            <img
-              src={campaign.image}
-              alt={campaign.name}
-              className="w-full h-full object-cover"
-            />
-          )}
-          <div className="absolute inset-0 bg-linear-to-b from-transparent to-background" />
-          <div className="absolute inset-0 flex items-center px-6">
-            <h1 className="text-2xl font-bold text-foreground drop-shadow-lg">{campaign.name}</h1>
-          </div>
-        </div>
-
         {/* Page Content */}
         {children}
       </div>
