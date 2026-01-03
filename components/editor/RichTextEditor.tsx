@@ -1,91 +1,86 @@
-'use client'
+"use client"
 
-import { $generateHtmlFromNodes, $generateNodesFromDOM } from '@lexical/html'
-import {
-  InitialConfigType,
-  LexicalComposer,
-} from '@lexical/react/LexicalComposer'
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { $getRoot, $insertNodes } from 'lexical'
-import { useEffect, useState } from 'react'
-
-import { nodes } from '@/components/blocks/editor-md/nodes'
-import { Plugins } from '@/components/blocks/editor-md/plugins'
-import { editorTheme } from '@/components/editor/themes/editor-theme'
-import { TooltipProvider } from '@/components/ui/tooltip'
+import { Editor } from "@/components/blocks/editor-x/editor"
+import { SerializedEditorState } from "lexical"
+import { useState } from "react"
 
 interface RichTextEditorProps {
-  content?: string
-  onChange?: (content: string) => void
+  content: string
+  onChange: (content: string) => void
   placeholder?: string
   disabled?: boolean
 }
 
-const editorConfig: InitialConfigType = {
-  namespace: 'Editor',
-  theme: editorTheme,
-  nodes,
-  onError: (error: Error) => {
-    console.error(error)
-  },
-}
-
-// Component to handle HTML conversion
-function HtmlStateManager({
-  content,
-  onChange
-}: {
-  content?: string
-  onChange?: (content: string) => void
-}) {
-  const [editor] = useLexicalComposerContext()
-  const [initialized, setInitialized] = useState(false)
-
-  // Set initial content from HTML
-  useEffect(() => {
-    if (!initialized && content && content !== '<p></p>' && content !== '') {
-      editor.update(() => {
-        const parser = new DOMParser()
-        const dom = parser.parseFromString(content, 'text/html')
-        const nodes = $generateNodesFromDOM(editor, dom)
-        $getRoot().clear()
-        $insertNodes(nodes)
-      })
-      setInitialized(true)
-    }
-  }, [editor, content, initialized])
-
-  // Handle changes and convert to HTML
-  useEffect(() => {
-    if (!onChange) return
-
-    return editor.registerUpdateListener(({ editorState }) => {
-      editorState.read(() => {
-        const htmlString = $generateHtmlFromNodes(editor)
-        onChange(htmlString)
-      })
-    })
-  }, [editor, onChange])
-
-  return null
-}
-
+/**
+ * RichTextEditor - React Hook Form compatible wrapper for editor-x
+ * 
+ * This component adapts the Lexical-based editor to work with React Hook Form
+ * by converting between string content (HTML/JSON) and Lexical EditorState.
+ * 
+ * Usage:
+ * ```tsx
+ * <RichTextEditor 
+ *   content={field.value || ''} 
+ *   onChange={field.onChange}
+ *   placeholder="Enter description..."
+ * />
+ * ```
+ */
 export default function RichTextEditor({
-  content = '',
+  content,
   onChange,
-  placeholder = 'Start writing...',
-  disabled = false
+  disabled
 }: RichTextEditorProps) {
+  const [editorState, setEditorState] = useState<SerializedEditorState>(() => {
+    // Initialize with content if provided
+    if (content) {
+      try {
+        // Try to parse as JSON (serialized Lexical state)
+        return JSON.parse(content)
+      } catch {
+        // If not JSON, create empty state - Lexical will handle text initialization
+        return createEmptyEditorState()
+      }
+    }
+
+    // Empty state with placeholder-ready structure
+    return createEmptyEditorState()
+  })
+
+  const handleChange = (newState: SerializedEditorState) => {
+    setEditorState(newState)
+    // Convert to JSON string for storage
+    onChange(JSON.stringify(newState))
+  }
+
   return (
-    <div className={disabled ? 'pointer-events-none opacity-50' : ''}>
-      <div className="bg-background overflow-hidden rounded-lg border shadow">
-        <LexicalComposer initialConfig={editorConfig}>
-          <TooltipProvider>
-            <Plugins />
-            <HtmlStateManager content={content} onChange={onChange} />
-          </TooltipProvider>
-        </LexicalComposer>
-      </div>
-    </div>
+    <Editor
+      editorSerializedState={editorState}
+      onSerializedChange={handleChange}
+    />
   )
+}
+
+// Helper function to create empty editor state
+// Lexical requires at least one paragraph node in root
+function createEmptyEditorState(): SerializedEditorState {
+  return {
+    root: {
+      children: [
+        {
+          children: [],
+          direction: "ltr",
+          format: "",
+          indent: 0,
+          type: "paragraph",
+          version: 1,
+        },
+      ],
+      direction: "ltr",
+      format: "",
+      indent: 0,
+      type: "root",
+      version: 1,
+    },
+  } as unknown as SerializedEditorState
 }

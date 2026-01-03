@@ -7,6 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
+import {
+  createContext,
+  JSX,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
+import * as React from "react"
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext"
 import {
   $createTableNodeWithDimensions,
@@ -23,14 +32,6 @@ import {
   LexicalEditor,
   LexicalNode,
 } from "lexical"
-import {
-  createContext,
-  JSX,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react"
 
 import { invariant } from "@/components/editor/shared/invariant"
 import { Button } from "@/components/ui/button"
@@ -102,8 +103,8 @@ export function InsertTableDialog({
   activeEditor,
   onClose,
 }: {
-  activeEditor: any
-  onClose: any
+  activeEditor: LexicalEditor
+  onClose: () => void
 }): JSX.Element {
   const [rows, setRows] = useState("5")
   const [columns, setColumns] = useState("5")

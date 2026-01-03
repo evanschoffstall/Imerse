@@ -139,7 +139,7 @@ export default function TagForm({ tag, campaignId, onSubmit, onCancel }: TagForm
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <RichTextEditor content={field.value} onChange={field.onChange} />
+                <RichTextEditor content={field.value || ''} onChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>

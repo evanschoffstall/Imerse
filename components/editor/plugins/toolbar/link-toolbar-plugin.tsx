@@ -19,7 +19,7 @@ import { Toggle } from "@/components/ui/toggle"
 export function LinkToolbarPlugin({
   setIsLinkEditMode,
 }: {
-  setIsLinkEditMode: any
+  setIsLinkEditMode: (isEditMode: boolean) => void
 }) {
   const { activeEditor } = useToolbarContext()
   const [isLink, setIsLink] = useState(false)
@@ -77,7 +77,7 @@ export function LinkToolbarPlugin({
     <Toggle
       variant={"outline"}
       size="sm"
-      className="!size-8"
+      className="size-8"
       aria-label="Toggle link"
       onClick={insertLink}
     >

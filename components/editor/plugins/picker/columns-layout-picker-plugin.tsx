@@ -1,6 +1,6 @@
 import { Columns3Icon } from "lucide-react"
 
-// import { InsertLayoutDialog } from "@/components/editor/plugins/layout-plugin"
+import { InsertLayoutDialog } from "@/components/editor/plugins/layout-plugin"
 import { ComponentPickerOption } from "@/components/editor/plugins/picker/component-picker-option"
 
 export function ColumnsLayoutPickerPlugin() {
@@ -8,10 +8,8 @@ export function ColumnsLayoutPickerPlugin() {
     icon: <Columns3Icon className="size-4" />,
     keywords: ["columns", "layout", "grid"],
     onSelect: (_, editor, showModal) =>
-      // TODO: Uncomment when layout-plugin is implemented
-      // showModal("Insert Columns Layout", (onClose) => (
-      //   <InsertLayoutDialog activeEditor={editor} onClose={onClose} />
-      // )),
-      null,
+      showModal("Insert Columns Layout", (onClose) => (
+        <InsertLayoutDialog activeEditor={editor} onClose={onClose} />
+      )),
   })
 }

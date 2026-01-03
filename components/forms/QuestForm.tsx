@@ -147,7 +147,7 @@ export default function QuestForm({ quest, campaignId, onSubmit, onCancel }: Que
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <RichTextEditor content={field.value} onChange={field.onChange} />
+                <RichTextEditor content={field.value || ''} onChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>

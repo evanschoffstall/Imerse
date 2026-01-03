@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
+import { JSX, useEffect, useRef, useState } from "react"
+import * as React from "react"
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext"
 import { $wrapNodeInElement, mergeRegister } from "@lexical/utils"
 import {
@@ -27,7 +29,6 @@ import {
   LexicalCommand,
   LexicalEditor,
 } from "lexical"
-import { JSX, useEffect, useRef, useState } from "react"
 
 import {
   $createImageNode,
@@ -58,7 +59,7 @@ export const INSERT_IMAGE_COMMAND: LexicalCommand<InsertImagePayload> =
 export function InsertImageUriDialogBody({
   onClick,
 }: {
-  onClick: any
+  onClick: (payload: InsertImagePayload) => void
 }) {
   const [src, setSrc] = useState("")
   const [altText, setAltText] = useState("")
@@ -104,7 +105,7 @@ export function InsertImageUriDialogBody({
 export function InsertImageUploadedDialogBody({
   onClick,
 }: {
-  onClick: any
+  onClick: (payload: InsertImagePayload) => void
 }) {
   const [src, setSrc] = useState("")
   const [altText, setAltText] = useState("")
@@ -162,8 +163,8 @@ export function InsertImageDialog({
   activeEditor,
   onClose,
 }: {
-  activeEditor: any
-  onClose: any
+  activeEditor: LexicalEditor
+  onClose: () => void
 }): JSX.Element {
   const hasModifier = useRef(false)
 

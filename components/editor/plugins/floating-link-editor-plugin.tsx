@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
+import { Dispatch, JSX, useCallback, useEffect, useRef, useState } from "react"
 import {
   $createLinkNode,
   $isAutoLinkNode,
@@ -30,7 +31,6 @@ import {
   SELECTION_CHANGE_COMMAND,
 } from "lexical"
 import { Check, Pencil, Trash, X } from "lucide-react"
-import { Dispatch, JSX, useCallback, useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 
 import { getSelectedNode } from "@/components/editor/utils/get-selected-node"
@@ -227,7 +227,7 @@ function FloatingLinkEditor({
             value={editedLinkUrl}
             onChange={(event) => setEditedLinkUrl(event.target.value)}
             onKeyDown={monitorInputInteraction}
-            className="grow"
+            className="flex-grow"
           />
           <Button
             size="icon"
@@ -401,7 +401,7 @@ export function FloatingLinkEditorPlugin({
 }: {
   anchorElem: HTMLDivElement | null
   isLinkEditMode: boolean
-  setIsLinkEditMode: any
+  setIsLinkEditMode: Dispatch<boolean>
 }): JSX.Element | null {
   const [editor] = useLexicalComposerContext()
 

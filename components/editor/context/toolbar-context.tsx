@@ -1,7 +1,7 @@
 "use client"
 
-import { LexicalEditor } from "lexical"
 import { createContext, JSX, useContext } from "react"
+import { LexicalEditor } from "lexical"
 
 const Context = createContext<{
   activeEditor: LexicalEditor
@@ -14,10 +14,10 @@ const Context = createContext<{
   ) => void
 }>({
   activeEditor: {} as LexicalEditor,
-  $updateToolbar: () => { },
+  $updateToolbar: () => {},
   blockType: "paragraph",
-  setBlockType: () => { },
-  showModal: () => { },
+  setBlockType: () => {},
+  showModal: () => {},
 })
 
 export function ToolbarContext({
@@ -28,11 +28,14 @@ export function ToolbarContext({
   showModal,
   children,
 }: {
-  activeEditor: any
-  $updateToolbar: any
+  activeEditor: LexicalEditor
+  $updateToolbar: () => void
   blockType: string
-  setBlockType: any
-  showModal: any
+  setBlockType: (blockType: string) => void
+  showModal: (
+    title: string,
+    showModal: (onClose: () => void) => JSX.Element
+  ) => void
   children: React.ReactNode
 }) {
   return (

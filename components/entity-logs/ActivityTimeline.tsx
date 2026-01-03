@@ -101,9 +101,9 @@ export default function ActivityTimeline({
               <div key={item.id} className="flex gap-3">
                 <div className="flex flex-col items-center">
                   <div className={`w-3 h-3 rounded-full ${item.action === 'create' ? 'bg-green-500' :
-                      item.action === 'update' ? 'bg-blue-500' :
-                        item.action === 'delete' ? 'bg-red-500' :
-                          'bg-purple-500'
+                    item.action === 'update' ? 'bg-blue-500' :
+                      item.action === 'delete' ? 'bg-red-500' :
+                        'bg-purple-500'
                     }`} />
                   <div className="w-px h-full bg-border" />
                 </div>

@@ -137,7 +137,7 @@ export default function JournalForm({ journal, campaignId, onSubmit, onCancel }:
             <FormItem>
               <FormLabel>Entry Content</FormLabel>
               <FormControl>
-                <RichTextEditor content={field.value} onChange={field.onChange} />
+                <RichTextEditor content={field.value || ''} onChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>

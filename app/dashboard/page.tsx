@@ -4,7 +4,7 @@ export default function DashboardPage() {
   return (
     <div className="container mx-auto px-6 py-8">
       <h1 className="text-4xl font-bold mb-8">Dashboard</h1>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         <Card>
           <CardHeader>
@@ -14,7 +14,7 @@ export default function DashboardPage() {
             <p className="text-4xl font-bold text-blue-600">3</p>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader>
             <CardTitle className="text-lg">Total Characters</CardTitle>
@@ -23,7 +23,7 @@ export default function DashboardPage() {
             <p className="text-4xl font-bold text-green-600">42</p>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader>
             <CardTitle className="text-lg">Total Locations</CardTitle>
@@ -33,7 +33,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </div>
-      
+
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">Recent Activity</CardTitle>

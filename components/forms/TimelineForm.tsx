@@ -168,7 +168,7 @@ export default function TimelineForm({ timeline, campaignId, onSubmit, onCancel 
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <RichTextEditor content={field.value} onChange={field.onChange} />
+                <RichTextEditor content={field.value || ''} onChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>

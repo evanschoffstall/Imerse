@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
+import { Dispatch, JSX, useCallback, useEffect, useRef, useState } from "react"
+import * as React from "react"
 import { $isCodeHighlightNode } from "@lexical/code"
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link"
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext"
@@ -31,7 +33,6 @@ import {
   SuperscriptIcon,
   UnderlineIcon,
 } from "lucide-react"
-import { Dispatch, JSX, useCallback, useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 
 import { getDOMRangeRect } from "@/components/editor/utils/get-dom-range-rect"
@@ -426,7 +427,7 @@ export function FloatingTextFormatToolbarPlugin({
   setIsLinkEditMode,
 }: {
   anchorElem: HTMLDivElement | null
-  setIsLinkEditMode: any
+  setIsLinkEditMode: Dispatch<boolean>
 }): JSX.Element | null {
   const [editor] = useLexicalComposerContext()
 

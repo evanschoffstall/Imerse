@@ -7,11 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
+import { JSX, useCallback, useEffect, useMemo, useRef, useState } from "react"
+import dynamic from "next/dynamic"
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext"
 import { useBasicTypeaheadTriggerMatch } from "@lexical/react/LexicalTypeaheadMenuPlugin"
 import { TextNode } from "lexical"
-import dynamic from "next/dynamic"
-import { JSX, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 
 import { useEditorModal } from "@/components/editor/editor-hooks/use-modal"
@@ -85,8 +85,9 @@ function ComponentPickerMenu({
                 onSelect={() => {
                   selectOptionAndCleanUp(option)
                 }}
-                className={`flex items-center gap-2 ${selectedIndex === index ? "bg-accent" : "!bg-transparent"
-                  }`}
+                className={`flex items-center gap-2 ${
+                  selectedIndex === index ? "bg-accent" : "!bg-transparent"
+                }`}
               >
                 {option.icon}
                 {option.title}
@@ -104,7 +105,11 @@ export function ComponentPickerMenuPlugin({
   dynamicOptionsFn,
 }: {
   baseOptions?: Array<ComponentPickerOption>
-  dynamicOptionsFn?: any
+  dynamicOptionsFn?: ({
+    queryString,
+  }: {
+    queryString: string
+  }) => Array<ComponentPickerOption>
 }): JSX.Element {
   const [editor] = useLexicalComposerContext()
   const [modal, showModal] = useEditorModal()
@@ -161,14 +166,14 @@ export function ComponentPickerMenuPlugin({
         ) => {
           return anchorElementRef.current && options.length
             ? createPortal(
-              <ComponentPickerMenu
-                options={options}
-                selectedIndex={selectedIndex}
-                selectOptionAndCleanUp={selectOptionAndCleanUp}
-                setHighlightedIndex={setHighlightedIndex}
-              />,
-              anchorElementRef.current
-            )
+                <ComponentPickerMenu
+                  options={options}
+                  selectedIndex={selectedIndex}
+                  selectOptionAndCleanUp={selectOptionAndCleanUp}
+                  setHighlightedIndex={setHighlightedIndex}
+                />,
+                anchorElementRef.current
+              )
             : null
         }}
       />
