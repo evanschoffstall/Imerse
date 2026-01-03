@@ -17,9 +17,6 @@ export default function Footer() {
             <p>© 2026 Imerse. Built for storytellers, by storytellers.</p>
           </div>
           <nav className="flex gap-4 text-sm md:justify-self-end">
-            <Link href="/about" className="text-muted-foreground transition-colors hover:text-foreground">
-              About
-            </Link>
             <Link href="/privacy" className="text-muted-foreground transition-colors hover:text-foreground">
               Privacy
             </Link>
