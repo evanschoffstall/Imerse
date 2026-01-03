@@ -2,7 +2,8 @@ import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
 import { SessionProvider } from '@/components/providers/SessionProvider'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
-import ToastProvider from '@/components/ui/ToastProvider'
+import { Toaster } from '@/components/ui/sonner'
+import { ExposeToast } from '@/components/ui/toast-expose'
 import '@/styles/globals.scss'
 import '@fontsource-variable/roboto'
 import type { Metadata } from 'next'
@@ -31,7 +32,8 @@ export default function RootLayout({
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
-            <ToastProvider />
+            <Toaster />
+            <ExposeToast />
           </ThemeProvider>
         </SessionProvider>
       </body>
