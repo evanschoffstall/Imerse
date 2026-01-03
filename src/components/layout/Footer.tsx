@@ -14,7 +14,6 @@ export default function Footer() {
       links: [
         { href: '/about', label: 'About' },
         { href: '/features', label: 'Features' },
-        { href: '/pricing', label: 'Pricing' },
       ],
     },
     {

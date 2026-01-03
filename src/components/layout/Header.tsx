@@ -22,9 +22,6 @@ export default function Header() {
 
   const navigationItems = [
     { href: '/campaigns', label: 'Campaigns' },
-    { href: '/characters', label: 'Characters' },
-    { href: '/locations', label: 'Locations' },
-    { href: '/dashboard', label: 'Dashboard' },
   ]
 
   const handleSignOut = async () => {

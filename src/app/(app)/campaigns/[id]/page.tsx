@@ -11,48 +11,33 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Skeleton } from '@/components/ui/skeleton';
-import RichTextViewer from '@/components/editor/RichTextViewer';
-import { Campaign } from '@/features/campaigns';
-import NextImage from 'next/image';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-export default function CampaignDetailPage() {
+interface RecentEntity {
+  id: string;
+  name: string;
+  type: string;
+  updatedAt: string;
+  image?: string;
+}
+
+export default function CampaignDashboardPage() {
   const router = useRouter();
   const params = useParams();
-  const [campaign, setCampaign] = useState<Campaign | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [recentEntities, setRecentEntities] = useState<RecentEntity[]>([]);
+  const [activeQuests, setActiveQuests] = useState<any[]>([]);
 
   useEffect(() => {
-    const fetchCampaign = async () => {
-      try {
-        const response = await fetch(`/api/campaigns/${params.id}`);
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch campaign');
-        }
-
-        const data = await response.json();
-        setCampaign(data.campaign);
-      } catch (error) {
-        console.error('Error fetching campaign:', error);
-        toast.error('Failed to load campaign');
-        router.push('/campaigns');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    if (params.id) {
-      fetchCampaign();
-    }
-  }, [params.id, router]);
+    // TODO: Fetch recent entities and active quests
+    setRecentEntities([]);
+    setActiveQuests([]);
+  }, [params.id]);
 
   const handleDelete = async () => {
     setIsDeleting(true);
@@ -77,124 +62,136 @@ export default function CampaignDetailPage() {
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="container mx-auto px-4 py-8 max-w-6xl">
-        <Card>
-          <CardHeader>
-            <Skeleton className="h-8 w-1/2 mb-2" />
-            <Skeleton className="h-4 w-1/4" />
-          </CardHeader>
-          <CardContent>
-            <Skeleton className="h-40 w-full" />
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
-  if (!campaign) {
-    return null;
-  }
+  const formatTimeAgo = (date: string) => {
+    const now = new Date();
+    const then = new Date(date);
+    const days = Math.floor((now.getTime() - then.getTime()) / (1000 * 60 * 60 * 24));
+    
+    if (days === 0) return 'Today';
+    if (days === 1) return 'Yesterday';
+    if (days < 7) return `${days} days ago`;
+    return then.toLocaleDateString();
+  };
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-6xl">
-      {/* Header Card with Image */}
-      <Card className="mb-6">
-        {campaign.image && (
-          <div className="relative w-full h-64 overflow-hidden rounded-t-lg">
-            <NextImage
-              src={campaign.image}
-              alt={campaign.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1280px) 100vw, 1280px"
-              priority
-            />
-          </div>
-        )}
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <div>
-              <CardTitle className="text-3xl">{campaign.name}</CardTitle>
-              <CardDescription>Created by {campaign.owner.name}</CardDescription>
-            </div>
-            <div className="flex gap-3">
-              <Link href={`/campaigns/${campaign.id}/edit`}>
-                <Button variant="secondary">Edit Campaign</Button>
-              </Link>
+    <>
+      {/* Dashboard Content */}
+      <div className="p-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Recently Modified Entities */}
+          <Card className="lg:col-span-2">
+            <CardHeader>
+              <CardTitle>Recently modified entities</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {recentEntities.length === 0 ? (
+                <p className="text-muted-foreground text-sm">No recent activity</p>
+              ) : (
+                <div className="space-y-3">
+                  {recentEntities.map((entity) => (
+                    <div key={entity.id} className="flex items-center gap-3">
+                      {entity.image && (
+                        <img
+                          src={entity.image}
+                          alt={entity.name}
+                          className="w-10 h-10 rounded-full object-cover"
+                        />
+                      )}
+                      <div className="flex-1">
+                        <p className="font-medium text-sm">{entity.name}</p>
+                        <p className="text-xs text-muted-foreground">{entity.type}</p>
+                      </div>
+                      <span className="text-xs text-muted-foreground">
+                        {formatTimeAgo(entity.updatedAt)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Help & Community */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Placeholder</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+            </CardContent>
+          </Card>
+
+          {/* Getting Started */}
+          <Card className="lg:col-span-2">
+            <CardHeader className="flex flex-row items-center justify-between">
+              <CardTitle>Getting Started</CardTitle>
+              <span className="text-sm text-muted-foreground">4 / 6</span>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <div className="flex items-center gap-2 text-sm">
+                <input type="checkbox" checked readOnly className="rounded" />
+                <span className="line-through text-muted-foreground">Your first world is ready.</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <input type="checkbox" checked readOnly className="rounded" />
+                <span className="line-through text-muted-foreground">Rename your world.</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <input type="checkbox" checked readOnly className="rounded" />
+                <span className="line-through text-muted-foreground">Create your first character.</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <input type="checkbox" className="rounded" />
+                <Link href={`/campaigns/${params.id}/locations`} className="hover:underline">
+                  Create your first location.
+                </Link>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <input type="checkbox" className="rounded" />
+                <span>Invite a friend or co-author.</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <input type="checkbox" checked readOnly className="rounded" />
+                <span className="line-through text-muted-foreground">Customise your dashboard.</span>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Active Quests */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Active quests</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {activeQuests.length === 0 ? (
+                <p className="text-muted-foreground text-sm">No active quests</p>
+              ) : (
+                <div className="space-y-3">
+                  {activeQuests.map((quest) => (
+                    <div key={quest.id} className="border-b border-border pb-2 last:border-0">
+                      <p className="font-medium text-sm">{quest.name}</p>
+                      <p className="text-xs text-muted-foreground">{formatTimeAgo(quest.updatedAt)}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Danger Zone */}
+          <Card className="lg:col-span-3 border-destructive">
+            <CardHeader>
+              <CardTitle className="text-destructive">Danger Zone</CardTitle>
+            </CardHeader>
+            <CardContent>
               <Button
                 variant="destructive"
                 onClick={() => setShowDeleteDialog(true)}
               >
                 Delete Campaign
               </Button>
-            </div>
-          </div>
-        </CardHeader>
-
-        {/* Description */}
-        {campaign.description && (
-          <CardContent>
-            <h2 className="text-lg font-semibold mb-2">Description</h2>
-            <RichTextViewer content={campaign.description} />
-          </CardContent>
-        )}
-      </Card>
-
-      {/* Content sections */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Characters */}
-        <Link href={`/characters?campaignId=${campaign.id}`}>
-          <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
-            <CardHeader>
-              <CardTitle>Characters</CardTitle>
-              <CardDescription>Manage your campaign characters</CardDescription>
-            </CardHeader>
+            </CardContent>
           </Card>
-        </Link>
-
-        {/* Locations */}
-        <Link href={`/locations?campaignId=${campaign.id}`}>
-          <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
-            <CardHeader>
-              <CardTitle>Locations</CardTitle>
-              <CardDescription>Explore your world's locations</CardDescription>
-            </CardHeader>
-          </Card>
-        </Link>
-
-        {/* Sessions/Events */}
-        <Card className="h-full opacity-50">
-          <CardHeader>
-            <CardTitle>Sessions</CardTitle>
-            <CardDescription>Coming soon...</CardDescription>
-          </CardHeader>
-        </Card>
-
-        {/* Items */}
-        <Card className="h-full opacity-50">
-          <CardHeader>
-            <CardTitle>Items</CardTitle>
-            <CardDescription>Coming soon...</CardDescription>
-          </CardHeader>
-        </Card>
-
-        {/* Quests */}
-        <Card className="h-full opacity-50">
-          <CardHeader>
-            <CardTitle>Quests</CardTitle>
-            <CardDescription>Coming soon...</CardDescription>
-          </CardHeader>
-        </Card>
-
-        {/* Notes */}
-        <Card className="h-full opacity-50">
-          <CardHeader>
-            <CardTitle>Notes</CardTitle>
-            <CardDescription>Coming soon...</CardDescription>
-          </CardHeader>
-        </Card>
+        </div>
       </div>
 
       {/* Delete confirmation dialog */}
@@ -203,7 +200,7 @@ export default function CampaignDetailPage() {
           <AlertDialogHeader>
             <AlertDialogTitle>Delete Campaign</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to delete "{campaign.name}"? This action cannot be undone and will delete all associated data.
+              Are you sure you want to delete this campaign? This action cannot be undone and will delete all associated data.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -218,6 +215,6 @@ export default function CampaignDetailPage() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </div>
+    </>
   );
 }
