@@ -1,4 +1,3 @@
-import { useState } from "react"
 import {
   CHECK_LIST,
   ELEMENT_TRANSFORMERS,
@@ -19,6 +18,7 @@ import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPl
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin"
 import { TabIndentationPlugin } from "@lexical/react/LexicalTabIndentationPlugin"
 import { TablePlugin } from "@lexical/react/LexicalTablePlugin"
+import { useState } from "react"
 
 import { ContentEditable } from "@/components/editor/editor-ui/content-editable"
 import { ActionsPlugin } from "@/components/editor/plugins/actions/actions-plugin"
@@ -107,7 +107,7 @@ import { Separator } from "@/components/ui/separator"
 const placeholder = "Press / for commands..."
 const maxLength = 500
 
-export function Plugins({}) {
+export function Plugins({ }) {
   const [floatingAnchorElem, setFloatingAnchorElem] =
     useState<HTMLDivElement | null>(null)
   const [isLinkEditMode, setIsLinkEditMode] = useState<boolean>(false)
@@ -122,7 +122,7 @@ export function Plugins({}) {
     <div className="relative">
       <ToolbarPlugin>
         {({ blockType }) => (
-          <div className="vertical-align-middle sticky top-0 z-10 flex items-center gap-2 overflow-auto border-b p-1">
+          <div className="vertical-align-middle sticky top-0 z-10 flex flex-wrap items-center gap-1 border-b bg-background p-1">
             <HistoryToolbarPlugin />
             <Separator orientation="vertical" className="h-7!" />
             <BlockFormatDropDown>
