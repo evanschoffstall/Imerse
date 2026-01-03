@@ -1,4 +1,5 @@
-import { auth } from '@/auth';
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import AbilityList from '@/components/abilities/AbilityList';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
@@ -12,7 +13,7 @@ interface AbilitiesPageProps {
 }
 
 export default async function AbilitiesPage({ searchParams }: AbilitiesPageProps) {
-  const session = await auth();
+  const session = await getServerSession(authConfig);
   if (!session?.user) {
     redirect('/login');
   }

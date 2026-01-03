@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import { getEntityHistory } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -8,7 +9,7 @@ export async function GET(
 ) {
   try {
     const { type, id } = await params;
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

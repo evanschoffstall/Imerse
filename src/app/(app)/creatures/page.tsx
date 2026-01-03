@@ -1,4 +1,5 @@
-import { auth } from '@/auth';
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import CreatureList from '@/components/creatures/CreatureList';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
@@ -12,7 +13,7 @@ interface CreaturesPageProps {
 }
 
 export default async function CreaturesPage({ searchParams }: CreaturesPageProps) {
-  const session = await auth();
+  const session = await getServerSession(authConfig);
   if (!session?.user) {
     redirect('/login');
   }

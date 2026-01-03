@@ -1,4 +1,5 @@
-import { auth } from '@/auth'
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next'
 import { prisma } from '@/lib/db'
 import { NextResponse } from 'next/server'
 
@@ -52,7 +53,7 @@ export async function PATCH(
 ) {
   try {
     const { id } = await params;
-    const session = await auth()
+    const session = await getServerSession(authConfig)
     
     if (!session?.user?.id) {
       return NextResponse.json(
@@ -137,7 +138,7 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params;
-    const session = await auth()
+    const session = await getServerSession(authConfig)
     
     if (!session?.user?.id) {
       return NextResponse.json(

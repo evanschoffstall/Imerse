@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import { rollDice } from "@/features/dice-rolls/dice-roller";
 import { hasPermission, Permission } from "@/lib/permissions";
 import { prisma } from "@/lib/db";
@@ -7,7 +8,7 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/dice-roll-results - List dice roll results
 export async function GET(request: NextRequest) {
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -110,7 +111,7 @@ export async function GET(request: NextRequest) {
 // POST /api/dice-roll-results - Execute roll and create result
 export async function POST(request: NextRequest) {
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

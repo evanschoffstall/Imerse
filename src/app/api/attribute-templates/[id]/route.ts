@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import { canViewCampaign } from "@/lib/permissions";
 import { prisma } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
@@ -10,7 +11,7 @@ export async function GET(
 ) {
   const { id } = await params;
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -63,7 +64,7 @@ export async function PATCH(
 ) {
   const { id } = await params;
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -131,7 +132,7 @@ export async function DELETE(
 ) {
   const { id } = await params;
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import { getCampaignPermissions } from "@/lib/permissions";
 import { prisma } from "@/lib/db";
 import type { EntityType, SearchResult } from "@/types/search";
@@ -6,7 +7,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
 
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

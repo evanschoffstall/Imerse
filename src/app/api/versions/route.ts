@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import { prisma } from "@/lib/db";
 import type { EntityType } from "@/types/version";
 import { createVersionSchema } from "@/types/version";
@@ -42,7 +43,7 @@ async function getEntityName(
 
 // GET /api/versions - List versions for an entity
 export async function GET(request: NextRequest) {
-  const session = await auth();
+  const session = await getServerSession(authConfig);
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -128,7 +129,7 @@ export async function GET(request: NextRequest) {
 
 // POST /api/versions - Create a new version
 export async function POST(request: NextRequest) {
-  const session = await auth();
+  const session = await getServerSession(authConfig);
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }

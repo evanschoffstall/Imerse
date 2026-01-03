@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import { canViewCampaign } from "@/lib/permissions";
 import { prisma } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
@@ -6,7 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/gallery - List images and folders
 export async function GET(req: NextRequest) {
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -93,7 +94,7 @@ export async function GET(req: NextRequest) {
 // POST /api/gallery - Create folder or upload image
 export async function POST(req: NextRequest) {
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -199,7 +200,7 @@ export async function POST(req: NextRequest) {
 // DELETE /api/gallery?ids=id1,id2,id3 - Bulk delete
 export async function DELETE(req: NextRequest) {
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

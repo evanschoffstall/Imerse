@@ -1,4 +1,5 @@
-import { auth } from '@/auth';
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import EntityAbilities from '@/components/abilities/EntityAbilities';
 import { prisma } from '@/lib/db';
 import Image from 'next/image';
@@ -8,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 export default async function CreaturePage({ params }: { params: { id: string } }) {
-  const session = await auth();
+  const session = await getServerSession(authConfig);
   if (!session?.user) {
     redirect('/login');
   }

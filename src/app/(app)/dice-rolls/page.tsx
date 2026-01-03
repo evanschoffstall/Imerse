@@ -1,4 +1,5 @@
-import { auth } from '@/auth';
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import DiceRollList from '@/components/dice-rolls/DiceRollList';
 import { prisma } from '@/lib/db';
 import Link from 'next/link';
@@ -11,7 +12,7 @@ export default async function DiceRollsPage({
 }: {
   searchParams: { campaignId?: string };
 }) {
-  const session = await auth();
+  const session = await getServerSession(authConfig);
   if (!session?.user) {
     redirect('/login');
   }

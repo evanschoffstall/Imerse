@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import { getCampaignPermissions, Permission } from "@/lib/permissions";
 import { prisma } from "@/lib/db";
 import { calendarSchema } from "@/types/calendar";
@@ -7,7 +8,7 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/calendars - List all calendars user has access to
 export async function GET(request: NextRequest) {
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -104,7 +105,7 @@ export async function GET(request: NextRequest) {
 // POST /api/calendars - Create a new calendar
 export async function POST(request: NextRequest) {
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

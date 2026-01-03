@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import { canViewCampaign } from "@/lib/permissions";
 import { prisma } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
@@ -6,7 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/bookmarks - List bookmarks
 export async function GET(req: NextRequest) {
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -86,7 +87,7 @@ export async function GET(req: NextRequest) {
 // POST /api/bookmarks - Create bookmark
 export async function POST(req: NextRequest) {
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

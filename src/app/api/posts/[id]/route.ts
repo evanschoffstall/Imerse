@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import { hasPermission } from "@/lib/permissions";
 import { Permission } from "@/lib/permissions";
 import { prisma } from "@/lib/db";
@@ -12,7 +13,7 @@ type Params = Promise<{
 export async function GET(req: NextRequest, { params }: { params: Params }) {
   const { id } = await params;
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -151,7 +152,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 export async function PATCH(req: NextRequest, { params }: { params: Params }) {
   const { id } = await params;
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -274,7 +275,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Params }) {
 export async function DELETE(req: NextRequest, { params }: { params: Params }) {
   const { id } = await params;
   try {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }

@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+import { authConfig } from "@/auth";
+import { getServerSession } from "next-auth/next";
 import { prisma } from "@/lib/db";
 import { Campaign, CampaignRole } from "@prisma/client";
 import { Permission, RoleLevel, RoleLevelLabels } from "./permissions-types";
@@ -21,7 +22,7 @@ export async function getCampaignPermissions(
   userId?: string
 ): Promise<UserCampaignPermissions | null> {
   if (!userId) {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user?.id) {
       return null;
     }
@@ -173,7 +174,7 @@ export async function requireCampaignAccess(
   campaignId: string,
   permission?: Permission
 ): Promise<UserCampaignPermissions> {
-  const session = await auth();
+  const session = await getServerSession(authConfig);
   if (!session?.user?.id) {
     throw new Error("Unauthorized");
   }
@@ -218,7 +219,7 @@ export async function isCampaignOwner(
   userId?: string
 ): Promise<boolean> {
   if (!userId) {
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user?.id) {
       return false;
     }

@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import { hasPermission, Permission } from "@/lib/permissions";
 import { prisma } from "@/lib/db";
 import { NextRequest } from "next/server";
@@ -10,7 +11,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -73,7 +74,7 @@ export async function POST(
 ) {
   try {
     const { id } = await params;
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }

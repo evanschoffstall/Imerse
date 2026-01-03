@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import {
   Permission,
   removeCampaignMember,
@@ -64,7 +65,7 @@ export async function DELETE(
     await requireCampaignAccess(campaignId, Permission.MEMBERS);
 
     // Prevent removing yourself (use leave endpoint instead)
-    const session = await auth();
+    const session = await getServerSession(authConfig);
     if (session?.user?.id === userId) {
       return NextResponse.json(
         { error: "Use /leave endpoint to leave the campaign" },

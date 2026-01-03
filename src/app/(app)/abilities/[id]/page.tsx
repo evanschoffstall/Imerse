@@ -1,4 +1,5 @@
-import { auth } from '@/auth';
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import { prisma } from '@/lib/db';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -6,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 export default async function AbilityPage({ params }: { params: { id: string } }) {
-  const session = await auth();
+  const session = await getServerSession(authConfig);
   if (!session?.user) {
     redirect('/login');
   }

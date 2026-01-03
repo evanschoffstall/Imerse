@@ -1,4 +1,5 @@
-import { auth } from '@/auth'
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next'
 import RelationGraph from '@/components/relations/RelationGraph'
 import { redirect } from 'next/navigation'
 
@@ -7,7 +8,7 @@ export default async function CampaignRelationsPage({
 }: {
   params: { id: string }
 }) {
-  const session = await auth()
+  const session = await getServerSession(authConfig)
   if (!session?.user) {
     redirect('/login')
   }

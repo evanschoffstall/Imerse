@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+import { authConfig } from '@/auth'
+import { getServerSession } from 'next-auth/next';
 import { prisma } from "@/lib/db";
 import type { EntityType } from "@/types/relationship";
 import { relationshipFormSchema } from "@/types/relationship";
@@ -33,7 +34,7 @@ async function fetchEntity(entityType: EntityType, entityId: string) {
 
 // GET /api/relationships - List relationships with optional filters
 export async function GET(request: NextRequest) {
-  const session = await auth();
+  const session = await getServerSession(authConfig);
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -137,7 +138,7 @@ export async function GET(request: NextRequest) {
 
 // POST /api/relationships - Create a new relationship
 export async function POST(request: NextRequest) {
-  const session = await auth();
+  const session = await getServerSession(authConfig);
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
