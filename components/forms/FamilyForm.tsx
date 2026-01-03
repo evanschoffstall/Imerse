@@ -1,5 +1,6 @@
 'use client'
 
+import RichTextEditor from '@/components/editor/RichTextEditor'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
@@ -22,8 +23,6 @@ import {
 import type { Family, FamilyFormData } from '@/types/family'
 import { FAMILY_TYPES } from '@/types/family'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { EditorContent, useEditor } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -65,30 +64,9 @@ export default function FamilyForm({ family, campaignId, onSubmit, onCancel }: F
     }
   })
 
-  const editor = useEditor({
-    extensions: [StarterKit],
-    content: family?.description || '',
-    editorProps: {
-      attributes: {
-        class: 'prose dark:prose-invert max-w-none min-h-[200px] p-4 focus:outline-none'
-      }
-    },
-    onUpdate: ({ editor }) => {
-      form.setValue('description', editor.getHTML())
-    }
-  })
-
-  const handleFormSubmit = async (data: FamilyFormData) => {
-    try {
-      await onSubmit(data)
-    } catch (error) {
-      console.error('Form submission error:', error)
-    }
-  }
-
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
           name="name"
@@ -168,9 +146,7 @@ export default function FamilyForm({ family, campaignId, onSubmit, onCancel }: F
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <div className="border rounded-lg overflow-hidden">
-                  <EditorContent editor={editor} />
-                </div>
+                <RichTextEditor content={field.value} onChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>

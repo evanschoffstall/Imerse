@@ -1,5 +1,10 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { CalendarSeason } from '@/types/calendar';
 import { useState } from 'react';
 
@@ -162,7 +167,7 @@ export default function SeasonEditor({ seasons, months, onChange }: SeasonEditor
           >
             {/* Season Color */}
             <div
-              className="w-6 h-6 rounded border border-gray-300 flex-shrink-0"
+              className="w-6 h-6 rounded border border-gray-300 shrink-0"
               style={{ backgroundColor: season.color }}
             />
 
@@ -178,35 +183,40 @@ export default function SeasonEditor({ seasons, months, onChange }: SeasonEditor
             </div>
 
             {/* Actions */}
-            <div className="flex items-center gap-1 flex-shrink-0">
-              <button
+            <div className="flex items-center gap-1 shrink-0">
+              <Button
+                variant="ghost"
+                size="icon"
                 onClick={() => handleMoveUp(index)}
                 disabled={index === 0}
-                className="p-1 text-gray-600 hover:text-blue-600 disabled:opacity-30"
                 title="Move up"
               >
                 ↑
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
                 onClick={() => handleMoveDown(index)}
                 disabled={index === seasons.length - 1}
-                className="p-1 text-gray-600 hover:text-blue-600 disabled:opacity-30"
                 title="Move down"
               >
                 ↓
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => handleEdit(index)}
-                className="px-2 py-1 text-sm text-blue-600 hover:bg-blue-50 rounded"
               >
                 Edit
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => handleRemove(index)}
-                className="px-2 py-1 text-sm text-red-600 hover:bg-red-50 rounded"
+                className="text-destructive hover:text-destructive"
               >
                 Remove
-              </button>
+              </Button>
             </div>
           </div>
         ))}
@@ -214,119 +224,128 @@ export default function SeasonEditor({ seasons, months, onChange }: SeasonEditor
 
       {/* Edit Form */}
       {editingIndex !== null && (
-        <div className="p-4 bg-blue-50 rounded-lg border border-blue-200 space-y-3">
-          <h3 className="font-semibold text-blue-900">
-            {editingIndex >= seasons.length ? 'Add Season' : 'Edit Season'}
-          </h3>
+        <Card className="border-blue-200 bg-blue-50">
+          <CardContent className="p-4 space-y-3">
+            <h3 className="font-semibold text-blue-900">
+              {editingIndex >= seasons.length ? 'Add Season' : 'Edit Season'}
+            </h3>
 
-          <div className="grid grid-cols-2 gap-3">
-            {/* Season Name */}
-            <div className="col-span-2">
-              <label className="block text-sm font-medium mb-1">Season Name</label>
-              <input
-                type="text"
-                value={editForm.name}
-                onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                placeholder="e.g., Spring"
-              />
-            </div>
-
-            {/* Start Month */}
-            <div>
-              <label className="block text-sm font-medium mb-1">Start Month</label>
-              <select
-                value={editForm.monthStart}
-                onChange={(e) => setEditForm({ ...editForm, monthStart: parseInt(e.target.value) })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              >
-                {months.map((month, idx) => (
-                  <option key={idx} value={idx + 1}>
-                    {idx + 1}. {month.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* End Month */}
-            <div>
-              <label className="block text-sm font-medium mb-1">End Month</label>
-              <select
-                value={editForm.monthEnd}
-                onChange={(e) => setEditForm({ ...editForm, monthEnd: parseInt(e.target.value) })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              >
-                {months.map((month, idx) => (
-                  <option key={idx} value={idx + 1}>
-                    {idx + 1}. {month.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Color Picker */}
-            <div className="col-span-2">
-              <label className="block text-sm font-medium mb-1">Season Color</label>
-              <div className="flex items-center gap-2">
-                <input
-                  type="color"
-                  value={editForm.color}
-                  onChange={(e) => setEditForm({ ...editForm, color: e.target.value })}
-                  className="h-10 w-20 cursor-pointer"
-                />
-                <input
+            <div className="grid grid-cols-2 gap-3">
+              {/* Season Name */}
+              <div className="col-span-2 space-y-2">
+                <Label htmlFor="season-name">Season Name</Label>
+                <Input
+                  id="season-name"
                   type="text"
-                  value={editForm.color}
-                  onChange={(e) => setEditForm({ ...editForm, color: e.target.value })}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg font-mono text-sm"
-                  placeholder="#3b82f6"
+                  value={editForm.name}
+                  onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
+                  placeholder="e.g., Spring"
                 />
               </div>
-            </div>
 
-            {/* Preview */}
-            <div className="col-span-2">
-              <label className="block text-sm font-medium mb-1">Preview</label>
-              <div
-                className="h-12 rounded-lg border-2"
-                style={{ backgroundColor: editForm.color, borderColor: editForm.color }}
-              >
-                <div className="h-full flex items-center justify-center text-white font-semibold drop-shadow-md">
-                  {editForm.name || 'Season Name'}
+              {/* Start Month */}
+              <div className="space-y-2">
+                <Label htmlFor="start-month">Start Month</Label>
+                <Select
+                  value={editForm.monthStart.toString()}
+                  onValueChange={(value) => setEditForm({ ...editForm, monthStart: parseInt(value) })}
+                >
+                  <SelectTrigger id="start-month">
+                    <SelectValue placeholder="Select month" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {months.map((month, idx) => (
+                      <SelectItem key={idx} value={(idx + 1).toString()}>
+                        {idx + 1}. {month.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* End Month */}
+              <div className="space-y-2">
+                <Label htmlFor="end-month">End Month</Label>
+                <Select
+                  value={editForm.monthEnd.toString()}
+                  onValueChange={(value) => setEditForm({ ...editForm, monthEnd: parseInt(value) })}
+                >
+                  <SelectTrigger id="end-month">
+                    <SelectValue placeholder="Select month" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {months.map((month, idx) => (
+                      <SelectItem key={idx} value={(idx + 1).toString()}>
+                        {idx + 1}. {month.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Color Picker */}
+              <div className="col-span-2 space-y-2">
+                <Label htmlFor="season-color">Season Color</Label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="color"
+                    id="season-color"
+                    value={editForm.color}
+                    onChange={(e) => setEditForm({ ...editForm, color: e.target.value })}
+                    className="h-10 w-20 cursor-pointer rounded"
+                  />
+                  <Input
+                    type="text"
+                    value={editForm.color}
+                    onChange={(e) => setEditForm({ ...editForm, color: e.target.value })}
+                    className="flex-1 font-mono text-sm"
+                    placeholder="#3b82f6"
+                  />
                 </div>
               </div>
-              <div className="text-sm text-gray-600 mt-1">
-                Duration: {getSeasonDuration(editForm)} days
+
+              {/* Preview */}
+              <div className="col-span-2">
+                <label className="block text-sm font-medium mb-1">Preview</label>
+                <div
+                  className="h-12 rounded-lg border-2"
+                  style={{ backgroundColor: editForm.color, borderColor: editForm.color }}
+                >
+                  <div className="h-full flex items-center justify-center text-white font-semibold drop-shadow-md">
+                    {editForm.name || 'Season Name'}
+                  </div>
+                </div>
+                <div className="text-sm text-gray-600 mt-1">
+                  Duration: {getSeasonDuration(editForm)} days
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Action Buttons */}
-          <div className="flex gap-2 pt-2">
-            <button
-              onClick={handleSave}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-            >
-              Save Season
-            </button>
-            <button
-              onClick={handleCancel}
-              className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
+            {/* Action Buttons */}
+            <div className="flex gap-2 pt-2">
+              <Button onClick={handleSave}>
+                Save Season
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleCancel}
+              >
+                Cancel
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       )}
 
       {/* Add Button */}
       {editingIndex === null && (
-        <button
+        <Button
+          variant="outline"
+          className="w-full border-dashed"
           onClick={handleAdd}
-          className="w-full px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-blue-500 hover:text-blue-600"
         >
           + Add Season
-        </button>
+        </Button>
       )}
 
       {/* Season Bar Visualization */}

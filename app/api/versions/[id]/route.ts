@@ -69,8 +69,9 @@ async function updateEntity(
 // GET /api/versions/[id] - Get a specific version
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -78,7 +79,7 @@ export async function GET(
 
   try {
     const version = await prisma.version.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -126,8 +127,9 @@ export async function GET(
 // POST /api/versions/[id]/restore - Restore an entity to this version
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -135,7 +137,7 @@ export async function POST(
 
   try {
     const version = await prisma.version.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -229,8 +231,9 @@ export async function POST(
 // DELETE /api/versions/[id] - Delete a version (admin only)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -238,7 +241,7 @@ export async function DELETE(
 
   try {
     const version = await prisma.version.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -261,7 +264,7 @@ export async function DELETE(
     }
 
     await prisma.version.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     return NextResponse.json({ success: true });

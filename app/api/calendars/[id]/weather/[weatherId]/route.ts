@@ -4,15 +4,16 @@ import { NextResponse } from "next/server";
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string; weatherId: string } }
+  { params }: { params: Promise<{ id: string; weatherId: string }> }
 ) {
   try {
+    const { id, weatherId } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { id: calendarId, weatherId } = params;
+    const calendarId = id;
 
     // Check weather exists
     const weather = await prisma.calendarWeather.findUnique({
@@ -43,7 +44,8 @@ export async function PATCH(
     }
 
     const body = await request.json();
-    const { date, weatherType, temperature, precipitation, wind, effect } = body;
+    const { date, weatherType, temperature, precipitation, wind, effect } =
+      body;
 
     const updated = await prisma.calendarWeather.update({
       where: { id: weatherId },
@@ -69,15 +71,16 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string; weatherId: string } }
+  { params }: { params: Promise<{ id: string; weatherId: string }> }
 ) {
   try {
+    const { id, weatherId } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { id: calendarId, weatherId } = params;
+    const calendarId = id;
 
     // Check weather exists
     const weather = await prisma.calendarWeather.findUnique({

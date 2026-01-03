@@ -5,9 +5,10 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/campaigns/[id]/style - Get campaign style
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -16,7 +17,7 @@ export async function GET(
     // Verify campaign access
     const campaign = await prisma.campaign.findFirst({
       where: {
-        id: params.id,
+        id: id,
         OR: [
           { ownerId: session.user.id },
           {
@@ -39,7 +40,7 @@ export async function GET(
 
     // Get or create campaign style
     let style = await prisma.campaignStyle.findUnique({
-      where: { campaignId: params.id },
+      where: { campaignId: id },
       include: {
         theme: true,
         campaign: {
@@ -56,7 +57,7 @@ export async function GET(
     if (!style) {
       style = await prisma.campaignStyle.create({
         data: {
-          campaignId: params.id,
+          campaignId: id,
           colors: {},
           fonts: {},
         },
@@ -86,9 +87,10 @@ export async function GET(
 // PATCH /api/campaigns/[id]/style - Update campaign style
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -97,7 +99,7 @@ export async function PATCH(
     // Verify campaign access - only owner can modify style
     const campaign = await prisma.campaign.findFirst({
       where: {
-        id: params.id,
+        id: id,
         ownerId: session.user.id,
       },
     });
@@ -125,7 +127,7 @@ export async function PATCH(
 
     // Upsert campaign style
     const style = await prisma.campaignStyle.upsert({
-      where: { campaignId: params.id },
+      where: { campaignId: id },
       update: {
         ...(themeId !== undefined && { themeId }),
         ...(headerImage !== undefined && { headerImage }),
@@ -134,7 +136,7 @@ export async function PATCH(
         ...(customCSS !== undefined && { customCSS }),
       },
       create: {
-        campaignId: params.id,
+        campaignId: id,
         themeId,
         headerImage,
         colors: colors || {},

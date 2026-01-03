@@ -6,15 +6,16 @@ import { NextRequest } from "next/server";
 // GET /api/maps/[id]/layers - List all layers for a map
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const mapId = params.id;
+    const mapId = id;
 
     // Get map to check campaign access
     const map = await prisma.map.findUnique({
@@ -57,15 +58,16 @@ export async function GET(
 // POST /api/maps/[id]/layers - Create a new layer
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const mapId = params.id;
+    const mapId = id;
 
     // Get map to check campaign access
     const map = await prisma.map.findUnique({

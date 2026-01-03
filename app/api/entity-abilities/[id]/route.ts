@@ -35,16 +35,17 @@ async function getCampaignIdFromEntity(
 // PATCH /api/entity-abilities/[id] - Update entity ability
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const entityAbility = await prisma.entityAbility.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       select: { entityId: true, entityType: true },
     });
 
@@ -81,7 +82,7 @@ export async function PATCH(
     const { charges, position, note, isPrivate } = data;
 
     const updated = await prisma.entityAbility.update({
-      where: { id: params.id },
+      where: { id: id },
       data: {
         ...(charges !== undefined && { charges }),
         ...(position !== undefined && { position }),
@@ -116,16 +117,17 @@ export async function PATCH(
 // DELETE /api/entity-abilities/[id] - Delete entity ability
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const entityAbility = await prisma.entityAbility.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       select: { entityId: true, entityType: true },
     });
 
@@ -159,7 +161,7 @@ export async function DELETE(
     }
 
     await prisma.entityAbility.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     return Response.json({ success: true });

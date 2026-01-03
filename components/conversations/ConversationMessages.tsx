@@ -144,7 +144,7 @@ export function ConversationMessages({
             return (
               <div key={groupIdx} className="flex gap-3">
                 {/* Avatar */}
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold ${isCharacter ? 'bg-purple-500' : 'bg-indigo-500'
                     }`}>
                     {authorName.charAt(0).toUpperCase()}

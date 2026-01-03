@@ -1,11 +1,12 @@
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
+import { SessionProvider } from '@/components/providers/SessionProvider'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
 import ToastProvider from '@/components/ui/ToastProvider'
+import '@/styles/globals.scss'
 import '@fontsource-variable/roboto'
 import type { Metadata } from 'next'
 import './globals.css'
-import '@/styles/globals.scss'
 
 export const metadata: Metadata = {
   title: 'Imerse - RPG Campaign Management & Worldbuilding',
@@ -20,17 +21,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased min-h-screen flex flex-col">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <ToastProvider />
-        </ThemeProvider>
+        <SessionProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <ToastProvider />
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   )

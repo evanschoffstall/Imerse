@@ -6,8 +6,9 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/bookmarks/[id] - Get single bookmark
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
     const session = await auth();
     if (!session?.user?.id) {
@@ -15,7 +16,7 @@ export async function GET(
     }
 
     const bookmark = await prisma.bookmark.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         campaign: {
           select: { id: true, name: true },
@@ -77,8 +78,9 @@ export async function GET(
 // PATCH /api/bookmarks/[id] - Update bookmark
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
     const session = await auth();
     if (!session?.user?.id) {
@@ -90,7 +92,7 @@ export async function PATCH(
 
     // Get existing bookmark
     const existing = await prisma.bookmark.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!existing) {
@@ -116,7 +118,7 @@ export async function PATCH(
     if (position !== undefined) updateData.position = position;
 
     const updated = await prisma.bookmark.update({
-      where: { id: params.id },
+      where: { id },
       data: updateData,
       include: {
         character: {
@@ -159,8 +161,9 @@ export async function PATCH(
 // DELETE /api/bookmarks/[id] - Delete bookmark
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
     const session = await auth();
     if (!session?.user?.id) {
@@ -169,7 +172,7 @@ export async function DELETE(
 
     // Get existing bookmark
     const existing = await prisma.bookmark.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!existing) {
@@ -185,7 +188,7 @@ export async function DELETE(
     }
 
     await prisma.bookmark.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ success: true });

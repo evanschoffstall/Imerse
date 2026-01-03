@@ -1,15 +1,20 @@
 'use client'
 
+import RichTextEditor from '@/components/editor/RichTextEditor'
+import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import type { PostFormData } from '@/types/post'
 import { POST_LAYOUTS, POST_LAYOUT_NAMES } from '@/types/post'
 import { zodResolver } from '@hookform/resolvers/zod'
-import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-
-const TiptapEditor = dynamic(() => import('@/components/editor/TiptapEditor'), { ssr: false })
 
 const postSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -131,63 +136,61 @@ export default function PostForm({ campaignId, post, onSuccess }: PostFormProps)
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
-          {error}
-        </div>
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
 
       {/* Name */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Name *
-        </label>
-        <input
+      <div className="space-y-2">
+        <Label htmlFor="name">Name *</Label>
+        <Input
+          id="name"
           type="text"
           {...register('name')}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         {errors.name && (
-          <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+          <p className="text-destructive text-sm">{errors.name.message}</p>
         )}
       </div>
 
       {/* Layout */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Layout
-        </label>
-        <select
-          {...register('layoutId')}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      <div className="space-y-2">
+        <Label htmlFor="layout">Layout</Label>
+        <Select
+          value={layoutId || POST_LAYOUTS.ONE_COLUMN}
+          onValueChange={(value) => setValue('layoutId', value)}
         >
-          {Object.entries(POST_LAYOUT_NAMES).map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
-        </select>
+          <SelectTrigger id="layout">
+            <SelectValue placeholder="Select layout" />
+          </SelectTrigger>
+          <SelectContent>
+            {Object.entries(POST_LAYOUT_NAMES).map(([value, label]) => (
+              <SelectItem key={value} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       {/* Content */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Content
-        </label>
-        <div className="border border-gray-300 rounded-md">
-          <TiptapEditor content={entry} onChange={setEntry} />
+      <div className="space-y-2">
+        <Label>Content</Label>
+        <div className="border rounded-md">
+          <RichTextEditor content={entry} onChange={setEntry} />
         </div>
       </div>
 
       {/* Tags */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Tags
-        </label>
+      <div className="space-y-2">
+        <Label>Tags</Label>
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <button
+            <Badge
               key={tag.id}
-              type="button"
+              variant={selectedTagIds.includes(tag.id) ? 'default' : 'secondary'}
+              className="cursor-pointer"
               onClick={() => {
                 setSelectedTagIds((prev) =>
                   prev.includes(tag.id)
@@ -195,10 +198,6 @@ export default function PostForm({ campaignId, post, onSuccess }: PostFormProps)
                     : [...prev, tag.id]
                 )
               }}
-              className={`px-3 py-1 rounded-full text-sm ${selectedTagIds.includes(tag.id)
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
               style={
                 selectedTagIds.includes(tag.id) && tag.color
                   ? { backgroundColor: tag.color }
@@ -206,60 +205,52 @@ export default function PostForm({ campaignId, post, onSuccess }: PostFormProps)
               }
             >
               {tag.name}
-            </button>
+            </Badge>
           ))}
         </div>
       </div>
 
       {/* Options */}
       <div className="space-y-3">
-        <label className="flex items-center space-x-2">
-          <input
-            type="checkbox"
-            {...register('isPrivate')}
-            className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+        <label className="flex items-center gap-2 text-sm">
+          <Checkbox
+            checked={watch('isPrivate')}
+            onCheckedChange={(checked) => setValue('isPrivate', Boolean(checked))}
           />
-          <span className="text-sm text-gray-700">Private (only visible to you)</span>
+          <span>Private (only visible to you)</span>
         </label>
 
-        <label className="flex items-center space-x-2">
-          <input
-            type="checkbox"
-            {...register('isPinned')}
-            className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+        <label className="flex items-center gap-2 text-sm">
+          <Checkbox
+            checked={watch('isPinned')}
+            onCheckedChange={(checked) => setValue('isPinned', Boolean(checked))}
           />
-          <span className="text-sm text-gray-700">Pin to top</span>
+          <span>Pin to top</span>
         </label>
       </div>
 
       {/* Position */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Position (for sorting)
-        </label>
-        <input
+      <div className="space-y-2">
+        <Label htmlFor="position">Position (for sorting)</Label>
+        <Input
+          id="position"
           type="number"
           {...register('position', { valueAsNumber: true })}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
       {/* Submit */}
       <div className="flex gap-3">
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
-        >
+        <Button type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Saving...' : post ? 'Update Post' : 'Create Post'}
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
+          variant="outline"
           onClick={() => router.back()}
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
         >
           Cancel
-        </button>
+        </Button>
       </div>
     </form>
   )

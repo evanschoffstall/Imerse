@@ -5,16 +5,17 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/reminders/[id] - Get reminder by ID
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const reminder = await prisma.reminder.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         eventType: true,
         calendar: {
@@ -82,16 +83,17 @@ export async function GET(
 // PATCH /api/reminders/[id] - Update reminder
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const reminder = await prisma.reminder.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!reminder) {
@@ -153,7 +155,7 @@ export async function PATCH(
 
     // Update reminder
     const updatedReminder = await prisma.reminder.update({
-      where: { id: params.id },
+      where: { id: id },
       data: {
         ...(name && { name }),
         ...(description !== undefined && { description }),
@@ -206,16 +208,17 @@ export async function PATCH(
 // DELETE /api/reminders/[id] - Delete reminder
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const reminder = await prisma.reminder.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!reminder) {
@@ -247,7 +250,7 @@ export async function DELETE(
     }
 
     await prisma.reminder.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     return NextResponse.json({ success: true });

@@ -6,8 +6,9 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/attribute-templates/[id] - Get single template
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
     const session = await auth();
     if (!session?.user?.id) {
@@ -15,7 +16,7 @@ export async function GET(
     }
 
     const template = await prisma.attributeTemplate.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         campaign: {
           select: {
@@ -58,8 +59,9 @@ export async function GET(
 // PATCH /api/attribute-templates/[id] - Update template
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
     const session = await auth();
     if (!session?.user?.id) {
@@ -72,7 +74,7 @@ export async function PATCH(
 
     // Get existing template
     const existing = await prisma.attributeTemplate.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!existing) {
@@ -99,7 +101,7 @@ export async function PATCH(
     if (position !== undefined) updateData.position = position;
 
     const updated = await prisma.attributeTemplate.update({
-      where: { id: params.id },
+      where: { id },
       data: updateData,
       include: {
         createdBy: {
@@ -125,8 +127,9 @@ export async function PATCH(
 // DELETE /api/attribute-templates/[id] - Delete template
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
     const session = await auth();
     if (!session?.user?.id) {
@@ -135,7 +138,7 @@ export async function DELETE(
 
     // Get existing template
     const existing = await prisma.attributeTemplate.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!existing) {
@@ -151,7 +154,7 @@ export async function DELETE(
     }
 
     await prisma.attributeTemplate.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ success: true });

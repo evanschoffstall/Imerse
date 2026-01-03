@@ -5,9 +5,10 @@ import { NextResponse } from 'next/server'
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth()
     
     if (!session?.user?.id) {
@@ -17,7 +18,7 @@ export async function GET(
       )
     }
 
-    const campaignId = params.id
+    const campaignId = id
 
     // Check campaign access (READ permission)
     await requireCampaignAccess(campaignId, Permission.READ)
@@ -60,9 +61,10 @@ export async function GET(
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth()
     
     if (!session?.user?.id) {
@@ -72,7 +74,7 @@ export async function PATCH(
       )
     }
 
-    const campaignId = params.id
+    const campaignId = id
 
     const body = await request.json()
     const { name, description, image } = body
@@ -160,9 +162,10 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth()
     
     if (!session?.user?.id) {
@@ -172,7 +175,7 @@ export async function DELETE(
       )
     }
 
-    const campaignId = params.id
+    const campaignId = id
 
     // Only campaign owner can delete (MANAGE permission)
     await requireCampaignAccess(campaignId, Permission.MANAGE)

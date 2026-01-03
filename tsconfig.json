@@ -16,17 +16,24 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
+    "incremental": true,
+    "tsBuildInfoFile": ".tsbuildinfo"
+    // If still sticky, try:
+    // "incremental": false
+    // OR
+    // "incremental": true,
+    // "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo"
   },
   "include": [
     "next-env.d.ts",
@@ -36,6 +43,7 @@
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".next"
   ]
 }

@@ -6,16 +6,17 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/conversations/[id] - Get single conversation
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const conversation = await prisma.conversation.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: true,
         createdBy: {
@@ -106,16 +107,17 @@ export async function GET(
 // PATCH /api/conversations/[id] - Update conversation
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const conversation = await prisma.conversation.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!conversation) {
@@ -136,7 +138,7 @@ export async function PATCH(
     const { name, isPrivate, isClosed } = body;
 
     const updated = await prisma.conversation.update({
-      where: { id: params.id },
+      where: { id: id },
       data: {
         ...(name !== undefined && { name }),
         ...(isPrivate !== undefined && { isPrivate }),
@@ -172,16 +174,17 @@ export async function PATCH(
 // DELETE /api/conversations/[id] - Delete conversation
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const conversation = await prisma.conversation.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!conversation) {
@@ -199,7 +202,7 @@ export async function DELETE(
     }
 
     await prisma.conversation.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     return NextResponse.json({ success: true }, { status: 200 });

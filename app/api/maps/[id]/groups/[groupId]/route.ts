@@ -6,16 +6,17 @@ import { NextRequest } from "next/server";
 // GET /api/maps/[id]/groups/[groupId] - Get a single group
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string; groupId: string } }
+  { params }: { params: Promise<{ id: string; groupId: string }> }
 ) {
   try {
+    const { id, groupId } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const group = await prisma.mapGroup.findUnique({
-      where: { id: params.groupId },
+      where: { id: groupId },
       include: {
         map: {
           select: { id: true, campaignId: true },
@@ -59,16 +60,17 @@ export async function GET(
 // PATCH /api/maps/[id]/groups/[groupId] - Update a group
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string; groupId: string } }
+  { params }: { params: Promise<{ id: string; groupId: string }> }
 ) {
   try {
+    const { id, groupId } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const group = await prisma.mapGroup.findUnique({
-      where: { id: params.groupId },
+      where: { id: groupId },
       include: {
         map: {
           select: { campaignId: true },
@@ -93,7 +95,7 @@ export async function PATCH(
     const body = await req.json();
 
     const updatedGroup = await prisma.mapGroup.update({
-      where: { id: params.groupId },
+      where: { id: groupId },
       data: {
         name: body.name,
         position: body.position,
@@ -127,16 +129,17 @@ export async function PATCH(
 // DELETE /api/maps/[id]/groups/[groupId] - Delete a group
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string; groupId: string } }
+  { params }: { params: Promise<{ id: string; groupId: string }> }
 ) {
   try {
+    const { id, groupId } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const group = await prisma.mapGroup.findUnique({
-      where: { id: params.groupId },
+      where: { id: groupId },
       include: {
         map: {
           select: { campaignId: true },
@@ -159,7 +162,7 @@ export async function DELETE(
     }
 
     await prisma.mapGroup.delete({
-      where: { id: params.groupId },
+      where: { id: groupId },
     });
 
     return Response.json({ success: true });

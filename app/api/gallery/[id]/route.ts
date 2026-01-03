@@ -6,16 +6,17 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/gallery/[id] - Get single image/folder
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const image = await prisma.image.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         creator: {
           select: {
@@ -74,9 +75,10 @@ export async function GET(
 // PATCH /api/gallery/[id] - Update image/folder
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -87,7 +89,7 @@ export async function PATCH(
 
     // Get existing image
     const existing = await prisma.image.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!existing) {
@@ -109,7 +111,7 @@ export async function PATCH(
     if (visibility !== undefined) updateData.visibility = visibility;
 
     const updated = await prisma.image.update({
-      where: { id: params.id },
+      where: { id: id },
       data: updateData,
       include: {
         creator: {
@@ -136,9 +138,10 @@ export async function PATCH(
 // DELETE /api/gallery/[id] - Delete single image/folder
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -146,7 +149,7 @@ export async function DELETE(
 
     // Get existing image
     const existing = await prisma.image.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!existing) {
@@ -160,7 +163,7 @@ export async function DELETE(
 
     // Delete image/folder (cascade will handle sub-items)
     await prisma.image.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     return NextResponse.json({ success: true });

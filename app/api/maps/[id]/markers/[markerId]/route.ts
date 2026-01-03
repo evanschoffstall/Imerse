@@ -6,16 +6,17 @@ import { NextRequest } from "next/server";
 // GET /api/maps/[id]/markers/[markerId] - Get a single marker
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string; markerId: string } }
+  { params }: { params: Promise<{ id: string; markerId: string }> }
 ) {
   try {
+    const { id, markerId } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const marker = await prisma.mapMarker.findUnique({
-      where: { id: params.markerId },
+      where: { id: markerId },
       include: {
         map: {
           select: { id: true, campaignId: true },
@@ -53,16 +54,17 @@ export async function GET(
 // PATCH /api/maps/[id]/markers/[markerId] - Update a marker
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string; markerId: string } }
+  { params }: { params: Promise<{ id: string; markerId: string }> }
 ) {
   try {
+    const { id, markerId } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const marker = await prisma.mapMarker.findUnique({
-      where: { id: params.markerId },
+      where: { id: markerId },
       include: {
         map: {
           select: { campaignId: true },
@@ -87,7 +89,7 @@ export async function PATCH(
     const body = await req.json();
 
     const updatedMarker = await prisma.mapMarker.update({
-      where: { id: params.markerId },
+      where: { id: markerId },
       data: {
         name: body.name,
         entry: body.entry,
@@ -132,16 +134,17 @@ export async function PATCH(
 // DELETE /api/maps/[id]/markers/[markerId] - Delete a marker
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string; markerId: string } }
+  { params }: { params: Promise<{ id: string; markerId: string }> }
 ) {
   try {
+    const { id, markerId } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const marker = await prisma.mapMarker.findUnique({
-      where: { id: params.markerId },
+      where: { id: markerId },
       include: {
         map: {
           select: { campaignId: true },
@@ -164,7 +167,7 @@ export async function DELETE(
     }
 
     await prisma.mapMarker.delete({
-      where: { id: params.markerId },
+      where: { id: markerId },
     });
 
     return Response.json({ success: true });

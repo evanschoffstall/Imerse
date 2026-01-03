@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
     // For now, only allow creating notifications for yourself or system notifications
     if (
       body.userId !== session.user.id &&
-      !(session.user.email && session.user.email.includes("admin"))
+      !(session.user.email && session.user.email.includes("admin@example.com"))
     ) {
       return NextResponse.json(
         { error: "Cannot create notifications for other users" },

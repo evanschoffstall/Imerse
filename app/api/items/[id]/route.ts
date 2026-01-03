@@ -4,12 +4,13 @@ import { NextResponse } from 'next/server'
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const item = await prisma.item.findUnique({
       where: {
-        id: params.id,
+        id: id,
       },
       include: {
         campaign: {
@@ -47,9 +48,10 @@ export async function GET(
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth()
     
     if (!session?.user?.id) {
@@ -60,7 +62,7 @@ export async function PATCH(
     }
 
     const existingItem = await prisma.item.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -100,7 +102,7 @@ export async function PATCH(
     }
 
     const item = await prisma.item.update({
-      where: { id: params.id },
+      where: { id: id },
       data: updateData,
       include: {
         campaign: {
@@ -131,9 +133,10 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth()
     
     if (!session?.user?.id) {
@@ -144,7 +147,7 @@ export async function DELETE(
     }
 
     const existingItem = await prisma.item.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -173,7 +176,7 @@ export async function DELETE(
     }
 
     await prisma.item.delete({
-      where: { id: params.id },
+      where: { id: id },
     })
 
     return NextResponse.json({ success: true })

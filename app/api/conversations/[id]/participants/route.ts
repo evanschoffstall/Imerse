@@ -6,16 +6,17 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/conversations/[id]/participants - Get conversation participants
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const conversation = await prisma.conversation.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!conversation) {
@@ -34,7 +35,7 @@ export async function GET(
 
     const participants = await prisma.conversationParticipant.findMany({
       where: {
-        conversationId: params.id,
+        conversationId: id,
       },
       include: {
         user: {
@@ -66,16 +67,17 @@ export async function GET(
 // POST /api/conversations/[id]/participants - Add participant
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const conversation = await prisma.conversation.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!conversation) {
@@ -141,7 +143,7 @@ export async function POST(
     // Check if participant already exists
     const existingParticipant = await prisma.conversationParticipant.findFirst({
       where: {
-        conversationId: params.id,
+        conversationId: id,
         ...(userId && { userId }),
         ...(characterId && { characterId }),
       },
@@ -156,7 +158,7 @@ export async function POST(
 
     const participant = await prisma.conversationParticipant.create({
       data: {
-        conversationId: params.id,
+        conversationId: id,
         userId,
         characterId,
       },
@@ -190,16 +192,17 @@ export async function POST(
 // DELETE /api/conversations/[id]/participants/[participantId] - Remove participant
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const conversation = await prisma.conversation.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!conversation) {
@@ -230,7 +233,7 @@ export async function DELETE(
       where: { id: participantId },
     });
 
-    if (!participant || participant.conversationId !== params.id) {
+    if (!participant || participant.conversationId !== id) {
       return NextResponse.json(
         { error: "Participant not found" },
         { status: 404 }

@@ -15,15 +15,16 @@ const attributeUpdateSchema = z.object({
 // GET /api/attributes/[id] - Get a single attribute
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const attribute = await prisma.attribute.findUnique({
-    where: { id: params.id },
+    where: { id },
     include: {
       campaign: { select: { id: true, name: true } },
       createdBy: { select: { id: true, name: true, email: true } },
@@ -52,8 +53,9 @@ export async function GET(
 // PATCH /api/attributes/[id] - Update an attribute
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -61,7 +63,7 @@ export async function PATCH(
 
   try {
     const attribute = await prisma.attribute.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         campaign: { select: { ownerId: true } },
       },
@@ -108,7 +110,7 @@ export async function PATCH(
     }
 
     const updatedAttribute = await prisma.attribute.update({
-      where: { id: params.id },
+      where: { id },
       data,
       include: {
         campaign: { select: { id: true, name: true } },
@@ -132,15 +134,16 @@ export async function PATCH(
 // DELETE /api/attributes/[id] - Delete an attribute
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const attribute = await prisma.attribute.findUnique({
-    where: { id: params.id },
+    where: { id },
     include: {
       campaign: { select: { ownerId: true } },
     },
@@ -159,7 +162,7 @@ export async function DELETE(
   }
 
   await prisma.attribute.delete({
-    where: { id: params.id },
+    where: { id },
   });
 
   return NextResponse.json({ message: "Attribute deleted successfully" });

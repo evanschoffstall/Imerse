@@ -17,6 +17,26 @@ export const authConfig: AuthOptions = {
           return null;
         }
 
+        // TEST MODE: Bypass Prisma and use environment variables
+        if (process.env.TEST_MODE === "true") {
+          const testEmail = process.env.TEST_USER_EMAIL;
+          const testPassword = process.env.TEST_USER_PASSWORD;
+          const testName = process.env.TEST_USER_NAME || "Test User";
+
+          if (
+            credentials.email === testEmail &&
+            credentials.password === testPassword
+          ) {
+            return {
+              id: "test-user-id",
+              email: testEmail,
+              name: testName,
+            };
+          }
+          return null;
+        }
+
+        // NORMAL MODE: Query Prisma database
         const user = await prisma.user.findUnique({
           where: { email: credentials.email as string },
         });
@@ -63,6 +83,21 @@ export const authConfig: AuthOptions = {
   },
   session: {
     strategy: "jwt" as const,
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60, // 24 hours
+  },
+  cookies: {
+    sessionToken: {
+      name: `${
+        process.env.NODE_ENV === "production" ? "__Secure-" : ""
+      }next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+      },
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

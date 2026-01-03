@@ -1,5 +1,6 @@
 'use client'
 
+import RichTextEditor from '@/components/editor/RichTextEditor'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
@@ -22,8 +23,6 @@ import {
 import type { Note, NoteFormData } from '@/types/note'
 import { NOTE_TYPES } from '@/types/note'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEditor } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -54,24 +53,9 @@ export default function NoteForm({ note, campaignId, onSubmit, onCancel }: NoteF
     }
   })
 
-  const editor = useEditor({
-    extensions: [StarterKit],
-    content: note?.description || '',
-    editorProps: {
-      attributes: {
-        class: 'prose dark:prose-invert max-w-none min-h-[200px] px-4 py-2 focus:outline-none'
-      }
-    }
-  })
-
-  const onSubmitForm = async (data: NoteFormData) => {
-    const description = editor?.getHTML() || ''
-    await onSubmit({ ...data, description })
-  }
-
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmitForm)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
           name="name"
@@ -137,39 +121,7 @@ export default function NoteForm({ note, campaignId, onSubmit, onCancel }: NoteF
             <FormItem>
               <FormLabel>Content</FormLabel>
               <FormControl>
-                <div className="border rounded-lg overflow-hidden">
-                  <div className="bg-muted border-b px-3 py-2">
-                    <div className="flex gap-2">
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant={editor?.isActive('bold') ? 'secondary' : 'ghost'}
-                        onClick={() => editor?.chain().focus().toggleBold().run()}
-                      >
-                        B
-                      </Button>
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant={editor?.isActive('italic') ? 'secondary' : 'ghost'}
-                        onClick={() => editor?.chain().focus().toggleItalic().run()}
-                      >
-                        I
-                      </Button>
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant={editor?.isActive('bulletList') ? 'secondary' : 'ghost'}
-                        onClick={() => editor?.chain().focus().toggleBulletList().run()}
-                      >
-                        •
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="tiptap">
-                    <div className="editor-content" />
-                  </div>
-                </div>
+                <RichTextEditor content={field.value} onChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>

@@ -1,6 +1,18 @@
 'use client'
 
+import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
 import type { Quest } from '@/types/quest'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
@@ -47,33 +59,33 @@ export default function QuestsPage() {
     return new Date(date).toLocaleDateString()
   }
 
-  const getStatusColor = (status?: string | null) => {
+  const getStatusVariant = (status?: string | null): "default" | "secondary" | "destructive" | "outline" => {
     switch (status) {
       case 'completed':
-        return 'text-green-600 dark:text-green-400'
+        return 'default'
       case 'failed':
-        return 'text-red-600 dark:text-red-400'
+        return 'destructive'
       case 'on-hold':
-        return 'text-yellow-600 dark:text-yellow-400'
+        return 'secondary'
       default:
-        return 'text-blue-600 dark:text-blue-400'
+        return 'outline'
     }
   }
 
   if (!campaignId) {
     return (
-      <div className="container mx-auto px-6 py-8">
-        <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6">
-          <p className="text-yellow-800 dark:text-yellow-200">
+      <div className="container mx-auto px-4 py-8">
+        <Alert>
+          <AlertDescription>
             Please select a campaign to view quests.
-          </p>
-        </div>
+          </AlertDescription>
+        </Alert>
       </div>
     )
   }
 
   return (
-    <div className="container mx-auto px-6 py-8">
+    <div className="container mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-4xl font-bold">Quests</h1>
         <Link href={`/quests/new?campaignId=${campaignId}`}>
@@ -81,89 +93,77 @@ export default function QuestsPage() {
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-        {loading ? (
-          <div className="p-6">
-            <div className="animate-pulse space-y-4">
-              <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-              <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-              <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+      <Card>
+        <CardContent className="p-0">
+          {loading ? (
+            <div className="p-6 space-y-4">
+              <Skeleton className="h-4 w-3/4" />
+              <Skeleton className="h-4 w-1/2" />
+              <Skeleton className="h-4 w-5/6" />
             </div>
-          </div>
-        ) : quests.length === 0 ? (
-          <div className="p-6 text-center">
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              No quests yet. Create your first quest to get started!
-            </p>
-            <Link href={`/quests/new?campaignId=${campaignId}`}>
-              <Button>Create Quest</Button>
-            </Link>
-          </div>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gray-50 dark:bg-gray-900">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Name
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Type
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Updated
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+          ) : quests.length === 0 ? (
+            <div className="p-6 text-center">
+              <p className="text-muted-foreground mb-4">
+                No quests yet. Create your first quest to get started!
+              </p>
+              <Link href={`/quests/new?campaignId=${campaignId}`}>
+                <Button>Create Quest</Button>
+              </Link>
+            </div>
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Type</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead>Updated</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
                 {quests.map((quest) => (
-                  <tr key={quest.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                  <TableRow key={quest.id}>
+                    <TableCell>
                       <Link
                         href={`/quests/${quest.id}`}
-                        className="text-sm font-medium text-blue-600 hover:text-blue-700"
+                        className="font-medium text-primary hover:underline"
                       >
                         {quest.name}
                       </Link>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">
                       {quest.type || '-'}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`text-sm font-medium ${getStatusColor(quest.status)}`}>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant={getStatusVariant(quest.status)}>
                         {quest.status ? quest.status.charAt(0).toUpperCase() + quest.status.slice(1).replace('-', ' ') : '-'}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">
                       {formatDate(quest.updatedAt)}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    </TableCell>
+                    <TableCell className="text-right space-x-2">
                       <Link
                         href={`/quests/${quest.id}/edit`}
-                        className="text-blue-600 hover:text-blue-700 mr-4"
+                        className="text-primary hover:underline"
                       >
                         Edit
                       </Link>
                       <Link
                         href={`/quests/${quest.id}`}
-                        className="text-gray-600 hover:text-gray-700"
+                        className="text-muted-foreground hover:underline"
                       >
                         View
                       </Link>
-                    </td>
-                  </tr>
+                    </TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
+              </TableBody>
+            </Table>
+          )}
+        </CardContent>
+      </Card>
     </div>
   )
 }

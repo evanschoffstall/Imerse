@@ -5,16 +5,17 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/whiteboards/[id] - Get whiteboard by ID
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const whiteboard = await prisma.whiteboard.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -74,16 +75,17 @@ export async function GET(
 // PATCH /api/whiteboards/[id] - Update whiteboard
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const whiteboard = await prisma.whiteboard.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!whiteboard) {
@@ -134,7 +136,7 @@ export async function PATCH(
           where: {
             campaignId: whiteboard.campaignId,
             slug,
-            NOT: { id: params.id },
+            NOT: { id: id },
           },
         })
       ) {
@@ -145,7 +147,7 @@ export async function PATCH(
 
     // Update whiteboard
     const updatedWhiteboard = await prisma.whiteboard.update({
-      where: { id: params.id },
+      where: { id: id },
       data: {
         ...(name && { name, slug }),
         ...(description !== undefined && { description }),
@@ -185,16 +187,17 @@ export async function PATCH(
 // DELETE /api/whiteboards/[id] - Delete whiteboard
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const whiteboard = await prisma.whiteboard.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!whiteboard) {
@@ -226,7 +229,7 @@ export async function DELETE(
     }
 
     await prisma.whiteboard.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     return NextResponse.json({ success: true });

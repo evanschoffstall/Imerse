@@ -1,6 +1,9 @@
 'use client'
 
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { Attribute, ATTRIBUTE_TYPES, AttributeFormData, COMMON_ATTRIBUTE_CATEGORIES, formatAttributeValue, groupAttributesByCategory } from '@/types/attribute'
 import * as React from 'react'
@@ -234,18 +237,16 @@ export function AttributeManager({ entityType, entityId, campaignId, createdById
             </div>
           </div>
 
-          <div className="flex items-center">
-            <input
-              type="checkbox"
+          <label className="flex items-center gap-2">
+            <Checkbox
               id="isPrivate"
               checked={formData.isPrivate}
-              onChange={(e) => setFormData({ ...formData, isPrivate: e.target.checked })}
-              className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+              onCheckedChange={(checked) => setFormData({ ...formData, isPrivate: Boolean(checked) })}
             />
-            <label htmlFor="isPrivate" className="ml-2 text-sm">
+            <span className="text-sm">
               Private (only visible to campaign owner)
-            </label>
-          </div>
+            </span>
+          </label>
 
           <div className="flex gap-2">
             <Button type="submit">
@@ -265,56 +266,59 @@ export function AttributeManager({ entityType, entityId, campaignId, createdById
       )}
 
       {groupedAttributes.map(group => (
-        <div key={group.category} className="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
-          <h4 className="font-semibold mb-3 text-sm text-gray-700 dark:text-gray-300 uppercase tracking-wide">
-            {group.category}
-          </h4>
-          <div className="space-y-2">
-            {group.attributes.map(attribute => (
-              <div
-                key={attribute.id}
-                className="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-700 last:border-0"
-              >
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium">{attribute.key}:</span>
-                    {attribute.type === 'url' ? (
-                      <a
-                        href={attribute.value}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 hover:underline"
-                      >
-                        {formatAttributeValue(attribute)}
-                      </a>
-                    ) : (
-                      <span>{formatAttributeValue(attribute)}</span>
-                    )}
-                    {attribute.isPrivate && (
-                      <span className="text-xs px-2 py-0.5 bg-gray-200 dark:bg-gray-700 rounded">
-                        Private
-                      </span>
-                    )}
+        <Card key={group.category}>
+          <CardContent className="p-4">
+            <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide">
+              {group.category}
+            </h4>
+            <div className="space-y-2">
+              {group.attributes.map(attribute => (
+                <div
+                  key={attribute.id}
+                  className="flex justify-between items-center py-2 border-b last:border-0"
+                >
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium">{attribute.key}:</span>
+                      {attribute.type === 'url' ? (
+                        <a
+                          href={attribute.value}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:underline"
+                        >
+                          {formatAttributeValue(attribute)}
+                        </a>
+                      ) : (
+                        <span>{formatAttributeValue(attribute)}</span>
+                      )}
+                      {attribute.isPrivate && (
+                        <Badge variant="secondary">Private</Badge>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleEdit(attribute)}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleDelete(attribute.id)}
+                      className="text-destructive hover:text-destructive"
+                    >
+                      Delete
+                    </Button>
                   </div>
                 </div>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => handleEdit(attribute)}
-                    className="text-sm text-blue-600 hover:text-blue-700"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(attribute.id)}
-                    className="text-sm text-red-600 hover:text-red-700"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
       ))}
     </div>
   )

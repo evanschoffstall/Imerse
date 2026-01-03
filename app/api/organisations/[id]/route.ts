@@ -14,15 +14,16 @@ const organisationUpdateSchema = z.object({
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await auth()
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   const organisation = await prisma.organisation.findUnique({
-    where: { id: params.id },
+    where: { id: id },
     include: {
       campaign: { select: { id: true, name: true } },
       createdBy: { select: { id: true, name: true, email: true } }
@@ -46,8 +47,9 @@ export async function GET(
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await auth()
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -55,7 +57,7 @@ export async function PATCH(
 
   try {
     const existingOrganisation = await prisma.organisation.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: { campaign: true }
     })
 
@@ -76,7 +78,7 @@ export async function PATCH(
     }
 
     const organisation = await prisma.organisation.update({
-      where: { id: params.id },
+      where: { id: id },
       data: updateData,
       include: {
         campaign: { select: { id: true, name: true } },
@@ -96,15 +98,16 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await auth()
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   const organisation = await prisma.organisation.findUnique({
-    where: { id: params.id },
+    where: { id: id },
     include: { campaign: true }
   })
 
@@ -117,7 +120,7 @@ export async function DELETE(
   }
 
   await prisma.organisation.delete({
-    where: { id: params.id }
+    where: { id: id }
   })
 
   return NextResponse.json({ success: true })

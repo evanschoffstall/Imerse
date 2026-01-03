@@ -6,15 +6,16 @@ import { NextRequest } from "next/server";
 // GET /api/maps/[id]/markers - List all markers for a map
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const mapId = params.id;
+    const mapId = id;
     const { searchParams } = new URL(req.url);
     const groupId = searchParams.get("groupId");
 
@@ -68,15 +69,16 @@ export async function GET(
 // POST /api/maps/[id]/markers - Create a new marker
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const mapId = params.id;
+    const mapId = id;
 
     // Get map to check campaign access
     const map = await prisma.map.findUnique({

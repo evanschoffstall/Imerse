@@ -1,5 +1,10 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { CalendarWeather, parseCalendarDate } from '@/types/calendar';
 import { useState } from 'react';
 
@@ -142,127 +147,129 @@ export default function WeatherManager({ calendarId, weather, onUpdate }: Weathe
     <div className="space-y-4">
       {/* Add/Edit Form */}
       {isAdding ? (
-        <form onSubmit={handleSubmit} className="p-4 bg-blue-50 rounded-lg border border-blue-200 space-y-3">
-          <h3 className="font-semibold text-blue-900">
-            {editingId ? 'Edit Weather' : 'Add Weather Entry'}
-          </h3>
+        <form onSubmit={handleSubmit}>
+          <Card className="border-blue-200 bg-blue-50">
+            <CardContent className="p-4 space-y-3">
+              <h3 className="font-semibold text-blue-900">
+                {editingId ? 'Edit Weather' : 'Add Weather Entry'}
+              </h3>
 
-          <div className="grid grid-cols-2 gap-3">
-            {/* Date */}
-            <div className="col-span-2">
-              <label className="block text-sm font-medium mb-1">
-                Date <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                value={formData.date}
-                onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                placeholder="YYYY-MM-DD (e.g., 2024-03-15)"
-                required
-              />
-              <p className="text-xs text-gray-500 mt-1">
-                Format: YYYY-MM-DD (negative years supported)
-              </p>
-            </div>
+              <div className="grid grid-cols-2 gap-3">
+                {/* Date */}
+                <div className="col-span-2 space-y-2">
+                  <Label htmlFor="weather-date">
+                    Date <span className="text-destructive">*</span>
+                  </Label>
+                  <Input
+                    id="weather-date"
+                    type="text"
+                    value={formData.date}
+                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                    placeholder="YYYY-MM-DD (e.g., 2024-03-15)"
+                    required
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    Format: YYYY-MM-DD (negative years supported)
+                  </p>
+                </div>
 
-            {/* Weather Type */}
-            <div className="col-span-2">
-              <label className="block text-sm font-medium mb-1">Weather Type</label>
-              <div className="grid grid-cols-4 gap-2">
-                {WEATHER_TYPES.map((type) => (
-                  <button
-                    key={type.value}
-                    type="button"
-                    onClick={() => setFormData({ ...formData, weatherType: type.value })}
-                    className={`p-2 rounded-lg border-2 text-center transition ${formData.weatherType === type.value
-                      ? 'border-blue-500 bg-blue-100'
-                      : 'border-gray-300 bg-white hover:border-blue-300'
-                      }`}
-                  >
-                    <div className="text-2xl">{type.icon}</div>
-                    <div className="text-xs mt-1">{type.label.split(' ')[0]}</div>
-                  </button>
-                ))}
+                {/* Weather Type */}
+                <div className="col-span-2 space-y-2">
+                  <Label>Weather Type</Label>
+                  <div className="grid grid-cols-4 gap-2">
+                    {WEATHER_TYPES.map((type) => (
+                      <Button
+                        key={type.value}
+                        type="button"
+                        variant={formData.weatherType === type.value ? 'default' : 'outline'}
+                        className="p-2 h-auto flex flex-col items-center"
+                        onClick={() => setFormData({ ...formData, weatherType: type.value })}
+                      >
+                        <div className="text-2xl">{type.icon}</div>
+                        <div className="text-xs mt-1">{type.label.split(' ')[0]}</div>
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Temperature */}
+                <div className="space-y-2">
+                  <Label htmlFor="temperature">Temperature</Label>
+                  <Input
+                    id="temperature"
+                    type="number"
+                    step="0.1"
+                    value={formData.temperature}
+                    onChange={(e) => setFormData({ ...formData, temperature: e.target.value })}
+                    placeholder="e.g., 22.5"
+                  />
+                  <p className="text-xs text-muted-foreground">In your preferred units</p>
+                </div>
+
+                {/* Wind */}
+                <div className="space-y-2">
+                  <Label htmlFor="wind">Wind</Label>
+                  <Input
+                    id="wind"
+                    type="text"
+                    value={formData.wind}
+                    onChange={(e) => setFormData({ ...formData, wind: e.target.value })}
+                    placeholder="e.g., Light breeze"
+                  />
+                </div>
+
+                {/* Precipitation */}
+                <div className="col-span-2 space-y-2">
+                  <Label htmlFor="precipitation">Precipitation</Label>
+                  <Input
+                    id="precipitation"
+                    type="text"
+                    value={formData.precipitation}
+                    onChange={(e) => setFormData({ ...formData, precipitation: e.target.value })}
+                    placeholder="e.g., 5mm, Heavy, Light showers"
+                  />
+                </div>
+
+                {/* Effect */}
+                <div className="col-span-2 space-y-2">
+                  <Label htmlFor="effect">Effect / Notes</Label>
+                  <Textarea
+                    id="effect"
+                    value={formData.effect}
+                    onChange={(e) => setFormData({ ...formData, effect: e.target.value })}
+                    rows={2}
+                    placeholder="e.g., Travel delays, Flooding in lowlands"
+                  />
+                </div>
               </div>
-            </div>
 
-            {/* Temperature */}
-            <div>
-              <label className="block text-sm font-medium mb-1">Temperature</label>
-              <input
-                type="number"
-                step="0.1"
-                value={formData.temperature}
-                onChange={(e) => setFormData({ ...formData, temperature: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                placeholder="e.g., 22.5"
-              />
-              <p className="text-xs text-gray-500 mt-1">In your preferred units</p>
-            </div>
-
-            {/* Wind */}
-            <div>
-              <label className="block text-sm font-medium mb-1">Wind</label>
-              <input
-                type="text"
-                value={formData.wind}
-                onChange={(e) => setFormData({ ...formData, wind: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                placeholder="e.g., Light breeze"
-              />
-            </div>
-
-            {/* Precipitation */}
-            <div className="col-span-2">
-              <label className="block text-sm font-medium mb-1">Precipitation</label>
-              <input
-                type="text"
-                value={formData.precipitation}
-                onChange={(e) => setFormData({ ...formData, precipitation: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                placeholder="e.g., 5mm, Heavy, Light showers"
-              />
-            </div>
-
-            {/* Effect */}
-            <div className="col-span-2">
-              <label className="block text-sm font-medium mb-1">Effect / Notes</label>
-              <textarea
-                value={formData.effect}
-                onChange={(e) => setFormData({ ...formData, effect: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                rows={2}
-                placeholder="e.g., Travel delays, Flooding in lowlands"
-              />
-            </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex gap-2 pt-2">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
-            >
-              {isSubmitting ? 'Saving...' : editingId ? 'Update' : 'Add Weather'}
-            </button>
-            <button
-              type="button"
-              onClick={resetForm}
-              className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
-            >
-              Cancel
-            </button>
-          </div>
+              {/* Action Buttons */}
+              <div className="flex gap-2 pt-2">
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Saving...' : editingId ? 'Update' : 'Add Weather'}
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={resetForm}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </form>
       ) : (
-        <button
+        <Button
+          variant="outline"
+          className="w-full border-dashed"
           onClick={() => setIsAdding(true)}
-          className="w-full px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-blue-500 hover:text-blue-600"
         >
           + Add Weather Entry
-        </button>
+        </Button>
       )}
 
       {/* Weather List */}
@@ -280,7 +287,7 @@ export default function WeatherManager({ calendarId, weather, onUpdate }: Weathe
                 className="flex items-start gap-3 p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-300"
               >
                 {/* Weather Icon */}
-                <div className="text-3xl flex-shrink-0">{weatherType?.icon || '☀️'}</div>
+                <div className="text-3xl shrink-0">{weatherType?.icon || '☀️'}</div>
 
                 {/* Weather Info */}
                 <div className="flex-1 min-w-0">
@@ -301,19 +308,22 @@ export default function WeatherManager({ calendarId, weather, onUpdate }: Weathe
                     </div>
 
                     {/* Actions */}
-                    <div className="flex gap-1 flex-shrink-0">
-                      <button
+                    <div className="flex gap-1 shrink-0">
+                      <Button
+                        variant="ghost"
+                        size="sm"
                         onClick={() => handleEdit(w)}
-                        className="px-2 py-1 text-sm text-blue-600 hover:bg-blue-50 rounded"
                       >
                         Edit
-                      </button>
-                      <button
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
                         onClick={() => handleDelete(w.id)}
-                        className="px-2 py-1 text-sm text-red-600 hover:bg-red-50 rounded"
+                        className="text-destructive hover:text-destructive"
                       >
                         Delete
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 </div>

@@ -193,7 +193,7 @@ export default function YearView({
               <div key={index} className="flex items-center gap-2">
                 {moon.color && (
                   <div
-                    className="w-4 h-4 rounded-full flex-shrink-0"
+                    className="w-4 h-4 rounded-full shrink-0"
                     style={{ backgroundColor: moon.color }}
                   />
                 )}

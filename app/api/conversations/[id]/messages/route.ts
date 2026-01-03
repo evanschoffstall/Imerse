@@ -6,16 +6,17 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/conversations/[id]/messages - Get conversation messages
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const conversation = await prisma.conversation.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!conversation) {
@@ -38,7 +39,7 @@ export async function GET(
 
     const messages = await prisma.conversationMessage.findMany({
       where: {
-        conversationId: params.id,
+        conversationId: id,
       },
       include: {
         user: {
@@ -82,16 +83,17 @@ export async function GET(
 // POST /api/conversations/[id]/messages - Create message
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const conversation = await prisma.conversation.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!conversation) {
@@ -165,7 +167,7 @@ export async function POST(
     const newMessage = await prisma.conversationMessage.create({
       data: {
         message,
-        conversationId: params.id,
+        conversationId: id,
         userId,
         characterId,
         createdById: session.user.id,
@@ -196,7 +198,7 @@ export async function POST(
 
     // Update conversation updatedAt
     await prisma.conversation.update({
-      where: { id: params.id },
+      where: { id: id },
       data: { updatedAt: new Date() },
     });
 

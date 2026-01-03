@@ -4,14 +4,13 @@ import { Permission } from "@/lib/permissions-types";
 import { prisma } from "@/lib/prisma";
 import { NextRequest } from "next/server";
 
-type Params = {
-  params: {
-    id: string;
-  };
-};
+type Params = Promise<{
+  id: string;
+}>;
 
 // GET /api/posts/[id] - Get single post
-export async function GET(req: NextRequest, { params }: Params) {
+export async function GET(req: NextRequest, { params }: { params: Params }) {
+  const { id } = await params;
   try {
     const session = await auth();
     if (!session?.user) {
@@ -19,7 +18,7 @@ export async function GET(req: NextRequest, { params }: Params) {
     }
 
     const post = await prisma.post.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -149,7 +148,8 @@ export async function GET(req: NextRequest, { params }: Params) {
 }
 
 // PATCH /api/posts/[id] - Update post
-export async function PATCH(req: NextRequest, { params }: Params) {
+export async function PATCH(req: NextRequest, { params }: { params: Params }) {
+  const { id } = await params;
   try {
     const session = await auth();
     if (!session?.user) {
@@ -157,7 +157,7 @@ export async function PATCH(req: NextRequest, { params }: Params) {
     }
 
     const post = await prisma.post.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!post) {
@@ -210,7 +210,7 @@ export async function PATCH(req: NextRequest, { params }: Params) {
     }
 
     const updatedPost = await prisma.post.update({
-      where: { id: params.id },
+      where: { id: id },
       data: {
         ...(name !== undefined && { name }),
         ...(entry !== undefined && { entry }),
@@ -271,7 +271,8 @@ export async function PATCH(req: NextRequest, { params }: Params) {
 }
 
 // DELETE /api/posts/[id] - Delete post
-export async function DELETE(req: NextRequest, { params }: Params) {
+export async function DELETE(req: NextRequest, { params }: { params: Params }) {
+  const { id } = await params;
   try {
     const session = await auth();
     if (!session?.user) {
@@ -279,7 +280,7 @@ export async function DELETE(req: NextRequest, { params }: Params) {
     }
 
     const post = await prisma.post.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!post) {
@@ -298,7 +299,7 @@ export async function DELETE(req: NextRequest, { params }: Params) {
     }
 
     await prisma.post.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     return Response.json({ success: true });

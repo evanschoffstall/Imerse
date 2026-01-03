@@ -1,6 +1,17 @@
 'use client'
 
+import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
 import type { Family } from '@/types/family'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
@@ -49,18 +60,18 @@ export default function FamiliesPage() {
 
   if (!campaignId) {
     return (
-      <div className="container mx-auto px-6 py-8">
-        <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6">
-          <p className="text-yellow-800 dark:text-yellow-200">
+      <div className="container mx-auto px-4 py-8">
+        <Alert>
+          <AlertDescription>
             Please select a campaign to view families.
-          </p>
-        </div>
+          </AlertDescription>
+        </Alert>
       </div>
     )
   }
 
   return (
-    <div className="container mx-auto px-6 py-8">
+    <div className="container mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-4xl font-bold">Families</h1>
         <Link href={`/families/new?campaignId=${campaignId}`}>
@@ -68,87 +79,75 @@ export default function FamiliesPage() {
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-        {loading ? (
-          <div className="p-6">
-            <div className="animate-pulse space-y-4">
-              <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-              <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-              <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+      <Card>
+        <CardContent className="p-0">
+          {loading ? (
+            <div className="p-6 space-y-4">
+              <Skeleton className="h-4 w-3/4" />
+              <Skeleton className="h-4 w-1/2" />
+              <Skeleton className="h-4 w-5/6" />
             </div>
-          </div>
-        ) : families.length === 0 ? (
-          <div className="p-6 text-center">
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              No families yet. Create your first family to get started!
-            </p>
-            <Link href={`/families/new?campaignId=${campaignId}`}>
-              <Button>Create Family</Button>
-            </Link>
-          </div>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gray-50 dark:bg-gray-900">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Name
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Type
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Location
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Updated
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+          ) : families.length === 0 ? (
+            <div className="p-6 text-center">
+              <p className="text-muted-foreground mb-4">
+                No families yet. Create your first family to get started!
+              </p>
+              <Link href={`/families/new?campaignId=${campaignId}`}>
+                <Button>Create Family</Button>
+              </Link>
+            </div>
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Type</TableHead>
+                  <TableHead>Location</TableHead>
+                  <TableHead>Updated</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
                 {families.map((family) => (
-                  <tr key={family.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                  <TableRow key={family.id}>
+                    <TableCell>
                       <Link
                         href={`/families/${family.id}`}
-                        className="text-sm font-medium text-blue-600 hover:text-blue-700"
+                        className="font-medium text-primary hover:underline"
                       >
                         {family.name}
                       </Link>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">
                       {family.type || '-'}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">
                       {family.location || '-'}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">
                       {formatDate(family.updatedAt)}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    </TableCell>
+                    <TableCell className="text-right space-x-2">
                       <Link
                         href={`/families/${family.id}/edit`}
-                        className="text-blue-600 hover:text-blue-700 mr-4"
+                        className="text-primary hover:underline"
                       >
                         Edit
                       </Link>
                       <Link
                         href={`/families/${family.id}`}
-                        className="text-gray-600 hover:text-gray-700"
+                        className="text-muted-foreground hover:underline"
                       >
                         View
                       </Link>
-                    </td>
-                  </tr>
+                    </TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
+              </TableBody>
+            </Table>
+          )}
+        </CardContent>
+      </Card>
     </div>
   )
 }

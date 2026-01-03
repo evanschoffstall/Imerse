@@ -5,16 +5,17 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/presets/[id] - Get single preset
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const preset = await prisma.preset.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         type: true,
         campaign: {
@@ -59,9 +60,10 @@ export async function GET(
 // PATCH /api/presets/[id] - Update preset
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -72,7 +74,7 @@ export async function PATCH(
 
     // Get existing preset
     const existing = await prisma.preset.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!existing) {
@@ -96,7 +98,7 @@ export async function PATCH(
     if (isPublic !== undefined) updateData.isPublic = isPublic;
 
     const updated = await prisma.preset.update({
-      where: { id: params.id },
+      where: { id: id },
       data: updateData,
       include: {
         type: true,
@@ -123,9 +125,10 @@ export async function PATCH(
 // DELETE /api/presets/[id] - Delete preset
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -133,7 +136,7 @@ export async function DELETE(
 
     // Get existing preset
     const existing = await prisma.preset.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!existing) {
@@ -146,7 +149,7 @@ export async function DELETE(
     }
 
     await prisma.preset.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     return NextResponse.json({ success: true });

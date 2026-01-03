@@ -4,12 +4,13 @@ import { NextResponse } from 'next/server'
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const location = await prisma.location.findUnique({
       where: {
-        id: params.id,
+        id: id,
       },
       include: {
         campaign: {
@@ -63,9 +64,10 @@ export async function GET(
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth()
     
     if (!session?.user?.id) {
@@ -76,7 +78,7 @@ export async function PATCH(
     }
 
     const existingLocation = await prisma.location.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -108,7 +110,7 @@ export async function PATCH(
     const { name, parentId, ...rest } = body
 
     // Prevent circular hierarchy
-    if (parentId === params.id) {
+    if (parentId === id) {
       return NextResponse.json(
         { error: 'A location cannot be its own parent' },
         { status: 400 }
@@ -122,7 +124,7 @@ export async function PATCH(
       let depth = 0
 
       while (currentParentId && depth < maxDepth) {
-        if (currentParentId === params.id) {
+        if (currentParentId === id) {
           return NextResponse.json(
             { error: 'Circular hierarchy detected' },
             { status: 400 }
@@ -153,7 +155,7 @@ export async function PATCH(
     }
 
     const location = await prisma.location.update({
-      where: { id: params.id },
+      where: { id: id },
       data: updateData,
       include: {
         campaign: {
@@ -197,9 +199,10 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth()
     
     if (!session?.user?.id) {
@@ -210,7 +213,7 @@ export async function DELETE(
     }
 
     const existingLocation = await prisma.location.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -252,7 +255,7 @@ export async function DELETE(
     }
 
     await prisma.location.delete({
-      where: { id: params.id },
+      where: { id: id },
     })
 
     return NextResponse.json({ success: true })

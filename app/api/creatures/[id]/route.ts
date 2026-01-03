@@ -6,16 +6,17 @@ import { NextRequest } from "next/server";
 // GET /api/creatures/[id] - Get creature
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const creature = await prisma.creature.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -88,16 +89,17 @@ export async function GET(
 // PATCH /api/creatures/[id] - Update creature
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const creature = await prisma.creature.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       select: { campaignId: true },
     });
 
@@ -120,7 +122,7 @@ export async function PATCH(
       data;
 
     const updated = await prisma.creature.update({
-      where: { id: params.id },
+      where: { id: id },
       data: {
         ...(name !== undefined && { name }),
         ...(entry !== undefined && { entry }),
@@ -157,16 +159,17 @@ export async function PATCH(
 // DELETE /api/creatures/[id] - Delete creature
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const creature = await prisma.creature.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       select: { campaignId: true },
     });
 
@@ -185,7 +188,7 @@ export async function DELETE(
     }
 
     await prisma.creature.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     return Response.json({ success: true });

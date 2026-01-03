@@ -1,5 +1,7 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
 import { Timeline } from '@/types/timeline'
 import { useRef, useState } from 'react'
 
@@ -104,7 +106,7 @@ export default function TimelineVisualization({
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-4">
+      <div className="bg-linear-to-r from-purple-600 to-blue-600 text-white px-6 py-4">
         <h2 className="text-2xl font-bold">{timeline.name}</h2>
         {timeline.description && (
           <p className="text-sm text-purple-100 mt-1">{timeline.description}</p>
@@ -112,37 +114,40 @@ export default function TimelineVisualization({
       </div>
 
       {/* Controls */}
-      <div className="border-b border-gray-200 px-6 py-3 bg-gray-50 flex justify-between items-center">
+      <div className="border-b border-gray-200 px-6 py-3 bg-muted flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <button
+          <Button
+            variant="outline"
+            size="icon"
             onClick={handleZoomOut}
-            className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 transition-colors"
             title="Zoom Out"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
             </svg>
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
             onClick={handleResetZoom}
-            className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-100 transition-colors"
           >
             Reset
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
             onClick={handleZoomIn}
-            className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 transition-colors"
             title="Zoom In"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
-          </button>
-          <span className="ml-4 text-sm text-gray-600">
+          </Button>
+          <span className="ml-4 text-sm text-muted-foreground">
             Zoom: {Math.round(zoom * 100)}%
           </span>
         </div>
-        <div className="text-sm text-gray-600">
+        <div className="text-sm text-muted-foreground">
           <span className="font-medium">{events.length}</span> events • <span className="font-medium">{eras.length}</span> eras
         </div>
       </div>
@@ -277,35 +282,39 @@ export default function TimelineVisualization({
 
       {/* Legend */}
       {eras.length > 0 && (
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
-          <h3 className="text-sm font-semibold text-gray-700 mb-2">Eras</h3>
+        <div className="border-t border-gray-200 px-6 py-4 bg-muted">
+          <h3 className="text-sm font-semibold mb-2">Eras</h3>
           <div className="flex flex-wrap gap-3">
             {eras.map((era, index) => (
-              <button
+              <Button
                 key={index}
+                variant="outline"
+                size="sm"
                 onClick={() => onEraClick?.(era)}
-                className="flex items-center gap-2 px-3 py-1.5 bg-white border border-gray-200 rounded-md hover:shadow-md transition-all"
+                className="gap-2"
               >
                 <div
                   className="w-3 h-3 rounded-full"
                   style={{ backgroundColor: era.color || '#3b82f6' }}
                 />
-                <span className="text-sm text-gray-700">{era.name}</span>
-                <span className="text-xs text-gray-500">
+                <span>{era.name}</span>
+                <span className="text-xs text-muted-foreground">
                   ({era.startYear}{era.endYear ? ` - ${era.endYear}` : '+'})
                 </span>
-              </button>
+              </Button>
             ))}
           </div>
         </div>
       )}
 
       {/* Instructions */}
-      <div className="border-t border-gray-200 px-6 py-3 bg-blue-50">
-        <p className="text-sm text-blue-800">
-          💡 <strong>Tip:</strong> Click and drag to pan the timeline. Use zoom controls to adjust the view scale.
-        </p>
-      </div>
+      <Card className="border-t border-blue-200 bg-blue-50 rounded-none">
+        <CardContent className="p-3">
+          <p className="text-sm text-blue-800">
+            💡 <strong>Tip:</strong> Click and drag to pan the timeline. Use zoom controls to adjust the view scale.
+          </p>
+        </CardContent>
+      </Card>
     </div>
   )
 }

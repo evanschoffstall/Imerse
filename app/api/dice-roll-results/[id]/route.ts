@@ -6,16 +6,17 @@ import { NextRequest, NextResponse } from "next/server";
 // DELETE /api/dice-roll-results/[id] - Delete dice roll result
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const result = await prisma.diceRollResult.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         diceRoll: true,
       },
@@ -33,7 +34,7 @@ export async function DELETE(
     }
 
     await prisma.diceRollResult.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     return NextResponse.json({ success: true }, { status: 200 });

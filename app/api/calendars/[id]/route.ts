@@ -7,9 +7,10 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/calendars/[id] - Get a single calendar
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -24,7 +25,7 @@ export async function GET(
     }
 
     const calendar = await prisma.calendar.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -87,9 +88,10 @@ export async function GET(
 // PATCH /api/calendars/[id] - Update a calendar
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -104,7 +106,7 @@ export async function PATCH(
     }
 
     const calendar = await prisma.calendar.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!calendar) {
@@ -159,7 +161,7 @@ export async function PATCH(
 
     // Update calendar
     const updated = await prisma.calendar.update({
-      where: { id: params.id },
+      where: { id: id },
       data: {
         ...(data.name !== undefined && { name: data.name }),
         ...(data.slug !== undefined && { slug: data.slug }),
@@ -240,9 +242,10 @@ export async function PATCH(
 // DELETE /api/calendars/[id] - Delete a calendar
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -257,7 +260,7 @@ export async function DELETE(
     }
 
     const calendar = await prisma.calendar.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!calendar) {
@@ -278,7 +281,7 @@ export async function DELETE(
 
     // Delete calendar (cascade will handle weather entries)
     await prisma.calendar.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     return NextResponse.json({ success: true });

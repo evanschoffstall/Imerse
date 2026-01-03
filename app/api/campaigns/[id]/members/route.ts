@@ -14,10 +14,11 @@ import { NextRequest, NextResponse } from "next/server"
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const campaignId = params.id
+    const { id } = await params;
+    const campaignId = id
 
     // Require campaign access (any member can view members)
     await requireCampaignAccess(campaignId)
@@ -64,10 +65,11 @@ export async function GET(
  */
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const campaignId = params.id
+    const { id } = await params;
+    const campaignId = id
 
     // Require MEMBERS permission
     await requireCampaignAccess(campaignId, Permission.MEMBERS)

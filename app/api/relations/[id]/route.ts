@@ -14,16 +14,17 @@ const updateSchema = z.object({
 // GET /api/relations/[id] - Get a single relation
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const relation = await prisma.relation.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -61,9 +62,10 @@ export async function GET(
 // PATCH /api/relations/[id] - Update a relation
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -74,7 +76,7 @@ export async function PATCH(
 
     // Check if relation exists and user has permission
     const existingRelation = await prisma.relation.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -100,7 +102,7 @@ export async function PATCH(
     }
 
     const relation = await prisma.relation.update({
-      where: { id: params.id },
+      where: { id: id },
       data: validatedData,
       include: {
         campaign: {
@@ -145,9 +147,10 @@ export async function PATCH(
 // DELETE /api/relations/[id] - Delete a relation
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -155,7 +158,7 @@ export async function DELETE(
 
     // Check if relation exists and user has permission
     const existingRelation = await prisma.relation.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -189,7 +192,7 @@ export async function DELETE(
 
     // Delete the primary relation
     await prisma.relation.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     return NextResponse.json({ success: true });

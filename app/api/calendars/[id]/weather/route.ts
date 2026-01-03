@@ -4,15 +4,16 @@ import { NextResponse } from "next/server";
 
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const calendarId = params.id;
+    const calendarId = id;
 
     // Check calendar exists and get campaign
     const calendar = await prisma.calendar.findUnique({
@@ -90,15 +91,16 @@ export async function POST(
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const calendarId = params.id;
+    const calendarId = id;
 
     // Check calendar exists and get campaign owner
     const calendar = await prisma.calendar.findUnique({

@@ -43,7 +43,7 @@ export function isTestRequest(request: NextRequest): boolean {
  * Get test user email from environment
  */
 export function getTestUserEmail(): string {
-  return process.env.TEST_USER_EMAIL || "test@imerse.dev";
+  return process.env.TEST_USER_EMAIL || "admin@example.com";
 }
 
 /**

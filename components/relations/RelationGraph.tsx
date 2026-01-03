@@ -1,5 +1,7 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
 import { type RelationWithEntities } from '@/types/relation'
 import cytoscape, { type Core, type EdgeDefinition, type NodeDefinition } from 'cytoscape'
 // @ts-ignore - no types available for cytoscape-cola
@@ -317,72 +319,81 @@ export default function RelationGraph({
   return (
     <div className="space-y-4">
       {/* Controls */}
-      <div className="flex items-center justify-between bg-white p-4 rounded-lg border">
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-gray-700">Layout:</span>
-          <select
-            value={layout}
-            onChange={(e) => handleLayoutChange(e.target.value as LayoutType)}
-            className="px-3 py-1.5 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="cola">Force-Directed (Cola)</option>
-            <option value="cose">Force-Directed (Cose)</option>
-            <option value="circle">Circle</option>
-            <option value="grid">Grid</option>
-            <option value="breadthfirst">Hierarchy</option>
-          </select>
-        </div>
+      <Card>
+        <CardContent className="flex items-center justify-between p-4">
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-medium">Layout:</span>
+            <select
+              value={layout}
+              onChange={(e) => handleLayoutChange(e.target.value as LayoutType)}
+              className="px-3 py-1.5 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="cola">Force-Directed (Cola)</option>
+              <option value="cose">Force-Directed (Cose)</option>
+              <option value="circle">Circle</option>
+              <option value="grid">Grid</option>
+              <option value="breadthfirst">Hierarchy</option>
+            </select>
+          </div>
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={handleZoomIn}
-            className="px-3 py-1.5 text-sm bg-white border rounded-lg hover:bg-gray-50 transition-colors"
-            title="Zoom In"
-          >
-            🔍+
-          </button>
-          <button
-            onClick={handleZoomOut}
-            className="px-3 py-1.5 text-sm bg-white border rounded-lg hover:bg-gray-50 transition-colors"
-            title="Zoom Out"
-          >
-            🔍−
-          </button>
-          <button
-            onClick={handleCenter}
-            className="px-3 py-1.5 text-sm bg-white border rounded-lg hover:bg-gray-50 transition-colors"
-            title="Center"
-          >
-            ⊙
-          </button>
-          <button
-            onClick={handleFit}
-            className="px-3 py-1.5 text-sm bg-white border rounded-lg hover:bg-gray-50 transition-colors"
-            title="Fit to Screen"
-          >
-            ⛶
-          </button>
-        </div>
-      </div>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleZoomIn}
+              title="Zoom In"
+            >
+              🔍+
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleZoomOut}
+              title="Zoom Out"
+            >
+              🔍−
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleCenter}
+              title="Center"
+            >
+              ⊙
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleFit}
+              title="Fit to Screen"
+            >
+              ⛶
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Selected Node Info */}
       {selectedNodeInfo && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-blue-900">Selected: {selectedNodeInfo.label}</p>
-              <p className="text-xs text-blue-700 mt-1">
-                Type: {selectedNodeInfo.type} • ID: {selectedNodeInfo.entityId}
-              </p>
+        <Card className="border-blue-200 bg-blue-50">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-blue-900">Selected: {selectedNodeInfo.label}</p>
+                <p className="text-xs text-blue-700 mt-1">
+                  Type: {selectedNodeInfo.type} • ID: {selectedNodeInfo.entityId}
+                </p>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSelectedNode(null)}
+              >
+                ✕
+              </Button>
             </div>
-            <button
-              onClick={() => setSelectedNode(null)}
-              className="text-blue-600 hover:text-blue-800"
-            >
-              ✕
-            </button>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       )}
 
       {/* Graph Container */}
@@ -393,33 +404,35 @@ export default function RelationGraph({
       />
 
       {/* Legend */}
-      <div className="bg-white p-4 rounded-lg border">
-        <h4 className="text-sm font-semibold text-gray-700 mb-3">Entity Types</h4>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-          {[
-            { type: 'character', color: '#3b82f6', label: 'Character' },
-            { type: 'location', color: '#10b981', label: 'Location' },
-            { type: 'item', color: '#f59e0b', label: 'Item' },
-            { type: 'quest', color: '#8b5cf6', label: 'Quest' },
-            { type: 'event', color: '#ef4444', label: 'Event' },
-            { type: 'journal', color: '#6366f1', label: 'Journal' },
-            { type: 'note', color: '#84cc16', label: 'Note' },
-            { type: 'family', color: '#ec4899', label: 'Family' },
-            { type: 'race', color: '#14b8a6', label: 'Race' },
-            { type: 'organisation', color: '#f97316', label: 'Organisation' },
-            { type: 'timeline', color: '#06b6d4', label: 'Timeline' },
-            { type: 'map', color: '#a855f7', label: 'Map' },
-          ].map(({ type, color, label }) => (
-            <div key={type} className="flex items-center gap-2">
-              <div
-                className="w-4 h-4 rounded-full border-2 border-gray-300"
-                style={{ backgroundColor: color }}
-              />
-              <span className="text-xs text-gray-600">{label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      <Card>
+        <CardContent className="p-4">
+          <h4 className="text-sm font-semibold mb-3">Entity Types</h4>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            {[
+              { type: 'character', color: '#3b82f6', label: 'Character' },
+              { type: 'location', color: '#10b981', label: 'Location' },
+              { type: 'item', color: '#f59e0b', label: 'Item' },
+              { type: 'quest', color: '#8b5cf6', label: 'Quest' },
+              { type: 'event', color: '#ef4444', label: 'Event' },
+              { type: 'journal', color: '#6366f1', label: 'Journal' },
+              { type: 'note', color: '#84cc16', label: 'Note' },
+              { type: 'family', color: '#ec4899', label: 'Family' },
+              { type: 'race', color: '#14b8a6', label: 'Race' },
+              { type: 'organisation', color: '#f97316', label: 'Organisation' },
+              { type: 'timeline', color: '#06b6d4', label: 'Timeline' },
+              { type: 'map', color: '#a855f7', label: 'Map' },
+            ].map(({ type, color, label }) => (
+              <div key={type} className="flex items-center gap-2">
+                <div
+                  className="w-4 h-4 rounded-full border-2 border-gray-300"
+                  style={{ backgroundColor: color }}
+                />
+                <span className="text-xs text-gray-600">{label}</span>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }

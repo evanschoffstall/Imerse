@@ -34,8 +34,9 @@ async function fetchEntity(entityType: EntityType, entityId: string) {
 // GET /api/relationships/[id] - Get a specific relationship
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -43,7 +44,7 @@ export async function GET(
 
   try {
     const relationship = await prisma.relationship.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -109,8 +110,9 @@ export async function GET(
 // PATCH /api/relationships/[id] - Update a relationship
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -118,7 +120,7 @@ export async function PATCH(
 
   try {
     const relationship = await prisma.relationship.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -155,7 +157,7 @@ export async function PATCH(
     const validatedData = relationshipFormSchema.partial().parse(body);
 
     const updatedRelationship = await prisma.relationship.update({
-      where: { id: params.id },
+      where: { id: id },
       data: {
         relationshipType: validatedData.relationshipType,
         description: validatedData.description,
@@ -200,8 +202,9 @@ export async function PATCH(
 // DELETE /api/relationships/[id] - Delete a relationship
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -209,7 +212,7 @@ export async function DELETE(
 
   try {
     const relationship = await prisma.relationship.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: {
           select: {
@@ -243,7 +246,7 @@ export async function DELETE(
     }
 
     await prisma.relationship.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     return NextResponse.json({ success: true });

@@ -6,8 +6,9 @@ import { NextRequest } from "next/server";
 // GET /api/abilities/[id] - Get ability
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
     const session = await auth();
     if (!session?.user) {
@@ -15,7 +16,7 @@ export async function GET(
     }
 
     const ability = await prisma.ability.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         campaign: {
           select: {
@@ -78,8 +79,9 @@ export async function GET(
 // PATCH /api/abilities/[id] - Update ability
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
     const session = await auth();
     if (!session?.user) {
@@ -87,7 +89,7 @@ export async function PATCH(
     }
 
     const ability = await prisma.ability.findUnique({
-      where: { id: params.id },
+      where: { id },
       select: { campaignId: true },
     });
 
@@ -109,7 +111,7 @@ export async function PATCH(
     const { name, entry, charges, type, isPrivate, parentId } = data;
 
     const updated = await prisma.ability.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         ...(name !== undefined && { name }),
         ...(entry !== undefined && { entry }),
@@ -144,8 +146,9 @@ export async function PATCH(
 // DELETE /api/abilities/[id] - Delete ability
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
     const session = await auth();
     if (!session?.user) {
@@ -153,7 +156,7 @@ export async function DELETE(
     }
 
     const ability = await prisma.ability.findUnique({
-      where: { id: params.id },
+      where: { id },
       select: { campaignId: true },
     });
 
@@ -172,7 +175,7 @@ export async function DELETE(
     }
 
     await prisma.ability.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return Response.json({ success: true });

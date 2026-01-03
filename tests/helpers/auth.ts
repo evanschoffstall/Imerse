@@ -29,8 +29,8 @@ export interface TestUserCredentials {
  */
 export function getTestUserCredentials(): TestUserCredentials {
   return {
-    email: process.env.TEST_USER_EMAIL || "test@imerse.dev",
-    password: process.env.TEST_USER_PASSWORD || "TestPassword123!",
+    email: process.env.TEST_USER_EMAIL || "admin@example.com",
+    password: process.env.TEST_USER_PASSWORD || "admin",
     name: process.env.TEST_USER_NAME || "Test Superuser",
   };
 }
@@ -80,11 +80,11 @@ export async function performLogin(
   });
 
   // Wait for form to be ready
-  await page.waitForSelector('input[name="email"]', { timeout: 10000 });
+  await page.waitForSelector('input[id="email"]', { timeout: 10000 });
 
   // Fill in the login form
-  await page.fill('input[name="email"]', creds.email);
-  await page.fill('input[name="password"]', creds.password);
+  await page.fill('input[id="email"]', creds.email);
+  await page.fill('input[id="password"]', creds.password);
 
   // Listen for console logs from the page
   page.on("console", (msg) => {

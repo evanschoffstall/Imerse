@@ -1,5 +1,9 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { CalendarMoon } from '@/types/calendar';
 import { useState } from 'react';
 
@@ -125,7 +129,7 @@ export default function MoonEditor({ moons, onChange }: MoonEditorProps) {
           >
             {/* Moon Color */}
             <div
-              className="w-6 h-6 rounded-full border border-gray-300 flex-shrink-0"
+              className="w-6 h-6 rounded-full border border-gray-300 shrink-0"
               style={{ backgroundColor: moon.color }}
             />
 
@@ -144,35 +148,40 @@ export default function MoonEditor({ moons, onChange }: MoonEditorProps) {
             </div>
 
             {/* Actions */}
-            <div className="flex items-center gap-1 flex-shrink-0">
-              <button
+            <div className="flex items-center gap-1 shrink-0">
+              <Button
+                variant="ghost"
+                size="icon"
                 onClick={() => handleMoveUp(index)}
                 disabled={index === 0}
-                className="p-1 text-gray-600 hover:text-blue-600 disabled:opacity-30"
                 title="Move up"
               >
                 ↑
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
                 onClick={() => handleMoveDown(index)}
                 disabled={index === moons.length - 1}
-                className="p-1 text-gray-600 hover:text-blue-600 disabled:opacity-30"
                 title="Move down"
               >
                 ↓
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => handleEdit(index)}
-                className="px-2 py-1 text-sm text-blue-600 hover:bg-blue-50 rounded"
               >
                 Edit
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => handleRemove(index)}
-                className="px-2 py-1 text-sm text-red-600 hover:bg-red-50 rounded"
+                className="text-destructive hover:text-destructive"
               >
                 Remove
-              </button>
+              </Button>
             </div>
           </div>
         ))}
@@ -180,158 +189,155 @@ export default function MoonEditor({ moons, onChange }: MoonEditorProps) {
 
       {/* Edit Form */}
       {editingIndex !== null && (
-        <div className="p-4 bg-purple-50 rounded-lg border border-purple-200 space-y-3">
-          <h3 className="font-semibold text-purple-900">
-            {editingIndex >= moons.length ? 'Add Moon' : 'Edit Moon'}
-          </h3>
+        <Card className="border-purple-200 bg-purple-50">
+          <CardContent className="p-4 space-y-3">
+            <h3 className="font-semibold text-purple-900">
+              {editingIndex >= moons.length ? 'Add Moon' : 'Edit Moon'}
+            </h3>
 
-          <div className="grid grid-cols-2 gap-3">
-            {/* Moon Name */}
-            <div className="col-span-2">
-              <label className="block text-sm font-medium mb-1">Moon Name</label>
-              <input
-                type="text"
-                value={editForm.name}
-                onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                placeholder="e.g., Luna"
-              />
-            </div>
-
-            {/* Cycle Length */}
-            <div>
-              <label className="block text-sm font-medium mb-1">
-                Cycle Length (days)
-              </label>
-              <input
-                type="number"
-                min="1"
-                max="365"
-                value={editForm.cycle}
-                onChange={(e) => setEditForm({ ...editForm, cycle: parseInt(e.target.value) || 30 })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-              <p className="text-xs text-gray-500 mt-1">
-                Days for complete phase cycle
-              </p>
-            </div>
-
-            {/* Phase Shift */}
-            <div>
-              <label className="block text-sm font-medium mb-1">
-                Phase Shift (days)
-              </label>
-              <input
-                type="number"
-                min="0"
-                max={editForm.cycle - 1}
-                value={editForm.shift}
-                onChange={(e) => {
-                  const val = parseInt(e.target.value) || 0;
-                  setEditForm({ ...editForm, shift: Math.min(val, editForm.cycle - 1) });
-                }}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-              <p className="text-xs text-gray-500 mt-1">
-                Offset from year start
-              </p>
-            </div>
-
-            {/* Color Picker */}
-            <div className="col-span-2">
-              <label className="block text-sm font-medium mb-1">Moon Color</label>
-              <div className="flex items-center gap-2">
-                <input
-                  type="color"
-                  value={editForm.color}
-                  onChange={(e) => setEditForm({ ...editForm, color: e.target.value })}
-                  className="h-10 w-20 cursor-pointer"
-                />
-                <input
+            <div className="grid grid-cols-2 gap-3">
+              {/* Moon Name */}
+              <div className="col-span-2 space-y-2">
+                <Label htmlFor="moon-name">Moon Name</Label>
+                <Input
+                  id="moon-name"
                   type="text"
-                  value={editForm.color}
-                  onChange={(e) => setEditForm({ ...editForm, color: e.target.value })}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg font-mono text-sm"
-                  placeholder="#a78bfa"
+                  value={editForm.name}
+                  onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
+                  placeholder="e.g., Luna"
                 />
               </div>
-            </div>
 
-            {/* Phase Preview */}
-            <div className="col-span-2">
-              <label className="block text-sm font-medium mb-2">Phase Preview</label>
-              <div className="grid grid-cols-4 gap-2">
-                {[0, Math.floor(editForm.cycle * 0.25), Math.floor(editForm.cycle * 0.5), Math.floor(editForm.cycle * 0.75)].map((day, idx) => (
-                  <div
-                    key={idx}
-                    className="p-3 bg-white rounded-lg border border-gray-200 text-center"
-                  >
-                    <div className="text-3xl mb-1">{getMoonPhase(day, editForm)}</div>
-                    <div className="text-xs font-medium text-gray-700">
-                      {getMoonPhaseName(day, editForm)}
-                    </div>
-                    <div className="text-xs text-gray-500 mt-1">
-                      Day {day}
-                    </div>
-                  </div>
-                ))}
+              {/* Cycle Length */}
+              <div className="space-y-2">
+                <Label htmlFor="cycle-length">Cycle Length (days)</Label>
+                <Input
+                  id="cycle-length"
+                  type="number"
+                  min="1"
+                  max="365"
+                  value={editForm.cycle}
+                  onChange={(e) => setEditForm({ ...editForm, cycle: parseInt(e.target.value) || 30 })}
+                />
+                <p className="text-xs text-muted-foreground">
+                  Days for complete phase cycle
+                </p>
               </div>
-              <div className="text-sm text-gray-600 mt-2">
-                Full cycle: {editForm.cycle} days • Approx. {Math.floor(365 / editForm.cycle)} cycles/year
-              </div>
-            </div>
 
-            {/* Visual Timeline */}
-            <div className="col-span-2">
-              <label className="block text-sm font-medium mb-2">Cycle Timeline</label>
-              <div className="relative h-16 bg-gray-100 rounded-lg overflow-hidden">
-                {/* Phase indicators */}
-                {Array.from({ length: Math.min(editForm.cycle, 30) }).map((_, idx) => {
-                  const dayOfCycle = Math.floor((idx / 30) * editForm.cycle);
-                  const phase = getMoonPhase(dayOfCycle, editForm);
-                  return (
+              {/* Phase Shift */}
+              <div className="space-y-2">
+                <Label htmlFor="phase-shift">Phase Shift (days)</Label>
+                <Input
+                  id="phase-shift"
+                  type="number"
+                  min="0"
+                  max={editForm.cycle - 1}
+                  value={editForm.shift}
+                  onChange={(e) => {
+                    const val = parseInt(e.target.value) || 0;
+                    setEditForm({ ...editForm, shift: Math.min(val, editForm.cycle - 1) });
+                  }}
+                />
+                <p className="text-xs text-muted-foreground">
+                  Offset from year start
+                </p>
+              </div>
+
+              {/* Color Picker */}
+              <div className="col-span-2 space-y-2">
+                <Label htmlFor="moon-color">Moon Color</Label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="color"
+                    id="moon-color"
+                    value={editForm.color}
+                    onChange={(e) => setEditForm({ ...editForm, color: e.target.value })}
+                    className="h-10 w-20 cursor-pointer rounded"
+                  />
+                  <Input
+                    type="text"
+                    value={editForm.color}
+                    onChange={(e) => setEditForm({ ...editForm, color: e.target.value })}
+                    className="flex-1 font-mono text-sm"
+                    placeholder="#a78bfa"
+                  />
+                </div>
+              </div>
+
+              {/* Phase Preview */}
+              <div className="col-span-2">
+                <label className="block text-sm font-medium mb-2">Phase Preview</label>
+                <div className="grid grid-cols-4 gap-2">
+                  {[0, Math.floor(editForm.cycle * 0.25), Math.floor(editForm.cycle * 0.5), Math.floor(editForm.cycle * 0.75)].map((day, idx) => (
                     <div
                       key={idx}
-                      className="absolute top-0 bottom-0 flex items-center justify-center text-xs"
-                      style={{
-                        left: `${(idx / 30) * 100}%`,
-                        width: `${100 / 30}%`,
-                      }}
+                      className="p-3 bg-white rounded-lg border border-gray-200 text-center"
                     >
-                      {idx % 5 === 0 && phase}
+                      <div className="text-3xl mb-1">{getMoonPhase(day, editForm)}</div>
+                      <div className="text-xs font-medium text-gray-700">
+                        {getMoonPhaseName(day, editForm)}
+                      </div>
+                      <div className="text-xs text-gray-500 mt-1">
+                        Day {day}
+                      </div>
                     </div>
-                  );
-                })}
+                  ))}
+                </div>
+                <div className="text-sm text-gray-600 mt-2">
+                  Full cycle: {editForm.cycle} days • Approx. {Math.floor(365 / editForm.cycle)} cycles/year
+                </div>
+              </div>
+
+              {/* Visual Timeline */}
+              <div className="col-span-2">
+                <label className="block text-sm font-medium mb-2">Cycle Timeline</label>
+                <div className="relative h-16 bg-gray-100 rounded-lg overflow-hidden">
+                  {/* Phase indicators */}
+                  {Array.from({ length: Math.min(editForm.cycle, 30) }).map((_, idx) => {
+                    const dayOfCycle = Math.floor((idx / 30) * editForm.cycle);
+                    const phase = getMoonPhase(dayOfCycle, editForm);
+                    return (
+                      <div
+                        key={idx}
+                        className="absolute top-0 bottom-0 flex items-center justify-center text-xs"
+                        style={{
+                          left: `${(idx / 30) * 100}%`,
+                          width: `${100 / 30}%`,
+                        }}
+                      >
+                        {idx % 5 === 0 && phase}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Action Buttons */}
-          <div className="flex gap-2 pt-2">
-            <button
-              onClick={handleSave}
-              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
-            >
-              Save Moon
-            </button>
-            <button
-              onClick={handleCancel}
-              className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
+            {/* Action Buttons */}
+            <div className="flex gap-2 pt-2">
+              <Button onClick={handleSave}>
+                Save Moon
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleCancel}
+              >
+                Cancel
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       )}
 
       {/* Add Button */}
       {editingIndex === null && (
-        <button
+        <Button
+          variant="outline"
+          className="w-full border-dashed"
           onClick={handleAdd}
-          className="w-full px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-500 hover:text-purple-600"
         >
           + Add Moon
-        </button>
+        </Button>
       )}
 
       {/* Moon Summary */}

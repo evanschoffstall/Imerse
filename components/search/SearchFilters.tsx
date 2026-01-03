@@ -1,7 +1,12 @@
 'use client'
 
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ENTITY_TYPE_LABELS, EntityType } from '@/types/search'
 import * as React from 'react'
 
@@ -101,26 +106,26 @@ export function SearchFilters({ onFiltersChange, campaignId }: SearchFiltersProp
         <div className="flex items-center gap-2">
           <h3 className="font-semibold">Filters</h3>
           {hasActiveFilters && (
-            <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-0.5 rounded-full">
-              Active
-            </span>
+            <Badge variant="secondary">Active</Badge>
           )}
         </div>
         <div className="flex gap-2">
           {hasActiveFilters && (
-            <button
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={clearFilters}
-              className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200"
             >
               Clear All
-            </button>
+            </Button>
           )}
-          <button
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => setIsExpanded(!isExpanded)}
-            className="text-sm text-blue-600 hover:text-blue-700"
           >
             {isExpanded ? 'Hide' : 'Show'} Filters
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -129,33 +134,35 @@ export function SearchFilters({ onFiltersChange, campaignId }: SearchFiltersProp
           {/* Entity Types */}
           <div>
             <div className="flex justify-between items-center mb-2">
-              <label className="block text-sm font-medium">Entity Types</label>
-              <div className="flex gap-2 text-xs">
-                <button
+              <Label>Entity Types</Label>
+              <div className="flex gap-2">
+                <Button
+                  variant="link"
+                  size="sm"
                   onClick={selectAllTypes}
-                  className="text-blue-600 hover:text-blue-700"
+                  className="h-auto p-0 text-xs"
                 >
                   Select All
-                </button>
-                <button
+                </Button>
+                <Button
+                  variant="link"
+                  size="sm"
                   onClick={clearAllTypes}
-                  className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200"
+                  className="h-auto p-0 text-xs"
                 >
                   Clear
-                </button>
+                </Button>
               </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
               {ALL_ENTITY_TYPES.map((type) => (
                 <label
                   key={type}
-                  className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded"
+                  className="flex items-center gap-2 cursor-pointer hover:bg-accent p-2 rounded"
                 >
-                  <input
-                    type="checkbox"
+                  <Checkbox
                     checked={filters.entityTypes.includes(type)}
-                    onChange={() => toggleEntityType(type)}
-                    className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+                    onCheckedChange={() => toggleEntityType(type)}
                   />
                   <span className="text-sm">{ENTITY_TYPE_LABELS[type]}</span>
                 </label>
@@ -165,29 +172,37 @@ export function SearchFilters({ onFiltersChange, campaignId }: SearchFiltersProp
 
           {/* Sort Options */}
           <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium mb-2">Sort By</label>
-              <select
+            <div className="space-y-2">
+              <Label htmlFor="sort-by">Sort By</Label>
+              <Select
                 value={filters.sortBy}
-                onChange={(e) => handleFilterChange({ sortBy: e.target.value as any })}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700"
+                onValueChange={(value) => handleFilterChange({ sortBy: value as any })}
               >
-                <option value="relevance">Relevance</option>
-                <option value="name">Name</option>
-                <option value="created">Created Date</option>
-                <option value="updated">Updated Date</option>
-              </select>
+                <SelectTrigger id="sort-by">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="relevance">Relevance</SelectItem>
+                  <SelectItem value="name">Name</SelectItem>
+                  <SelectItem value="created">Created Date</SelectItem>
+                  <SelectItem value="updated">Updated Date</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">Order</label>
-              <select
+            <div className="space-y-2">
+              <Label htmlFor="sort-order">Order</Label>
+              <Select
                 value={filters.sortOrder}
-                onChange={(e) => handleFilterChange({ sortOrder: e.target.value as any })}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700"
+                onValueChange={(value) => handleFilterChange({ sortOrder: value as any })}
               >
-                <option value="desc">Descending</option>
-                <option value="asc">Ascending</option>
-              </select>
+                <SelectTrigger id="sort-order">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="desc">Descending</SelectItem>
+                  <SelectItem value="asc">Ascending</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
@@ -239,17 +254,13 @@ export function SearchFilters({ onFiltersChange, campaignId }: SearchFiltersProp
           </div>
 
           {/* Privacy Filter */}
-          <div>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={filters.includePrivate}
-                onChange={(e) => handleFilterChange({ includePrivate: e.target.checked })}
-                className="h-4 w-4 text-blue-600 border-gray-300 rounded"
-              />
-              <span className="text-sm">Include private entities</span>
-            </label>
-          </div>
+          <label className="flex items-center gap-2 cursor-pointer">
+            <Checkbox
+              checked={filters.includePrivate}
+              onCheckedChange={(checked) => handleFilterChange({ includePrivate: Boolean(checked) })}
+            />
+            <span className="text-sm">Include private entities</span>
+          </label>
         </div>
       )}
     </Card>

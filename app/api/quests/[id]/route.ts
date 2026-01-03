@@ -4,15 +4,16 @@ import { NextResponse } from 'next/server'
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await auth()
   if (!session?.user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   const quest = await prisma.quest.findUnique({
-    where: { id: params.id },
+    where: { id: id },
     include: {
       campaign: {
         select: { id: true, name: true }
@@ -44,15 +45,16 @@ export async function GET(
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await auth()
   if (!session?.user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   const quest = await prisma.quest.findUnique({
-    where: { id: params.id },
+    where: { id: id },
     include: {
       campaign: {
         select: {
@@ -81,7 +83,7 @@ export async function PATCH(
   }
 
   const updatedQuest = await prisma.quest.update({
-    where: { id: params.id },
+    where: { id: id },
     data: {
       name,
       slug,
@@ -106,15 +108,16 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await auth()
   if (!session?.user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   const quest = await prisma.quest.findUnique({
-    where: { id: params.id },
+    where: { id: id },
     include: {
       campaign: {
         select: {
@@ -134,7 +137,7 @@ export async function DELETE(
   }
 
   await prisma.quest.delete({
-    where: { id: params.id }
+    where: { id: id }
   })
 
   return NextResponse.json({ message: 'Quest deleted successfully' })

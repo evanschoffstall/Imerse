@@ -8,15 +8,16 @@ import { NextRequest, NextResponse } from "next/server"
  */
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth()
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const campaignId = params.id
+    const campaignId = id
     const userId = session.user.id
 
     await removeCampaignMember(campaignId, userId)

@@ -6,16 +6,17 @@ import { NextRequest, NextResponse } from "next/server";
 // GET /api/dice-rolls/[id] - Get single dice roll
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const diceRoll = await prisma.diceRoll.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         campaign: true,
         createdBy: {
@@ -85,16 +86,17 @@ export async function GET(
 // PATCH /api/dice-rolls/[id] - Update dice roll
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const diceRoll = await prisma.diceRoll.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!diceRoll) {
@@ -119,7 +121,7 @@ export async function PATCH(
     const { name, system, parameters, characterId, isPrivate } = body;
 
     const updated = await prisma.diceRoll.update({
-      where: { id: params.id },
+      where: { id: id },
       data: {
         ...(name !== undefined && { name }),
         ...(system !== undefined && { system: system || null }),
@@ -162,16 +164,17 @@ export async function PATCH(
 // DELETE /api/dice-rolls/[id] - Delete dice roll
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const diceRoll = await prisma.diceRoll.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!diceRoll) {
@@ -193,7 +196,7 @@ export async function DELETE(
     }
 
     await prisma.diceRoll.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     return NextResponse.json({ success: true }, { status: 200 });

@@ -6,16 +6,17 @@ import { NextRequest } from "next/server";
 // DELETE /api/creature-locations/[id] - Delete creature-location link
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const link = await prisma.creatureLocation.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         creature: {
           select: {
@@ -40,7 +41,7 @@ export async function DELETE(
     }
 
     await prisma.creatureLocation.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     return Response.json({ success: true });

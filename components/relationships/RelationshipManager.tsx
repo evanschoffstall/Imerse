@@ -1,6 +1,11 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Textarea } from '@/components/ui/textarea'
 import {
   EntityType,
   RELATIONSHIP_TYPE_LABELS,
@@ -216,43 +221,45 @@ export function RelationshipManager({
 
           {/* Target Entity Search */}
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Target Entity</label>
+            <Label htmlFor="target-search">Target Entity</Label>
             {selectedTarget ? (
               <div className="flex items-center gap-2 p-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded">
-                <span className="flex-grow">{selectedTarget.name}</span>
-                <button
+                <span className="grow">{selectedTarget.name}</span>
+                <Button
                   type="button"
+                  variant="ghost"
+                  size="icon"
                   onClick={() => setSelectedTarget(null)}
-                  className="text-red-600 hover:text-red-700"
                 >
                   ✕
-                </button>
+                </Button>
               </div>
             ) : (
               <div>
-                <input
+                <Input
+                  id="target-search"
                   type="text"
                   value={targetSearch}
                   onChange={(e) => setTargetSearch(e.target.value)}
                   placeholder="Search for an entity..."
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
                 />
                 {searchResults.length > 0 && (
                   <div className="mt-2 max-h-48 overflow-y-auto border border-gray-300 dark:border-gray-600 rounded-lg">
                     {searchResults.map((result) => (
-                      <button
+                      <Button
                         key={`${result.type}-${result.id}`}
                         type="button"
+                        variant="ghost"
+                        className="w-full justify-start"
                         onClick={() => {
                           setSelectedTarget(result)
                           setTargetSearch('')
                           setSearchResults([])
                         }}
-                        className="w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
                         <span className="font-medium">{result.name}</span>
-                        <span className="text-xs text-gray-500 ml-2">({result.type})</span>
-                      </button>
+                        <span className="text-xs text-muted-foreground ml-2">({result.type})</span>
+                      </Button>
                     ))}
                   </div>
                 )}
@@ -262,57 +269,59 @@ export function RelationshipManager({
 
           {/* Relationship Type */}
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Relationship Type</label>
-            <select
+            <Label htmlFor="relationship-type">Relationship Type</Label>
+            <Select
               value={relationshipType}
-              onChange={(e) => setRelationshipType(e.target.value as RelationshipType)}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
+              onValueChange={(value) => setRelationshipType(value as RelationshipType)}
             >
-              {SUGGESTED_RELATIONSHIPS[entityType]?.map((type) => (
-                <option key={type} value={type}>
-                  {RELATIONSHIP_TYPE_LABELS[type]}
-                </option>
-              ))}
-              {!SUGGESTED_RELATIONSHIPS[entityType]?.includes(relationshipType) && (
-                <option value={relationshipType}>
-                  {RELATIONSHIP_TYPE_LABELS[relationshipType]}
-                </option>
-              )}
-            </select>
+              <SelectTrigger id="relationship-type">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {SUGGESTED_RELATIONSHIPS[entityType]?.map((type) => (
+                  <SelectItem key={type} value={type}>
+                    {RELATIONSHIP_TYPE_LABELS[type]}
+                  </SelectItem>
+                ))}
+                {!SUGGESTED_RELATIONSHIPS[entityType]?.includes(relationshipType) && (
+                  <SelectItem value={relationshipType}>
+                    {RELATIONSHIP_TYPE_LABELS[relationshipType]}
+                  </SelectItem>
+                )}
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Description */}
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Description (Optional)</label>
-            <textarea
+            <Label htmlFor="relationship-description">Description (Optional)</Label>
+            <Textarea
+              id="relationship-description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Additional details about this relationship..."
               rows={3}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
             />
           </div>
 
           {/* Options */}
           <div className="flex gap-4 mb-4">
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="bidirectional"
                 checked={bidirectional}
-                onChange={(e) => setBidirectional(e.target.checked)}
-                className="h-4 w-4"
+                onCheckedChange={(checked) => setBidirectional(checked as boolean)}
               />
-              <span className="text-sm">Bidirectional</span>
-            </label>
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
+              <Label htmlFor="bidirectional">Bidirectional</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="private"
                 checked={isPrivate}
-                onChange={(e) => setIsPrivate(e.target.checked)}
-                className="h-4 w-4"
+                onCheckedChange={(checked) => setIsPrivate(checked as boolean)}
               />
-              <span className="text-sm">Private</span>
-            </label>
+              <Label htmlFor="private">Private</Label>
+            </div>
           </div>
 
           {/* Actions */}
@@ -344,7 +353,7 @@ export function RelationshipManager({
                       key={rel.id}
                       className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg"
                     >
-                      <div className="flex-grow">
+                      <div className="grow">
                         <div className="flex items-center gap-2">
                           <span className="text-sm text-gray-500">{label}</span>
                           <span>{arrow}</span>
@@ -396,7 +405,7 @@ export function RelationshipManager({
                       key={rel.id}
                       className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg"
                     >
-                      <div className="flex-grow">
+                      <div className="grow">
                         <div className="flex items-center gap-2">
                           <Link
                             href={getEntityPath(target)}

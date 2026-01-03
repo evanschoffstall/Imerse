@@ -5,9 +5,9 @@
 // All base styles come from /app/globals.css (shadcn/ui CSS variables)
 
 // Import refactored theme extensions (map phpapp functionality to shadcn/ui)
-@import "./themes/light";
-@import "./themes/dark";
-@import "./themes/colours";
+@use "./themes/light";
+@use "./themes/dark";
+@use "./themes/colours";
 
 // Future domain-specific styles (Week 2+)
 // These will EXTEND shadcn/ui for domain-specific features only

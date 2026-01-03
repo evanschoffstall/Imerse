@@ -6,16 +6,17 @@ import { NextRequest } from "next/server";
 // GET /api/maps/[id]/layers/[layerId] - Get a single layer
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string; layerId: string } }
+  { params }: { params: Promise<{ id: string; layerId: string }> }
 ) {
   try {
+    const { id, layerId } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const layer = await prisma.mapLayer.findUnique({
-      where: { id: params.layerId },
+      where: { id: layerId },
       include: {
         map: {
           select: { id: true, campaignId: true },
@@ -50,16 +51,17 @@ export async function GET(
 // PATCH /api/maps/[id]/layers/[layerId] - Update a layer
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string; layerId: string } }
+  { params }: { params: Promise<{ id: string; layerId: string }> }
 ) {
   try {
+    const { id, layerId } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const layer = await prisma.mapLayer.findUnique({
-      where: { id: params.layerId },
+      where: { id: layerId },
       include: {
         map: {
           select: { campaignId: true },
@@ -84,7 +86,7 @@ export async function PATCH(
     const body = await req.json();
 
     const updatedLayer = await prisma.mapLayer.update({
-      where: { id: params.layerId },
+      where: { id: layerId },
       data: {
         name: body.name,
         image: body.image,
@@ -113,16 +115,17 @@ export async function PATCH(
 // DELETE /api/maps/[id]/layers/[layerId] - Delete a layer
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string; layerId: string } }
+  { params }: { params: Promise<{ id: string; layerId: string }> }
 ) {
   try {
+    const { id, layerId } = await params;
     const session = await auth();
     if (!session?.user) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const layer = await prisma.mapLayer.findUnique({
-      where: { id: params.layerId },
+      where: { id: layerId },
       include: {
         map: {
           select: { campaignId: true },
@@ -145,7 +148,7 @@ export async function DELETE(
     }
 
     await prisma.mapLayer.delete({
-      where: { id: params.layerId },
+      where: { id: layerId },
     });
 
     return Response.json({ success: true });

@@ -1,5 +1,8 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { useState } from 'react';
 
 interface Weekday {
@@ -91,8 +94,8 @@ export default function WeekdayEditor({ weekdays, onChange }: WeekdayEditorProps
   return (
     <div className="space-y-4">
       {/* Preset Selector */}
-      <div>
-        <label className="block text-sm font-medium mb-2">Load Preset</label>
+      <div className="space-y-2">
+        <Label>Load Preset</Label>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {[
             { key: 'standard', label: '7-Day (Standard)' },
@@ -104,13 +107,14 @@ export default function WeekdayEditor({ weekdays, onChange }: WeekdayEditorProps
             { key: 'elder_scrolls', label: 'Elder Scrolls' },
             { key: 'tolkien', label: 'Tolkien' },
           ].map((preset) => (
-            <button
+            <Button
               key={preset.key}
+              variant="outline"
+              size="sm"
               onClick={() => loadPreset(preset.key)}
-              className="px-3 py-2 text-sm bg-gray-100 hover:bg-blue-100 rounded-lg border border-gray-300"
             >
               {preset.label}
-            </button>
+            </Button>
           ))}
         </div>
       </div>
@@ -123,13 +127,13 @@ export default function WeekdayEditor({ weekdays, onChange }: WeekdayEditorProps
             className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg border border-gray-200"
           >
             {/* Position Number */}
-            <div className="w-8 h-8 flex items-center justify-center bg-blue-100 text-blue-700 font-semibold rounded flex-shrink-0">
+            <div className="w-8 h-8 flex items-center justify-center bg-blue-100 text-blue-700 font-semibold rounded shrink-0">
               {index + 1}
             </div>
 
             {/* Weekday Info */}
             {editingIndex === index ? (
-              <input
+              <Input
                 type="text"
                 value={editName}
                 onChange={(e) => setEditName(e.target.value)}
@@ -137,7 +141,7 @@ export default function WeekdayEditor({ weekdays, onChange }: WeekdayEditorProps
                   if (e.key === 'Enter') handleSave();
                   if (e.key === 'Escape') handleCancel();
                 }}
-                className="flex-1 px-3 py-2 border border-blue-300 rounded-lg"
+                className="flex-1 border-blue-300"
                 placeholder="Day name"
                 autoFocus
               />
@@ -151,53 +155,61 @@ export default function WeekdayEditor({ weekdays, onChange }: WeekdayEditorProps
             )}
 
             {/* Actions */}
-            <div className="flex items-center gap-1 flex-shrink-0">
+            <div className="flex items-center gap-1 shrink-0">
               {editingIndex === index ? (
                 <>
-                  <button
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     onClick={handleSave}
-                    className="px-2 py-1 text-sm text-green-600 hover:bg-green-50 rounded"
+                    className="text-green-600 hover:text-green-600"
                   >
                     ✓ Save
-                  </button>
-                  <button
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     onClick={handleCancel}
-                    className="px-2 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded"
                   >
                     ✕ Cancel
-                  </button>
+                  </Button>
                 </>
               ) : (
                 <>
-                  <button
+                  <Button
+                    variant="ghost"
+                    size="icon"
                     onClick={() => handleMoveUp(index)}
                     disabled={index === 0}
-                    className="p-1 text-gray-600 hover:text-blue-600 disabled:opacity-30"
                     title="Move up"
                   >
                     ↑
-                  </button>
-                  <button
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
                     onClick={() => handleMoveDown(index)}
                     disabled={index === weekdays.length - 1}
-                    className="p-1 text-gray-600 hover:text-blue-600 disabled:opacity-30"
                     title="Move down"
                   >
                     ↓
-                  </button>
-                  <button
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     onClick={() => handleEdit(index)}
-                    className="px-2 py-1 text-sm text-blue-600 hover:bg-blue-50 rounded"
                   >
                     Edit
-                  </button>
-                  <button
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     onClick={() => handleRemove(index)}
                     disabled={weekdays.length <= 1}
-                    className="px-2 py-1 text-sm text-red-600 hover:bg-red-50 rounded disabled:opacity-30"
+                    className="text-destructive hover:text-destructive"
                   >
                     Remove
-                  </button>
+                  </Button>
                 </>
               )}
             </div>
@@ -207,12 +219,13 @@ export default function WeekdayEditor({ weekdays, onChange }: WeekdayEditorProps
 
       {/* Add Button */}
       {editingIndex === null && (
-        <button
+        <Button
+          variant="outline"
+          className="w-full border-dashed"
           onClick={handleAdd}
-          className="w-full px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-blue-500 hover:text-blue-600"
         >
           + Add Day
-        </button>
+        </Button>
       )}
 
       {/* Week Summary */}
