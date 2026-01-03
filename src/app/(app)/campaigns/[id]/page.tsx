@@ -1,23 +1,11 @@
 'use client';
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
 
 interface RecentEntity {
   id: string;
@@ -31,8 +19,6 @@ export default function CampaignDashboardPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const params = useParams();
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [recentEntities, setRecentEntities] = useState<RecentEntity[]>([]);
   const [activeQuests, setActiveQuests] = useState<any[]>([]);
 
@@ -64,29 +50,6 @@ export default function CampaignDashboardPage() {
   if (!session) {
     return null;
   }
-
-  const handleDelete = async () => {
-    setIsDeleting(true);
-
-    try {
-      const response = await fetch(`/api/campaigns/${params.id}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Failed to delete campaign');
-      }
-
-      toast.success('Campaign deleted successfully');
-      router.push('/campaigns');
-    } catch (error) {
-      console.error('Error deleting campaign:', error);
-      toast.error(error instanceof Error ? error.message : 'Failed to delete campaign');
-      setIsDeleting(false);
-      setShowDeleteDialog(false);
-    }
-  };
 
   const formatTimeAgo = (date: string) => {
     const now = new Date();
@@ -202,45 +165,8 @@ export default function CampaignDashboardPage() {
               )}
             </CardContent>
           </Card>
-
-          {/* Danger Zone */}
-          <Card className="lg:col-span-3 border-destructive">
-            <CardHeader>
-              <CardTitle className="text-destructive">Danger Zone</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Button
-                variant="destructive"
-                onClick={() => setShowDeleteDialog(true)}
-              >
-                Delete Campaign
-              </Button>
-            </CardContent>
-          </Card>
         </div>
       </div>
-
-      {/* Delete confirmation dialog */}
-      <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Delete Campaign</AlertDialogTitle>
-            <AlertDialogDescription>
-              Are you sure you want to delete this campaign? This action cannot be undone and will delete all associated data.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel disabled={isDeleting}>Cancel</AlertDialogCancel>
-            <AlertDialogAction
-              onClick={handleDelete}
-              disabled={isDeleting}
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-            >
-              {isDeleting ? 'Deleting...' : 'Delete'}
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
     </>
   );
 }

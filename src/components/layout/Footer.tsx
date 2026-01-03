@@ -3,17 +3,20 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="border-t bg-background">
-      <div className="container py-8 md:py-12">
-        <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:gap-8">
-          <div className="flex items-center gap-2">
+    <footer className="bg-background">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 md:py-12 lg:px-8">
+        {/* Centered partial divider */}
+        <div className="mx-auto mb-8 h-px w-5/6 bg-border md:mb-12" />
+
+        <div className="flex flex-col items-center justify-center gap-4 text-center md:grid md:grid-cols-3 md:items-center md:text-left">
+          <div className="flex items-center gap-2 md:justify-self-start">
             <Swords className="h-5 w-5 text-primary" />
             <span className="text-lg font-semibold">Imerse</span>
           </div>
-          <div className="text-center text-sm text-muted-foreground">
+          <div className="text-sm text-muted-foreground md:justify-self-center">
             <p>© 2026 Imerse. Built for storytellers, by storytellers.</p>
           </div>
-          <nav className="flex gap-4 text-sm">
+          <nav className="flex gap-4 text-sm md:justify-self-end">
             <Link href="/about" className="text-muted-foreground transition-colors hover:text-foreground">
               About
             </Link>
