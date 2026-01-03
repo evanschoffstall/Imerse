@@ -1,70 +1,88 @@
-import { authConfig } from '@/auth'
-import { getServerSession } from 'next-auth/next'
-import { prisma } from '@/lib/db'
-import { NextResponse } from 'next/server'
+import { authConfig } from "@/auth";
+import { prisma } from "@/lib/db";
+import { getServerSession } from "next-auth/next";
+import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
-  const session = await getServerSession(authConfig)
+  const session = await getServerSession(authConfig);
   if (!session?.user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { searchParams } = new URL(request.url)
-  const campaignId = searchParams.get('campaignId')
+  const { searchParams } = new URL(request.url);
+  const campaignId = searchParams.get("campaignId");
 
   if (!campaignId) {
-    return NextResponse.json({ error: 'Campaign ID is required' }, { status: 400 })
+    return NextResponse.json(
+      { error: "Campaign ID is required" },
+      { status: 400 }
+    );
   }
 
   const campaign = await prisma.campaign.findFirst({
     where: {
       id: campaignId,
-      ownerId: session.user.id
-    }
-  })
+      ownerId: session.user.id,
+    },
+  });
 
   if (!campaign) {
-    return NextResponse.json({ error: 'Campaign not found' }, { status: 404 })
+    return NextResponse.json({ error: "Campaign not found" }, { status: 404 });
   }
 
   const notes = await prisma.note.findMany({
     where: { campaignId },
-    include: {
-      createdBy: {
-        select: { name: true, email: true }
-      }
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      type: true,
+      isPrivate: true,
+      image: true,
+      // description: excluded - too large for list view
+      createdAt: true,
+      updatedAt: true,
+      campaignId: true,
+      createdById: true,
     },
-    orderBy: { updatedAt: 'desc' }
-  })
+    orderBy: { updatedAt: "desc" },
+  });
 
-  return NextResponse.json({ notes })
+  return NextResponse.json({ notes });
 }
 
 export async function POST(request: Request) {
-  const session = await getServerSession(authConfig)
+  const session = await getServerSession(authConfig);
   if (!session?.user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const body = await request.json()
-  const { name, type, description, image, isPrivate, campaignId, createdById } = body
+  const body = await request.json();
+  const { name, type, description, image, isPrivate, campaignId, createdById } =
+    body;
 
   if (!name || !campaignId) {
-    return NextResponse.json({ error: 'Name and campaign ID are required' }, { status: 400 })
+    return NextResponse.json(
+      { error: "Name and campaign ID are required" },
+      { status: 400 }
+    );
   }
 
   const campaign = await prisma.campaign.findFirst({
     where: {
       id: campaignId,
-      ownerId: session.user.id
-    }
-  })
+      ownerId: session.user.id,
+    },
+  });
 
   if (!campaign) {
-    return NextResponse.json({ error: 'Campaign not found' }, { status: 404 })
+    return NextResponse.json({ error: "Campaign not found" }, { status: 404 });
   }
 
-  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  const slug = name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 
   const note = await prisma.note.create({
     data: {
@@ -75,14 +93,14 @@ export async function POST(request: Request) {
       image,
       isPrivate: isPrivate || false,
       campaignId,
-      createdById: createdById || session.user.id
+      createdById: createdById || session.user.id,
     },
     include: {
       createdBy: {
-        select: { name: true, email: true }
-      }
-    }
-  })
+        select: { name: true, email: true },
+      },
+    },
+  });
 
-  return NextResponse.json({ note }, { status: 201 })
+  return NextResponse.json({ note }, { status: 201 });
 }

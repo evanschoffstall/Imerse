@@ -1,6 +1,6 @@
-import { authConfig } from '@/auth'
-import { getServerSession } from 'next-auth/next';
+import { authConfig } from "@/auth";
 import { prisma } from "@/lib/db";
+import { getServerSession } from "next-auth/next";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
@@ -59,16 +59,21 @@ export async function GET(request: Request) {
 
   const events = await prisma.event.findMany({
     where,
-    include: {
-      createdBy: {
-        select: { name: true, email: true },
-      },
-      calendar: {
-        select: { id: true, name: true },
-      },
-      timeline: {
-        select: { id: true, name: true },
-      },
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      type: true,
+      calendarDate: true,
+      isPrivate: true,
+      imageId: true,
+      // description: excluded - too large for list view
+      createdAt: true,
+      updatedAt: true,
+      campaignId: true,
+      createdById: true,
+      calendarId: true,
+      timelineId: true,
     },
     orderBy: { updatedAt: "desc" },
   });

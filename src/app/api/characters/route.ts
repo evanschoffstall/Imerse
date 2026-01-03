@@ -1,6 +1,5 @@
+import { prisma, versionCreate } from "@/lib/db";
 import { Permission, requireCampaignAccess } from "@/lib/permissions";
-import { prisma } from "@/lib/db";
-import { versionCreate } from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
@@ -22,19 +21,26 @@ export async function GET(request: Request) {
       where: {
         campaignId,
       },
-      include: {
-        createdBy: {
-          select: {
-            id: true,
-            name: true,
-          },
-        },
-        birthCalendar: {
-          select: {
-            id: true,
-            name: true,
-          },
-        },
+      select: {
+        id: true,
+        name: true,
+        slug: true,
+        title: true,
+        type: true,
+        age: true,
+        sex: true,
+        pronouns: true,
+        location: true,
+        family: true,
+        // description: excluded - too large for list view
+        imageId: true,
+        isPrivate: true,
+        birthCalendarId: true,
+        birthDate: true,
+        createdAt: true,
+        updatedAt: true,
+        campaignId: true,
+        createdById: true,
       },
       orderBy: {
         updatedAt: "desc",

@@ -1,101 +1,120 @@
-import { authConfig } from '@/auth'
-import { getServerSession } from 'next-auth/next'
-import { prisma } from '@/lib/db'
-import { NextRequest, NextResponse } from 'next/server'
-import { z } from 'zod'
+import { authConfig } from "@/auth";
+import { prisma } from "@/lib/db";
+import { getServerSession } from "next-auth/next";
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
 const familySchema = z.object({
-  name: z.string().min(1, 'Name is required'),
+  name: z.string().min(1, "Name is required"),
   type: z.string().optional(),
   description: z.string().optional(),
   image: z.string().optional(),
   location: z.string().optional(),
   isPrivate: z.boolean().default(false),
   campaignId: z.string(),
-  createdById: z.string()
-})
+  createdById: z.string(),
+});
 
 export async function GET(request: NextRequest) {
-  const session = await getServerSession(authConfig)
+  const session = await getServerSession(authConfig);
   if (!session?.user?.id) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { searchParams } = new URL(request.url)
-  const campaignId = searchParams.get('campaignId')
+  const { searchParams } = new URL(request.url);
+  const campaignId = searchParams.get("campaignId");
 
   if (!campaignId) {
-    return NextResponse.json({ error: 'Campaign ID is required' }, { status: 400 })
+    return NextResponse.json(
+      { error: "Campaign ID is required" },
+      { status: 400 }
+    );
   }
 
   // Verify user has access to campaign
   const campaign = await prisma.campaign.findUnique({
-    where: { id: campaignId }
-  })
+    where: { id: campaignId },
+  });
 
   if (!campaign) {
-    return NextResponse.json({ error: 'Campaign not found' }, { status: 404 })
+    return NextResponse.json({ error: "Campaign not found" }, { status: 404 });
   }
 
   if (campaign.ownerId !== session.user.id) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
+    return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
   }
 
   const families = await prisma.family.findMany({
     where: { campaignId },
-    include: {
-      campaign: { select: { id: true, name: true } },
-      createdBy: { select: { id: true, name: true, email: true } }
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      type: true,
+      location: true,
+      isPrivate: true,
+      imageId: true,
+      // description: excluded - too large for list view
+      createdAt: true,
+      updatedAt: true,
+      campaignId: true,
+      createdById: true,
     },
-    orderBy: { updatedAt: 'desc' }
-  })
+    orderBy: { updatedAt: "desc" },
+  });
 
-  return NextResponse.json({ families })
+  return NextResponse.json({ families });
 }
 
 export async function POST(request: NextRequest) {
-  const session = await getServerSession(authConfig)
+  const session = await getServerSession(authConfig);
   if (!session?.user?.id) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
-    const body = await request.json()
-    const data = familySchema.parse(body)
+    const body = await request.json();
+    const data = familySchema.parse(body);
 
     // Verify user has access to campaign
     const campaign = await prisma.campaign.findUnique({
-      where: { id: data.campaignId }
-    })
+      where: { id: data.campaignId },
+    });
 
     if (!campaign) {
-      return NextResponse.json({ error: 'Campaign not found' }, { status: 404 })
+      return NextResponse.json(
+        { error: "Campaign not found" },
+        { status: 404 }
+      );
     }
 
     if (campaign.ownerId !== session.user.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
+      return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
     }
 
     // Generate slug from name
-    const slug = data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+    const slug = data.name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
     const family = await prisma.family.create({
       data: {
         ...data,
-        slug
+        slug,
       },
       include: {
         campaign: { select: { id: true, name: true } },
-        createdBy: { select: { id: true, name: true, email: true } }
-      }
-    })
+        createdBy: { select: { id: true, name: true, email: true } },
+      },
+    });
 
-    return NextResponse.json({ family }, { status: 201 })
+    return NextResponse.json({ family }, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.issues }, { status: 400 })
+      return NextResponse.json({ error: error.issues }, { status: 400 });
     }
-    console.error('Error creating family:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    console.error("Error creating family:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }
