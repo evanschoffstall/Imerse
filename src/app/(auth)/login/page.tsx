@@ -41,8 +41,43 @@ export default function LoginPage() {
         console.error('❌ Login failed:', result.error)
         setError('Invalid email or password')
       } else {
-        console.log('✅ Login successful, redirecting to dashboard...')
-        router.push('/dashboard')
+        console.log('✅ Login successful, checking campaigns...')
+
+        // Wait a moment for session to be established
+        await new Promise(resolve => setTimeout(resolve, 100))
+
+        // Fetch campaigns to determine redirect
+        try {
+          const campaignsRes = await fetch('/api/campaigns', {
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          })
+
+          if (campaignsRes.ok) {
+            const data = await campaignsRes.json()
+            const campaigns = data.campaigns || []
+            console.log('📋 Found campaigns:', campaigns.length)
+
+            if (campaigns.length === 1) {
+              // Redirect to the single campaign dashboard
+              console.log('→ Redirecting to campaign:', campaigns[0].id)
+              router.push(`/campaigns/${campaigns[0].id}`)
+            } else {
+              // Redirect to campaigns list
+              console.log('→ Redirecting to campaigns list')
+              router.push('/campaigns')
+            }
+          } else {
+            console.log('⚠️ Could not fetch campaigns, redirecting to campaigns page')
+            router.push('/campaigns')
+          }
+        } catch (fetchError) {
+          console.error('❌ Error fetching campaigns:', fetchError)
+          router.push('/campaigns')
+        }
+
         router.refresh()
       }
     } catch (error) {

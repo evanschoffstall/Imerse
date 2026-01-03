@@ -1,11 +1,11 @@
-import { authConfig } from '@/auth'
-import { getServerSession } from 'next-auth/next';
+import { authConfig } from '@/auth';
 import DiceRollList from '@/components/dice-rolls/DiceRollList';
+import { Button } from '@/components/ui/button';
 import { prisma } from '@/lib/db';
+import { getServerSession } from 'next-auth/next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
-import { Button } from '@/components/ui/button';
 
 export default async function DiceRollsPage({
   searchParams,
@@ -19,7 +19,7 @@ export default async function DiceRollsPage({
 
   const { campaignId } = searchParams;
   if (!campaignId) {
-    redirect('/dashboard');
+    redirect('/campaigns');
   }
 
   const campaign = await prisma.campaign.findUnique({
@@ -27,7 +27,7 @@ export default async function DiceRollsPage({
   });
 
   if (!campaign) {
-    redirect('/dashboard');
+    redirect('/campaigns');
   }
 
   const diceRolls = await prisma.diceRoll.findMany({

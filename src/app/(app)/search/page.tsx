@@ -1,6 +1,5 @@
 import { SearchFilters, SearchFiltersState } from '@/components/search/SearchFilters'
 import { SearchResults } from '@/components/search/SearchResults'
-import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -110,8 +109,8 @@ export default function SearchPage() {
   return (
     <div className="container mx-auto px-6 py-8">
       <div className="mb-8">
-        <Link href="/dashboard" className="text-primary hover:underline mb-4 inline-block">
-          ← Back to Dashboard
+        <Link href="/campaigns" className="text-primary hover:underline mb-4 inline-block">
+          ← Back to Campaigns
         </Link>
         <h1 className="text-4xl font-bold mb-6">Search</h1>
 
