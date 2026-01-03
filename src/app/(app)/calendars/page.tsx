@@ -4,6 +4,7 @@ import { Calendar } from '@/types/calendar'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { Button } from '@/components/ui/button'
 
 export default function CalendarsPage() {
   const router = useRouter()
@@ -42,7 +43,7 @@ export default function CalendarsPage() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-center h-64">
-          <div className="text-gray-500">Loading calendars...</div>
+          <div className="text-muted-foreground">Loading calendars...</div>
         </div>
       </div>
     )
@@ -67,12 +68,11 @@ export default function CalendarsPage() {
             Manage your world's custom calendars, timekeeping systems, and weather
           </p>
         </div>
-        <Link
-          href={campaignId ? `/calendars/new?campaignId=${campaignId}` : '/calendars/new'}
-          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
-        >
-          Create Calendar
-        </Link>
+        <Button asChild>
+          <Link href={campaignId ? `/calendars/new?campaignId=${campaignId}` : '/calendars/new'}>
+            Create Calendar
+          </Link>
+        </Button>
       </div>
 
       {calendars.length === 0 ? (
@@ -91,7 +91,7 @@ export default function CalendarsPage() {
             />
           </svg>
           <h3 className="mt-2 text-sm font-medium text-gray-900">No calendars</h3>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-muted-foreground">
             Get started by creating a new calendar for your world.
           </p>
           <div className="mt-6">
@@ -159,7 +159,7 @@ export default function CalendarsPage() {
                   </div>
 
                   {calendar.campaign && (
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-muted-foreground">
                       Campaign: {calendar.campaign.name}
                     </div>
                   )}

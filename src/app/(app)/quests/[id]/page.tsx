@@ -91,7 +91,7 @@ export default function QuestDetailPage({ params }: { params: { id: string } }) 
       <div className="mb-6">
         <Link
           href={`/quests?campaignId=${quest.campaignId}`}
-          className="text-blue-600 hover:text-blue-700 mb-4 inline-block"
+          className="text-primary hover:underline mb-4 inline-block"
         >
           ← Back to Quests
         </Link>
@@ -159,7 +159,7 @@ export default function QuestDetailPage({ params }: { params: { id: string } }) 
                 <span className="font-medium">Campaign:</span>{' '}
                 <Link
                   href={`/campaigns/${quest.campaign?.id}`}
-                  className="text-blue-600 hover:text-blue-700"
+                  className="text-primary hover:underline"
                 >
                   {quest.campaign?.name}
                 </Link>

@@ -275,7 +275,7 @@ export default function WeatherManager({ calendarId, weather, onUpdate }: Weathe
       {/* Weather List */}
       <div className="space-y-2">
         {sortedWeather.length === 0 ? (
-          <div className="text-center py-8 text-gray-500">
+          <div className="text-center py-8 text-muted-foreground">
             No weather entries yet. Add one above to track weather conditions.
           </div>
         ) : (
@@ -303,7 +303,7 @@ export default function WeatherManager({ calendarId, weather, onUpdate }: Weathe
                         <div className="text-sm text-gray-600">💧 {w.precipitation}</div>
                       )}
                       {w.effect && (
-                        <div className="text-sm text-gray-500 mt-1">{w.effect}</div>
+                        <div className="text-sm text-muted-foreground mt-1">{w.effect}</div>
                       )}
                     </div>
 

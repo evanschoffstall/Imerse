@@ -132,7 +132,7 @@ export function ConversationMessages({
       {/* Messages Area */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 ? (
-          <div className="text-center text-gray-500 py-12">
+          <div className="text-center text-muted-foreground py-12">
             No messages yet. Start the conversation!
           </div>
         ) : (
@@ -158,7 +158,7 @@ export function ConversationMessages({
                     {isCharacter && (
                       <span className="text-xs text-purple-600 font-medium">Character</span>
                     )}
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-muted-foreground">
                       {formatMessageTime(firstMsg.createdAt)}
                     </span>
                   </div>
@@ -247,7 +247,7 @@ export function ConversationMessages({
           </form>
         </div>
       ) : (
-        <div className="border-t p-4 bg-gray-50 text-center text-gray-500">
+        <div className="border-t p-4 bg-gray-50 text-center text-muted-foreground">
           This conversation is closed. No new messages can be sent.
         </div>
       )}

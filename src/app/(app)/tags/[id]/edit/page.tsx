@@ -84,7 +84,7 @@ export default function EditTagPage({ params }: { params: { id: string } }) {
       <div className="mb-6">
         <Link
           href={`/tags/${tag.id}`}
-          className="text-blue-600 hover:text-blue-700 mb-4 inline-block"
+          className="text-primary hover:underline mb-4 inline-block"
         >
           ← Back to Tag
         </Link>

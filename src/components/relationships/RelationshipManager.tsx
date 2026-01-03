@@ -216,14 +216,14 @@ export function RelationshipManager({
 
       {/* Add/Edit Form */}
       {showForm && (
-        <form onSubmit={handleSubmit} className="mb-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <form onSubmit={handleSubmit} className="mb-6 p-4 bg-muted/50 rounded-lg">
           <h4 className="font-medium mb-4">{editingId ? 'Edit' : 'New'} Relationship</h4>
 
           {/* Target Entity Search */}
           <div className="mb-4">
             <Label htmlFor="target-search">Target Entity</Label>
             {selectedTarget ? (
-              <div className="flex items-center gap-2 p-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded">
+              <div className="flex items-center gap-2 p-2 bg-white dark:bg-gray-800 border border-border rounded">
                 <span className="grow">{selectedTarget.name}</span>
                 <Button
                   type="button"
@@ -244,7 +244,7 @@ export function RelationshipManager({
                   placeholder="Search for an entity..."
                 />
                 {searchResults.length > 0 && (
-                  <div className="mt-2 max-h-48 overflow-y-auto border border-gray-300 dark:border-gray-600 rounded-lg">
+                  <div className="mt-2 max-h-48 overflow-y-auto border border-border rounded-lg">
                     {searchResults.map((result) => (
                       <Button
                         key={`${result.type}-${result.id}`}
@@ -338,24 +338,24 @@ export function RelationshipManager({
 
       {/* Relationships List */}
       {relationships.length === 0 ? (
-        <p className="text-gray-500 text-center py-8">No relationships yet</p>
+        <p className="text-muted-foreground text-center py-8">No relationships yet</p>
       ) : (
         <div className="space-y-4">
           {/* Outgoing Relationships */}
           {outgoingRels.length > 0 && (
             <div>
-              <h4 className="text-sm font-medium text-gray-500 mb-2">Outgoing</h4>
+              <h4 className="text-sm font-medium text-muted-foreground mb-2">Outgoing</h4>
               <div className="space-y-2">
                 {outgoingRels.map((rel) => {
                   const { target, label, arrow } = getRelationshipLabel(rel, true)
                   return (
                     <div
                       key={rel.id}
-                      className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg"
+                      className="flex items-start gap-3 p-3 bg-muted/50 rounded-lg"
                     >
                       <div className="grow">
                         <div className="flex items-center gap-2">
-                          <span className="text-sm text-gray-500">{label}</span>
+                          <span className="text-sm text-muted-foreground">{label}</span>
                           <span>{arrow}</span>
                           <Link
                             href={getEntityPath(target)}
@@ -396,14 +396,14 @@ export function RelationshipManager({
           {/* Incoming Relationships */}
           {incomingRels.length > 0 && (
             <div>
-              <h4 className="text-sm font-medium text-gray-500 mb-2">Incoming</h4>
+              <h4 className="text-sm font-medium text-muted-foreground mb-2">Incoming</h4>
               <div className="space-y-2">
                 {incomingRels.map((rel) => {
                   const { target, label, arrow } = getRelationshipLabel(rel, false)
                   return (
                     <div
                       key={rel.id}
-                      className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg"
+                      className="flex items-start gap-3 p-3 bg-muted/50 rounded-lg"
                     >
                       <div className="grow">
                         <div className="flex items-center gap-2">
@@ -414,7 +414,7 @@ export function RelationshipManager({
                             {target.name}
                           </Link>
                           <span>{arrow}</span>
-                          <span className="text-sm text-gray-500">{label}</span>
+                          <span className="text-sm text-muted-foreground">{label}</span>
                           {rel.bidirectional && (
                             <span className="text-xs bg-blue-100 dark:bg-blue-900 px-2 py-0.5 rounded">
                               Bidirectional

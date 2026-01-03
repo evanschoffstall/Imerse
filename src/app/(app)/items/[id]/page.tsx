@@ -83,7 +83,7 @@ export default function ItemDetailPage({ params }: { params: { id: string } }) {
   return (
     <div className="container mx-auto px-6 py-8">
       <div className="mb-6">
-        <Link href="/items" className="text-blue-600 hover:text-blue-700 mb-4 inline-block">
+        <Link href="/items" className="text-primary hover:underline mb-4 inline-block">
           ← Back to Items
         </Link>
       </div>
@@ -180,7 +180,7 @@ export default function ItemDetailPage({ params }: { params: { id: string } }) {
                 <span className="font-medium">Campaign:</span>{' '}
                 <Link
                   href={`/campaigns/${item.campaign?.id}`}
-                  className="text-blue-600 hover:text-blue-700"
+                  className="text-primary hover:underline"
                 >
                   {item.campaign?.name}
                 </Link>

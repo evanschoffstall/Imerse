@@ -12,6 +12,7 @@ import { Calendar, CalendarDate, formatCalendarDate, parseCalendarDate } from '@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { Button } from '@/components/ui/button'
 
 export default function CalendarDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter()
@@ -72,7 +73,7 @@ export default function CalendarDetailPage({ params }: { params: { id: string } 
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-center h-64">
-          <div className="text-gray-500">Loading calendar...</div>
+          <div className="text-muted-foreground">Loading calendar...</div>
         </div>
       </div>
     )
@@ -159,19 +160,18 @@ export default function CalendarDetailPage({ params }: { params: { id: string } 
           </div>
 
           <div className="flex space-x-2">
-            <Link
-              href={`/calendars/${calendar.id}/edit`}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-            >
-              Edit
-            </Link>
-            <button
+            <Button asChild>
+              <Link href={`/calendars/${calendar.id}/edit`}>
+                Edit
+              </Link>
+            </Button>
+            <Button
               onClick={handleDelete}
               disabled={deleting}
-              className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors disabled:opacity-50"
+              variant="destructive"
             >
               {deleting ? 'Deleting...' : 'Delete'}
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -184,7 +184,7 @@ export default function CalendarDetailPage({ params }: { params: { id: string } 
               onClick={() => setView('info')}
               className={`${view === 'info'
                 ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                : 'border-transparent text-muted-foreground hover:text-gray-700 hover:border-gray-300'
                 } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors`}
             >
               Information
@@ -193,7 +193,7 @@ export default function CalendarDetailPage({ params }: { params: { id: string } 
               onClick={() => setView('year')}
               className={`${view === 'year'
                 ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                : 'border-transparent text-muted-foreground hover:text-gray-700 hover:border-gray-300'
                 } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors`}
             >
               Year View
@@ -202,7 +202,7 @@ export default function CalendarDetailPage({ params }: { params: { id: string } 
               onClick={() => setView('month')}
               className={`${view === 'month'
                 ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                : 'border-transparent text-muted-foreground hover:text-gray-700 hover:border-gray-300'
                 } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors`}
             >
               Month View
@@ -211,7 +211,7 @@ export default function CalendarDetailPage({ params }: { params: { id: string } 
               onClick={() => setView('events')}
               className={`${view === 'events'
                 ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                : 'border-transparent text-muted-foreground hover:text-gray-700 hover:border-gray-300'
                 } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors`}
             >
               Events & Birthdays
@@ -220,7 +220,7 @@ export default function CalendarDetailPage({ params }: { params: { id: string } 
               onClick={() => setView('config')}
               className={`${view === 'config'
                 ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                : 'border-transparent text-muted-foreground hover:text-gray-700 hover:border-gray-300'
                 } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors`}
             >
               Configure
@@ -257,7 +257,7 @@ export default function CalendarDetailPage({ params }: { params: { id: string } 
             </button>
             <button
               onClick={() => setView('year')}
-              className="px-4 py-1 text-blue-600 hover:text-blue-700"
+              className="px-4 py-1 text-primary hover:underline"
             >
               View Full Year
             </button>
@@ -479,7 +479,7 @@ export default function CalendarDetailPage({ params }: { params: { id: string } 
                     onClick={() => setConfigTab(tab as any)}
                     className={`${configTab === tab
                       ? 'border-blue-500 text-blue-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                      : 'border-transparent text-muted-foreground hover:text-gray-700 hover:border-gray-300'
                       } whitespace-nowrap py-3 px-1 border-b-2 font-medium text-sm transition-colors capitalize`}
                   >
                     {tab}

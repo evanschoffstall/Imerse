@@ -111,7 +111,7 @@ export function ConversationForm({
             </div>
           ))}
         </RadioGroup>
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="text-sm text-muted-foreground mt-1">
           {formData.target === 'users'
             ? 'Participants will be users (players/GMs)'
             : 'Participants will be characters'}
@@ -135,7 +135,7 @@ export function ConversationForm({
         <Label>Participants (Optional)</Label>
         <div className="mt-2 space-y-2 max-h-60 overflow-y-auto border rounded p-3">
           {availableParticipants.length === 0 ? (
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-muted-foreground">
               No {formData.target} available
             </p>
           ) : (
@@ -152,7 +152,7 @@ export function ConversationForm({
                 >
                   {participant.name}
                   {'email' in participant && (
-                    <span className="text-sm text-gray-500 ml-2">
+                    <span className="text-sm text-muted-foreground ml-2">
                       ({participant.email})
                     </span>
                   )}
@@ -161,7 +161,7 @@ export function ConversationForm({
             ))
           )}
         </div>
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="text-sm text-muted-foreground mt-1">
           Select initial participants for this conversation
         </p>
       </div>

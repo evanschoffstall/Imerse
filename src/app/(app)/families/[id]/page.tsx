@@ -78,7 +78,7 @@ export default function FamilyDetailPage({ params }: { params: { id: string } })
       <div className="mb-6">
         <Link
           href={`/families?campaignId=${family.campaignId}`}
-          className="text-blue-600 hover:text-blue-700 mb-4 inline-block"
+          className="text-primary hover:underline mb-4 inline-block"
         >
           ← Back to Families
         </Link>
@@ -146,7 +146,7 @@ export default function FamilyDetailPage({ params }: { params: { id: string } })
                 <span className="font-medium">Campaign:</span>{' '}
                 <Link
                   href={`/campaigns/${family.campaign?.id}`}
-                  className="text-blue-600 hover:text-blue-700"
+                  className="text-primary hover:underline"
                 >
                   {family.campaign?.name}
                 </Link>

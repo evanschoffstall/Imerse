@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
 
 export default function DiceRollDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -105,19 +106,22 @@ export default function DiceRollDetailPage({ params }: { params: { id: string } 
         <div className="flex items-center justify-between mb-2">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{diceRoll.name}</h1>
           <div className="flex items-center space-x-2">
-            <button
+            <Button
               onClick={handleRoll}
               disabled={rolling}
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 disabled:opacity-50"
+              variant="default"
+              className="bg-green-600 hover:bg-green-700"
             >
               {rolling ? 'Rolling...' : '🎲 Roll'}
-            </button>
-            <Link
-              href={`/dice-rolls/${params.id}/edit`}
-              className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600"
+            </Button>
+            <Button
+              asChild
+              variant="outline"
             >
-              Edit
-            </Link>
+              <Link href={`/dice-rolls/${params.id}/edit`}>
+                Edit
+              </Link>
+            </Button>
           </div>
         </div>
 
@@ -139,7 +143,7 @@ export default function DiceRollDetailPage({ params }: { params: { id: string } 
         </div>
 
         {diceRoll.character && (
-          <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+          <div className="mt-4 text-sm text-muted-foreground">
             <span className="font-medium">Character:</span>{' '}
             <Link
               href={`/characters/${diceRoll.character.id}`}

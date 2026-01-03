@@ -151,7 +151,7 @@ export function VersionHistory({
 
         {/* No versions message */}
         {versions.length === 0 ? (
-          <p className="text-gray-500 text-center py-8">
+          <p className="text-muted-foreground text-center py-8">
             No version history available yet. Versions will be created automatically when you edit
             this entity.
           </p>
@@ -257,7 +257,7 @@ export function VersionHistory({
                       {diff.map((fieldDiff, index) => (
                         <div
                           key={index}
-                          className="p-3 bg-gray-50 dark:bg-gray-900 rounded"
+                          className="p-3 bg-muted/50 rounded"
                         >
                           <div className="font-medium mb-2">
                             {getFieldLabel(entityType, fieldDiff.field)}
@@ -288,7 +288,7 @@ export function VersionHistory({
                     <div className="space-y-3">
                       <h5 className="font-medium">Snapshot:</h5>
                       <div className="max-h-96 overflow-y-auto">
-                        <pre className="text-sm bg-gray-50 dark:bg-gray-900 p-4 rounded overflow-x-auto">
+                        <pre className="text-sm bg-muted/50 p-4 rounded overflow-x-auto">
                           {JSON.stringify(selectedVersion.snapshot, null, 2)}
                         </pre>
                       </div>

@@ -84,7 +84,7 @@ export default function EditNotePage({ params }: { params: { id: string } }) {
       <div className="mb-6">
         <Link
           href={`/notes/${note.id}`}
-          className="text-blue-600 hover:text-blue-700 mb-4 inline-block"
+          className="text-primary hover:underline mb-4 inline-block"
         >
           ← Back to Note
         </Link>

@@ -139,7 +139,7 @@ export default function MoonEditor({ moons, onChange }: MoonEditorProps) {
               <div className="text-sm text-gray-600">
                 {moon.cycle} day cycle, shift: {moon.shift}
               </div>
-              <div className="text-xs text-gray-500 flex items-center gap-1">
+              <div className="text-xs text-muted-foreground flex items-center gap-1">
                 <span>Phases:</span>
                 {[0, Math.floor(moon.cycle * 0.25), Math.floor(moon.cycle * 0.5), Math.floor(moon.cycle * 0.75)].map((day) => (
                   <span key={day}>{getMoonPhase(day, moon)}</span>
@@ -277,7 +277,7 @@ export default function MoonEditor({ moons, onChange }: MoonEditorProps) {
                       <div className="text-xs font-medium text-gray-700">
                         {getMoonPhaseName(day, editForm)}
                       </div>
-                      <div className="text-xs text-gray-500 mt-1">
+                      <div className="text-xs text-muted-foreground mt-1">
                         Day {day}
                       </div>
                     </div>

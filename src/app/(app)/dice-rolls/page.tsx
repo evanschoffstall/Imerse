@@ -4,6 +4,7 @@ import { prisma } from '@/lib/db';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
+import { Button } from '@/components/ui/button';
 
 export default async function DiceRollsPage({
   searchParams,
@@ -70,12 +71,11 @@ export default async function DiceRollsPage({
             Campaign: {campaign.name}
           </p>
         </div>
-        <Link
-          href={`/dice-rolls/create?campaignId=${campaignId}`}
-          className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-        >
-          Create Dice Roll
-        </Link>
+        <Button asChild>
+          <Link href={`/dice-rolls/create?campaignId=${campaignId}`}>
+            Create Dice Roll
+          </Link>
+        </Button>
       </div>
 
       <Suspense fallback={<div>Loading...</div>}>

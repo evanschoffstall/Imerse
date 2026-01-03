@@ -5,6 +5,7 @@ import { Ability } from '@/types/ability';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
 
 export default function EditAbilityPage({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -105,12 +106,12 @@ export default function EditAbilityPage({ params }: { params: { id: string } }) 
     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Edit Ability</h1>
-        <button
+        <Button
           onClick={handleDelete}
-          className="inline-flex items-center px-4 py-2 border border-red-300 text-sm font-medium rounded-md text-red-700 bg-white hover:bg-red-50 dark:bg-gray-900 dark:text-red-400 dark:border-red-600 dark:hover:bg-red-900"
+          variant="destructive"
         >
           Delete
-        </button>
+        </Button>
       </div>
 
       <div className="bg-white dark:bg-gray-900 shadow rounded-lg p-6">

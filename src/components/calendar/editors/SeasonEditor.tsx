@@ -150,7 +150,7 @@ export default function SeasonEditor({ seasons, months, onChange }: SeasonEditor
 
   if (months.length === 0) {
     return (
-      <div className="text-center py-8 text-gray-500">
+      <div className="text-center py-8 text-muted-foreground">
         Please add months before creating seasons.
       </div>
     );
@@ -177,7 +177,7 @@ export default function SeasonEditor({ seasons, months, onChange }: SeasonEditor
               <div className="text-sm text-gray-600">
                 Months {season.monthStart}-{season.monthEnd} ({getSeasonDuration(season)} days)
               </div>
-              <div className="text-xs text-gray-500 truncate">
+              <div className="text-xs text-muted-foreground truncate">
                 {getSeasonMonthNames(season)}
               </div>
             </div>

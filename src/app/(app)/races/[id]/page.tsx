@@ -78,7 +78,7 @@ export default function RaceDetailPage({ params }: { params: { id: string } }) {
       <div className="mb-6">
         <Link
           href={`/races?campaignId=${race.campaignId}`}
-          className="text-blue-600 hover:text-blue-700 mb-4 inline-block"
+          className="text-primary hover:underline mb-4 inline-block"
         >
           ← Back to Races
         </Link>
@@ -141,7 +141,7 @@ export default function RaceDetailPage({ params }: { params: { id: string } }) {
                 <span className="font-medium">Campaign:</span>{' '}
                 <Link
                   href={`/campaigns/${race.campaign?.id}`}
-                  className="text-blue-600 hover:text-blue-700"
+                  className="text-primary hover:underline"
                 >
                   {race.campaign?.name}
                 </Link>

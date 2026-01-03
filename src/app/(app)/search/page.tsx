@@ -110,7 +110,7 @@ export default function SearchPage() {
   return (
     <div className="container mx-auto px-6 py-8">
       <div className="mb-8">
-        <Link href="/dashboard" className="text-blue-600 hover:text-blue-700 mb-4 inline-block">
+        <Link href="/dashboard" className="text-primary hover:underline mb-4 inline-block">
           ← Back to Dashboard
         </Link>
         <h1 className="text-4xl font-bold mb-6">Search</h1>

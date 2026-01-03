@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { Button } from '@/components/ui/button'
 
 interface PageProps {
   params: { id: string }
@@ -32,19 +33,18 @@ export default async function PostDetailPage({ params }: PageProps) {
         <div className="flex items-start justify-between mb-6">
           <div>
             <h1 className="text-3xl font-bold mb-2">{(post as any).name}</h1>
-            <div className="flex items-center gap-4 text-sm text-gray-500">
+            <div className="flex items-center gap-4 text-sm text-muted-foreground">
               <span>by {(post as any).createdBy.name}</span>
               <span>•</span>
               <span>{new Date((post as any).createdAt).toLocaleDateString()}</span>
             </div>
           </div>
           <div className="flex gap-2">
-            <Link
-              href={`/posts/${params.id}/edit`}
-              className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
-            >
-              Edit
-            </Link>
+            <Button asChild variant="outline">
+              <Link href={`/posts/${params.id}/edit`}>
+                Edit
+              </Link>
+            </Button>
           </div>
         </div>
 

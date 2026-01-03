@@ -257,7 +257,7 @@ export default function LayerManager({ mapId, layers, onUpdate }: LayerManagerPr
 
         <div className="space-y-2">
           {sortedLayers.length === 0 ? (
-            <p className="text-gray-500 text-sm">No layers yet</p>
+            <p className="text-muted-foreground text-sm">No layers yet</p>
           ) : (
             sortedLayers.map(layer => (
               <div
@@ -275,7 +275,7 @@ export default function LayerManager({ mapId, layers, onUpdate }: LayerManagerPr
                   </Button>
                   <div>
                     <p className="font-medium">{layer.name}</p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-muted-foreground">
                       Position: {layer.position} • Opacity: {layer.opacity * 100}%
                     </p>
                   </div>

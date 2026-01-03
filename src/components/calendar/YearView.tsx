@@ -125,7 +125,7 @@ export default function YearView({
                 }}
               >
                 {/* Month Number */}
-                <div className="text-xs text-gray-500 mb-1">Month {index + 1}</div>
+                <div className="text-xs text-muted-foreground mb-1">Month {index + 1}</div>
 
                 {/* Month Name */}
                 <div className={`font-bold text-lg mb-2 ${isCurrent ? 'text-blue-900' : 'text-gray-900'}`}>
@@ -146,7 +146,7 @@ export default function YearView({
 
                   {/* Season Indicator */}
                   {season && (
-                    <div className="text-xs text-gray-500 flex items-center gap-1">
+                    <div className="text-xs text-muted-foreground flex items-center gap-1">
                       {season.color && (
                         <div
                           className="w-2 h-2 rounded-full"
@@ -166,7 +166,7 @@ export default function YearView({
 
                   {/* Weather Count */}
                   {weatherCount > 0 && (
-                    <div className="text-xs text-gray-500 mt-1">
+                    <div className="text-xs text-muted-foreground mt-1">
                       ☀️ {weatherCount} weather {weatherCount === 1 ? 'entry' : 'entries'}
                     </div>
                   )}

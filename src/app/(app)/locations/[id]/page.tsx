@@ -88,7 +88,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
   return (
     <div className="container mx-auto px-6 py-8">
       <div className="mb-6">
-        <Link href="/locations" className="text-blue-600 hover:text-blue-700 mb-4 inline-block">
+        <Link href="/locations" className="text-primary hover:underline mb-4 inline-block">
           ← Back to Locations
         </Link>
       </div>
@@ -139,13 +139,13 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
 
           {/* Hierarchy Information */}
           {location.parent && (
-            <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+            <div className="mb-6 p-4 bg-muted/50 rounded-lg">
               <h3 className="text-sm font-medium text-muted-foreground mb-2">
                 Parent Location
               </h3>
               <Link
                 href={`/locations/${location.parent.id}`}
-                className="text-blue-600 hover:text-blue-700 font-medium"
+                className="text-primary hover:underline font-medium"
               >
                 {location.parent.name}
               </Link>
@@ -186,7 +186,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
                   <Link
                     key={child.id}
                     href={`/locations/${child.id}`}
-                    className="block p-4 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                    className="block p-4 bg-muted/50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
                   >
                     <h3 className="font-medium text-gray-900 dark:text-gray-100">
                       {child.name}
@@ -208,7 +208,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
                 <span className="font-medium">Campaign:</span>{' '}
                 <Link
                   href={`/campaigns/${location.campaign?.id}`}
-                  className="text-blue-600 hover:text-blue-700"
+                  className="text-primary hover:underline"
                 >
                   {location.campaign?.name}
                 </Link>

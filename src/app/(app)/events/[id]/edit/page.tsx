@@ -84,7 +84,7 @@ export default function EditEventPage({ params }: { params: { id: string } }) {
       <div className="mb-6">
         <Link
           href={`/events/${event.id}`}
-          className="text-blue-600 hover:text-blue-700 mb-4 inline-block"
+          className="text-primary hover:underline mb-4 inline-block"
         >
           ← Back to Event
         </Link>

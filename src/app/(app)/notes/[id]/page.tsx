@@ -78,7 +78,7 @@ export default function NoteDetailPage({ params }: { params: { id: string } }) {
       <div className="mb-6">
         <Link
           href={`/notes?campaignId=${note.campaignId}`}
-          className="text-blue-600 hover:text-blue-700 mb-4 inline-block"
+          className="text-primary hover:underline mb-4 inline-block"
         >
           ← Back to Notes
         </Link>
@@ -140,7 +140,7 @@ export default function NoteDetailPage({ params }: { params: { id: string } }) {
                 <span className="font-medium">Campaign:</span>{' '}
                 <Link
                   href={`/campaigns/${note.campaign?.id}`}
-                  className="text-blue-600 hover:text-blue-700"
+                  className="text-primary hover:underline"
                 >
                   {note.campaign?.name}
                 </Link>

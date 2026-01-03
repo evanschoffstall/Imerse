@@ -131,7 +131,7 @@ export default function ImageUpload({
             type="button"
             onClick={handleButtonClick}
             disabled={uploading}
-            className="w-full aspect-video border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg flex flex-col items-center justify-center hover:border-blue-500 dark:hover:border-blue-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full aspect-video border-2 border-dashed border-border rounded-lg flex flex-col items-center justify-center hover:border-blue-500 dark:hover:border-blue-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg
               className="w-12 h-12 text-gray-400 mb-2"
@@ -149,7 +149,7 @@ export default function ImageUpload({
             <p className="text-sm text-gray-600 dark:text-gray-400">
               {uploading ? 'Uploading...' : 'Click to upload image'}
             </p>
-            <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+            <p className="text-xs text-muted-foreground dark:text-muted-foreground mt-1">
               JPG, PNG, WebP, or GIF (max 5MB)
             </p>
           </button>

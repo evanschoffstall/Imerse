@@ -4,6 +4,7 @@ import { prisma } from '@/lib/db';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { Button } from '@/components/ui/button';
 
 export default async function CreaturePage({ params }: { params: { id: string } }) {
   const session = await auth();
@@ -105,17 +106,16 @@ export default async function CreaturePage({ params }: { params: { id: string } 
               )}
             </div>
 
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-2 text-sm text-muted-foreground">
               Campaign: <Link href={`/campaigns/${creature.campaign.id}`} className="text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">{creature.campaign.name}</Link>
             </p>
           </div>
 
-          <Link
-            href={`/creatures/${creature.id}/edit`}
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-          >
-            Edit
-          </Link>
+          <Button asChild>
+            <Link href={`/creatures/${creature.id}/edit`}>
+              Edit
+            </Link>
+          </Button>
         </div>
       </div>
 

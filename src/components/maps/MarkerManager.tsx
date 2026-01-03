@@ -3,6 +3,7 @@
 import { DEFAULT_MARKER_COLORS, MapGroup, MapGroupFormData, MapMarker, MapMarkerFormData, MARKER_SHAPES } from '@/types/map'
 import { useState } from 'react'
 import { toast } from 'sonner'
+import { Button } from '@/components/ui/button'
 
 interface MarkerManagerProps {
   mapId: string
@@ -230,16 +231,15 @@ export default function MarkerManager({ mapId, markers, groups, onUpdate }: Mark
         <>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-bold">Markers</h2>
-            <button
+            <Button
               onClick={() => {
                 setIsCreatingMarker(true)
                 setEditingMarkerId(null)
                 resetMarkerForm()
               }}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
               Add Marker
-            </button>
+            </Button>
           </div>
 
           {isCreatingMarker && (
@@ -412,29 +412,26 @@ export default function MarkerManager({ mapId, markers, groups, onUpdate }: Mark
               </div>
 
               <div className="flex gap-2 mt-4">
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
+                <Button type="submit">
                   {editingMarkerId ? 'Update' : 'Create'}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   onClick={() => {
                     setIsCreatingMarker(false)
                     setEditingMarkerId(null)
                   }}
-                  className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+                  variant="outline"
                 >
                   Cancel
-                </button>
+                </Button>
               </div>
             </form>
           )}
 
           <div className="space-y-2">
             {markers.length === 0 ? (
-              <p className="text-gray-500 text-sm">No markers yet</p>
+              <p className="text-muted-foreground text-sm">No markers yet</p>
             ) : (
               markers.map(marker => (
                 <div
@@ -453,7 +450,7 @@ export default function MarkerManager({ mapId, markers, groups, onUpdate }: Mark
                     </div>
                     <div>
                       <p className="font-medium">{marker.name}</p>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-muted-foreground">
                         ({marker.longitude.toFixed(1)}, {marker.latitude.toFixed(1)})
                         {marker.group && ` • Group: ${marker.group.name}`}
                       </p>
@@ -486,16 +483,15 @@ export default function MarkerManager({ mapId, markers, groups, onUpdate }: Mark
         <>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-bold">Groups</h2>
-            <button
+            <Button
               onClick={() => {
                 setIsCreatingGroup(true)
                 setEditingGroupId(null)
                 resetGroupForm()
               }}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
               Add Group
-            </button>
+            </Button>
           </div>
 
           {isCreatingGroup && (
@@ -564,29 +560,26 @@ export default function MarkerManager({ mapId, markers, groups, onUpdate }: Mark
               </div>
 
               <div className="flex gap-2 mt-4">
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
+                <Button type="submit">
                   {editingGroupId ? 'Update' : 'Create'}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   onClick={() => {
                     setIsCreatingGroup(false)
                     setEditingGroupId(null)
                   }}
-                  className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+                  variant="outline"
                 >
                   Cancel
-                </button>
+                </Button>
               </div>
             </form>
           )}
 
           <div className="space-y-2">
             {groups.length === 0 ? (
-              <p className="text-gray-500 text-sm">No groups yet</p>
+              <p className="text-muted-foreground text-sm">No groups yet</p>
             ) : (
               groups.map(group => (
                 <div
@@ -595,7 +588,7 @@ export default function MarkerManager({ mapId, markers, groups, onUpdate }: Mark
                 >
                   <div>
                     <p className="font-medium">{group.name}</p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-muted-foreground">
                       {group.markers?.length || 0} markers
                       {group.parent && ` • Parent: ${group.parent.name}`}
                     </p>

@@ -74,7 +74,7 @@ export default function EditItemPage({ params }: { params: { id: string } }) {
         <Card>
           <CardContent className="p-6 text-center">
             <p className="text-muted-foreground mb-4">Item not found</p>
-            <Link href="/items" className="text-blue-600 hover:text-blue-700">
+            <Link href="/items" className="text-primary hover:underline">
               Back to Items
             </Link>
           </CardContent>
@@ -88,7 +88,7 @@ export default function EditItemPage({ params }: { params: { id: string } }) {
       <div className="mb-6">
         <Link
           href={`/items/${item.id}`}
-          className="text-blue-600 hover:text-blue-700 mb-4 inline-block"
+          className="text-primary hover:underline mb-4 inline-block"
         >
           ← Back to Item
         </Link>

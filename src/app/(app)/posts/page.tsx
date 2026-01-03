@@ -1,6 +1,7 @@
 import PostList from '@/components/posts/PostList'
 import Link from 'next/link'
 import { Suspense } from 'react'
+import { Button } from '@/components/ui/button'
 
 async function getPosts(campaignId: string) {
   // In a real app, this would be a server-side fetch
@@ -29,12 +30,11 @@ export default async function PostsPage({ searchParams }: PageProps) {
     <div className="container mx-auto px-6 py-8">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold">Posts</h1>
-        <Link
-          href={`/posts/create?campaignId=${campaignId}`}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-        >
-          Create Post
-        </Link>
+        <Button asChild>
+          <Link href={`/posts/create?campaignId=${campaignId}`}>
+            Create Post
+          </Link>
+        </Button>
       </div>
 
       <Suspense fallback={<div>Loading posts...</div>}>

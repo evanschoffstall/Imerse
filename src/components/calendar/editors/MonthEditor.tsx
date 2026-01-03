@@ -72,7 +72,7 @@ export default function MonthEditor({ months: initialMonths, onChange }: MonthEd
       <CardContent>
 
         {months.length === 0 ? (
-          <div className="text-center py-8 text-gray-500">
+          <div className="text-center py-8 text-muted-foreground">
             <p>No months configured. Click "Add Month" to get started.</p>
           </div>
         ) : (
@@ -129,7 +129,7 @@ export default function MonthEditor({ months: initialMonths, onChange }: MonthEd
                 ) : (
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                      <span className="text-gray-500 font-medium">{index + 1}.</span>
+                      <span className="text-muted-foreground font-medium">{index + 1}.</span>
                       <div>
                         <div className="font-medium text-gray-900">
                           {month.name}

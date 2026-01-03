@@ -190,7 +190,7 @@ export default function RelationForm({
             </option>
           ))}
         </select>
-        <p className="text-xs text-gray-500 mt-1">
+        <p className="text-xs text-muted-foreground mt-1">
           -3 (Hostile) to +3 (Devoted)
         </p>
       </div>
@@ -260,7 +260,7 @@ export default function RelationForm({
             <Label htmlFor="createMirror" className="mb-0">
               Create reciprocal relation
             </Label>
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               Automatically create the reverse relationship (e.g., if A is parent of B, then B is child of A)
             </p>
           </div>
@@ -274,7 +274,7 @@ export default function RelationForm({
               {...register('mirrorRelation')}
               placeholder="e.g., 'child' for 'parent'"
             />
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               Leave empty to use the same relation type
             </p>
           </div>

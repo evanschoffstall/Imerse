@@ -3,6 +3,7 @@
 import FamilyForm from '@/components/forms/FamilyForm'
 import type { FamilyFormData } from '@/types/family'
 import { Card, CardContent } from '@/components/ui/card'
+import { Alert, AlertDescription } from '@/components/ui/alert'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -17,14 +18,14 @@ export default function NewFamilyPage() {
   if (!campaignId) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6">
-          <p className="text-yellow-800 dark:text-yellow-200 mb-4">
-            Campaign ID is required to create a family.
-          </p>
-          <Link href="/campaigns" className="text-blue-600 hover:text-blue-700">
-            Go to Campaigns
-          </Link>
-        </div>
+        <Alert>
+          <AlertDescription>
+            Campaign ID is required to create a family.{' '}
+            <Link href="/campaigns" className="text-primary hover:underline">
+              Go to Campaigns
+            </Link>
+          </AlertDescription>
+        </Alert>
       </div>
     )
   }
@@ -69,7 +70,7 @@ export default function NewFamilyPage() {
       <div className="mb-6">
         <Link
           href={`/families?campaignId=${campaignId}`}
-          className="text-blue-600 hover:text-blue-700 mb-4 inline-block"
+          className="text-primary hover:underline mb-4 inline-block"
         >
           ← Back to Families
         </Link>

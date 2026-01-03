@@ -119,7 +119,7 @@ export default function TagForm({ tag, campaignId, onSubmit, onCancel }: TagForm
                       onClick={() => field.onChange(color)}
                       className={`w-10 h-10 rounded-lg border-2 transition-all ${field.value === color
                         ? 'border-gray-900 dark:border-white scale-110'
-                        : 'border-gray-300 dark:border-gray-600 hover:scale-105'
+                        : 'border-border hover:scale-105'
                         }`}
                       style={{ backgroundColor: color }}
                       title={color}

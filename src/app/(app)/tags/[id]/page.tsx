@@ -77,7 +77,7 @@ export default function TagDetailPage({ params }: { params: { id: string } }) {
       <div className="mb-6">
         <Link
           href={`/tags?campaignId=${tag.campaignId}`}
-          className="text-blue-600 hover:text-blue-700 mb-4 inline-block"
+          className="text-primary hover:underline mb-4 inline-block"
         >
           ← Back to Tags
         </Link>
@@ -135,7 +135,7 @@ export default function TagDetailPage({ params }: { params: { id: string } }) {
                 <span className="font-medium">Campaign:</span>{' '}
                 <Link
                   href={`/campaigns/${tag.campaign?.id}`}
-                  className="text-blue-600 hover:text-blue-700"
+                  className="text-primary hover:underline"
                 >
                   {tag.campaign?.name}
                 </Link>

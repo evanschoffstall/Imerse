@@ -4,6 +4,7 @@ import { RoleLevel } from "@/lib/permissions"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { Button } from '@/components/ui/button'
 
 interface User {
   id: string
@@ -181,7 +182,7 @@ export default function MembersPage({ params }: { params: { id: string } }) {
               <div>
                 <h3 className="font-semibold text-lg">Campaign Owner</h3>
                 <p className="text-gray-700">{owner.name}</p>
-                <p className="text-sm text-gray-500">{owner.email}</p>
+                <p className="text-sm text-muted-foreground">{owner.email}</p>
               </div>
               <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
                 Owner
@@ -207,7 +208,7 @@ export default function MembersPage({ params }: { params: { id: string } }) {
                 required
                 disabled={addingMember}
               />
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-sm text-muted-foreground mt-1">
                 The user must already have an account
               </p>
             </div>
@@ -250,13 +251,13 @@ export default function MembersPage({ params }: { params: { id: string } }) {
               <div className="text-red-600 text-sm">{addError}</div>
             )}
 
-            <button
+            <Button
               type="submit"
               disabled={addingMember}
-              className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+              className="w-full"
             >
               {addingMember ? "Adding..." : "Add Member"}
-            </button>
+            </Button>
           </form>
         </div>
 
@@ -269,7 +270,7 @@ export default function MembersPage({ params }: { params: { id: string } }) {
           </div>
 
           {members.length === 0 ? (
-            <div className="px-6 py-8 text-center text-gray-500">
+            <div className="px-6 py-8 text-center text-muted-foreground">
               No members yet. Add members to collaborate on this campaign.
             </div>
           ) : (
@@ -283,7 +284,7 @@ export default function MembersPage({ params }: { params: { id: string } }) {
                           <h3 className="font-medium text-gray-900">
                             {member.user.name}
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-muted-foreground">
                             {member.user.email}
                           </p>
                         </div>

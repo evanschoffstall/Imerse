@@ -148,7 +148,7 @@ export default function WeekdayEditor({ weekdays, onChange }: WeekdayEditorProps
             ) : (
               <div className="flex-1 min-w-0">
                 <div className="font-medium">{day}</div>
-                <div className="text-xs text-gray-500">
+                <div className="text-xs text-muted-foreground">
                   Day {index + 1} of {weekdays.length}
                 </div>
               </div>

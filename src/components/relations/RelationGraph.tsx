@@ -307,7 +307,7 @@ export default function RelationGraph({
     return (
       <div className="flex items-center justify-center bg-gray-50 rounded-lg border" style={{ height }}>
         <div className="text-center">
-          <p className="text-gray-500">No relations to display</p>
+          <p className="text-muted-foreground">No relations to display</p>
           <p className="text-sm text-gray-400 mt-2">Create some entity relations to see the graph</p>
         </div>
       </div>

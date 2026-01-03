@@ -38,7 +38,7 @@ export function ConversationList({
 
   if (conversations.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-500">
+      <div className="text-center py-12 text-muted-foreground">
         <p>No conversations found.</p>
         <Link href={`/conversations/create?campaignId=${campaignId}`}>
           <Button className="mt-4">Create First Conversation</Button>
@@ -128,7 +128,7 @@ export function ConversationList({
                   </div>
                 </div>
 
-                <div className="text-sm text-gray-500 mt-2">
+                <div className="text-sm text-muted-foreground mt-2">
                   Updated {new Date(conversation.updatedAt).toLocaleDateString()}
                 </div>
               </div>

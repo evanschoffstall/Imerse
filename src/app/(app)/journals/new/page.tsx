@@ -21,7 +21,7 @@ export default function NewJournalPage() {
           <p className="text-yellow-800 dark:text-yellow-200 mb-4">
             Campaign ID is required to create a journal.
           </p>
-          <Link href="/campaigns" className="text-blue-600 hover:text-blue-700">
+          <Link href="/campaigns" className="text-primary hover:underline">
             Go to Campaigns
           </Link>
         </div>
@@ -69,7 +69,7 @@ export default function NewJournalPage() {
       <div className="mb-6">
         <Link
           href={`/journals?campaignId=${campaignId}`}
-          className="text-blue-600 hover:text-blue-700 mb-4 inline-block"
+          className="text-primary hover:underline mb-4 inline-block"
         >
           ← Back to Journals
         </Link>
