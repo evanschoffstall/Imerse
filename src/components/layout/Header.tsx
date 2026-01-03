@@ -20,9 +20,9 @@ import GlobalSearch from './GlobalSearch'
 export default function Header() {
   const { data: session, status } = useSession()
 
-  const navigationItems = [
+  const navigationItems = session?.user ? [
     { href: '/campaigns', label: 'Campaigns' },
-  ]
+  ] : []
 
   const handleSignOut = async () => {
     await signOut({ callbackUrl: '/login' })

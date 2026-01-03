@@ -5,13 +5,40 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Skeleton } from '@/components/ui/skeleton';
 import type { Campaign } from '@/features/campaigns';
 import { extractTextFromLexical, truncateText } from '@/lib/lexical-utils';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 export default function CampaignsPage() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/login');
+    }
+  }, [status, router]);
+
+  if (status === 'loading') {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <Skeleton className="h-8 w-48 mb-8" />
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <Skeleton className="h-64" />
+          <Skeleton className="h-64" />
+          <Skeleton className="h-64" />
+        </div>
+      </div>
+    );
+  }
+
+  if (!session) {
+    return null;
+  }
 
   useEffect(() => {
     const fetchCampaigns = async () => {

@@ -1,15 +1,37 @@
 'use client';
 
-import { CampaignForm } from '@/features/campaigns';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import type { CampaignFormData } from '@/features/campaigns';
+import { CampaignForm } from '@/features/campaigns';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 export default function NewCampaignPage() {
+  const { data: session, status } = useSession();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/login');
+    }
+  }, [status, router]);
+
+  if (status === 'loading') {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <Skeleton className="h-8 w-64 mb-8" />
+        <Skeleton className="h-96" />
+      </div>
+    );
+  }
+
+  if (!session) {
+    return null;
+  }
 
   const handleSubmit = async (data: CampaignFormData) => {
     setIsLoading(true);

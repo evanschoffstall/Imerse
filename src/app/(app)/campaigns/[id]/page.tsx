@@ -12,6 +12,8 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -26,6 +28,7 @@ interface RecentEntity {
 }
 
 export default function CampaignDashboardPage() {
+  const { data: session, status } = useSession();
   const router = useRouter();
   const params = useParams();
   const [isDeleting, setIsDeleting] = useState(false);
@@ -34,10 +37,33 @@ export default function CampaignDashboardPage() {
   const [activeQuests, setActiveQuests] = useState<any[]>([]);
 
   useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/login');
+    }
+  }, [status, router]);
+
+  useEffect(() => {
     // TODO: Fetch recent entities and active quests
     setRecentEntities([]);
     setActiveQuests([]);
   }, [params.id]);
+
+  if (status === 'loading') {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <Skeleton className="h-8 w-64 mb-8" />
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <Skeleton className="h-48" />
+          <Skeleton className="h-48" />
+          <Skeleton className="h-48" />
+        </div>
+      </div>
+    );
+  }
+
+  if (!session) {
+    return null;
+  }
 
   const handleDelete = async () => {
     setIsDeleting(true);
@@ -66,7 +92,7 @@ export default function CampaignDashboardPage() {
     const now = new Date();
     const then = new Date(date);
     const days = Math.floor((now.getTime() - then.getTime()) / (1000 * 60 * 60 * 24));
-    
+
     if (days === 0) return 'Today';
     if (days === 1) return 'Yesterday';
     if (days < 7) return `${days} days ago`;
