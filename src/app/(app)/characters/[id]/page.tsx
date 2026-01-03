@@ -4,7 +4,9 @@ import { AttributeManager } from '@/components/attributes/AttributeManager'
 import RelationsList from '@/components/relations/RelationsList'
 import { RelationshipManager } from '@/components/relationships/RelationshipManager'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Skeleton } from '@/components/ui/skeleton'
 import { VersionHistory } from '@/components/versions/VersionHistory'
 import type { Character } from '@/types/character'
 import NextImage from 'next/image'
@@ -59,9 +61,9 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
   if (loading) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-1/4 mb-4"></div>
-          <div className="h-64 bg-gray-200 rounded"></div>
+        <div className="space-y-4">
+          <Skeleton className="h-8 w-1/4" />
+          <Skeleton className="h-64 w-full" />
         </div>
       </div>
     )
@@ -70,12 +72,14 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
   if (!character) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
-          <p className="text-gray-600 dark:text-gray-400 mb-4">Character not found</p>
-          <Link href="/characters">
-            <Button>Back to Characters</Button>
-          </Link>
-        </div>
+        <Card>
+          <CardContent className="p-6 text-center">
+            <p className="text-muted-foreground mb-4">Character not found</p>
+            <Link href="/characters">
+              <Button>Back to Characters</Button>
+            </Link>
+          </CardContent>
+        </Card>
       </div>
     )
   }
@@ -88,7 +92,7 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+      <Card className="overflow-hidden">
         {character.image && (
           <div className="relative w-full h-64">
             <NextImage
@@ -102,12 +106,12 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
           </div>
         )}
 
-        <div className="p-6">
+        <CardContent className="p-6">
           <div className="flex items-start justify-between mb-6">
             <div className="flex-1">
               <h1 className="text-4xl font-bold mb-2">{character.name}</h1>
               {character.title && (
-                <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-xl text-muted-foreground mb-4">
                   {character.title}
                 </p>
               )}
@@ -140,7 +144,7 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {character.age && (
               <div>
-                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                <h3 className="text-sm font-medium text-muted-foreground mb-1">
                   Age
                 </h3>
                 <p className="text-gray-900 dark:text-gray-100">{character.age}</p>
@@ -148,7 +152,7 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
             )}
             {character.sex && (
               <div>
-                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                <h3 className="text-sm font-medium text-muted-foreground mb-1">
                   Sex
                 </h3>
                 <p className="text-gray-900 dark:text-gray-100">{character.sex}</p>
@@ -156,7 +160,7 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
             )}
             {character.pronouns && (
               <div>
-                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                <h3 className="text-sm font-medium text-muted-foreground mb-1">
                   Pronouns
                 </h3>
                 <p className="text-gray-900 dark:text-gray-100">{character.pronouns}</p>
@@ -164,7 +168,7 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
             )}
             {character.location && (
               <div>
-                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                <h3 className="text-sm font-medium text-muted-foreground mb-1">
                   Location
                 </h3>
                 <p className="text-gray-900 dark:text-gray-100">{character.location}</p>
@@ -172,7 +176,7 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
             )}
             {character.family && (
               <div>
-                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                <h3 className="text-sm font-medium text-muted-foreground mb-1">
                   Family
                 </h3>
                 <p className="text-gray-900 dark:text-gray-100">{character.family}</p>
@@ -201,7 +205,7 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
           </div>
 
           <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-500 dark:text-gray-400">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
               <div>
                 <span className="font-medium">Campaign:</span>{' '}
                 <Link
@@ -253,8 +257,8 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
               entityName={character.name}
             />
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
       <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <DialogContent>

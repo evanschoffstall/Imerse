@@ -1,6 +1,10 @@
 'use client'
 
+import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import type { Tag } from '@/types/tag'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
@@ -50,11 +54,11 @@ export default function TagsPage() {
   if (!campaignId) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6">
-          <p className="text-yellow-800 dark:text-yellow-200">
+        <Alert>
+          <AlertDescription>
             Please select a campaign to view tags.
-          </p>
-        </div>
+          </AlertDescription>
+        </Alert>
       </div>
     )
   }
@@ -68,95 +72,83 @@ export default function TagsPage() {
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+      <Card>
         {loading ? (
-          <div className="p-6">
-            <div className="animate-pulse space-y-4">
-              <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-              <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-              <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+          <CardContent className="p-6">
+            <div className="space-y-4">
+              <Skeleton className="h-4 w-3/4" />
+              <Skeleton className="h-4 w-1/2" />
+              <Skeleton className="h-4 w-5/6" />
             </div>
-          </div>
+          </CardContent>
         ) : tags.length === 0 ? (
-          <div className="p-6 text-center">
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+          <CardContent className="p-6 text-center">
+            <p className="text-muted-foreground mb-4">
               No tags yet. Create your first tag to get started!
             </p>
             <Link href={`/tags/new?campaignId=${campaignId}`}>
               <Button>Create Tag</Button>
             </Link>
-          </div>
+          </CardContent>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gray-50 dark:bg-gray-900">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Name
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Type
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Color
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Updated
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                {tags.map((tag) => (
-                  <tr key={tag.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center gap-2">
-                        {tag.color && (
-                          <div
-                            className="w-4 h-4 rounded"
-                            style={{ backgroundColor: tag.color }}
-                          />
-                        )}
-                        <Link
-                          href={`/tags/${tag.id}`}
-                          className="text-sm font-medium text-blue-600 hover:text-blue-700"
-                        >
-                          {tag.name}
-                        </Link>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                      {tag.type || '-'}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                      {tag.color || '-'}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                      {formatDate(tag.updatedAt)}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <Link
-                        href={`/tags/${tag.id}/edit`}
-                        className="text-blue-600 hover:text-blue-700 mr-4"
-                      >
-                        Edit
-                      </Link>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead>Type</TableHead>
+                <TableHead>Color</TableHead>
+                <TableHead>Updated</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {tags.map((tag) => (
+                <TableRow key={tag.id}>
+                  <TableCell>
+                    <div className="flex items-center gap-2">
+                      {tag.color && (
+                        <div
+                          className="w-4 h-4 rounded"
+                          style={{ backgroundColor: tag.color }}
+                        />
+                      )}
                       <Link
                         href={`/tags/${tag.id}`}
-                        className="text-gray-600 hover:text-gray-700"
+                        className="font-medium text-primary hover:underline"
                       >
-                        View
+                        {tag.name}
                       </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-muted-foreground">
+                    {tag.type || '-'}
+                  </TableCell>
+                  <TableCell className="text-muted-foreground">
+                    {tag.color || '-'}
+                  </TableCell>
+                  <TableCell className="text-muted-foreground">
+                    {formatDate(tag.updatedAt)}
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Link
+                      href={`/tags/${tag.id}/edit`}
+                      className="text-primary hover:underline mr-4"
+                    >
+                      Edit
+                    </Link>
+                    <Link
+                      href={`/tags/${tag.id}`}
+                      className="text-muted-foreground hover:text-foreground"
+                    >
+                      View
+                    </Link>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         )}
-      </div>
+      </Card>
     </div>
   )
 }

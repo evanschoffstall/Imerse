@@ -1,8 +1,9 @@
-'use client'
-
 import { SearchFilters, SearchFiltersState } from '@/components/search/SearchFilters'
 import { SearchResults } from '@/components/search/SearchResults'
+import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
 import type { SearchResult } from '@/types/search'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -117,12 +118,12 @@ export default function SearchPage() {
         {/* Search Form */}
         <form onSubmit={handleSubmit} className="mb-6">
           <div className="flex gap-4">
-            <input
+            <Input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search across all entities..."
-              className="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="flex-1"
               autoFocus
             />
             <Button type="submit" disabled={loading || !query.trim()}>
@@ -139,13 +140,15 @@ export default function SearchPage() {
       {queryParam ? (
         <SearchResults results={results} query={queryParam} loading={loading} />
       ) : (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-12 text-center">
-          <div className="text-6xl mb-4">🔍</div>
-          <h3 className="text-xl font-semibold mb-2">Start Searching</h3>
-          <p className="text-gray-600 dark:text-gray-400">
-            Search across characters, locations, items, quests, and more
-          </p>
-        </div>
+        <Card>
+          <CardContent className="p-12 text-center">
+            <div className="text-6xl mb-4">🔍</div>
+            <h3 className="text-xl font-semibold mb-2">Start Searching</h3>
+            <p className="text-muted-foreground">
+              Search across characters, locations, items, quests, and more
+            </p>
+          </CardContent>
+        </Card>
       )}
     </div>
   )

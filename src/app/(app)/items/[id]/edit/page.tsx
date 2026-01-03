@@ -2,6 +2,8 @@
 
 import ItemForm from '@/components/forms/ItemForm'
 import type { Item, ItemFormData } from '@/types/item'
+import { Card, CardContent } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -58,9 +60,9 @@ export default function EditItemPage({ params }: { params: { id: string } }) {
   if (loading) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-1/4 mb-4"></div>
-          <div className="h-96 bg-gray-200 rounded"></div>
+        <div className="space-y-4">
+          <Skeleton className="h-8 w-1/4" />
+          <Skeleton className="h-96 w-full" />
         </div>
       </div>
     )
@@ -69,12 +71,14 @@ export default function EditItemPage({ params }: { params: { id: string } }) {
   if (!item) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
-          <p className="text-gray-600 dark:text-gray-400 mb-4">Item not found</p>
-          <Link href="/items" className="text-blue-600 hover:text-blue-700">
-            Back to Items
-          </Link>
-        </div>
+        <Card>
+          <CardContent className="p-6 text-center">
+            <p className="text-muted-foreground mb-4">Item not found</p>
+            <Link href="/items" className="text-blue-600 hover:text-blue-700">
+              Back to Items
+            </Link>
+          </CardContent>
+        </Card>
       </div>
     )
   }
@@ -90,15 +94,17 @@ export default function EditItemPage({ params }: { params: { id: string } }) {
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-        <h1 className="text-3xl font-bold mb-6">Edit Item</h1>
-        <ItemForm
-          item={item}
-          campaignId={item.campaignId}
-          onSubmit={handleSubmit}
-          onCancel={handleCancel}
-        />
-      </div>
+      <Card>
+        <CardContent className="p-6">
+          <h1 className="text-3xl font-bold mb-6">Edit Item</h1>
+          <ItemForm
+            item={item}
+            campaignId={item.campaignId}
+            onSubmit={handleSubmit}
+            onCancel={handleCancel}
+          />
+        </CardContent>
+      </Card>
     </div>
   )
 }

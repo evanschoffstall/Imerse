@@ -2,6 +2,7 @@
 
 import EventForm from '@/components/forms/EventForm'
 import type { EventFormData } from '@/types/event'
+import { Card, CardContent } from '@/components/ui/card'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -74,14 +75,16 @@ export default function NewEventPage() {
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-        <h1 className="text-3xl font-bold mb-6">Create New Event</h1>
-        <EventForm
-          campaignId={campaignId}
-          onSubmit={handleSubmit}
-          onCancel={handleCancel}
-        />
-      </div>
+      <Card>
+        <CardContent className="p-6">
+          <h1 className="text-3xl font-bold mb-6">Create New Event</h1>
+          <EventForm
+            campaignId={campaignId}
+            onSubmit={handleSubmit}
+            onCancel={handleCancel}
+          />
+        </CardContent>
+      </Card>
     </div>
   )
 }

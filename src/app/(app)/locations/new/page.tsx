@@ -2,6 +2,8 @@
 
 import LocationForm from '@/components/forms/LocationForm'
 import type { Location, LocationFormData } from '@/types/location'
+import { Card, CardContent } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -91,9 +93,9 @@ export default function NewLocationPage() {
   if (loading) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-1/4 mb-4"></div>
-          <div className="h-96 bg-gray-200 rounded"></div>
+        <div className="space-y-4">
+          <Skeleton className="h-8 w-1/4" />
+          <Skeleton className="h-96 w-full" />
         </div>
       </div>
     )
@@ -110,15 +112,17 @@ export default function NewLocationPage() {
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-        <h1 className="text-3xl font-bold mb-6">Create New Location</h1>
-        <LocationForm
-          campaignId={campaignId}
-          availableLocations={availableLocations}
-          onSubmit={handleSubmit}
-          onCancel={handleCancel}
-        />
-      </div>
+      <Card>
+        <CardContent className="p-6">
+          <h1 className="text-3xl font-bold mb-6">Create New Location</h1>
+          <LocationForm
+            campaignId={campaignId}
+            availableLocations={availableLocations}
+            onSubmit={handleSubmit}
+            onCancel={handleCancel}
+          />
+        </CardContent>
+      </Card>
     </div>
   )
 }

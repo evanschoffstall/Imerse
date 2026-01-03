@@ -2,6 +2,8 @@
 
 import FamilyForm from '@/components/forms/FamilyForm'
 import type { Family, FamilyFormData } from '@/types/family'
+import { Card, CardContent } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -58,10 +60,10 @@ export default function EditFamilyPage({ params }: { params: { id: string } }) {
   if (loading) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="animate-pulse space-y-4">
-          <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-          <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-          <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+        <div className="space-y-4">
+          <Skeleton className="h-8 w-1/3" />
+          <Skeleton className="h-4 w-1/2" />
+          <Skeleton className="h-4 w-3/4" />
         </div>
       </div>
     )
@@ -88,15 +90,17 @@ export default function EditFamilyPage({ params }: { params: { id: string } }) {
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-        <h1 className="text-3xl font-bold mb-6">Edit Family</h1>
-        <FamilyForm
-          family={family}
-          campaignId={family.campaignId}
-          onSubmit={handleSubmit}
-          onCancel={handleCancel}
-        />
-      </div>
+      <Card>
+        <CardContent className="p-6">
+          <h1 className="text-3xl font-bold mb-6">Edit Family</h1>
+          <FamilyForm
+            family={family}
+            campaignId={family.campaignId}
+            onSubmit={handleSubmit}
+            onCancel={handleCancel}
+          />
+        </CardContent>
+      </Card>
     </div>
   )
 }

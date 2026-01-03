@@ -4,6 +4,8 @@ import InteractiveMap from '@/components/maps/InteractiveMap'
 import LayerManager from '@/components/maps/LayerManager'
 import MarkerManager from '@/components/maps/MarkerManager'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 import type { Map, MapGroup, MapLayer, MapMarker } from '@/types/map'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -129,10 +131,10 @@ export default function MapDetailPage({ params }: { params: { id: string } }) {
   if (loading) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="animate-pulse space-y-4">
-          <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-          <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-          <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+        <div className="space-y-4">
+          <Skeleton className="h-8 w-1/3" />
+          <Skeleton className="h-4 w-1/2" />
+          <Skeleton className="h-4 w-3/4" />
         </div>
       </div>
     )
@@ -141,9 +143,11 @@ export default function MapDetailPage({ params }: { params: { id: string } }) {
   if (!map) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6">
-          <p className="text-red-800 dark:text-red-200">Map not found</p>
-        </div>
+        <Card>
+          <CardContent className="p-6 text-center">
+            <p className="text-muted-foreground">Map not found</p>
+          </CardContent>
+        </Card>
       </div>
     )
   }
@@ -159,8 +163,8 @@ export default function MapDetailPage({ params }: { params: { id: string } }) {
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-6">
-        <div className="p-6">
+      <Card className="overflow-hidden mb-6">
+        <CardContent className="p-6">
           <div className="flex items-start justify-between mb-4">
             <div className="flex-1">
               <h1 className="text-4xl font-bold mb-2">{map.name}</h1>
@@ -228,8 +232,8 @@ export default function MapDetailPage({ params }: { params: { id: string } }) {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
       {/* Tabs */}
       <div className="flex gap-4 border-b mb-6">
@@ -264,7 +268,8 @@ export default function MapDetailPage({ params }: { params: { id: string } }) {
 
       {/* Tab Content */}
       {activeTab === 'map' && (
-        <div className="bg-white rounded-lg shadow-lg p-6">
+        <Card>
+          <CardContent className="p-6">
           <InteractiveMap
             mapImage={map.image}
             layers={layers}
@@ -276,7 +281,8 @@ export default function MapDetailPage({ params }: { params: { id: string } }) {
             onMarkerDragEnd={handleMarkerDragEnd}
             onStageClick={handleStageClick}
           />
-        </div>
+          </CardContent>
+        </Card>
       )}
 
       {activeTab === 'layers' && (

@@ -1,6 +1,8 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 import type { Quest } from '@/types/quest'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -52,10 +54,10 @@ export default function QuestDetailPage({ params }: { params: { id: string } }) 
   if (loading) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="animate-pulse space-y-4">
-          <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-          <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-          <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+        <div className="space-y-4">
+          <Skeleton className="h-8 w-1/3" />
+          <Skeleton className="h-4 w-1/2" />
+          <Skeleton className="h-4 w-3/4" />
         </div>
       </div>
     )
@@ -95,7 +97,7 @@ export default function QuestDetailPage({ params }: { params: { id: string } }) 
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+      <Card className="overflow-hidden">
         {quest.image && (
           <div className="relative w-full h-64">
             <NextImage
@@ -109,7 +111,7 @@ export default function QuestDetailPage({ params }: { params: { id: string } }) 
           </div>
         )}
 
-        <div className="p-6">
+        <CardContent className="p-6">
           <div className="flex items-start justify-between mb-4">
             <div className="flex-1">
               <h1 className="text-4xl font-bold mb-2">{quest.name}</h1>
@@ -176,8 +178,8 @@ export default function QuestDetailPage({ params }: { params: { id: string } }) 
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }

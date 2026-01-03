@@ -2,6 +2,8 @@
 
 import RaceForm from '@/components/forms/RaceForm'
 import type { Race, RaceFormData } from '@/types/race'
+import { Card, CardContent } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -58,10 +60,10 @@ export default function EditRacePage({ params }: { params: { id: string } }) {
   if (loading) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="animate-pulse space-y-4">
-          <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-          <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-          <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+        <div className="space-y-4">
+          <Skeleton className="h-8 w-1/3" />
+          <Skeleton className="h-4 w-1/2" />
+          <Skeleton className="h-4 w-3/4" />
         </div>
       </div>
     )
@@ -88,15 +90,17 @@ export default function EditRacePage({ params }: { params: { id: string } }) {
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-        <h1 className="text-3xl font-bold mb-6">Edit Race</h1>
-        <RaceForm
-          race={race}
-          campaignId={race.campaignId}
-          onSubmit={handleSubmit}
-          onCancel={handleCancel}
-        />
-      </div>
+      <Card>
+        <CardContent className="p-6">
+          <h1 className="text-3xl font-bold mb-6">Edit Race</h1>
+          <RaceForm
+            race={race}
+            campaignId={race.campaignId}
+            onSubmit={handleSubmit}
+            onCancel={handleCancel}
+          />
+        </CardContent>
+      </Card>
     </div>
   )
 }

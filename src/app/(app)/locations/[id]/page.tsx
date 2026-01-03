@@ -1,7 +1,9 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Skeleton } from '@/components/ui/skeleton'
 import type { Location } from '@/types/location'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -60,9 +62,9 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
   if (loading) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-1/4 mb-4"></div>
-          <div className="h-64 bg-gray-200 rounded"></div>
+        <div className="space-y-4">
+          <Skeleton className="h-8 w-1/4" />
+          <Skeleton className="h-64 w-full" />
         </div>
       </div>
     )
@@ -71,12 +73,14 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
   if (!location) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
-          <p className="text-gray-600 dark:text-gray-400 mb-4">Location not found</p>
-          <Link href="/locations">
-            <Button>Back to Locations</Button>
-          </Link>
-        </div>
+        <Card>
+          <CardContent className="p-6 text-center">
+            <p className="text-muted-foreground mb-4">Location not found</p>
+            <Link href="/locations">
+              <Button>Back to Locations</Button>
+            </Link>
+          </CardContent>
+        </Card>
       </div>
     )
   }
@@ -89,7 +93,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+      <Card className="overflow-hidden">
         {location.image && (
           <div className="relative w-full h-64">
             <NextImage
@@ -103,7 +107,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
           </div>
         )}
 
-        <div className="p-6">
+        <CardContent className="p-6">
           <div className="flex items-start justify-between mb-6">
             <div className="flex-1">
               <h1 className="text-4xl font-bold mb-2">{location.name}</h1>
@@ -136,7 +140,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
           {/* Hierarchy Information */}
           {location.parent && (
             <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-              <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+              <h3 className="text-sm font-medium text-muted-foreground mb-2">
                 Parent Location
               </h3>
               <Link
@@ -161,7 +165,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
           {location.mapImage && (
             <div className="mb-8">
               <h2 className="text-2xl font-bold mb-4">Map</h2>
-              <div className="relative w-full min-h-[400px] bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden">
+              <div className="relative w-full min-h-100 bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden">
                 <NextImage
                   src={location.mapImage}
                   alt={`Map of ${location.name}`}
@@ -188,7 +192,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
                       {child.name}
                     </h3>
                     {child.type && (
-                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                      <p className="text-sm text-muted-foreground mt-1">
                         {child.type}
                       </p>
                     )}
@@ -199,7 +203,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
           )}
 
           <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-500 dark:text-gray-400">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
               <div>
                 <span className="font-medium">Campaign:</span>{' '}
                 <Link
@@ -222,8 +226,8 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
       <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <DialogContent>

@@ -1,6 +1,8 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 import type { Tag } from '@/types/tag'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -51,10 +53,10 @@ export default function TagDetailPage({ params }: { params: { id: string } }) {
   if (loading) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="animate-pulse space-y-4">
-          <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-          <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-          <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+        <div className="space-y-4">
+          <Skeleton className="h-8 w-1/3" />
+          <Skeleton className="h-4 w-1/2" />
+          <Skeleton className="h-4 w-3/4" />
         </div>
       </div>
     )
@@ -81,8 +83,8 @@ export default function TagDetailPage({ params }: { params: { id: string } }) {
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-        <div className="p-6">
+      <Card className="overflow-hidden">
+        <CardContent className="p-6">
           <div className="flex items-start justify-between mb-4">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
@@ -152,8 +154,8 @@ export default function TagDetailPage({ params }: { params: { id: string } }) {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }

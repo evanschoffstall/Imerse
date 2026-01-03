@@ -2,6 +2,7 @@
 
 import OrganisationForm from '@/components/forms/OrganisationForm'
 import type { OrganisationFormData } from '@/types/organisation'
+import { Card, CardContent } from '@/components/ui/card'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -74,14 +75,16 @@ export default function NewOrganisationPage() {
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-        <h1 className="text-3xl font-bold mb-6">Create New Organisation</h1>
-        <OrganisationForm
-          campaignId={campaignId}
-          onSubmit={handleSubmit}
-          onCancel={handleCancel}
-        />
-      </div>
+      <Card>
+        <CardContent className="p-6">
+          <h1 className="text-3xl font-bold mb-6">Create New Organisation</h1>
+          <OrganisationForm
+            campaignId={campaignId}
+            onSubmit={handleSubmit}
+            onCancel={handleCancel}
+          />
+        </CardContent>
+      </Card>
     </div>
   )
 }
