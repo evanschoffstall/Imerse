@@ -30,7 +30,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Header />
-            <main className="flex-1 pt-14">{children}</main>
+            <main className="flex-1">{children}</main>
             <ConditionalFooter />
             <Toaster />
             <ExposeToast />

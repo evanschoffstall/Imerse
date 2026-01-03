@@ -12,13 +12,20 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { LogOut, Menu, Settings } from 'lucide-react'
+import { LogOut, Menu, Settings, Swords } from 'lucide-react'
 import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import GlobalSearch from './GlobalSearch'
 
 export default function Header() {
   const { data: session, status } = useSession()
+  const pathname = usePathname()
+
+  // Check if we're on a campaign page
+  const campaignMatch = pathname?.match(/^\/campaigns\/([^\/]+)/)
+  const campaignId = campaignMatch?.[1]
+  const isOnCampaignPage = !!campaignId && session?.user
 
   const navigationItems = session?.user ? [
     { href: '/campaigns', label: 'Campaigns' },
@@ -39,18 +46,20 @@ export default function Header() {
   }
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
-      <div className="flex h-14 items-center px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-0 z-50 w-full border-b border-border/20 backdrop-blur-xl">
+      <div className="absolute inset-0 -z-10 bg-linear-to-b from-background/60 via-background/40 to-transparent" />
+      <div className="flex h-16 items-center px-4 sm:px-6 lg:px-8">
         <div className="mr-4 hidden md:flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="hidden font-bold sm:inline-block">Imerse</span>
+          <Link href="/" className="mr-6 flex items-center space-x-2 transition-opacity hover:opacity-80">
+            <Swords className="h-5 w-5 text-primary" />
+            <span className="hidden text-lg font-bold sm:inline-block">Imerse</span>
           </Link>
-          <nav className="flex items-center gap-6 text-sm">
+          <nav className="flex items-center gap-6 text-sm font-medium">
             {navigationItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-foreground/60 transition-colors hover:text-foreground/80"
+                className="text-foreground/70 transition-colors hover:text-foreground"
               >
                 {item.label}
               </Link>
@@ -101,9 +110,11 @@ export default function Header() {
         </Sheet>
 
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <div className="w-full flex-1 md:w-auto md:flex-none">
-            <GlobalSearch />
-          </div>
+          {isOnCampaignPage && (
+            <div className="w-full flex-1 md:w-auto md:flex-none">
+              <GlobalSearch campaignId={campaignId} />
+            </div>
+          )}
           <nav className="flex items-center gap-2">
             <ThemeToggle />
             {status === 'loading' ? (

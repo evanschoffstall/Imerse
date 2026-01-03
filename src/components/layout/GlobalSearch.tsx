@@ -12,7 +12,11 @@ import { Search } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useCallback, useEffect, useRef, useState } from "react"
 
-export default function GlobalSearch() {
+interface GlobalSearchProps {
+  campaignId?: string
+}
+
+export default function GlobalSearch({ campaignId }: GlobalSearchProps) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [query, setQuery] = useState("")
@@ -62,6 +66,11 @@ export default function GlobalSearch() {
         limit: "5", // Show max 5 quick results
       })
 
+      // Add campaignId to search if available
+      if (campaignId) {
+        params.append('campaignId', campaignId)
+      }
+
       const response = await fetch(`/api/search?${params}`)
       if (!response.ok) throw new Error("Search failed")
 
@@ -73,7 +82,7 @@ export default function GlobalSearch() {
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [campaignId])
 
   // Handle query change with debounce
   const handleQueryChange = (value: string) => {
