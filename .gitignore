@@ -1,6 +1,7 @@
-# Migration period
+# Dev
 phpapp/
-z DEVELOPMENT README/
+scripts/
+README-dev.md
 
 # Github
 .github/
@@ -38,6 +39,7 @@ package-lock.json
 /tests/.auth/
 
 # Prisma
+generated/
 generated/prisma
 
 # Storybook

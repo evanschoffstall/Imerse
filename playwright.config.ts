@@ -8,9 +8,6 @@ export default defineConfig({
   testDir: "./tests",
   testMatch: ["**/*.spec.ts"],
 
-  /* Run global setup to authenticate once before all tests */
-  globalSetup: "./tests/global-setup.ts",
-
   /* Run tests in files in parallel */
   fullyParallel: true,
 
@@ -44,8 +41,6 @@ export default defineConfig({
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
-        /* Load authenticated state from global setup */
-        storageState: "./tests/.auth/user.json",
       },
     },
 
@@ -69,12 +64,4 @@ export default defineConfig({
     //   use: { ...devices['iPhone 12'] },
     // },
   ],
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: "bun run dev",
-  //   url: "http://localhost:3000",
-  //   reuseExistingServer: !process.env.CI,
-  //   timeout: 120 * 1000,
-  // },
 });
