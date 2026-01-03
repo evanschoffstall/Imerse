@@ -1,4 +1,4 @@
-import Footer from '@/components/layout/Footer'
+import { ConditionalFooter } from '@/components/layout/ConditionalFooter'
 import Header from '@/components/layout/Header'
 import { SessionProvider } from '@/components/providers/SessionProvider'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
@@ -30,8 +30,8 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
+            <main className="flex-1 pt-14">{children}</main>
+            <ConditionalFooter />
             <Toaster />
             <ExposeToast />
           </ThemeProvider>
