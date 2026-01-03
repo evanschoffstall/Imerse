@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function DiceRollDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -169,10 +170,12 @@ export default function DiceRollDetailPage({ params }: { params: { id: string } 
       </div>
 
       {/* Roll History */}
-      <div className="bg-white dark:bg-gray-900 shadow rounded-lg p-6">
+      <Card>
+        <CardContent className="pt-6">
         <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Roll History</h2>
         <DiceRollResults results={results} onDelete={handleDeleteResult} />
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

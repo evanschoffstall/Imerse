@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default async function CreaturePage({ params }: { params: { id: string } }) {
   const session = await auth();
@@ -134,7 +135,8 @@ export default async function CreaturePage({ params }: { params: { id: string } 
       )}
 
       {/* Stats */}
-      <div className="bg-white dark:bg-gray-900 shadow rounded-lg p-6 mb-6">
+      <Card>
+        <CardContent className="pt-6">
         <dl className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           {creature._count.children > 0 && (
             <div>
@@ -168,11 +170,13 @@ export default async function CreaturePage({ params }: { params: { id: string } 
             </dd>
           </div>
         </dl>
-      </div>
+        </CardContent>
+      </Card>
 
       {/* Parent */}
       {creature.parent && (
-        <div className="bg-white dark:bg-gray-900 shadow rounded-lg p-6 mb-6">
+        <Card>
+          <CardContent className="pt-6">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Parent Species</h2>
           <Link
             href={`/creatures/${creature.parent.id}`}
@@ -180,23 +184,27 @@ export default async function CreaturePage({ params }: { params: { id: string } 
           >
             {creature.parent.name}
           </Link>
-        </div>
+          </CardContent>
+        </Card>
       )}
 
       {/* Description */}
       {creature.entry && (
-        <div className="bg-white dark:bg-gray-900 shadow rounded-lg p-6 mb-6">
+        <Card>
+          <CardContent className="pt-6">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Description</h2>
           <div
             className="prose dark:prose-invert max-w-none"
             dangerouslySetInnerHTML={{ __html: creature.entry }}
           />
-        </div>
+          </CardContent>
+        </Card>
       )}
 
       {/* Locations */}
       {creature.locations.length > 0 && (
-        <div className="bg-white dark:bg-gray-900 shadow rounded-lg p-6 mb-6">
+        <Card>
+          <CardContent className="pt-6">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
             Locations ({creature.locations.length})
           </h2>
@@ -212,12 +220,14 @@ export default async function CreaturePage({ params }: { params: { id: string } 
               </li>
             ))}
           </ul>
-        </div>
+          </CardContent>
+        </Card>
       )}
 
       {/* Children */}
       {creature.children.length > 0 && (
-        <div className="bg-white dark:bg-gray-900 shadow rounded-lg p-6 mb-6">
+        <Card>
+          <CardContent className="pt-6">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
             Sub-Species ({creature.children.length})
           </h2>
@@ -238,18 +248,21 @@ export default async function CreaturePage({ params }: { params: { id: string } 
               </li>
             ))}
           </ul>
-        </div>
+          </CardContent>
+        </Card>
       )}
 
       {/* Abilities */}
-      <div className="bg-white dark:bg-gray-900 shadow rounded-lg p-6 mb-6">
+      <Card>
+        <CardContent className="pt-6">
         <EntityAbilities
           entityId={creature.id}
           entityType="creature"
           campaignId={creature.campaignId}
           canEdit={true}
         />
-      </div>
+        </CardContent>
+      </Card>
 
       {/* Back Link */}
       <div className="mt-6">

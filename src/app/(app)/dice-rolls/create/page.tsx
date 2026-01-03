@@ -5,6 +5,7 @@ import { Character } from '@/types/character';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function CreateDiceRollPage() {
   const router = useRouter();
@@ -69,14 +70,16 @@ export default function CreateDiceRollPage() {
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Create Dice Roll</h1>
       </div>
 
-      <div className="bg-white dark:bg-gray-900 shadow rounded-lg p-6">
+      <Card>
+        <CardContent className="pt-6">
         <DiceRollForm
           campaignId={campaignId}
           characters={characters}
           onSubmit={handleSubmit}
           onCancel={() => router.push(`/dice-rolls?campaignId=${campaignId}`)}
         />
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

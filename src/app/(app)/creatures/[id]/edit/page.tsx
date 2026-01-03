@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function EditCreaturePage({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -114,7 +115,8 @@ export default function EditCreaturePage({ params }: { params: { id: string } })
         </Button>
       </div>
 
-      <div className="bg-white dark:bg-gray-900 shadow rounded-lg p-6">
+      <Card>
+        <CardContent className="pt-6">
         <CreatureForm
           creature={creature}
           campaignId={creature.campaignId}
@@ -122,7 +124,8 @@ export default function EditCreaturePage({ params }: { params: { id: string } })
           onSubmit={handleSubmit}
           onCancel={() => router.push(`/creatures/${params.id}`)}
         />
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

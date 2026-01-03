@@ -3,6 +3,7 @@ import { prisma } from '@/lib/db';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default async function AbilityPage({ params }: { params: { id: string } }) {
   const session = await auth();
@@ -96,7 +97,8 @@ export default async function AbilityPage({ params }: { params: { id: string } }
       </div>
 
       {/* Stats */}
-      <div className="bg-white dark:bg-gray-900 shadow rounded-lg p-6 mb-6">
+      <Card>
+        <CardContent className="pt-6">
         <dl className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           {ability.charges !== null && (
             <div>
@@ -132,11 +134,13 @@ export default async function AbilityPage({ params }: { params: { id: string } }
             </dd>
           </div>
         </dl>
-      </div>
+        </CardContent>
+      </Card>
 
       {/* Parent */}
       {ability.parent && (
-        <div className="bg-white dark:bg-gray-900 shadow rounded-lg p-6 mb-6">
+        <Card>
+          <CardContent className="pt-6">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Parent Ability</h2>
           <Link
             href={`/abilities/${ability.parent.id}`}
@@ -144,23 +148,27 @@ export default async function AbilityPage({ params }: { params: { id: string } }
           >
             {ability.parent.name}
           </Link>
-        </div>
+          </CardContent>
+        </Card>
       )}
 
       {/* Description */}
       {ability.entry && (
-        <div className="bg-white dark:bg-gray-900 shadow rounded-lg p-6 mb-6">
+        <Card>
+          <CardContent className="pt-6">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Description</h2>
           <div
             className="prose dark:prose-invert max-w-none"
             dangerouslySetInnerHTML={{ __html: ability.entry }}
           />
-        </div>
+          </CardContent>
+        </Card>
       )}
 
       {/* Children */}
       {ability.children.length > 0 && (
-        <div className="bg-white dark:bg-gray-900 shadow rounded-lg p-6 mb-6">
+        <Card>
+          <CardContent className="pt-6">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
             Sub-Abilities ({ability.children.length})
           </h2>
@@ -181,7 +189,8 @@ export default async function AbilityPage({ params }: { params: { id: string } }
               </li>
             ))}
           </ul>
-        </div>
+          </CardContent>
+        </Card>
       )}
 
       {/* Back Link */}

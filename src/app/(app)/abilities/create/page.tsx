@@ -5,6 +5,7 @@ import { Ability } from '@/types/ability';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function CreateAbilityPage() {
   const router = useRouter();
@@ -69,14 +70,16 @@ export default function CreateAbilityPage() {
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Create Ability</h1>
       </div>
 
-      <div className="bg-white dark:bg-gray-900 shadow rounded-lg p-6">
+      <Card>
+        <CardContent className="pt-6">
         <AbilityForm
           campaignId={campaignId}
           parentAbilities={parentAbilities}
           onSubmit={handleSubmit}
           onCancel={() => router.push(`/abilities?campaignId=${campaignId}`)}
         />
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
