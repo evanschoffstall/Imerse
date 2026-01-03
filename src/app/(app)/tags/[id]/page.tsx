@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import RichTextViewer from '@/components/editor/RichTextViewer'
 import type { Tag } from '@/types/tag'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -122,10 +123,7 @@ export default function TagDetailPage({ params }: { params: { id: string } }) {
           {tag.description && (
             <div className="mb-6">
               <h2 className="text-xl font-semibold mb-3">Description</h2>
-              <div
-                className="prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: tag.description }}
-              />
+              <RichTextViewer content={tag.description} />
             </div>
           )}
 

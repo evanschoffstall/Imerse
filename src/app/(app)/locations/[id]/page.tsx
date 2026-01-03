@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Skeleton } from '@/components/ui/skeleton'
+import RichTextViewer from '@/components/editor/RichTextViewer'
 import type { Location } from '@/types/location'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -155,10 +156,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
           {location.description && (
             <div className="mb-8">
               <h2 className="text-2xl font-bold mb-4">Description</h2>
-              <div
-                className="prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: location.description }}
-              />
+              <RichTextViewer content={location.description} />
             </div>
           )}
 

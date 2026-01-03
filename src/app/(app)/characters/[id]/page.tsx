@@ -1,6 +1,7 @@
 'use client'
 
 import { AttributeManager } from '@/components/attributes/AttributeManager'
+import RichTextViewer from '@/components/editor/RichTextViewer'
 import RelationsList from '@/components/relations/RelationsList'
 import { RelationshipManager } from '@/components/relationships/RelationshipManager'
 import { Button } from '@/components/ui/button'
@@ -187,10 +188,7 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
           {character.description && (
             <div className="mb-8">
               <h2 className="text-2xl font-bold mb-4">Description</h2>
-              <div
-                className="prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: character.description }}
-              />
+              <RichTextViewer content={character.description} />
             </div>
           )}
 

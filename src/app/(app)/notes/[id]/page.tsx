@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import RichTextViewer from '@/components/editor/RichTextViewer'
 import type { Note } from '@/types/note'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -127,10 +128,7 @@ export default function NoteDetailPage({ params }: { params: { id: string } }) {
 
           {note.description && (
             <div className="mb-6">
-              <div
-                className="prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: note.description }}
-              />
+              <RichTextViewer content={note.description} />
             </div>
           )}
 

@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import RichTextViewer from '@/components/editor/RichTextViewer'
 import type { Race } from '@/types/race'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -128,10 +129,7 @@ export default function RaceDetailPage({ params }: { params: { id: string } }) {
           {race.description && (
             <div className="mb-6">
               <h2 className="text-xl font-semibold mb-3">Details</h2>
-              <div
-                className="prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: race.description }}
-              />
+              <RichTextViewer content={race.description} />
             </div>
           )}
 

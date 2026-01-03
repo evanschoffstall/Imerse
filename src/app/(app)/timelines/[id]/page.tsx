@@ -4,6 +4,7 @@ import { TimelineEventList } from '@/components/timeline/TimelineEventList'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import RichTextViewer from '@/components/editor/RichTextViewer'
 import type { Timeline } from '@/types/timeline'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -129,10 +130,7 @@ export default function TimelineDetailPage({ params }: { params: { id: string } 
           {timeline.description && (
             <div className="mb-6">
               <h2 className="text-xl font-semibold mb-3">Overview</h2>
-              <div
-                className="prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: timeline.description }}
-              />
+              <RichTextViewer content={timeline.description} />
             </div>
           )}
 

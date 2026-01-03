@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import RichTextViewer from '@/components/editor/RichTextViewer'
 import type { Organisation } from '@/types/organisation'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -133,10 +134,7 @@ export default function OrganisationDetailPage({ params }: { params: { id: strin
           {organisation.description && (
             <div className="mb-6">
               <h2 className="text-xl font-semibold mb-3">About</h2>
-              <div
-                className="prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: organisation.description }}
-              />
+              <RichTextViewer content={organisation.description} />
             </div>
           )}
 

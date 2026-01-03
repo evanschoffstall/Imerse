@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import RichTextViewer from '@/components/editor/RichTextViewer'
 import type { Quest } from '@/types/quest'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -146,10 +147,7 @@ export default function QuestDetailPage({ params }: { params: { id: string } }) 
           {quest.description && (
             <div className="mb-6">
               <h2 className="text-xl font-semibold mb-2">Description</h2>
-              <div
-                className="prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: quest.description }}
-              />
+              <RichTextViewer content={quest.description} />
             </div>
           )}
 

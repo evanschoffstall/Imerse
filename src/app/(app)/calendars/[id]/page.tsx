@@ -8,6 +8,7 @@ import WeekdayEditor from '@/components/calendar/editors/WeekdayEditor'
 import MonthView from '@/components/calendar/MonthView'
 import WeatherManager from '@/components/calendar/WeatherManager'
 import YearView from '@/components/calendar/YearView'
+import RichTextViewer from '@/components/editor/RichTextViewer'
 import { Calendar, CalendarDate, formatCalendarDate, parseCalendarDate } from '@/types/calendar'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -316,10 +317,7 @@ export default function CalendarDetailPage({ params }: { params: { id: string } 
           {calendar.description && (
             <div className="bg-white rounded-lg shadow p-6 mb-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-3">Description</h2>
-              <div
-                className="prose max-w-none"
-                dangerouslySetInnerHTML={{ __html: calendar.description }}
-              />
+              <RichTextViewer content={calendar.description} />
             </div>
           )}
 

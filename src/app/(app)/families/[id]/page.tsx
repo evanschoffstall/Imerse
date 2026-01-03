@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import RichTextViewer from '@/components/editor/RichTextViewer'
 import type { Family } from '@/types/family'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -133,10 +134,7 @@ export default function FamilyDetailPage({ params }: { params: { id: string } })
           {family.description && (
             <div className="mb-6">
               <h2 className="text-xl font-semibold mb-3">History</h2>
-              <div
-                className="prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: family.description }}
-              />
+              <RichTextViewer content={family.description} />
             </div>
           )}
 

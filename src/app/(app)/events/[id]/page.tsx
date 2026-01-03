@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import RichTextViewer from '@/components/editor/RichTextViewer'
 import type { Event } from '@/types/event'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -138,10 +139,7 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
           {event.description && (
             <div className="mb-6">
               <h2 className="text-xl font-semibold mb-2">Description</h2>
-              <div
-                className="prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: event.description }}
-              />
+              <RichTextViewer content={event.description} />
             </div>
           )}
 

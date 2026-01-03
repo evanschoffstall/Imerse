@@ -6,6 +6,7 @@ import MarkerManager from '@/components/maps/MarkerManager'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import RichTextViewer from '@/components/editor/RichTextViewer'
 import type { Map, MapGroup, MapLayer, MapMarker } from '@/types/map'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -200,10 +201,7 @@ export default function MapDetailPage({ params }: { params: { id: string } }) {
           {map.description && (
             <div className="mb-6">
               <h2 className="text-xl font-semibold mb-3">Description</h2>
-              <div
-                className="prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: map.description }}
-              />
+              <RichTextViewer content={map.description} />
             </div>
           )}
 

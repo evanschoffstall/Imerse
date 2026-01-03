@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import RichTextViewer from '@/components/editor/RichTextViewer'
 import type { Journal } from '@/types/journal'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -131,10 +132,7 @@ export default function JournalDetailPage({ params }: { params: { id: string } }
           {journal.description && (
             <div className="mb-6">
               <h2 className="text-xl font-semibold mb-2">Entry</h2>
-              <div
-                className="prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: journal.description }}
-              />
+              <RichTextViewer content={journal.description} />
             </div>
           )}
 

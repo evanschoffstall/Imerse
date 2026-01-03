@@ -13,6 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import RichTextViewer from '@/components/editor/RichTextViewer';
 import { Campaign } from '@/features/campaigns';
 import NextImage from 'next/image';
 import Link from 'next/link';
@@ -136,10 +137,7 @@ export default function CampaignDetailPage() {
         {campaign.description && (
           <CardContent>
             <h2 className="text-lg font-semibold mb-2">Description</h2>
-            <div
-              className="prose prose-sm max-w-none dark:prose-invert"
-              dangerouslySetInnerHTML={{ __html: campaign.description }}
-            />
+            <RichTextViewer content={campaign.description} />
           </CardContent>
         )}
       </Card>

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import type { Campaign } from '@/features/campaigns';
+import { extractTextFromLexical, truncateText } from '@/lib/lexical-utils';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
@@ -80,7 +81,7 @@ export default function CampaignsPage() {
                   <CardTitle>{campaign.name}</CardTitle>
                   {campaign.description && (
                     <CardDescription className="line-clamp-3">
-                      {campaign.description.replace(/<[^>]*>/g, '')}
+                      {truncateText(extractTextFromLexical(campaign.description))}
                     </CardDescription>
                   )}
                 </CardHeader>

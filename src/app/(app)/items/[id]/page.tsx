@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Skeleton } from '@/components/ui/skeleton'
+import RichTextViewer from '@/components/editor/RichTextViewer'
 import type { Item } from '@/types/item'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -167,10 +168,7 @@ export default function ItemDetailPage({ params }: { params: { id: string } }) {
           {item.description && (
             <div className="mb-8">
               <h2 className="text-2xl font-bold mb-4">Description</h2>
-              <div
-                className="prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: item.description }}
-              />
+              <RichTextViewer content={item.description} />
             </div>
           )}
 
