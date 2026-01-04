@@ -3,7 +3,7 @@ import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@prisma/client";
 import { Pool } from "pg";
 
-// Create connection pool
+// Create connection pool with no custom timeouts
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });

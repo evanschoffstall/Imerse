@@ -1,12 +1,13 @@
 'use client';
 
 import CreatureForm from '@/components/forms/CreatureForm';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import { Creature } from '@/types/creature';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 
 export default function EditCreaturePage({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -90,7 +91,16 @@ export default function EditCreaturePage({ params }: { params: { id: string } })
   if (loading) {
     return (
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center">Loading...</div>
+        <Skeleton className="h-8 w-64 mb-8" />
+        <Card>
+          <CardContent className="pt-6">
+            <div className="space-y-4">
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-32 w-full" />
+              <Skeleton className="h-10 w-full" />
+            </div>
+          </CardContent>
+        </Card>
       </div>
     );
   }
@@ -117,13 +127,13 @@ export default function EditCreaturePage({ params }: { params: { id: string } })
 
       <Card>
         <CardContent className="pt-6">
-        <CreatureForm
-          creature={creature}
-          campaignId={creature.campaignId}
-          parentCreatures={parentCreatures}
-          onSubmit={handleSubmit}
-          onCancel={() => router.push(`/creatures/${params.id}`)}
-        />
+          <CreatureForm
+            creature={creature}
+            campaignId={creature.campaignId}
+            parentCreatures={parentCreatures}
+            onSubmit={handleSubmit}
+            onCancel={() => router.push(`/creatures/${params.id}`)}
+          />
         </CardContent>
       </Card>
     </div>

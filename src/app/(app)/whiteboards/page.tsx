@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
 import type { WhiteboardWithRelations } from "@/types/whiteboard";
 import { formatDistanceToNow } from "date-fns";
 import { useRouter } from "next/navigation";
@@ -134,7 +135,15 @@ export default function WhiteboardsPage({
       </div>
 
       {loading ? (
-        <p className="text-muted-foreground">Loading...</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3].map((i) => (
+            <Card key={i}>
+              <CardContent className="pt-6">
+                <Skeleton className="h-32 w-full" />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       ) : whiteboards.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center">

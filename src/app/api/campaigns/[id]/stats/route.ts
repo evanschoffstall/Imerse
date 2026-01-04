@@ -4,23 +4,29 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const campaignId = params.id;
+    const { id: campaignId } = await params;
 
     // Check campaign access
     await requireCampaignAccess(campaignId, Permission.READ);
 
-    // Fetch counts efficiently
-    const [characterCount, locationCount] = await Promise.all([
-      prisma.character.count({ where: { campaignId } }),
-      prisma.location.count({ where: { campaignId } }),
+    // Simple existence checks - faster than counts
+    const [character, location] = await Promise.all([
+      prisma.character.findFirst({
+        where: { campaignId },
+        select: { id: true },
+      }),
+      prisma.location.findFirst({
+        where: { campaignId },
+        select: { id: true },
+      }),
     ]);
 
     return NextResponse.json({
-      hasCharacters: characterCount > 0,
-      hasLocations: locationCount > 0,
+      hasCharacters: !!character,
+      hasLocations: !!location,
     });
   } catch (error) {
     const err = error as Error;

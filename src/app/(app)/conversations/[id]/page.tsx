@@ -2,7 +2,9 @@
 
 import { ConversationMessages } from '@/components/conversations/ConversationMessages';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton';
 import { ConversationWithRelations, getParticipantName } from '@/types/conversation';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
@@ -51,7 +53,20 @@ export default function ConversationDetailPage() {
   };
 
   if (loading) {
-    return <div className="container mx-auto py-8 text-center">Loading...</div>;
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <Skeleton className="h-8 w-64 mb-8" />
+        <Card>
+          <CardContent className="pt-6">
+            <div className="space-y-4">
+              {[1, 2, 3].map((i) => (
+                <Skeleton key={i} className="h-20 w-full" />
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
   }
 
   if (!conversation) {

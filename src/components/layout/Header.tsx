@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { Skeleton } from '@/components/ui/skeleton'
 import { LogOut, Menu, Settings, Swords } from 'lucide-react'
 import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
@@ -118,7 +119,7 @@ export default function Header() {
           <nav className="flex items-center gap-2">
             <ThemeToggle />
             {status === 'loading' ? (
-              <div className="h-8 w-8 animate-pulse rounded-full bg-muted" />
+              <Skeleton className="h-8 w-8 rounded-full" />
             ) : session?.user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

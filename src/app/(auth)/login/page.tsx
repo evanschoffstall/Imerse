@@ -5,17 +5,52 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function LoginPage() {
   const router = useRouter()
+  const { data: session, status } = useSession()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (status === 'authenticated') {
+      const redirectToCampaigns = async () => {
+        try {
+          const campaignsRes = await fetch('/api/campaigns', {
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          })
+
+          if (campaignsRes.ok) {
+            const data = await campaignsRes.json()
+            const campaigns = data.campaigns || []
+
+            if (campaigns.length === 1) {
+              router.push(`/campaigns/${campaigns[0].id}`)
+            } else {
+              router.push('/campaigns')
+            }
+          } else {
+            router.push('/campaigns')
+          }
+        } catch (fetchError) {
+          console.error('Error fetching campaigns:', fetchError)
+          router.push('/campaigns')
+        }
+      }
+
+      redirectToCampaigns()
+    }
+  }, [status, router])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -86,6 +121,15 @@ export default function LoginPage() {
     } finally {
       setLoading(false)
     }
+  }
+
+  // Show loading while checking authentication
+  if (status === 'loading') {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <p className="text-muted-foreground">Loading...</p>
+      </div>
+    )
   }
 
   return (

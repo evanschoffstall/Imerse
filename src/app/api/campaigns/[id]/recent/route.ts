@@ -4,120 +4,32 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const campaignId = params.id;
+    const { id: campaignId } = await params;
 
     // Check campaign access
     await requireCampaignAccess(campaignId, Permission.READ);
 
-    // Fetch recent entities from multiple types
-    const [characters, locations, items, quests, events, journals, notes] =
-      await Promise.all([
-        prisma.character.findMany({
-          where: { campaignId },
-          select: {
-            id: true,
-            name: true,
-            updatedAt: true,
-            imageId: true,
-          },
-          orderBy: { updatedAt: "desc" },
-          take: 3,
-        }),
-        prisma.location.findMany({
-          where: { campaignId },
-          select: {
-            id: true,
-            name: true,
-            updatedAt: true,
-            imageId: true,
-          },
-          orderBy: { updatedAt: "desc" },
-          take: 3,
-        }),
-        prisma.item.findMany({
-          where: { campaignId },
-          select: {
-            id: true,
-            name: true,
-            updatedAt: true,
-            image: true,
-          },
-          orderBy: { updatedAt: "desc" },
-          take: 3,
-        }),
-        prisma.quest.findMany({
-          where: { campaignId },
-          select: {
-            id: true,
-            name: true,
-            updatedAt: true,
-          },
-          orderBy: { updatedAt: "desc" },
-          take: 3,
-        }),
-        prisma.event.findMany({
-          where: { campaignId },
-          select: {
-            id: true,
-            name: true,
-            updatedAt: true,
-          },
-          orderBy: { updatedAt: "desc" },
-          take: 3,
-        }),
-        prisma.journal.findMany({
-          where: { campaignId },
-          select: {
-            id: true,
-            name: true,
-            updatedAt: true,
-          },
-          orderBy: { updatedAt: "desc" },
-          take: 3,
-        }),
-        prisma.note.findMany({
-          where: { campaignId },
-          select: {
-            id: true,
-            name: true,
-            updatedAt: true,
-          },
-          orderBy: { updatedAt: "desc" },
-          take: 3,
-        }),
-      ]);
+    // Just fetch characters - simpler and faster
+    const characters = await prisma.character.findMany({
+      where: { campaignId },
+      select: {
+        id: true,
+        name: true,
+        updatedAt: true,
+        imageId: true,
+      },
+      orderBy: { updatedAt: "desc" },
+      take: 10,
+    });
 
-    // Combine and sort all entities
-    const allEntities = [
-      ...characters.map((c) => ({
-        ...c,
-        type: "character",
-        image: c.imageId ? `/api/images/${c.imageId}` : null,
-      })),
-      ...locations.map((l) => ({
-        ...l,
-        type: "location",
-        image: l.imageId ? `/api/images/${l.imageId}` : null,
-      })),
-      ...items.map((i) => ({
-        ...i,
-        type: "item",
-        image: i.image || null,
-      })),
-      ...quests.map((q) => ({ ...q, type: "quest", image: null })),
-      ...events.map((e) => ({ ...e, type: "event", image: null })),
-      ...journals.map((j) => ({ ...j, type: "journal", image: null })),
-      ...notes.map((n) => ({ ...n, type: "note", image: null })),
-    ].sort(
-      (a, b) =>
-        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-    );
-
-    // Return top 10
-    const entities = allEntities.slice(0, 10);
+    const entities = characters.map((c) => ({
+      ...c,
+      type: "character",
+      image: c.imageId ? `/api/images/${c.imageId}` : null,
+    }));
 
     return NextResponse.json({ entities });
   } catch (error) {

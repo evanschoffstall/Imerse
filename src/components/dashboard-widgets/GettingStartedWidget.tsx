@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { cachedFetch } from '@/lib/api-cache';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
@@ -23,9 +24,9 @@ export function GettingStartedWidget({ campaignId }: GettingStartedWidgetProps) 
   useEffect(() => {
     const fetchProgress = async () => {
       try {
-        // Fetch campaign stats efficiently (just counts, not full data)
-        const response = await fetch(`/api/campaigns/${campaignId}/stats`);
-        const stats = await response.json();
+        const stats = await cachedFetch<{ hasCharacters: boolean; hasLocations: boolean }>(
+          `/api/campaigns/${campaignId}/stats`
+        );
 
         const hasCharacters = stats.hasCharacters || false;
         const hasLocations = stats.hasLocations || false;
@@ -65,7 +66,7 @@ export function GettingStartedWidget({ campaignId }: GettingStartedWidgetProps) 
           },
         ]);
       } catch (error) {
-        console.error('Error fetching campaign progress:', error);
+        console.error('Error fetching progress:', error);
       } finally {
         setLoading(false);
       }
@@ -76,6 +77,26 @@ export function GettingStartedWidget({ campaignId }: GettingStartedWidgetProps) 
 
   const completedCount = tasks.filter((t) => t.completed).length;
 
+  if (loading) {
+    return (
+      <Card className="lg:col-span-2">
+        <CardHeader>
+          <CardTitle>Getting Started</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-2">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="flex items-center gap-2">
+                <Skeleton className="h-4 w-4 rounded" />
+                <Skeleton className="h-4 flex-1" />
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
     <Card className="lg:col-span-2">
       <CardHeader className="flex flex-row items-center justify-between">
@@ -85,31 +106,20 @@ export function GettingStartedWidget({ campaignId }: GettingStartedWidgetProps) 
         </span>
       </CardHeader>
       <CardContent className="space-y-2">
-        {loading ? (
-          <div className="space-y-2">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="flex items-center gap-2">
-                <Skeleton className="h-4 w-4 rounded" />
-                <Skeleton className="h-4 flex-1" />
-              </div>
-            ))}
+        {tasks.map((task) => (
+          <div key={task.id} className="flex items-center gap-2 text-sm">
+            <input type="checkbox" checked={task.completed} readOnly className="rounded" />
+            {task.completed ? (
+              <span className="line-through text-muted-foreground">{task.label}</span>
+            ) : task.link ? (
+              <Link href={task.link} className="hover:underline">
+                {task.label}
+              </Link>
+            ) : (
+              <span>{task.label}</span>
+            )}
           </div>
-        ) : (
-          tasks.map((task) => (
-            <div key={task.id} className="flex items-center gap-2 text-sm">
-              <input type="checkbox" checked={task.completed} readOnly className="rounded" />
-              {task.completed ? (
-                <span className="line-through text-muted-foreground">{task.label}</span>
-              ) : task.link ? (
-                <Link href={task.link} className="hover:underline">
-                  {task.label}
-                </Link>
-              ) : (
-                <span>{task.label}</span>
-              )}
-            </div>
-          ))
-        )}
+        ))}
       </CardContent>
     </Card>
   );

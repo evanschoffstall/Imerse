@@ -23,23 +23,6 @@ export default function CampaignsPage() {
     }
   }, [status, router]);
 
-  if (status === 'loading') {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <Skeleton className="h-8 w-48 mb-8" />
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <Skeleton className="h-64" />
-          <Skeleton className="h-64" />
-          <Skeleton className="h-64" />
-        </div>
-      </div>
-    );
-  }
-
-  if (!session) {
-    return null;
-  }
-
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
@@ -59,8 +42,27 @@ export default function CampaignsPage() {
       }
     };
 
-    fetchCampaigns();
-  }, []);
+    if (session) {
+      fetchCampaigns();
+    }
+  }, [session]);
+
+  if (status === 'loading') {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <Skeleton className="h-8 w-48 mb-8" />
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <Skeleton className="h-64" />
+          <Skeleton className="h-64" />
+          <Skeleton className="h-64" />
+        </div>
+      </div>
+    );
+  }
+
+  if (!session) {
+    return null;
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -94,9 +96,9 @@ export default function CampaignsPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Link href="/campaigns/new">
-              <Button>Create Your First Campaign</Button>
-            </Link>
+            <Button asChild>
+              <Link href="/campaigns/new">Create Your First Campaign</Link>
+            </Button>
           </CardContent>
         </Card>
       ) : (

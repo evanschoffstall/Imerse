@@ -1,7 +1,8 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import RichTextViewer from '@/components/editor/RichTextViewer'
+import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
 import type { Event } from '@/types/event'
 import NextImage from 'next/image'
 import Link from 'next/link'
@@ -53,11 +54,9 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
   if (loading) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <div className="animate-pulse space-y-4">
-          <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-          <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-          <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-        </div>
+        <Skeleton className="h-8 w-1/3 mb-4" />
+        <Skeleton className="h-4 w-1/2 mb-4" />
+        <Skeleton className="h-4 w-3/4" />
       </div>
     )
   }

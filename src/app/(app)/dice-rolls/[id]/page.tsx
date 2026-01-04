@@ -1,13 +1,14 @@
 'use client';
 
 import DiceRollResults from '@/components/dice-rolls/DiceRollResults';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import { DiceRollResultWithRelations, DiceRollWithRelations } from '@/types/dice-roll';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 
 export default function DiceRollDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -87,7 +88,15 @@ export default function DiceRollDetailPage({ params }: { params: { id: string } 
   if (loading) {
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center">Loading...</div>
+        <Skeleton className="h-8 w-64 mb-8" />
+        <Card>
+          <CardContent className="pt-6">
+            <div className="space-y-4">
+              <Skeleton className="h-24 w-full" />
+              <Skeleton className="h-20 w-full" />
+            </div>
+          </CardContent>
+        </Card>
       </div>
     );
   }
@@ -172,8 +181,8 @@ export default function DiceRollDetailPage({ params }: { params: { id: string } 
       {/* Roll History */}
       <Card>
         <CardContent className="pt-6">
-        <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Roll History</h2>
-        <DiceRollResults results={results} onDelete={handleDeleteResult} />
+          <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Roll History</h2>
+          <DiceRollResults results={results} onDelete={handleDeleteResult} />
         </CardContent>
       </Card>
     </div>

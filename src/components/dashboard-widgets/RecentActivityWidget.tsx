@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { cachedFetch } from '@/lib/api-cache';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -11,7 +12,7 @@ interface RecentEntity {
   name: string;
   type: string;
   updatedAt: string;
-  image?: string | null;
+  imageId?: string | null;
 }
 
 interface RecentActivityWidgetProps {
@@ -25,11 +26,10 @@ export function RecentActivityWidget({ campaignId }: RecentActivityWidgetProps) 
   useEffect(() => {
     const fetchRecentActivity = async () => {
       try {
-        const response = await fetch(`/api/campaigns/${campaignId}/recent`);
-        if (response.ok) {
-          const data = await response.json();
-          setEntities(data.entities || []);
-        }
+        const data = await cachedFetch<{ entities: RecentEntity[] }>(
+          `/api/campaigns/${campaignId}/recent`
+        );
+        setEntities(data.entities || []);
       } catch (error) {
         console.error('Error fetching recent activity:', error);
       } finally {
@@ -65,13 +65,13 @@ export function RecentActivityWidget({ campaignId }: RecentActivityWidgetProps) 
     return `/${path}/${entity.id}`;
   };
 
-  return (
-    <Card className="lg:col-span-2">
-      <CardHeader>
-        <CardTitle>Recently modified entities</CardTitle>
-      </CardHeader>
-      <CardContent>
-        {loading ? (
+  if (loading) {
+    return (
+      <Card className="lg:col-span-2">
+        <CardHeader>
+          <CardTitle>Recently modified entities</CardTitle>
+        </CardHeader>
+        <CardContent>
           <div className="space-y-3">
             {[1, 2, 3, 4, 5].map((i) => (
               <div key={i} className="flex items-center gap-3">
@@ -84,7 +84,18 @@ export function RecentActivityWidget({ campaignId }: RecentActivityWidgetProps) 
               </div>
             ))}
           </div>
-        ) : entities.length === 0 ? (
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <Card className="lg:col-span-2">
+      <CardHeader>
+        <CardTitle>Recently modified entities</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {entities.length === 0 ? (
           <p className="text-muted-foreground text-sm">No recent activity</p>
         ) : (
           <div className="space-y-3">
@@ -94,10 +105,10 @@ export function RecentActivityWidget({ campaignId }: RecentActivityWidgetProps) 
                 href={getEntityLink(entity)}
                 className="flex items-center gap-3 hover:bg-accent rounded-md p-2 -mx-2 transition-colors"
               >
-                {entity.image && (
+                {entity.imageId && (
                   <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0">
                     <Image
-                      src={entity.image}
+                      src={entity.imageId}
                       alt={entity.name}
                       fill
                       className="object-cover"

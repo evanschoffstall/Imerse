@@ -79,7 +79,13 @@ export default async function DiceRollsPage({
         </Button>
       </div>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={
+        <div className="space-y-4">
+          <Skeleton className="h-32 w-full" />
+          <Skeleton className="h-32 w-full" />
+          <Skeleton className="h-32 w-full" />
+        </div>
+      }>
         <DiceRollList diceRolls={diceRolls} campaignId={campaignId} />
       </Suspense>
     </div>

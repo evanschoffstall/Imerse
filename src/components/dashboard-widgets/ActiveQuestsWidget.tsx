@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { cachedFetch } from '@/lib/api-cache';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
@@ -23,11 +24,10 @@ export function ActiveQuestsWidget({ campaignId }: ActiveQuestsWidgetProps) {
   useEffect(() => {
     const fetchQuests = async () => {
       try {
-        const response = await fetch(`/api/quests?campaignId=${campaignId}&status=active`);
-        if (response.ok) {
-          const data = await response.json();
-          setQuests(data.quests || []);
-        }
+        const data = await cachedFetch<{ quests: Quest[] }>(
+          `/api/quests?campaignId=${campaignId}&status=active`
+        );
+        setQuests(data.quests || []);
       } catch (error) {
         console.error('Error fetching quests:', error);
       } finally {
@@ -49,13 +49,13 @@ export function ActiveQuestsWidget({ campaignId }: ActiveQuestsWidgetProps) {
     return then.toLocaleDateString();
   };
 
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Active quests</CardTitle>
-      </CardHeader>
-      <CardContent>
-        {loading ? (
+  if (loading) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>Active Quests</CardTitle>
+        </CardHeader>
+        <CardContent>
           <div className="space-y-3">
             {[1, 2, 3].map((i) => (
               <div key={i} className="space-y-1">
@@ -64,7 +64,18 @@ export function ActiveQuestsWidget({ campaignId }: ActiveQuestsWidgetProps) {
               </div>
             ))}
           </div>
-        ) : quests.length === 0 ? (
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Active Quests</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {quests.length === 0 ? (
           <p className="text-muted-foreground text-sm">No active quests</p>
         ) : (
           <div className="space-y-3">

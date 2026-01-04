@@ -42,6 +42,9 @@ package-lock.json
 generated/
 generated/prisma
 
+# Pg
+db/
+
 # Storybook
 *storybook.log
 storybook-static

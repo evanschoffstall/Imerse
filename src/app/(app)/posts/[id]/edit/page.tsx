@@ -28,8 +28,16 @@ export default function EditPostPage() {
 
   if (loading) {
     return (
-      <div className="container mx-auto px-6 py-8">
-        <div>Loading...</div>
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <Skeleton className="h-8 w-64 mb-8" />
+        <Card>
+          <CardContent className="pt-6">
+            <div className="space-y-4">
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-64 w-full" />
+            </div>
+          </CardContent>
+        </Card>
       </div>
     )
   }
