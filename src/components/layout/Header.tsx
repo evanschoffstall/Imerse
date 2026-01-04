@@ -74,10 +74,10 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 z-50 w-full ${isOnCampaignPage ? 'bg-transparent border-transparent' : 'border-b border-border/20'}`}
-      style={isOnCampaignPage && campaignStyle?.headerBlur !== undefined ? {
-        backdropFilter: `blur(${campaignStyle.headerBlur}px)`,
-        WebkitBackdropFilter: `blur(${campaignStyle.headerBlur}px)`,
-      } : isOnCampaignPage ? {} : {
+      style={isOnCampaignPage ? {
+        backdropFilter: `blur(var(--campaign-header-blur, ${campaignStyle?.headerBlur ?? 0}px))`,
+        WebkitBackdropFilter: `blur(var(--campaign-header-blur, ${campaignStyle?.headerBlur ?? 0}px))`,
+      } : {
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
       }}
@@ -87,7 +87,7 @@ export default function Header() {
         className="absolute inset-0 -z-10"
         style={isOnCampaignPage && campaignStyle ? {
           background: 'linear-gradient(to bottom, hsl(var(--background)), hsl(var(--background) / 0.7), transparent)',
-          opacity: campaignStyle.headerBgOpacity ?? 0.95,
+          opacity: `var(--campaign-header-bg-opacity, ${campaignStyle.headerBgOpacity ?? 0.95})`,
         } : !isOnCampaignPage && campaignStyle && campaignStyle.headerBgOpacity !== undefined ? {
           background: 'linear-gradient(to bottom, hsl(var(--background)), hsl(var(--background) / 0.7), transparent)',
           opacity: campaignStyle.headerBgOpacity,

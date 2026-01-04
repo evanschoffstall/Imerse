@@ -140,26 +140,34 @@ export default function CampaignLayout({
       {/* Fixed background image layer - covers entire viewport including header */}
       {campaign.backgroundImage && (
         <div
-          className="fixed inset-0 top-0 pointer-events-none"
+          className="fixed pointer-events-none"
           style={{
             backgroundImage: `url(${campaign.backgroundImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed',
             zIndex: 0,
+            top: `calc(var(--campaign-bg-expand-to-header, ${campaignStyle?.bgExpandToHeader ? '1' : '0'}) * 0px + (1 - var(--campaign-bg-expand-to-header, ${campaignStyle?.bgExpandToHeader ? '1' : '0'})) * 4rem)`,
+            left: `calc(var(--campaign-bg-expand-to-sidebar, ${campaignStyle?.bgExpandToSidebar ? '1' : '0'}) * 0px + (1 - var(--campaign-bg-expand-to-sidebar, ${campaignStyle?.bgExpandToSidebar ? '1' : '0'})) * 16rem)`,
+            right: '0',
+            bottom: '0',
           }}
         />
       )}
 
       {/* Fixed background overlay with opacity and blur - also covers header */}
-      {campaign.backgroundImage && campaignStyle && (
+      {campaign.backgroundImage && (
         <div
-          className="fixed inset-0 top-0 pointer-events-none"
+          className="fixed pointer-events-none"
           style={{
-            backgroundColor: `hsl(var(--background) / ${campaignStyle.bgOpacity ?? 0.8})`,
-            backdropFilter: `blur(${campaignStyle.bgBlur ?? 4}px)`,
-            WebkitBackdropFilter: `blur(${campaignStyle.bgBlur ?? 4}px)`,
+            backgroundColor: `hsl(var(--background) / var(--campaign-bg-opacity, ${campaignStyle?.bgOpacity ?? 0.8}))`,
+            backdropFilter: `blur(var(--campaign-bg-blur, ${campaignStyle?.bgBlur ?? 4}px))`,
+            WebkitBackdropFilter: `blur(var(--campaign-bg-blur, ${campaignStyle?.bgBlur ?? 4}px))`,
             zIndex: 1,
+            top: `calc(var(--campaign-bg-expand-to-header, ${campaignStyle?.bgExpandToHeader ? '1' : '0'}) * 0px + (1 - var(--campaign-bg-expand-to-header, ${campaignStyle?.bgExpandToHeader ? '1' : '0'})) * 4rem)`,
+            left: `calc(var(--campaign-bg-expand-to-sidebar, ${campaignStyle?.bgExpandToSidebar ? '1' : '0'}) * 0px + (1 - var(--campaign-bg-expand-to-sidebar, ${campaignStyle?.bgExpandToSidebar ? '1' : '0'})) * 16rem)`,
+            right: '0',
+            bottom: '0',
           }}
         />
       )}
@@ -168,8 +176,8 @@ export default function CampaignLayout({
       <div
         className="w-64 border-r border-border flex flex-col shrink-0 overflow-hidden relative z-10 mt-16"
         style={{
-          backdropFilter: campaignStyle?.sidebarBlur !== undefined ? `blur(${campaignStyle.sidebarBlur}px)` : undefined,
-          WebkitBackdropFilter: campaignStyle?.sidebarBlur !== undefined ? `blur(${campaignStyle.sidebarBlur}px)` : undefined,
+          backdropFilter: `blur(var(--campaign-sidebar-blur, ${campaignStyle?.sidebarBlur ?? 0}px))`,
+          WebkitBackdropFilter: `blur(var(--campaign-sidebar-blur, ${campaignStyle?.sidebarBlur ?? 0}px))`,
         }}
       >
         {/* Background gradient layer with opacity control */}
@@ -177,7 +185,7 @@ export default function CampaignLayout({
           className="absolute inset-0 -z-10"
           style={{
             background: 'linear-gradient(to right, hsl(var(--card)), hsl(var(--card) / 0.7), transparent)',
-            opacity: campaignStyle?.sidebarBgOpacity ?? 1.0,
+            opacity: `var(--campaign-sidebar-bg-opacity, ${campaignStyle?.sidebarBgOpacity ?? 1.0})`,
           }}
         />
         {/* Campaign Header - Fixed */}
