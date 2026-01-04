@@ -86,11 +86,9 @@ export default function Header() {
       <div
         className="absolute inset-0 -z-10"
         style={isOnCampaignPage && campaignStyle ? {
-          background: 'linear-gradient(to bottom, hsl(var(--background)), hsl(var(--background) / 0.7), transparent)',
-          opacity: `var(--campaign-header-bg-opacity, ${campaignStyle.headerBgOpacity ?? 0.95})`,
+          backgroundColor: `hsl(var(--background) / var(--campaign-header-bg-opacity, ${campaignStyle.headerBgOpacity ?? 0.95}))`,
         } : !isOnCampaignPage && campaignStyle && campaignStyle.headerBgOpacity !== undefined ? {
-          background: 'linear-gradient(to bottom, hsl(var(--background)), hsl(var(--background) / 0.7), transparent)',
-          opacity: campaignStyle.headerBgOpacity,
+          backgroundColor: `hsl(var(--background) / ${campaignStyle.headerBgOpacity})`,
         } : {
           background: 'linear-gradient(to bottom, hsl(var(--background) / 0.6), hsl(var(--background) / 0.4), transparent)'
         }}
