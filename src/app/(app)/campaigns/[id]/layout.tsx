@@ -174,10 +174,11 @@ export default function CampaignLayout({
 
       {/* Sidebar Navigation - Fixed height with independent scroll */}
       <div
-        className="w-64 border-r border-border flex flex-col shrink-0 overflow-hidden relative z-10 mt-16"
+        className="w-64 flex flex-col shrink-0 overflow-hidden relative z-10 mt-16"
         style={{
           backdropFilter: `blur(var(--campaign-sidebar-blur, ${campaignStyle?.sidebarBlur ?? 0}px))`,
           WebkitBackdropFilter: `blur(var(--campaign-sidebar-blur, ${campaignStyle?.sidebarBlur ?? 0}px))`,
+          borderRight: `calc(1px * (1 - var(--campaign-bg-expand-to-sidebar, ${campaignStyle?.bgExpandToSidebar ? '1' : '0'}))) solid hsl(var(--border))`,
         }}
       >
         {/* Background gradient layer with opacity control */}
@@ -189,7 +190,12 @@ export default function CampaignLayout({
           }}
         />
         {/* Campaign Header - Fixed */}
-        <div className="p-3 border-b border-border shrink-0">
+        <div
+          className="p-3 shrink-0"
+          style={{
+            borderBottom: `calc(1px * (1 - var(--campaign-bg-expand-to-sidebar, ${campaignStyle?.bgExpandToSidebar ? '1' : '0'}))) solid hsl(var(--border))`,
+          }}
+        >
           <div className="flex items-center gap-3">
             {campaign.image && (
               <div className="relative w-12 h-12 rounded-md overflow-hidden shrink-0">
@@ -231,7 +237,12 @@ export default function CampaignLayout({
         </nav>
 
         {/* Settings at bottom - Fixed */}
-        <div className="p-2 border-t border-border shrink-0">
+        <div
+          className="p-2 shrink-0"
+          style={{
+            borderTop: `calc(1px * (1 - var(--campaign-bg-expand-to-sidebar, ${campaignStyle?.bgExpandToSidebar ? '1' : '0'}))) solid hsl(var(--border))`,
+          }}
+        >
           <Link href={`/campaigns/${campaign.id}/edit`}>
             <Button variant="ghost" size="sm" className="w-full justify-start gap-2">
               <Settings className="w-4 h-4" />
