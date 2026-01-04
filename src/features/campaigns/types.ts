@@ -1,9 +1,12 @@
 // Campaign types - extending from Prisma types
-import type { Campaign as PrismaCampaign, User as PrismaUser } from '@prisma/client';
+import type {
+  Campaign as PrismaCampaign,
+  User as PrismaUser,
+} from "@prisma/client";
 
 // Base Campaign type from Prisma with relations
 export interface Campaign extends PrismaCampaign {
-  owner: Pick<PrismaUser, 'id' | 'name' | 'email'>;
+  owner: Pick<PrismaUser, "id" | "name" | "email">;
 }
 
 // Form data types
@@ -11,6 +14,7 @@ export interface CampaignFormData {
   name: string;
   description?: string;
   image?: string;
+  backgroundImage?: string;
 }
 
 // API request types
@@ -18,6 +22,7 @@ export interface CreateCampaignRequest {
   name: string;
   description?: string;
   image?: string;
+  backgroundImage?: string;
 }
 
 export interface UpdateCampaignRequest {

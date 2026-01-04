@@ -22,6 +22,7 @@ const campaignSchema = z.object({
   name: z.string().min(1, 'Campaign name is required').max(255, 'Name must be less than 255 characters'),
   description: z.string().optional(),
   image: z.string().optional(),
+  backgroundImage: z.string().optional(),
 });
 
 export interface CampaignFormProps {
@@ -43,6 +44,7 @@ export default function CampaignForm({
       name: initialData?.name || '',
       description: initialData?.description || '',
       image: initialData?.image || '',
+      backgroundImage: initialData?.backgroundImage || '',
     },
   });
 
@@ -93,26 +95,49 @@ export default function CampaignForm({
           )}
         />
 
-        <FormField
-          control={form.control}
-          name="image"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Cover Image</FormLabel>
-              <FormControl>
-                <ImageUpload
-                  currentImage={field.value}
-                  onImageUpload={field.onChange}
-                  folder="campaigns"
-                />
-              </FormControl>
-              <FormDescription>
-                Upload a cover image for your campaign.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="grid gap-6 md:grid-cols-2">
+          <FormField
+            control={form.control}
+            name="image"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Cover Image</FormLabel>
+                <FormControl>
+                  <ImageUpload
+                    currentImage={field.value}
+                    onImageUpload={field.onChange}
+                    folder="campaigns"
+                  />
+                </FormControl>
+                <FormDescription>
+                  Main display image for your campaign.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="backgroundImage"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Background Image</FormLabel>
+                <FormControl>
+                  <ImageUpload
+                    currentImage={field.value}
+                    onImageUpload={field.onChange}
+                    folder="campaigns"
+                  />
+                </FormControl>
+                <FormDescription>
+                  Optional background image for your campaign.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <div className="flex justify-end gap-2">
           <Button type="submit" disabled={isLoading}>

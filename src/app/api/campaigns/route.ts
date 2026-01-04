@@ -48,7 +48,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { name, description, image } = body;
+    const { name, description, image, backgroundImage } = body;
 
     // Validate required fields
     if (!name || name.trim().length === 0) {
@@ -78,6 +78,7 @@ export async function POST(request: Request) {
         slug,
         description: description || null,
         image: image || null,
+        backgroundImage: backgroundImage || null,
         visibility: "private",
         ownerId: session.user.id,
       },

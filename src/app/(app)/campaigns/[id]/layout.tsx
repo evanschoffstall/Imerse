@@ -34,19 +34,28 @@ export default function CampaignLayout({
   const params = useParams();
   const pathname = usePathname();
   const [campaign, setCampaign] = useState<Campaign | null>(null);
+  const [campaignStyle, setCampaignStyle] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchCampaign = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(`/api/campaigns/${params.id}`);
+        const [campaignRes, styleRes] = await Promise.all([
+          fetch(`/api/campaigns/${params.id}`),
+          fetch(`/api/campaigns/${params.id}/style`),
+        ]);
 
-        if (!response.ok) {
+        if (!campaignRes.ok) {
           throw new Error('Failed to fetch campaign');
         }
 
-        const data = await response.json();
-        setCampaign(data.campaign);
+        const campaignData = await campaignRes.json();
+        setCampaign(campaignData.campaign);
+
+        if (styleRes.ok) {
+          const styleData = await styleRes.json();
+          setCampaignStyle(styleData);
+        }
       } catch (error) {
         console.error('Error fetching campaign:', error);
         toast.error('Failed to load campaign');
@@ -56,7 +65,7 @@ export default function CampaignLayout({
     };
 
     if (params.id) {
-      fetchCampaign();
+      fetchData();
     }
   }, [params.id]);
 
@@ -179,9 +188,28 @@ export default function CampaignLayout({
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 overflow-y-auto">
-        {/* Page Content */}
-        {children}
+      <div
+        className="flex-1 overflow-y-auto relative"
+        style={campaign.backgroundImage ? {
+          backgroundImage: `url(${campaign.backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        } : undefined}
+      >
+        {campaign.backgroundImage && campaignStyle && (
+          <div
+            className="absolute inset-0 bg-background"
+            style={{
+              opacity: campaignStyle.bgOpacity ?? 0.8,
+              backdropFilter: `blur(${campaignStyle.bgBlur ?? 4}px)`,
+              WebkitBackdropFilter: `blur(${campaignStyle.bgBlur ?? 4}px)`,
+            }}
+          />
+        )}
+        <div className="relative z-10">
+          {children}
+        </div>
       </div>
     </div>
   );

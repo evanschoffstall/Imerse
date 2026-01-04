@@ -12,7 +12,10 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Slider } from '@/components/ui/slider';
 import { CampaignForm, CampaignFormData } from '@/features/campaigns';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -26,22 +29,41 @@ export default function EditCampaignPage() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [initialData, setInitialData] = useState<Partial<CampaignFormData> | null>(null);
+  const [isSavingStyle, setIsSavingStyle] = useState(false);
+
+  // Background style settings
+  const [bgOpacity, setBgOpacity] = useState(0.8);
+  const [bgBlur, setBgBlur] = useState(4);
+  const [bgExpandToSidebar, setBgExpandToSidebar] = useState(false);
+  const [bgExpandToHeader, setBgExpandToHeader] = useState(false);
 
   useEffect(() => {
     const fetchCampaign = async () => {
       try {
-        const response = await fetch(`/api/campaigns/${params.id}`);
+        const [campaignRes, styleRes] = await Promise.all([
+          fetch(`/api/campaigns/${params.id}`),
+          fetch(`/api/campaigns/${params.id}/style`),
+        ]);
 
-        if (!response.ok) {
+        if (!campaignRes.ok) {
           throw new Error('Failed to fetch campaign');
         }
 
-        const data = await response.json();
+        const campaignData = await campaignRes.json();
         setInitialData({
-          name: data.campaign.name,
-          description: data.campaign.description || '',
-          image: data.campaign.image || '',
+          name: campaignData.campaign.name,
+          description: campaignData.campaign.description || '',
+          image: campaignData.campaign.image || '',
+          backgroundImage: campaignData.campaign.backgroundImage || '',
         });
+
+        if (styleRes.ok) {
+          const styleData = await styleRes.json();
+          setBgOpacity(styleData.bgOpacity ?? 0.8);
+          setBgBlur(styleData.bgBlur ?? 4);
+          setBgExpandToSidebar(styleData.bgExpandToSidebar ?? false);
+          setBgExpandToHeader(styleData.bgExpandToHeader ?? false);
+        }
       } catch (error) {
         console.error('Error fetching campaign:', error);
         toast.error('Failed to load campaign');
@@ -69,6 +91,7 @@ export default function EditCampaignPage() {
           name: data.name,
           description: data.description || '',
           image: data.image || '',
+          backgroundImage: data.backgroundImage || '',
         }),
       });
 
@@ -110,6 +133,37 @@ export default function EditCampaignPage() {
     }
   };
 
+  const handleSaveStyle = async () => {
+    setIsSavingStyle(true);
+
+    try {
+      const response = await fetch(`/api/campaigns/${params.id}/style`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          bgOpacity,
+          bgBlur,
+          bgExpandToSidebar,
+          bgExpandToHeader,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to update style');
+      }
+
+      toast.success('Background settings saved');
+    } catch (error) {
+      console.error('Error saving style:', error);
+      toast.error(error instanceof Error ? error.message : 'Failed to save settings');
+    } finally {
+      setIsSavingStyle(false);
+    }
+  };
+
   if (isLoadingData) {
     return (
       <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -147,6 +201,75 @@ export default function EditCampaignPage() {
               isLoading={isLoading}
               submitText="Update Campaign"
             />
+          </CardContent>
+        </Card>
+
+        {/* Background Settings */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Background Settings</CardTitle>
+            <CardDescription>
+              Customize how your background image is displayed
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="bg-opacity">Opacity</Label>
+                  <span className="text-sm text-muted-foreground">{Math.round(bgOpacity * 100)}%</span>
+                </div>
+                <Slider
+                  id="bg-opacity"
+                  min={0}
+                  max={1}
+                  step={0.01}
+                  value={[bgOpacity]}
+                  onValueChange={(values) => setBgOpacity(values[0])}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="bg-blur">Blur</Label>
+                  <span className="text-sm text-muted-foreground">{Math.round(bgBlur)}px</span>
+                </div>
+                <Slider
+                  id="bg-blur"
+                  min={0}
+                  max={50}
+                  step={1}
+                  value={[bgBlur]}
+                  onValueChange={(values) => setBgBlur(values[0])}
+                />
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="bg-sidebar"
+                  checked={bgExpandToSidebar}
+                  onCheckedChange={(checked) => setBgExpandToSidebar(checked as boolean)}
+                />
+                <Label htmlFor="bg-sidebar" className="cursor-pointer">
+                  Expand background to sidebar
+                </Label>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="bg-header"
+                  checked={bgExpandToHeader}
+                  onCheckedChange={(checked) => setBgExpandToHeader(checked as boolean)}
+                />
+                <Label htmlFor="bg-header" className="cursor-pointer">
+                  Expand background to header
+                </Label>
+              </div>
+            </div>
+
+            <Button onClick={handleSaveStyle} disabled={isSavingStyle}>
+              {isSavingStyle ? 'Saving...' : 'Save Background Settings'}
+            </Button>
           </CardContent>
         </Card>
 

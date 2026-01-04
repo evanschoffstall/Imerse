@@ -46,7 +46,7 @@ generated/
 generated/prisma
 
 # Pg
-db/
+database/
 
 # Storybook
 *storybook.log

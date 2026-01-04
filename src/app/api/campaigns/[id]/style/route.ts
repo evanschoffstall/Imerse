@@ -1,6 +1,6 @@
-import { authConfig } from '@/auth'
-import { getServerSession } from 'next-auth/next';
+import { authConfig } from "@/auth";
 import { prisma } from "@/lib/db";
+import { getServerSession } from "next-auth/next";
 import { NextRequest, NextResponse } from "next/server";
 
 // GET /api/campaigns/[id]/style - Get campaign style
@@ -113,7 +113,32 @@ export async function PATCH(
     }
 
     const body = await req.json();
-    const { themeId, headerImage, colors, fonts, customCSS } = body;
+    const {
+      themeId,
+      headerImage,
+      colors,
+      fonts,
+      customCSS,
+      bgOpacity,
+      bgBlur,
+      bgExpandToSidebar,
+      bgExpandToHeader,
+    } = body;
+
+    // Validate background values
+    if (bgOpacity !== undefined && (bgOpacity < 0 || bgOpacity > 1)) {
+      return NextResponse.json(
+        { error: "Background opacity must be between 0 and 1" },
+        { status: 400 }
+      );
+    }
+
+    if (bgBlur !== undefined && (bgBlur < 0 || bgBlur > 50)) {
+      return NextResponse.json(
+        { error: "Background blur must be between 0 and 50" },
+        { status: 400 }
+      );
+    }
 
     // Verify theme exists if provided
     if (themeId) {
@@ -135,6 +160,10 @@ export async function PATCH(
         ...(colors !== undefined && { colors }),
         ...(fonts !== undefined && { fonts }),
         ...(customCSS !== undefined && { customCSS }),
+        ...(bgOpacity !== undefined && { bgOpacity }),
+        ...(bgBlur !== undefined && { bgBlur }),
+        ...(bgExpandToSidebar !== undefined && { bgExpandToSidebar }),
+        ...(bgExpandToHeader !== undefined && { bgExpandToHeader }),
       },
       create: {
         campaignId: id,
@@ -143,6 +172,10 @@ export async function PATCH(
         colors: colors || {},
         fonts: fonts || {},
         customCSS,
+        bgOpacity: bgOpacity ?? 0.8,
+        bgBlur: bgBlur ?? 4,
+        bgExpandToSidebar: bgExpandToSidebar ?? false,
+        bgExpandToHeader: bgExpandToHeader ?? false,
       },
       include: {
         theme: true,
