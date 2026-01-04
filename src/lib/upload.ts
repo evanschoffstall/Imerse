@@ -1,63 +1,83 @@
-import { randomBytes } from 'crypto'
-import { existsSync } from 'fs'
-import { mkdir, unlink, writeFile } from 'fs/promises'
-import path from 'path'
-import sharp from 'sharp'
+import { createHash } from "crypto";
+import { existsSync } from "fs";
+import { mkdir, unlink, writeFile } from "fs/promises";
+import path from "path";
+import sharp from "sharp";
 
-const UPLOAD_DIR = path.join(process.cwd(), 'public', 'uploads')
-const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
-const MAX_DIMENSION = 1200
+const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+const MAX_DIMENSION = 1200;
+
+/**
+ * Calculate SHA-256 hash of a buffer
+ */
+function calculateHash(buffer: Buffer): string {
+  return createHash("sha256").update(buffer).digest("hex");
+}
 
 /**
  * Upload and optimize an image to the local file system
+ * Uses content-based hashing to deduplicate files - identical files will reuse the same path
  * @param file - The file to upload
  * @param folder - Subfolder within uploads (e.g., 'campaigns', 'characters')
  * @returns The relative URL path to the uploaded file
  */
 export async function uploadImage(
   file: File,
-  folder: string = 'general'
+  folder: string = "general"
 ): Promise<string> {
   // Validate file size
   if (file.size > MAX_FILE_SIZE) {
-    throw new Error(`File size exceeds ${MAX_FILE_SIZE / 1024 / 1024}MB limit`)
+    throw new Error(`File size exceeds ${MAX_FILE_SIZE / 1024 / 1024}MB limit`);
   }
 
   // Validate file type
-  const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
+  const validTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"];
   if (!validTypes.includes(file.type)) {
-    throw new Error('Invalid file type. Only JPG, PNG, WebP, and GIF are allowed.')
+    throw new Error(
+      "Invalid file type. Only JPG, PNG, WebP, and GIF are allowed."
+    );
   }
 
   // Create folder if it doesn't exist
-  const folderPath = path.join(UPLOAD_DIR, folder)
+  const folderPath = path.join(UPLOAD_DIR, folder);
   if (!existsSync(folderPath)) {
-    await mkdir(folderPath, { recursive: true })
+    await mkdir(folderPath, { recursive: true });
   }
 
-  // Generate unique filename
-  const ext = 'webp' // Always convert to WebP for optimal compression
-  const filename = `${Date.now()}-${randomBytes(8).toString('hex')}.${ext}`
-  const filePath = path.join(folderPath, filename)
-
   // Read file buffer
-  const arrayBuffer = await file.arrayBuffer()
-  const buffer = Buffer.from(arrayBuffer)
+  const arrayBuffer = await file.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
 
-  // Optimize image with Sharp
+  // Optimize image with Sharp (this is what we'll actually store)
   const optimizedBuffer = await sharp(buffer)
     .resize(MAX_DIMENSION, MAX_DIMENSION, {
-      fit: 'inside',
+      fit: "inside",
       withoutEnlargement: true,
     })
     .webp({ quality: 80 })
-    .toBuffer()
+    .toBuffer();
 
-  // Write to file system
-  await writeFile(filePath, optimizedBuffer)
+  // Calculate hash of the OPTIMIZED buffer (so same source image = same hash)
+  const hash = calculateHash(optimizedBuffer);
+
+  // Generate filename based on hash
+  const ext = "webp"; // Always convert to WebP for optimal compression
+  const filename = `${hash}.${ext}`;
+  const filePath = path.join(folderPath, filename);
+  const relativeUrl = `/uploads/${folder}/${filename}`;
+
+  // Check if file with this hash already exists
+  if (existsSync(filePath)) {
+    // File already exists, return existing path (deduplication)
+    return relativeUrl;
+  }
+
+  // Write new file to file system
+  await writeFile(filePath, optimizedBuffer);
 
   // Return relative URL path
-  return `/uploads/${folder}/${filename}`
+  return relativeUrl;
 }
 
 /**
@@ -65,14 +85,14 @@ export async function uploadImage(
  * @param imagePath - The relative URL path (e.g., '/uploads/campaigns/123.webp')
  */
 export async function deleteImage(imagePath: string): Promise<void> {
-  if (!imagePath.startsWith('/uploads/')) {
-    throw new Error('Invalid image path')
+  if (!imagePath.startsWith("/uploads/")) {
+    throw new Error("Invalid image path");
   }
 
-  const filePath = path.join(process.cwd(), 'public', imagePath)
-  
+  const filePath = path.join(process.cwd(), "public", imagePath);
+
   if (existsSync(filePath)) {
-    await unlink(filePath)
+    await unlink(filePath);
   }
 }
 
@@ -82,11 +102,11 @@ export async function deleteImage(imagePath: string): Promise<void> {
  * @returns Absolute file system path
  */
 export function getImagePath(imagePath: string): string {
-  if (!imagePath.startsWith('/uploads/')) {
-    throw new Error('Invalid image path')
+  if (!imagePath.startsWith("/uploads/")) {
+    throw new Error("Invalid image path");
   }
-  
-  return path.join(process.cwd(), 'public', imagePath)
+
+  return path.join(process.cwd(), "public", imagePath);
 }
 
 /**
@@ -96,9 +116,9 @@ export function getImagePath(imagePath: string): string {
  */
 export function imageExists(imagePath: string): boolean {
   try {
-    return existsSync(getImagePath(imagePath))
+    return existsSync(getImagePath(imagePath));
   } catch {
-    return false
+    return false;
   }
 }
 
@@ -107,27 +127,27 @@ export function imageExists(imagePath: string): boolean {
  */
 export async function initializeUploadDirectories(): Promise<void> {
   const folders = [
-    'campaigns',
-    'characters',
-    'locations',
-    'locations/maps',
-    'items',
-    'quests',
-    'events',
-    'journals',
-    'notes',
-    'families',
-    'races',
-    'organisations',
-    'timelines',
-    'maps',
-    'general',
-  ]
+    "campaigns",
+    "characters",
+    "locations",
+    "locations/maps",
+    "items",
+    "quests",
+    "events",
+    "journals",
+    "notes",
+    "families",
+    "races",
+    "organisations",
+    "timelines",
+    "maps",
+    "general",
+  ];
 
   for (const folder of folders) {
-    const folderPath = path.join(UPLOAD_DIR, folder)
+    const folderPath = path.join(UPLOAD_DIR, folder);
     if (!existsSync(folderPath)) {
-      await mkdir(folderPath, { recursive: true })
+      await mkdir(folderPath, { recursive: true });
     }
   }
 }

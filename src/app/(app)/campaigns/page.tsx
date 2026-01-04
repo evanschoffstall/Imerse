@@ -6,6 +6,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import type { Campaign } from '@/features/campaigns';
 import { extractTextFromLexical, truncateText } from '@/lib/lexical-utils';
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -65,7 +66,7 @@ export default function CampaignsPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 mt-16">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-4xl font-bold">Campaigns</h1>
         <Link href="/campaigns/new">
@@ -105,17 +106,28 @@ export default function CampaignsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="campaigns-list">
           {campaigns.map((campaign) => (
             <Link key={campaign.id} href={`/campaigns/${campaign.id}`} data-testid="campaign-card">
-              <Card className="h-full transition-shadow hover:shadow-lg">
-                <CardHeader>
-                  <CardTitle>{campaign.name}</CardTitle>
+              <Card className="group overflow-hidden border bg-card transition-all hover:shadow-lg h-full">
+                {campaign.image && (
+                  <div className="relative h-40 w-full overflow-hidden bg-muted">
+                    <Image
+                      src={campaign.image}
+                      alt={campaign.name}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
+                )}
+                <CardHeader className="pb-3">
+                  <CardTitle className="line-clamp-1 text-lg">{campaign.name}</CardTitle>
                   {campaign.description && (
-                    <CardDescription className="line-clamp-3">
+                    <CardDescription className="line-clamp-2 mt-1">
                       {truncateText(extractTextFromLexical(campaign.description))}
                     </CardDescription>
                   )}
                 </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
+                <CardContent className="pb-4 pt-0">
+                  <p className="text-xs text-muted-foreground">
                     Updated {new Date(campaign.updatedAt).toLocaleDateString()}
                   </p>
                 </CardContent>

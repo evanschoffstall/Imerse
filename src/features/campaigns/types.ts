@@ -1,7 +1,7 @@
 // Campaign types - extending from Prisma types
 import type {
-  Campaign as PrismaCampaign,
-  User as PrismaUser,
+  campaigns as PrismaCampaign,
+  users as PrismaUser,
 } from "@prisma/client";
 
 // Base Campaign type from Prisma with relations
