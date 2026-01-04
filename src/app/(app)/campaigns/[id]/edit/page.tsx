@@ -36,6 +36,8 @@ export default function EditCampaignPage() {
   const [bgBlur, setBgBlur] = useState(4);
   const [bgExpandToSidebar, setBgExpandToSidebar] = useState(false);
   const [bgExpandToHeader, setBgExpandToHeader] = useState(false);
+  const [headerBgOpacity, setHeaderBgOpacity] = useState(0.95);
+  const [sidebarBgOpacity, setSidebarBgOpacity] = useState(1.0);
 
   useEffect(() => {
     const fetchCampaign = async () => {
@@ -63,6 +65,8 @@ export default function EditCampaignPage() {
           setBgBlur(styleData.bgBlur ?? 4);
           setBgExpandToSidebar(styleData.bgExpandToSidebar ?? false);
           setBgExpandToHeader(styleData.bgExpandToHeader ?? false);
+          setHeaderBgOpacity(styleData.headerBgOpacity ?? 0.95);
+          setSidebarBgOpacity(styleData.sidebarBgOpacity ?? 1.0);
         }
       } catch (error) {
         console.error('Error fetching campaign:', error);
@@ -147,6 +151,8 @@ export default function EditCampaignPage() {
           bgBlur,
           bgExpandToSidebar,
           bgExpandToHeader,
+          headerBgOpacity,
+          sidebarBgOpacity,
         }),
       });
 
@@ -156,6 +162,9 @@ export default function EditCampaignPage() {
       }
 
       toast.success('Background settings saved');
+
+      // Reload to apply changes
+      window.location.reload();
     } catch (error) {
       console.error('Error saving style:', error);
       toast.error(error instanceof Error ? error.message : 'Failed to save settings');
@@ -216,7 +225,7 @@ export default function EditCampaignPage() {
             <div className="space-y-4">
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="bg-opacity">Opacity</Label>
+                  <Label htmlFor="bg-opacity">Background Overlay Opacity</Label>
                   <span className="text-sm text-muted-foreground">{Math.round(bgOpacity * 100)}%</span>
                 </div>
                 <Slider
@@ -231,7 +240,7 @@ export default function EditCampaignPage() {
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="bg-blur">Blur</Label>
+                  <Label htmlFor="bg-blur">Background Blur</Label>
                   <span className="text-sm text-muted-foreground">{Math.round(bgBlur)}px</span>
                 </div>
                 <Slider
@@ -241,6 +250,36 @@ export default function EditCampaignPage() {
                   step={1}
                   value={[bgBlur]}
                   onValueChange={(values) => setBgBlur(values[0])}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="header-opacity">Header Background Opacity</Label>
+                  <span className="text-sm text-muted-foreground">{Math.round(headerBgOpacity * 100)}%</span>
+                </div>
+                <Slider
+                  id="header-opacity"
+                  min={0}
+                  max={1}
+                  step={0.01}
+                  value={[headerBgOpacity]}
+                  onValueChange={(values) => setHeaderBgOpacity(values[0])}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="sidebar-opacity">Sidebar Background Opacity</Label>
+                  <span className="text-sm text-muted-foreground">{Math.round(sidebarBgOpacity * 100)}%</span>
+                </div>
+                <Slider
+                  id="sidebar-opacity"
+                  min={0}
+                  max={1}
+                  step={0.01}
+                  value={[sidebarBgOpacity]}
+                  onValueChange={(values) => setSidebarBgOpacity(values[0])}
                 />
               </div>
 

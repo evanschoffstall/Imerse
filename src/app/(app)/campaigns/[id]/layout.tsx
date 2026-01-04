@@ -131,9 +131,41 @@ export default function CampaignLayout({
   };
 
   return (
-    <div className="flex h-[calc(100vh-4rem)] bg-background">
+    <div className="flex h-[calc(100vh-4rem)] bg-background relative">
+      {/* Fixed background image layer */}
+      {campaign.backgroundImage && (
+        <div
+          className="fixed inset-0 top-16 pointer-events-none"
+          style={{
+            backgroundImage: `url(${campaign.backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+            zIndex: 0,
+          }}
+        />
+      )}
+
+      {/* Fixed background overlay with opacity and blur */}
+      {campaign.backgroundImage && campaignStyle && (
+        <div
+          className="fixed inset-0 top-16 pointer-events-none"
+          style={{
+            backgroundColor: `hsl(var(--background) / ${campaignStyle.bgOpacity ?? 0.8})`,
+            backdropFilter: `blur(${campaignStyle.bgBlur ?? 4}px)`,
+            WebkitBackdropFilter: `blur(${campaignStyle.bgBlur ?? 4}px)`,
+            zIndex: 1,
+          }}
+        />
+      )}
+
       {/* Sidebar Navigation - Fixed height with independent scroll */}
-      <div className="w-64 border-r border-border bg-card flex flex-col shrink-0 overflow-hidden">
+      <div
+        className="w-64 border-r border-border flex flex-col shrink-0 overflow-hidden relative z-10"
+        style={{
+          backgroundColor: `hsl(var(--card) / ${campaignStyle?.sidebarBgOpacity ?? 1})`
+        }}
+      >
         {/* Campaign Header - Fixed */}
         <div className="p-3 border-b border-border shrink-0">
           <div className="flex items-center gap-3">
@@ -188,28 +220,8 @@ export default function CampaignLayout({
       </div>
 
       {/* Main Content Area */}
-      <div
-        className="flex-1 overflow-y-auto relative"
-        style={campaign.backgroundImage ? {
-          backgroundImage: `url(${campaign.backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        } : undefined}
-      >
-        {campaign.backgroundImage && campaignStyle && (
-          <div
-            className="absolute inset-0 bg-background"
-            style={{
-              opacity: campaignStyle.bgOpacity ?? 0.8,
-              backdropFilter: `blur(${campaignStyle.bgBlur ?? 4}px)`,
-              WebkitBackdropFilter: `blur(${campaignStyle.bgBlur ?? 4}px)`,
-            }}
-          />
-        )}
-        <div className="relative z-10">
-          {children}
-        </div>
+      <div className="flex-1 overflow-y-auto relative z-10">
+        {children}
       </div>
     </div>
   );

@@ -1284,6 +1284,8 @@ model CampaignStyle {
   bgBlur              Float    @default(4)
   bgExpandToSidebar   Boolean  @default(false)
   bgExpandToHeader    Boolean  @default(false)
+  headerBgOpacity     Float    @default(0.95)
+  sidebarBgOpacity    Float    @default(1.0)
   themeId             String?
   campaignId          String   @unique
   createdAt           DateTime @default(now())

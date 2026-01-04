@@ -123,6 +123,8 @@ export async function PATCH(
       bgBlur,
       bgExpandToSidebar,
       bgExpandToHeader,
+      headerBgOpacity,
+      sidebarBgOpacity,
     } = body;
 
     // Validate background values
@@ -136,6 +138,26 @@ export async function PATCH(
     if (bgBlur !== undefined && (bgBlur < 0 || bgBlur > 50)) {
       return NextResponse.json(
         { error: "Background blur must be between 0 and 50" },
+        { status: 400 }
+      );
+    }
+
+    if (
+      headerBgOpacity !== undefined &&
+      (headerBgOpacity < 0 || headerBgOpacity > 1)
+    ) {
+      return NextResponse.json(
+        { error: "Header background opacity must be between 0 and 1" },
+        { status: 400 }
+      );
+    }
+
+    if (
+      sidebarBgOpacity !== undefined &&
+      (sidebarBgOpacity < 0 || sidebarBgOpacity > 1)
+    ) {
+      return NextResponse.json(
+        { error: "Sidebar background opacity must be between 0 and 1" },
         { status: 400 }
       );
     }
@@ -164,6 +186,8 @@ export async function PATCH(
         ...(bgBlur !== undefined && { bgBlur }),
         ...(bgExpandToSidebar !== undefined && { bgExpandToSidebar }),
         ...(bgExpandToHeader !== undefined && { bgExpandToHeader }),
+        ...(headerBgOpacity !== undefined && { headerBgOpacity }),
+        ...(sidebarBgOpacity !== undefined && { sidebarBgOpacity }),
       },
       create: {
         campaignId: id,
@@ -176,6 +200,8 @@ export async function PATCH(
         bgBlur: bgBlur ?? 4,
         bgExpandToSidebar: bgExpandToSidebar ?? false,
         bgExpandToHeader: bgExpandToHeader ?? false,
+        headerBgOpacity: headerBgOpacity ?? 0.95,
+        sidebarBgOpacity: sidebarBgOpacity ?? 1.0,
       },
       include: {
         theme: true,
