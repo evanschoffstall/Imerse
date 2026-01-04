@@ -148,7 +148,7 @@ export default function CampaignLayout({
             backgroundAttachment: 'fixed',
             zIndex: 0,
             top: `calc(var(--campaign-bg-expand-to-header, ${campaignStyle?.bgExpandToHeader ? '1' : '0'}) * 0px + (1 - var(--campaign-bg-expand-to-header, ${campaignStyle?.bgExpandToHeader ? '1' : '0'})) * 4rem)`,
-            left: `calc(var(--campaign-bg-expand-to-sidebar, ${campaignStyle?.bgExpandToSidebar ? '1' : '0'}) * 0px + (1 - var(--campaign-bg-expand-to-sidebar, ${campaignStyle?.bgExpandToSidebar ? '1' : '0'})) * 16rem)`,
+            left: `calc(var(--campaign-bg-expand-to-sidebar, ${campaignStyle?.bgExpandToSidebar ? '1' : '0'}) * 0px + (1 - var(--campaign-bg-expand-to-sidebar, ${campaignStyle?.bgExpandToSidebar ? '1' : '0'})) * 13rem)`,
             right: '0',
             bottom: '0',
           }}
@@ -165,7 +165,7 @@ export default function CampaignLayout({
             WebkitBackdropFilter: `blur(var(--campaign-bg-blur, ${campaignStyle?.bgBlur ?? 4}px))`,
             zIndex: 1,
             top: `calc(var(--campaign-bg-expand-to-header, ${campaignStyle?.bgExpandToHeader ? '1' : '0'}) * 0px + (1 - var(--campaign-bg-expand-to-header, ${campaignStyle?.bgExpandToHeader ? '1' : '0'})) * 4rem)`,
-            left: `calc(var(--campaign-bg-expand-to-sidebar, ${campaignStyle?.bgExpandToSidebar ? '1' : '0'}) * 0px + (1 - var(--campaign-bg-expand-to-sidebar, ${campaignStyle?.bgExpandToSidebar ? '1' : '0'})) * 16rem)`,
+            left: `calc(var(--campaign-bg-expand-to-sidebar, ${campaignStyle?.bgExpandToSidebar ? '1' : '0'}) * 0px + (1 - var(--campaign-bg-expand-to-sidebar, ${campaignStyle?.bgExpandToSidebar ? '1' : '0'})) * 13rem)`,
             right: '0',
             bottom: '0',
           }}
@@ -174,7 +174,7 @@ export default function CampaignLayout({
 
       {/* Sidebar Navigation - Fixed height with independent scroll */}
       <div
-        className="w-64 flex flex-col shrink-0 overflow-hidden relative z-10 mt-16"
+        className="w-52 flex flex-col shrink-0 overflow-hidden relative z-10 mt-16"
         style={{
           backdropFilter: `blur(var(--campaign-sidebar-blur, ${campaignStyle?.sidebarBlur ?? 0}px))`,
           WebkitBackdropFilter: `blur(var(--campaign-sidebar-blur, ${campaignStyle?.sidebarBlur ?? 0}px))`,
