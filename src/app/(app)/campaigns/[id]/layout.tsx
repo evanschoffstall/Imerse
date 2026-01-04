@@ -168,11 +168,18 @@ export default function CampaignLayout({
       <div
         className="w-64 border-r border-border flex flex-col shrink-0 overflow-hidden relative z-10 mt-16"
         style={{
-          backgroundColor: `hsl(var(--card) / ${campaignStyle?.sidebarBgOpacity ?? 1})`,
           backdropFilter: campaignStyle?.sidebarBlur !== undefined ? `blur(${campaignStyle.sidebarBlur}px)` : undefined,
           WebkitBackdropFilter: campaignStyle?.sidebarBlur !== undefined ? `blur(${campaignStyle.sidebarBlur}px)` : undefined,
         }}
       >
+        {/* Background gradient layer with opacity control */}
+        <div
+          className="absolute inset-0 -z-10"
+          style={{
+            background: 'linear-gradient(to right, hsl(var(--card)), hsl(var(--card) / 0.7), transparent)',
+            opacity: campaignStyle?.sidebarBgOpacity ?? 1.0,
+          }}
+        />
         {/* Campaign Header - Fixed */}
         <div className="p-3 border-b border-border shrink-0">
           <div className="flex items-center gap-3">
