@@ -3,11 +3,11 @@ import { defineConfig, env } from "prisma/config";
 
 export default defineConfig({
   // The main entry for your schema
-  schema: "prisma/schema.prisma",
+  schema: "database/prisma/schema.prisma",
 
   // Where migrations should be generated
   migrations: {
-    path: "database/migrations",
+    path: "database/prisma/migrations",
   },
 
   // The database URL

@@ -1,0 +1,1327 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model abilities {
+  id               String             @id
+  name             String
+  entry            String?
+  charges          Int?
+  type             String?
+  isPrivate        Boolean            @default(false)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime
+  campaignId       String
+  createdById      String
+  parentId         String?
+  campaigns        campaigns          @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users            users              @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  abilities        abilities?         @relation("abilitiesToabilities", fields: [parentId], references: [id])
+  other_abilities  abilities[]        @relation("abilitiesToabilities")
+  entity_abilities entity_abilities[]
+
+  @@index([campaignId])
+  @@index([campaignId, name])
+  @@index([parentId])
+}
+
+model attribute_templates {
+  id          String    @id
+  name        String
+  slug        String
+  description String?
+  config      Json      @default("{}")
+  entityType  String?
+  isPublic    Boolean   @default(false)
+  position    Int       @default(0)
+  campaignId  String
+  createdById String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  campaigns   campaigns @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users       users     @relation(fields: [createdById], references: [id])
+
+  @@unique([campaignId, slug])
+  @@index([campaignId])
+  @@index([entityType])
+}
+
+model attributes {
+  id          String    @id
+  entityType  String
+  entityId    String
+  key         String
+  value       String
+  type        String    @default("text")
+  category    String?
+  order       Int       @default(0)
+  isPrivate   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  campaignId  String
+  createdById String
+  campaigns   campaigns @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users       users     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@unique([entityType, entityId, key])
+  @@index([campaignId])
+  @@index([entityType, entityId])
+}
+
+model bookmarks {
+  id             String         @id
+  name           String
+  icon           String?
+  color          String?
+  type           String         @default("entity")
+  config         Json           @default("{}")
+  folder         String?
+  position       Int            @default(0)
+  campaignId     String
+  userId         String
+  characterId    String?
+  locationId     String?
+  itemId         String?
+  questId        String?
+  eventId        String?
+  journalId      String?
+  familyId       String?
+  organisationId String?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime
+  campaigns      campaigns      @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  characters     characters?    @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  events         events?        @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  families       families?      @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  items          items?         @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  journals       journals?      @relation(fields: [journalId], references: [id], onDelete: Cascade)
+  locations      locations?     @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  organisations  organisations? @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  quests         quests?        @relation(fields: [questId], references: [id], onDelete: Cascade)
+  users          users          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([campaignId])
+  @@index([characterId])
+  @@index([folder])
+  @@index([locationId])
+  @@index([userId])
+}
+
+model calendar_weather {
+  id            String    @id
+  date          String
+  weatherType   String?
+  temperature   String?
+  precipitation String?
+  wind          String?
+  effect        String?
+  visibility    String    @default("all")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime
+  calendarId    String
+  calendars     calendars @relation(fields: [calendarId], references: [id], onDelete: Cascade)
+
+  @@index([calendarId, date])
+  @@index([calendarId])
+}
+
+model calendars {
+  id               String             @id
+  name             String
+  slug             String
+  description      String?
+  image            String?
+  date             String?
+  months           Json?
+  weekdays         Json?
+  years            Json?
+  seasons          Json?
+  moons            Json?
+  weekNames        Json?
+  monthAliases     Json?
+  suffix           String?
+  format           String?
+  hasLeapYear      Boolean            @default(false)
+  leapYearAmount   Int?
+  leapYearMonth    Int?
+  leapYearOffset   Int?
+  leapYearStart    Int?
+  startOffset      Int                @default(0)
+  skipYearZero     Boolean            @default(false)
+  showBirthdays    Boolean            @default(true)
+  parameters       Json?
+  isPrivate        Boolean            @default(false)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime
+  parentId         String?
+  campaignId       String
+  createdById      String
+  calendar_weather calendar_weather[]
+  campaigns        campaigns          @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users            users              @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  calendars        calendars?         @relation("calendarsTocalendars", fields: [parentId], references: [id])
+  other_calendars  calendars[]        @relation("calendarsTocalendars")
+  characters       characters[]
+  events           events[]
+  reminders        reminders[]
+
+  @@unique([campaignId, slug])
+  @@index([campaignId])
+  @@index([parentId])
+}
+
+model campaign_dashboard_roles {
+  id                  String              @id
+  dashboardId         String
+  roleId              String
+  canEdit             Boolean             @default(false)
+  canView             Boolean             @default(true)
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime
+  campaign_dashboards campaign_dashboards @relation(fields: [dashboardId], references: [id], onDelete: Cascade)
+
+  @@unique([dashboardId, roleId])
+  @@index([dashboardId])
+}
+
+model campaign_dashboard_widget_tags {
+  id                         String                     @id
+  widgetId                   String
+  tagId                      String
+  createdAt                  DateTime                   @default(now())
+  tags                       tags                       @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  campaign_dashboard_widgets campaign_dashboard_widgets @relation(fields: [widgetId], references: [id], onDelete: Cascade)
+
+  @@unique([widgetId, tagId])
+  @@index([tagId])
+  @@index([widgetId])
+}
+
+model campaign_dashboard_widgets {
+  id                             String                           @id
+  type                           String
+  title                          String
+  config                         Json                             @default("{}")
+  x                              Int
+  y                              Int
+  width                          Int                              @default(4)
+  height                         Int                              @default(4)
+  dashboardId                    String
+  createdAt                      DateTime                         @default(now())
+  updatedAt                      DateTime
+  campaign_dashboard_widget_tags campaign_dashboard_widget_tags[]
+  campaign_dashboards            campaign_dashboards              @relation(fields: [dashboardId], references: [id], onDelete: Cascade)
+
+  @@index([dashboardId])
+  @@index([type])
+}
+
+model campaign_dashboards {
+  id                         String                       @id
+  name                       String
+  slug                       String
+  description                String?
+  isDefault                  Boolean                      @default(false)
+  visibility                 String                       @default("members")
+  layout                     Json                         @default("{}")
+  position                   Int                          @default(0)
+  campaignId                 String
+  createdById                String
+  createdAt                  DateTime                     @default(now())
+  updatedAt                  DateTime
+  campaign_dashboard_roles   campaign_dashboard_roles[]
+  campaign_dashboard_widgets campaign_dashboard_widgets[]
+  campaigns                  campaigns                    @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users                      users                        @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@unique([campaignId, slug])
+  @@index([campaignId])
+  @@index([isDefault])
+}
+
+model campaign_roles {
+  id               String             @id
+  campaignId       String
+  userId           String
+  role             String
+  isAdmin          Boolean            @default(false)
+  permissions      Json?
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime
+  campaigns        campaigns          @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users            users              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post_permissions post_permissions[]
+
+  @@unique([campaignId, userId])
+}
+
+model campaign_styles {
+  id                String    @id
+  headerImage       String?
+  colors            Json      @default("{}")
+  fonts             Json      @default("{}")
+  customCSS         String?
+  themeId           String?
+  campaignId        String    @unique
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime
+  bgOpacity         Float?    @default(0.8)
+  bgBlur            Float?    @default(4)
+  bgExpandToSidebar Boolean?  @default(false)
+  bgExpandToHeader  Boolean?  @default(false)
+  headerBgOpacity   Float?    @default(0.95)
+  sidebarBgOpacity  Float?    @default(1.0)
+  headerBlur        Float?    @default(0)
+  sidebarBlur       Float?    @default(0)
+  campaigns         campaigns @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  themes            themes?   @relation(fields: [themeId], references: [id])
+
+  @@index([themeId])
+}
+
+model campaigns {
+  id                  String                @id
+  name                String
+  slug                String                @unique
+  description         String?
+  image               String?
+  backgroundImage     String?
+  visibility          String                @default("private")
+  locale              String                @default("en")
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime
+  ownerId             String
+  abilities           abilities[]
+  attribute_templates attribute_templates[]
+  attributes          attributes[]
+  bookmarks           bookmarks[]
+  calendars           calendars[]
+  campaign_dashboards campaign_dashboards[]
+  campaign_roles      campaign_roles[]
+  campaign_styles     campaign_styles?
+  users               users                 @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  characters          characters[]
+  conversations       conversations[]
+  creatures           creatures[]
+  dice_rolls          dice_rolls[]
+  entity_logs         entity_logs[]
+  events              events[]
+  families            families[]
+  images              images[]
+  items               items[]
+  journals            journals[]
+  locations           locations[]
+  maps                maps[]
+  notes               notes[]
+  notifications       notifications[]
+  organisations       organisations[]
+  posts               posts[]
+  presets             presets[]
+  quests              quests[]
+  races               races[]
+  relations           relations[]
+  relationships       relationships[]
+  reminders           reminders[]
+  tags                tags[]
+  timelines           timelines[]
+  versions            versions[]
+  whiteboards         whiteboards[]
+}
+
+model characters {
+  id                        String                      @id
+  name                      String
+  slug                      String
+  title                     String?
+  type                      String?
+  age                       String?
+  sex                       String?
+  pronouns                  String?
+  location                  String?
+  family                    String?
+  description               String?
+  imageId                   String?
+  isPrivate                 Boolean                     @default(false)
+  birthCalendarId           String?
+  birthDate                 String?
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime
+  campaignId                String
+  createdById               String
+  bookmarks                 bookmarks[]
+  calendars                 calendars?                  @relation(fields: [birthCalendarId], references: [id])
+  campaigns                 campaigns                   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users                     users                       @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  images                    images?                     @relation(fields: [imageId], references: [id])
+  conversation_messages     conversation_messages[]
+  conversation_participants conversation_participants[]
+  dice_rolls                dice_rolls[]
+  entity_assets             entity_assets[]
+  image_mentions            image_mentions[]
+  posts                     posts[]
+
+  @@unique([campaignId, slug])
+}
+
+model conversation_messages {
+  id                                             String        @id
+  message                                        String
+  createdAt                                      DateTime      @default(now())
+  conversationId                                 String
+  userId                                         String?
+  characterId                                    String?
+  createdById                                    String
+  characters                                     characters?   @relation(fields: [characterId], references: [id])
+  conversations                                  conversations @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  users_conversation_messages_createdByIdTousers users         @relation("conversation_messages_createdByIdTousers", fields: [createdById], references: [id], onDelete: Cascade)
+  users_conversation_messages_userIdTousers      users?        @relation("conversation_messages_userIdTousers", fields: [userId], references: [id])
+
+  @@index([characterId])
+  @@index([conversationId, createdAt])
+  @@index([conversationId])
+  @@index([userId])
+}
+
+model conversation_participants {
+  id             String        @id
+  createdAt      DateTime      @default(now())
+  conversationId String
+  userId         String?
+  characterId    String?
+  characters     characters?   @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  conversations  conversations @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  users          users?        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([conversationId, userId, characterId])
+  @@index([characterId])
+  @@index([conversationId])
+  @@index([userId])
+}
+
+model conversations {
+  id                        String                      @id
+  name                      String
+  target                    String                      @default("characters")
+  isPrivate                 Boolean                     @default(false)
+  isClosed                  Boolean                     @default(false)
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime
+  campaignId                String
+  createdById               String
+  conversation_messages     conversation_messages[]
+  conversation_participants conversation_participants[]
+  campaigns                 campaigns                   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users                     users                       @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@index([campaignId])
+  @@index([campaignId, name])
+  @@index([isClosed])
+}
+
+model creature_locations {
+  id         String    @id
+  createdAt  DateTime  @default(now())
+  creatureId String
+  locationId String
+  creatures  creatures @relation(fields: [creatureId], references: [id], onDelete: Cascade)
+  locations  locations @relation(fields: [locationId], references: [id], onDelete: Cascade)
+
+  @@unique([creatureId, locationId])
+  @@index([creatureId])
+  @@index([locationId])
+}
+
+model creatures {
+  id                 String               @id
+  name               String
+  entry              String?
+  type               String?
+  image              String?
+  isExtinct          Boolean              @default(false)
+  isDead             Boolean              @default(false)
+  isPrivate          Boolean              @default(false)
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime
+  campaignId         String
+  createdById        String
+  parentId           String?
+  creature_locations creature_locations[]
+  campaigns          campaigns            @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users              users                @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  creatures          creatures?           @relation("creaturesTocreatures", fields: [parentId], references: [id])
+  other_creatures    creatures[]          @relation("creaturesTocreatures")
+
+  @@index([campaignId])
+  @@index([campaignId, name])
+  @@index([parentId])
+  @@index([type])
+}
+
+model dice_roll_results {
+  id          String     @id
+  results     String
+  isPrivate   Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  diceRollId  String
+  createdById String
+  users       users      @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  dice_rolls  dice_rolls @relation(fields: [diceRollId], references: [id], onDelete: Cascade)
+
+  @@index([createdById])
+  @@index([diceRollId, createdAt])
+  @@index([diceRollId])
+}
+
+model dice_rolls {
+  id                String              @id
+  name              String
+  system            String?
+  parameters        String
+  isPrivate         Boolean             @default(false)
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime
+  campaignId        String
+  createdById       String
+  characterId       String?
+  dice_roll_results dice_roll_results[]
+  campaigns         campaigns           @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  characters        characters?         @relation(fields: [characterId], references: [id])
+  users             users               @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@index([campaignId])
+  @@index([campaignId, name])
+  @@index([characterId])
+}
+
+model entity_abilities {
+  id          String    @id
+  charges     Int?
+  position    Int       @default(0)
+  note        String?
+  isPrivate   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  entityId    String
+  entityType  String
+  abilityId   String
+  createdById String
+  abilities   abilities @relation(fields: [abilityId], references: [id], onDelete: Cascade)
+  users       users     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@index([abilityId])
+  @@index([entityType, entityId])
+  @@index([entityType, entityId, position])
+}
+
+model entity_assets {
+  id          String      @id
+  metadata    Json?
+  imageId     String
+  characterId String?
+  locationId  String?
+  createdAt   DateTime    @default(now())
+  characters  characters? @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  images      images      @relation(fields: [imageId], references: [id], onDelete: Cascade)
+  locations   locations?  @relation(fields: [locationId], references: [id], onDelete: Cascade)
+
+  @@index([characterId])
+  @@index([imageId])
+  @@index([locationId])
+}
+
+model entity_event_types {
+  id          String      @id
+  name        String      @unique
+  description String?
+  icon        String?
+  color       String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime
+  reminders   reminders[]
+}
+
+model entity_logs {
+  id         String    @id
+  entityType String
+  entityId   String
+  action     String
+  changes    Json      @default("{}")
+  ipAddress  String?
+  userAgent  String?
+  userId     String?
+  campaignId String
+  createdAt  DateTime  @default(now())
+  campaigns  campaigns @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users      users?    @relation(fields: [userId], references: [id])
+
+  @@index([action])
+  @@index([campaignId])
+  @@index([createdAt])
+  @@index([entityType, entityId])
+  @@index([userId])
+}
+
+model events {
+  id             String      @id
+  name           String
+  slug           String
+  type           String?
+  date           String?
+  description    String?
+  image          String?
+  location       String?
+  isPrivate      Boolean     @default(false)
+  calendarId     String?
+  calendarDate   String?
+  isRecurring    Boolean     @default(false)
+  recurrenceRule Json?
+  timelineId     String?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime
+  campaignId     String
+  createdById    String
+  bookmarks      bookmarks[]
+  calendars      calendars?  @relation(fields: [calendarId], references: [id])
+  campaigns      campaigns   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users          users       @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  timelines      timelines?  @relation(fields: [timelineId], references: [id])
+  posts          posts[]
+
+  @@unique([campaignId, slug])
+}
+
+model families {
+  id          String      @id
+  name        String
+  slug        String
+  type        String?
+  description String?
+  image       String?
+  location    String?
+  isPrivate   Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime
+  campaignId  String
+  createdById String
+  bookmarks   bookmarks[]
+  campaigns   campaigns   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users       users       @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  posts       posts[]
+
+  @@unique([campaignId, slug])
+}
+
+model image_mentions {
+  id          String      @id
+  imageId     String
+  characterId String?
+  locationId  String?
+  postId      String?
+  createdAt   DateTime    @default(now())
+  characters  characters? @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  images      images      @relation(fields: [imageId], references: [id], onDelete: Cascade)
+  locations   locations?  @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  posts       posts?      @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([characterId])
+  @@index([imageId])
+  @@index([locationId])
+  @@index([postId])
+}
+
+model images {
+  id             String           @id
+  name           String
+  ext            String
+  size           Int
+  width          Int?
+  height         Int?
+  focusX         Int?
+  focusY         Int?
+  isFolder       Boolean          @default(false)
+  isDefault      Boolean          @default(false)
+  visibility     Int              @default(0)
+  campaignId     String
+  folderId       String?
+  createdBy      String
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime
+  characters     characters[]
+  entity_assets  entity_assets[]
+  image_mentions image_mentions[]
+  campaigns      campaigns        @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users          users            @relation(fields: [createdBy], references: [id])
+  images         images?          @relation("imagesToimages", fields: [folderId], references: [id], onDelete: Cascade)
+  other_images   images[]         @relation("imagesToimages")
+  locations      locations[]
+
+  @@index([campaignId])
+  @@index([createdBy])
+  @@index([folderId])
+  @@index([isFolder])
+}
+
+model items {
+  id          String      @id
+  name        String
+  slug        String
+  type        String?
+  description String?
+  image       String?
+  location    String?
+  character   String?
+  price       String?
+  size        String?
+  isPrivate   Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime
+  campaignId  String
+  createdById String
+  bookmarks   bookmarks[]
+  campaigns   campaigns   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users       users       @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  posts       posts[]
+
+  @@unique([campaignId, slug])
+}
+
+model journals {
+  id          String      @id
+  name        String
+  slug        String
+  type        String?
+  description String?
+  date        String?
+  image       String?
+  isPrivate   Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime
+  campaignId  String
+  createdById String
+  bookmarks   bookmarks[]
+  campaigns   campaigns   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users       users       @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  posts       posts[]
+
+  @@unique([campaignId, slug])
+}
+
+model locations {
+  id                 String               @id
+  name               String
+  slug               String
+  type               String?
+  parentId           String?
+  description        String?
+  imageId            String?
+  mapImage           String?
+  isPrivate          Boolean              @default(false)
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime
+  campaignId         String
+  createdById        String
+  bookmarks          bookmarks[]
+  creature_locations creature_locations[]
+  entity_assets      entity_assets[]
+  image_mentions     image_mentions[]
+  campaigns          campaigns            @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users              users                @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  images             images?              @relation(fields: [imageId], references: [id])
+  locations          locations?           @relation("locationsTolocations", fields: [parentId], references: [id])
+  other_locations    locations[]          @relation("locationsTolocations")
+  posts              posts[]
+
+  @@unique([campaignId, slug])
+}
+
+model map_groups {
+  id               String        @id
+  name             String
+  position         Int           @default(0)
+  isShown          Boolean       @default(true)
+  isPrivate        Boolean       @default(false)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime
+  mapId            String
+  parentId         String?
+  createdById      String
+  users            users         @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  maps             maps          @relation(fields: [mapId], references: [id], onDelete: Cascade)
+  map_groups       map_groups?   @relation("map_groupsTomap_groups", fields: [parentId], references: [id])
+  other_map_groups map_groups[]  @relation("map_groupsTomap_groups")
+  map_markers      map_markers[]
+
+  @@index([mapId])
+  @@index([parentId])
+}
+
+model map_layers {
+  id          String   @id
+  name        String
+  image       String?
+  entry       String?
+  position    Int      @default(0)
+  width       Int?
+  height      Int?
+  opacity     Float    @default(1.0)
+  isVisible   Boolean  @default(true)
+  isPrivate   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+  mapId       String
+  createdById String
+  users       users    @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  maps        maps     @relation(fields: [mapId], references: [id], onDelete: Cascade)
+
+  @@index([mapId])
+  @@index([mapId, position])
+}
+
+model map_markers {
+  id           String      @id
+  name         String
+  entry        String?
+  longitude    Float
+  latitude     Float
+  shape        String      @default("marker")
+  size         Int         @default(1)
+  colour       String      @default("#ff0000")
+  fontColour   String      @default("#ffffff")
+  icon         String?
+  customIcon   String?
+  customShape  String?
+  opacity      Float       @default(1.0)
+  circleRadius Int?
+  polygonStyle Json?
+  isDraggable  Boolean     @default(false)
+  isPopupless  Boolean     @default(false)
+  pinSize      Int?
+  css          String?
+  entityId     String?
+  entityType   String?
+  isPrivate    Boolean     @default(false)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime
+  mapId        String
+  groupId      String?
+  createdById  String
+  users        users       @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  map_groups   map_groups? @relation(fields: [groupId], references: [id])
+  maps         maps        @relation(fields: [mapId], references: [id], onDelete: Cascade)
+
+  @@index([entityType, entityId])
+  @@index([groupId])
+  @@index([mapId])
+}
+
+model maps {
+  id          String        @id
+  name        String
+  slug        String
+  type        String?
+  description String?
+  image       String?
+  grid        Json?
+  isPrivate   Boolean       @default(false)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime
+  campaignId  String
+  createdById String
+  map_groups  map_groups[]
+  map_layers  map_layers[]
+  map_markers map_markers[]
+  campaigns   campaigns     @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users       users         @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@unique([campaignId, slug])
+}
+
+model notes {
+  id          String    @id
+  name        String
+  slug        String
+  type        String?
+  description String?
+  image       String?
+  isPrivate   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  campaignId  String
+  createdById String
+  campaigns   campaigns @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users       users     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@unique([campaignId, slug])
+}
+
+model notification_preferences {
+  id                   String   @id
+  emailOnMention       Boolean  @default(true)
+  emailOnComment       Boolean  @default(true)
+  emailOnCalendar      Boolean  @default(true)
+  emailOnReminder      Boolean  @default(true)
+  emailOnCampaign      Boolean  @default(true)
+  emailOnQuest         Boolean  @default(false)
+  emailOnCharacter     Boolean  @default(false)
+  emailDigest          Boolean  @default(false)
+  emailDigestFrequency String   @default("daily")
+  notifyOnMention      Boolean  @default(true)
+  notifyOnComment      Boolean  @default(true)
+  notifyOnCalendar     Boolean  @default(true)
+  notifyOnReminder     Boolean  @default(true)
+  notifyOnCampaign     Boolean  @default(true)
+  notifyOnQuest        Boolean  @default(true)
+  notifyOnCharacter    Boolean  @default(true)
+  userId               String   @unique
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime
+  users                users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model notifications {
+  id                                   String     @id
+  type                                 String
+  title                                String
+  message                              String
+  link                                 String?
+  read                                 Boolean    @default(false)
+  entityType                           String?
+  entityId                             String?
+  userId                               String
+  creatorId                            String?
+  campaignId                           String?
+  createdAt                            DateTime   @default(now())
+  readAt                               DateTime?
+  campaigns                            campaigns? @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users_notifications_creatorIdTousers users?     @relation("notifications_creatorIdTousers", fields: [creatorId], references: [id])
+  users_notifications_userIdTousers    users      @relation("notifications_userIdTousers", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([campaignId])
+  @@index([createdAt])
+  @@index([type])
+  @@index([userId, read])
+}
+
+model organisations {
+  id          String      @id
+  name        String
+  slug        String
+  type        String?
+  description String?
+  image       String?
+  location    String?
+  isPrivate   Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime
+  campaignId  String
+  createdById String
+  bookmarks   bookmarks[]
+  campaigns   campaigns   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users       users       @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  posts       posts[]
+
+  @@unique([campaignId, slug])
+}
+
+model post_permissions {
+  id             String          @id
+  permission     Int             @default(0)
+  postId         String
+  roleId         String?
+  userId         String?
+  posts          posts           @relation(fields: [postId], references: [id], onDelete: Cascade)
+  campaign_roles campaign_roles? @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  users          users?          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([postId])
+  @@index([roleId])
+  @@index([userId])
+}
+
+model post_tags {
+  id     String @id
+  postId String
+  tagId  String
+  posts  posts  @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tags   tags   @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, tagId])
+  @@index([postId])
+  @@index([tagId])
+}
+
+model posts {
+  id               String             @id
+  name             String
+  entry            String?
+  isPrivate        Boolean            @default(false)
+  isPinned         Boolean            @default(false)
+  position         Int                @default(0)
+  layoutId         String?
+  settings         Json               @default("{}")
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime
+  campaignId       String
+  createdById      String
+  characterId      String?
+  locationId       String?
+  itemId           String?
+  questId          String?
+  eventId          String?
+  journalId        String?
+  familyId         String?
+  organisationId   String?
+  image_mentions   image_mentions[]
+  post_permissions post_permissions[]
+  post_tags        post_tags[]
+  campaigns        campaigns          @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  characters       characters?        @relation(fields: [characterId], references: [id])
+  users            users              @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  events           events?            @relation(fields: [eventId], references: [id])
+  families         families?          @relation(fields: [familyId], references: [id])
+  items            items?             @relation(fields: [itemId], references: [id])
+  journals         journals?          @relation(fields: [journalId], references: [id])
+  locations        locations?         @relation(fields: [locationId], references: [id])
+  organisations    organisations?     @relation(fields: [organisationId], references: [id])
+  quests           quests?            @relation(fields: [questId], references: [id])
+
+  @@index([campaignId])
+  @@index([campaignId, name])
+  @@index([characterId])
+  @@index([isPinned])
+  @@index([locationId])
+}
+
+model preset_types {
+  id          String    @id
+  name        String    @unique
+  description String?
+  category    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  presets     presets[]
+}
+
+model presets {
+  id           String       @id
+  name         String
+  slug         String       @unique
+  description  String?
+  config       Json         @default("{}")
+  isPublic     Boolean      @default(false)
+  isOfficial   Boolean      @default(false)
+  category     String?
+  tags         Json         @default("[]")
+  typeId       String
+  campaignId   String?
+  createdById  String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime
+  campaigns    campaigns?   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users        users?       @relation(fields: [createdById], references: [id])
+  preset_types preset_types @relation(fields: [typeId], references: [id], onDelete: Cascade)
+
+  @@index([campaignId])
+  @@index([category])
+  @@index([isOfficial])
+  @@index([isPublic])
+  @@index([typeId])
+}
+
+model quests {
+  id          String      @id
+  name        String
+  slug        String
+  type        String?
+  description String?
+  image       String?
+  status      String?     @default("active")
+  isPrivate   Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime
+  campaignId  String
+  createdById String
+  bookmarks   bookmarks[]
+  posts       posts[]
+  campaigns   campaigns   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users       users       @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@unique([campaignId, slug])
+}
+
+model races {
+  id          String    @id
+  name        String
+  slug        String
+  type        String?
+  description String?
+  image       String?
+  isPrivate   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  campaignId  String
+  createdById String
+  campaigns   campaigns @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users       users     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@unique([campaignId, slug])
+}
+
+model relations {
+  id              String     @id
+  relation        String
+  attitude        Int        @default(0)
+  colour          String?
+  isPinned        Boolean    @default(false)
+  visibility      String     @default("all")
+  mirrorId        String?    @unique
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime
+  ownerId         String
+  ownerType       String
+  targetId        String
+  targetType      String
+  campaignId      String
+  createdById     String
+  campaigns       campaigns  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users           users      @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  relations       relations? @relation("relationsTorelations", fields: [mirrorId], references: [id])
+  other_relations relations? @relation("relationsTorelations")
+
+  @@index([campaignId])
+  @@index([ownerId, ownerType])
+  @@index([targetId, targetType])
+}
+
+model relationships {
+  id               String    @id
+  sourceEntityType String
+  sourceEntityId   String
+  targetEntityType String
+  targetEntityId   String
+  relationshipType String
+  description      String?
+  metadata         Json?
+  bidirectional    Boolean   @default(false)
+  isPrivate        Boolean   @default(false)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime
+  campaignId       String
+  createdById      String
+  campaigns        campaigns @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users            users     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@index([campaignId])
+  @@index([relationshipType])
+  @@index([sourceEntityType, sourceEntityId])
+  @@index([targetEntityType, targetEntityId])
+}
+
+model reminders {
+  id                 String             @id
+  name               String
+  description        String?
+  entityType         String
+  entityId           String
+  eventTypeId        String
+  calendarId         String?
+  calendarDate       String?
+  isRecurring        Boolean            @default(false)
+  recurrenceRule     Json?
+  notifyBefore       Int?
+  isNotification     Boolean            @default(false)
+  campaignId         String
+  createdById        String
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime
+  calendars          calendars?         @relation(fields: [calendarId], references: [id])
+  campaigns          campaigns          @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users              users              @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  entity_event_types entity_event_types @relation(fields: [eventTypeId], references: [id], onDelete: Cascade)
+
+  @@index([calendarId])
+  @@index([campaignId])
+  @@index([entityType, entityId])
+  @@index([eventTypeId])
+}
+
+model tags {
+  id                             String                           @id
+  name                           String
+  slug                           String
+  type                           String?
+  description                    String?
+  color                          String?
+  isPrivate                      Boolean                          @default(false)
+  createdAt                      DateTime                         @default(now())
+  updatedAt                      DateTime
+  campaignId                     String
+  createdById                    String
+  campaign_dashboard_widget_tags campaign_dashboard_widget_tags[]
+  post_tags                      post_tags[]
+  campaigns                      campaigns                        @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users                          users                            @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@unique([campaignId, slug])
+}
+
+model themes {
+  id              String            @id
+  name            String
+  slug            String            @unique
+  description     String?
+  preview         String?
+  isOfficial      Boolean           @default(false)
+  isPublic        Boolean           @default(false)
+  colors          Json              @default("{}")
+  fonts           Json              @default("{}")
+  layout          Json              @default("{}")
+  customCSS       String?
+  createdById     String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime
+  campaign_styles campaign_styles[]
+  users           users?            @relation(fields: [createdById], references: [id])
+
+  @@index([isOfficial])
+  @@index([isPublic])
+}
+
+model timelines {
+  id          String    @id
+  name        String
+  slug        String
+  type        String?
+  description String?
+  image       String?
+  startDate   String?
+  endDate     String?
+  isPrivate   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  campaignId  String
+  createdById String
+  events      events[]
+  campaigns   campaigns @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users       users     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@unique([campaignId, slug])
+}
+
+model user_logs {
+  id        String   @id
+  action    String
+  details   Json     @default("{}")
+  ipAddress String?
+  userAgent String?
+  userId    String
+  createdAt DateTime @default(now())
+  users     users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([action])
+  @@index([createdAt])
+  @@index([userId])
+}
+
+model users {
+  id                                                             String                      @id
+  email                                                          String                      @unique
+  name                                                           String
+  password                                                       String
+  avatar                                                         String?
+  emailVerified                                                  DateTime?
+  createdAt                                                      DateTime                    @default(now())
+  updatedAt                                                      DateTime
+  abilities                                                      abilities[]
+  attribute_templates                                            attribute_templates[]
+  attributes                                                     attributes[]
+  bookmarks                                                      bookmarks[]
+  calendars                                                      calendars[]
+  campaign_dashboards                                            campaign_dashboards[]
+  campaign_roles                                                 campaign_roles[]
+  campaigns                                                      campaigns[]
+  characters                                                     characters[]
+  conversation_messages_conversation_messages_createdByIdTousers conversation_messages[]     @relation("conversation_messages_createdByIdTousers")
+  conversation_messages_conversation_messages_userIdTousers      conversation_messages[]     @relation("conversation_messages_userIdTousers")
+  conversation_participants                                      conversation_participants[]
+  conversations                                                  conversations[]
+  creatures                                                      creatures[]
+  dice_roll_results                                              dice_roll_results[]
+  dice_rolls                                                     dice_rolls[]
+  entity_abilities                                               entity_abilities[]
+  entity_logs                                                    entity_logs[]
+  events                                                         events[]
+  families                                                       families[]
+  images                                                         images[]
+  items                                                          items[]
+  journals                                                       journals[]
+  locations                                                      locations[]
+  map_groups                                                     map_groups[]
+  map_layers                                                     map_layers[]
+  map_markers                                                    map_markers[]
+  maps                                                           maps[]
+  notes                                                          notes[]
+  notification_preferences                                       notification_preferences?
+  notifications_notifications_creatorIdTousers                   notifications[]             @relation("notifications_creatorIdTousers")
+  notifications_notifications_userIdTousers                      notifications[]             @relation("notifications_userIdTousers")
+  organisations                                                  organisations[]
+  post_permissions                                               post_permissions[]
+  posts                                                          posts[]
+  presets                                                        presets[]
+  quests                                                         quests[]
+  races                                                          races[]
+  relations                                                      relations[]
+  relationships                                                  relationships[]
+  reminders                                                      reminders[]
+  tags                                                           tags[]
+  themes                                                         themes[]
+  timelines                                                      timelines[]
+  user_logs                                                      user_logs[]
+  versions                                                       versions[]
+  whiteboards                                                    whiteboards[]
+}
+
+model versions {
+  id            String    @id
+  entityType    String
+  entityId      String
+  versionNumber Int
+  snapshot      Json
+  changeType    String    @default("update")
+  changesMade   String?
+  changedFields Json?
+  createdAt     DateTime  @default(now())
+  campaignId    String
+  createdById   String
+  campaigns     campaigns @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users         users     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@unique([entityType, entityId, versionNumber])
+  @@index([campaignId])
+  @@index([createdAt])
+  @@index([entityType, entityId])
+}
+
+model whiteboards {
+  id          String    @id
+  name        String
+  slug        String
+  description String?
+  content     Json      @default("{}")
+  thumbnail   String?
+  template    String?
+  isPrivate   Boolean   @default(false)
+  campaignId  String
+  createdById String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  campaigns   campaigns @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  users       users     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@unique([campaignId, slug])
+  @@index([campaignId])
+}

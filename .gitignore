@@ -45,9 +45,10 @@ package-lock.json
 # Prisma
 generated/
 generated/prisma
+migration_lock.toml
 
 # Pg
-database/
+database/pg
 
 # Storybook
 *storybook.log
