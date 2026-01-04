@@ -78,6 +78,7 @@ export default function CampaignForm({
                   onChange={field.onChange}
                   placeholder="Describe your campaign..."
                   disabled={isLoading}
+                  className="h-[400px]"
                 />
               </FormControl>
               <FormMessage />

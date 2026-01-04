@@ -80,7 +80,7 @@ export default function CampaignLayout({
     { icon: Grid3x3, label: 'Other', href: `#`, disabled: true },
   ];
 
-  const formatTimeAgo = (date: string) => {
+  const formatTimeAgo = (date: string | Date) => {
     const now = new Date();
     const then = new Date(date);
     const days = Math.floor((now.getTime() - then.getTime()) / (1000 * 60 * 60 * 24));
@@ -126,18 +126,22 @@ export default function CampaignLayout({
       {/* Sidebar Navigation - Fixed height with independent scroll */}
       <div className="w-64 border-r border-border bg-card flex flex-col shrink-0 overflow-hidden">
         {/* Campaign Header - Fixed */}
-        <div className="p-4 border-b border-border shrink-0">
-          {campaign.image && (
-            <div className="relative w-full h-32 mb-3 rounded-lg overflow-hidden">
-              <img
-                src={campaign.image}
-                alt={campaign.name}
-                className="w-full h-full object-cover"
-              />
+        <div className="p-3 border-b border-border shrink-0">
+          <div className="flex items-center gap-3">
+            {campaign.image && (
+              <div className="relative w-12 h-12 rounded-md overflow-hidden shrink-0">
+                <img
+                  src={campaign.image}
+                  alt={campaign.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+            <div className="flex-1 min-w-0">
+              <h2 className="font-semibold text-sm truncate">{campaign.name}</h2>
+              <p className="text-xs text-muted-foreground">Updated {formatTimeAgo(campaign.updatedAt)}</p>
             </div>
-          )}
-          <h2 className="font-bold text-lg truncate">{campaign.name}</h2>
-          <p className="text-xs text-muted-foreground">Updated {formatTimeAgo(campaign.updatedAt)}</p>
+          </div>
         </div>
 
         {/* Navigation Links - Scrollable independently */}

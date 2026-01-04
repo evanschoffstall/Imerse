@@ -1,6 +1,5 @@
 'use client';
 
-import CampaignForm from '@/components/forms/CampaignForm';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,7 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
-import { CampaignFormData } from '@/features/campaigns';
+import { CampaignForm, CampaignFormData } from '@/features/campaigns';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
@@ -41,6 +40,7 @@ export default function EditCampaignPage() {
         setInitialData({
           name: data.campaign.name,
           description: data.campaign.description || '',
+          image: data.campaign.image || '',
         });
       } catch (error) {
         console.error('Error fetching campaign:', error);
@@ -68,6 +68,7 @@ export default function EditCampaignPage() {
         body: JSON.stringify({
           name: data.name,
           description: data.description || '',
+          image: data.image || '',
         }),
       });
 

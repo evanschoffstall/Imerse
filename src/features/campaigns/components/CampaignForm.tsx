@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -53,7 +54,7 @@ export default function CampaignForm({
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Campaign Name *</FormLabel>
+              <FormLabel>Name</FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -61,6 +62,9 @@ export default function CampaignForm({
                   disabled={isLoading}
                 />
               </FormControl>
+              <FormDescription>
+                A unique name to identify your campaign.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -78,8 +82,12 @@ export default function CampaignForm({
                   onChange={field.onChange}
                   placeholder="Describe your campaign..."
                   disabled={isLoading}
+                  className="h-[400px]"
                 />
               </FormControl>
+              <FormDescription>
+                Add details about your campaign setting, story, and themes.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -90,7 +98,7 @@ export default function CampaignForm({
           name="image"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Campaign Image</FormLabel>
+              <FormLabel>Cover Image</FormLabel>
               <FormControl>
                 <ImageUpload
                   currentImage={field.value}
@@ -98,20 +106,15 @@ export default function CampaignForm({
                   folder="campaigns"
                 />
               </FormControl>
+              <FormDescription>
+                Upload a cover image for your campaign.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <div className="flex justify-end space-x-3">
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={() => window.history.back()}
-            disabled={isLoading}
-          >
-            Cancel
-          </Button>
+        <div className="flex justify-end gap-2">
           <Button type="submit" disabled={isLoading}>
             {isLoading ? 'Saving...' : submitText}
           </Button>

@@ -1,5 +1,6 @@
 'use client'
 
+import { ImageIcon, Upload, X } from 'lucide-react'
 import Image from 'next/image'
 import { ChangeEvent, useRef, useState } from 'react'
 import { toast } from 'sonner'
@@ -88,14 +89,10 @@ export default function ImageUpload({
   }
 
   return (
-    <div className="space-y-4">
-      <label className="block text-sm font-medium mb-2">
-        {label}
-      </label>
-
+    <div className="space-y-2">
       {preview ? (
-        <div className="relative w-full max-w-md">
-          <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+        <div className="space-y-3">
+          <div className="relative w-full aspect-video rounded-md overflow-hidden border bg-muted">
             <Image
               src={preview}
               alt="Preview"
@@ -104,56 +101,48 @@ export default function ImageUpload({
               sizes="(max-width: 768px) 100vw, 400px"
             />
           </div>
-          <div className="flex gap-2 mt-2">
+          <div className="flex gap-2">
             <Button
               type="button"
               onClick={handleButtonClick}
               disabled={uploading}
-              variant="secondary"
+              variant="outline"
               size="sm"
+              className="gap-2"
             >
-              {uploading ? 'Uploading...' : 'Change Image'}
+              <Upload className="h-4 w-4" />
+              {uploading ? 'Uploading...' : 'Change'}
             </Button>
             <Button
               type="button"
               onClick={handleRemove}
               disabled={uploading}
-              variant="destructive"
+              variant="outline"
               size="sm"
+              className="gap-2 text-destructive hover:text-destructive"
             >
+              <X className="h-4 w-4" />
               Remove
             </Button>
           </div>
         </div>
       ) : (
-        <div className="w-full max-w-md">
-          <button
-            type="button"
-            onClick={handleButtonClick}
-            disabled={uploading}
-            className="w-full aspect-video border-2 border-dashed border-border rounded-lg flex flex-col items-center justify-center hover:border-blue-500 dark:hover:border-blue-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <svg
-              className="w-12 h-12 text-gray-400 mb-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-              />
-            </svg>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              {uploading ? 'Uploading...' : 'Click to upload image'}
+        <button
+          type="button"
+          onClick={handleButtonClick}
+          disabled={uploading}
+          className="relative w-full aspect-video rounded-md border-2 border-dashed border-muted-foreground/25 hover:border-muted-foreground/50 transition-colors flex flex-col items-center justify-center gap-2 bg-muted/50 hover:bg-muted group disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <ImageIcon className="h-10 w-10 text-muted-foreground/50 group-hover:text-muted-foreground/75 transition-colors" />
+          <div className="text-center">
+            <p className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+              {uploading ? 'Uploading...' : 'Click to upload'}
             </p>
-            <p className="text-xs text-muted-foreground dark:text-muted-foreground mt-1">
-              JPG, PNG, WebP, or GIF (max 5MB)
+            <p className="text-xs text-muted-foreground mt-1">
+              JPG, PNG, WebP or GIF (max 5MB)
             </p>
-          </button>
-        </div>
+          </div>
+        </button>
       )}
 
       <input

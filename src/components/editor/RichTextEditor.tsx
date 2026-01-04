@@ -9,6 +9,7 @@ interface RichTextEditorProps {
   onChange: (content: string) => void
   placeholder?: string
   disabled?: boolean
+  className?: string
 }
 
 /**
@@ -29,7 +30,8 @@ interface RichTextEditorProps {
 export default function RichTextEditor({
   content,
   onChange,
-  disabled
+  disabled,
+  className
 }: RichTextEditorProps) {
   const [editorState, setEditorState] = useState<SerializedEditorState>(() => {
     // Initialize with content if provided
@@ -57,6 +59,7 @@ export default function RichTextEditor({
     <Editor
       editorSerializedState={editorState}
       onSerializedChange={handleChange}
+      className={className}
     />
   )
 }

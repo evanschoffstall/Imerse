@@ -106,7 +106,7 @@ import { Separator } from "@/components/ui/separator"
 const placeholder = "Press / for commands..."
 const maxLength = 500
 
-export function Plugins({ }) {
+export function Plugins({ className }: { className?: string }) {
   const [floatingAnchorElem, setFloatingAnchorElem] =
     useState<HTMLDivElement | null>(null)
   const [isLinkEditMode, setIsLinkEditMode] = useState<boolean>(false)
@@ -172,7 +172,7 @@ export function Plugins({ }) {
               <div className="" ref={onRef}>
                 <ContentEditable
                   placeholder={placeholder}
-                  className="ContentEditable__root relative block h-[calc(100vh-90px)] min-h-72 overflow-auto px-8 py-4 focus:outline-none"
+                  className={`ContentEditable__root relative block overflow-auto px-8 py-4 focus:outline-none ${className || 'h-[calc(100vh-90px)] min-h-72'}`}
                 />
               </div>
             </div>
