@@ -17,16 +17,39 @@ import { LogOut, Menu, Settings, Swords } from 'lucide-react'
 import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import GlobalSearch from './GlobalSearch'
 
 export default function Header() {
   const { data: session, status } = useSession()
   const pathname = usePathname()
+  const [campaignStyle, setCampaignStyle] = useState<any>(null)
 
   // Check if we're on a campaign page
   const campaignMatch = pathname?.match(/^\/campaigns\/([^\/]+)/)
   const campaignId = campaignMatch?.[1]
   const isOnCampaignPage = !!campaignId && session?.user
+
+  useEffect(() => {
+    const fetchCampaignStyle = async () => {
+      if (campaignId) {
+        try {
+          const response = await fetch(`/api/campaigns/${campaignId}/style`)
+          if (response.ok) {
+            const data = await response.json()
+            console.log('Header fetched campaign style:', data)
+            setCampaignStyle(data)
+          }
+        } catch (error) {
+          console.error('Failed to fetch campaign style:', error)
+        }
+      } else {
+        setCampaignStyle(null)
+      }
+    }
+
+    fetchCampaignStyle()
+  }, [campaignId])
 
   const navigationItems = session?.user ? [
     { href: '/campaigns', label: 'Campaigns' },
@@ -46,9 +69,18 @@ export default function Header() {
       .slice(0, 2)
   }
 
+  console.log('Header render - campaignStyle:', campaignStyle, 'headerBgOpacity:', campaignStyle?.headerBgOpacity)
+
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border/20 backdrop-blur-xl">
-      <div className="absolute inset-0 -z-10 bg-linear-to-b from-background/60 via-background/40 to-transparent" />
+      <div
+        className="absolute inset-0 -z-10"
+        style={campaignStyle && campaignStyle.headerBgOpacity !== undefined ? {
+          background: `linear-gradient(to bottom, hsl(var(--background) / ${campaignStyle.headerBgOpacity}), hsl(var(--background) / ${campaignStyle.headerBgOpacity * 0.7}), transparent)`
+        } : {
+          background: 'linear-gradient(to bottom, hsl(var(--background) / 0.6), hsl(var(--background) / 0.4), transparent)'
+        }}
+      />
       <div className="flex h-16 items-center px-4 sm:px-6 lg:px-8">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2 transition-opacity hover:opacity-80">

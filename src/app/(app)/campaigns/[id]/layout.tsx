@@ -132,10 +132,10 @@ export default function CampaignLayout({
 
   return (
     <div className="flex h-[calc(100vh-4rem)] bg-background relative">
-      {/* Fixed background image layer */}
+      {/* Fixed background image layer - covers entire viewport including header */}
       {campaign.backgroundImage && (
         <div
-          className="fixed inset-0 top-16 pointer-events-none"
+          className="fixed inset-0 top-0 pointer-events-none"
           style={{
             backgroundImage: `url(${campaign.backgroundImage})`,
             backgroundSize: 'cover',
@@ -146,10 +146,10 @@ export default function CampaignLayout({
         />
       )}
 
-      {/* Fixed background overlay with opacity and blur */}
+      {/* Fixed background overlay with opacity and blur - also covers header */}
       {campaign.backgroundImage && campaignStyle && (
         <div
-          className="fixed inset-0 top-16 pointer-events-none"
+          className="fixed inset-0 top-0 pointer-events-none"
           style={{
             backgroundColor: `hsl(var(--background) / ${campaignStyle.bgOpacity ?? 0.8})`,
             backdropFilter: `blur(${campaignStyle.bgBlur ?? 4}px)`,
