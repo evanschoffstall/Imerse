@@ -1275,23 +1275,25 @@ model Theme {
 }
 
 model CampaignStyle {
-  id                  String   @id @default(cuid())
-  headerImage         String?
-  colors              Json     @default("{}")
-  fonts               Json     @default("{}")
-  customCSS           String?
-  bgOpacity           Float    @default(0.8)
-  bgBlur              Float    @default(4)
-  bgExpandToSidebar   Boolean  @default(false)
-  bgExpandToHeader    Boolean  @default(false)
-  headerBgOpacity     Float    @default(0.95)
-  sidebarBgOpacity    Float    @default(1.0)
-  themeId             String?
-  campaignId          String   @unique
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
-  campaign            Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
-  theme               Theme?   @relation(fields: [themeId], references: [id])
+  id                String   @id @default(cuid())
+  headerImage       String?
+  colors            Json     @default("{}")
+  fonts             Json     @default("{}")
+  customCSS         String?
+  themeId           String?
+  campaignId        String   @unique
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  bgOpacity         Float?   @default(0.8)
+  bgBlur            Float?   @default(4)
+  bgExpandToSidebar Boolean? @default(false)
+  bgExpandToHeader  Boolean? @default(false)
+  headerBgOpacity   Float?   @default(0.95)
+  headerBlur        Float?   @default(0)
+  sidebarBgOpacity  Float?   @default(1.0)
+  sidebarBlur       Float?   @default(0)
+  campaign          Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  theme             Theme?   @relation(fields: [themeId], references: [id])
 
   @@index([themeId])
   @@map("campaign_styles")

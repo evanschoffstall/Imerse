@@ -168,7 +168,9 @@ export default function CampaignLayout({
       <div
         className="w-64 border-r border-border flex flex-col shrink-0 overflow-hidden relative z-10 mt-16"
         style={{
-          backgroundColor: `hsl(var(--card) / ${campaignStyle?.sidebarBgOpacity ?? 1})`
+          backgroundColor: `hsl(var(--card) / ${campaignStyle?.sidebarBgOpacity ?? 1})`,
+          backdropFilter: campaignStyle?.sidebarBlur !== undefined ? `blur(${campaignStyle.sidebarBlur}px)` : undefined,
+          WebkitBackdropFilter: campaignStyle?.sidebarBlur !== undefined ? `blur(${campaignStyle.sidebarBlur}px)` : undefined,
         }}
       >
         {/* Campaign Header - Fixed */}

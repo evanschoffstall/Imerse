@@ -37,7 +37,9 @@ export default function EditCampaignPage() {
   const [bgExpandToSidebar, setBgExpandToSidebar] = useState(false);
   const [bgExpandToHeader, setBgExpandToHeader] = useState(false);
   const [headerBgOpacity, setHeaderBgOpacity] = useState(0.95);
+  const [headerBlur, setHeaderBlur] = useState(0);
   const [sidebarBgOpacity, setSidebarBgOpacity] = useState(1.0);
+  const [sidebarBlur, setSidebarBlur] = useState(0);
 
   useEffect(() => {
     const fetchCampaign = async () => {
@@ -66,7 +68,9 @@ export default function EditCampaignPage() {
           setBgExpandToSidebar(styleData.bgExpandToSidebar ?? false);
           setBgExpandToHeader(styleData.bgExpandToHeader ?? false);
           setHeaderBgOpacity(styleData.headerBgOpacity ?? 0.95);
+          setHeaderBlur(styleData.headerBlur ?? 0);
           setSidebarBgOpacity(styleData.sidebarBgOpacity ?? 1.0);
+          setSidebarBlur(styleData.sidebarBlur ?? 0);
         }
       } catch (error) {
         console.error('Error fetching campaign:', error);
@@ -152,7 +156,9 @@ export default function EditCampaignPage() {
           bgExpandToSidebar,
           bgExpandToHeader,
           headerBgOpacity,
+          headerBlur,
           sidebarBgOpacity,
+          sidebarBlur,
         }),
       });
 
@@ -270,6 +276,21 @@ export default function EditCampaignPage() {
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
+                  <Label htmlFor="header-blur">Header Blur</Label>
+                  <span className="text-sm text-muted-foreground">{Math.round(headerBlur)}px</span>
+                </div>
+                <Slider
+                  id="header-blur"
+                  min={0}
+                  max={50}
+                  step={1}
+                  value={[headerBlur]}
+                  onValueChange={(values) => setHeaderBlur(values[0])}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
                   <Label htmlFor="sidebar-opacity">Sidebar Background Opacity</Label>
                   <span className="text-sm text-muted-foreground">{Math.round(sidebarBgOpacity * 100)}%</span>
                 </div>
@@ -280,6 +301,21 @@ export default function EditCampaignPage() {
                   step={0.01}
                   value={[sidebarBgOpacity]}
                   onValueChange={(values) => setSidebarBgOpacity(values[0])}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="sidebar-blur">Sidebar Blur</Label>
+                  <span className="text-sm text-muted-foreground">{Math.round(sidebarBlur)}px</span>
+                </div>
+                <Slider
+                  id="sidebar-blur"
+                  min={0}
+                  max={50}
+                  step={1}
+                  value={[sidebarBlur]}
+                  onValueChange={(values) => setSidebarBlur(values[0])}
                 />
               </div>
 

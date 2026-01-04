@@ -124,7 +124,9 @@ export async function PATCH(
       bgExpandToSidebar,
       bgExpandToHeader,
       headerBgOpacity,
+      headerBlur,
       sidebarBgOpacity,
+      sidebarBlur,
     } = body;
 
     // Validate background values
@@ -162,6 +164,20 @@ export async function PATCH(
       );
     }
 
+    if (headerBlur !== undefined && (headerBlur < 0 || headerBlur > 50)) {
+      return NextResponse.json(
+        { error: "Header blur must be between 0 and 50" },
+        { status: 400 }
+      );
+    }
+
+    if (sidebarBlur !== undefined && (sidebarBlur < 0 || sidebarBlur > 50)) {
+      return NextResponse.json(
+        { error: "Sidebar blur must be between 0 and 50" },
+        { status: 400 }
+      );
+    }
+
     // Verify theme exists if provided
     if (themeId) {
       const theme = await prisma.theme.findUnique({
@@ -187,7 +203,9 @@ export async function PATCH(
         ...(bgExpandToSidebar !== undefined && { bgExpandToSidebar }),
         ...(bgExpandToHeader !== undefined && { bgExpandToHeader }),
         ...(headerBgOpacity !== undefined && { headerBgOpacity }),
+        ...(headerBlur !== undefined && { headerBlur }),
         ...(sidebarBgOpacity !== undefined && { sidebarBgOpacity }),
+        ...(sidebarBlur !== undefined && { sidebarBlur }),
       },
       create: {
         campaignId: id,
@@ -201,7 +219,9 @@ export async function PATCH(
         bgExpandToSidebar: bgExpandToSidebar ?? false,
         bgExpandToHeader: bgExpandToHeader ?? false,
         headerBgOpacity: headerBgOpacity ?? 0.95,
+        headerBlur: headerBlur ?? 0,
         sidebarBgOpacity: sidebarBgOpacity ?? 1.0,
+        sidebarBlur: sidebarBlur ?? 0,
       },
       include: {
         theme: true,
