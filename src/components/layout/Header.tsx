@@ -72,15 +72,20 @@ export default function Header() {
   console.log('Header render - campaignStyle:', campaignStyle, 'headerBgOpacity:', campaignStyle?.headerBgOpacity)
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-border/20 backdrop-blur-xl">
-      <div
-        className="absolute inset-0 -z-10"
-        style={campaignStyle && campaignStyle.headerBgOpacity !== undefined ? {
-          background: `linear-gradient(to bottom, hsl(var(--background) / ${campaignStyle.headerBgOpacity}), hsl(var(--background) / ${campaignStyle.headerBgOpacity * 0.7}), transparent)`
-        } : {
-          background: 'linear-gradient(to bottom, hsl(var(--background) / 0.6), hsl(var(--background) / 0.4), transparent)'
-        }}
-      />
+    <header className={`fixed top-0 z-50 w-full backdrop-blur-xl ${isOnCampaignPage ? 'bg-transparent border-transparent' : 'border-b border-border/20'}`}>
+      {/* Only render the header's internal background when NOT on a campaign page.
+          Campaign pages provide their own fixed background layers so the header
+          should remain transparent to allow content to show underneath. */}
+      {!isOnCampaignPage && (
+        <div
+          className="absolute inset-0 -z-10"
+          style={campaignStyle && campaignStyle.headerBgOpacity !== undefined ? {
+            background: `linear-gradient(to bottom, hsl(var(--background) / ${campaignStyle.headerBgOpacity}), hsl(var(--background) / ${campaignStyle.headerBgOpacity * 0.7}), transparent)`
+          } : {
+            background: 'linear-gradient(to bottom, hsl(var(--background) / 0.6), hsl(var(--background) / 0.4), transparent)'
+          }}
+        />
+      )}
       <div className="flex h-16 items-center px-4 sm:px-6 lg:px-8">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2 transition-opacity hover:opacity-80">

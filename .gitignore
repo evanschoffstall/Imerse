@@ -11,6 +11,7 @@ pg.sh
 # VSCode
 .vscode/
 .lh/
+.history/
 
 # Env
 .env

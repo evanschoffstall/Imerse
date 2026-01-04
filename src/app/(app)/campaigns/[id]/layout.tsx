@@ -131,7 +131,12 @@ export default function CampaignLayout({
   };
 
   return (
-    <div className="flex h-[calc(100vh-4rem)] bg-background relative">
+    // Use full viewport height so content can appear underneath the
+    // fixed header (header is `fixed top-0`). Previously the layout
+    // reserved space for the header with `calc(100vh - 4rem)` which
+    // pushed content below the header, preventing elements from
+    // scrolling beneath it.
+    <div className="flex h-screen relative">
       {/* Fixed background image layer - covers entire viewport including header */}
       {campaign.backgroundImage && (
         <div
@@ -161,7 +166,7 @@ export default function CampaignLayout({
 
       {/* Sidebar Navigation - Fixed height with independent scroll */}
       <div
-        className="w-64 border-r border-border flex flex-col shrink-0 overflow-hidden relative z-10"
+        className="w-64 border-r border-border flex flex-col shrink-0 overflow-hidden relative z-10 mt-16"
         style={{
           backgroundColor: `hsl(var(--card) / ${campaignStyle?.sidebarBgOpacity ?? 1})`
         }}
