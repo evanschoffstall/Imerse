@@ -226,7 +226,9 @@ export default function CampaignLayout({
 
       {/* Main Content Area */}
       <div className="flex-1 overflow-y-auto relative z-10">
-        {children}
+        <div className="mt-16">
+          {children}
+        </div>
       </div>
     </div>
   );
